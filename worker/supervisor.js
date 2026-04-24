@@ -5,6 +5,7 @@ const { classifyIssue } = require("./autoFixEngine");
 const { saveRepairTask } = require("./repairTaskLog");
 const { createFixCommit } = require("./githubFixExecutor");
 const { saveCrossProjectRepairMemory } = require("./crossProjectMemoryRouter");
+const { saveErrorPattern } = require("./errorPatternLibrary");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -42,12 +43,20 @@ async function checkSentryIssues() {
       // Save repair task
       const task = saveRepairTask(issue, result);
 
-      // NEW: Cross-project memory save
+      // Cross-project memory
       saveCrossProjectRepairMemory({
         project: PROJECT,
         issueTitle: issue.title,
         issueType: result.type,
         action: result.action,
+      });
+
+      // NEW: Save reusable error pattern
+      saveErrorPattern({
+        issueTitle: issue.title,
+        issueType: result.type,
+        detectionPattern: issue.title.toLowerCase(),
+        autoFixRule: result.action,
       });
 
       // Example auto-fix trigger
