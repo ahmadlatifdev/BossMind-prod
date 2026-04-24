@@ -1,7 +1,8 @@
 const Sentry = require("@sentry/node");
 
-// Auto-fix engine
+// Engines
 const { classifyIssue } = require("./autoFixEngine");
+const { saveRepairTask } = require("./repairTaskLog");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -27,6 +28,7 @@ async function checkSentryIssues() {
 
     if (Array.isArray(data) && data.length > 0) {
       const issue = data[0];
+
       console.log("🚨 New Sentry issue:", issue.title);
 
       const result = classifyIssue(issue.title);
@@ -34,6 +36,10 @@ async function checkSentryIssues() {
       console.log("🧠 Auto-Fix Classification:");
       console.log("Type:", result.type);
       console.log("Action:", result.action);
+
+      // NEW: save repair task
+      saveRepairTask(issue, result);
+
     } else {
       console.log("✅ No new issues");
     }
