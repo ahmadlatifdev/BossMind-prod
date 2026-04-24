@@ -3,6 +3,7 @@ const Sentry = require("@sentry/node");
 // Engines
 const { classifyIssue } = require("./autoFixEngine");
 const { saveRepairTask } = require("./repairTaskLog");
+const { createFixCommit } = require("./githubFixExecutor");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -37,8 +38,21 @@ async function checkSentryIssues() {
       console.log("Type:", result.type);
       console.log("Action:", result.action);
 
-      // NEW: save repair task
-      saveRepairTask(issue, result);
+      // Save task
+      const task = saveRepairTask(issue, result);
+
+      // 🔥 Example auto-fix trigger (safe placeholder)
+      if (result.type === "missing_dependency") {
+        console.log("⚙️ Triggering GitHub auto-fix...");
+
+        const newContent = "// Auto-fix placeholder executed";
+
+        await createFixCommit(
+          "worker/fix-log.txt",
+          newContent,
+          "Auto-fix: missing dependency detected"
+        );
+      }
 
     } else {
       console.log("✅ No new issues");
