@@ -19,6 +19,7 @@ const {
 } = require("./requirementLockEngine");
 const { executeRunbookStep } = require("./masterRunbookEngine");
 const { validateExecutionBoundary } = require("./executionBoundaryGuard");
+const { saveProofLedgerEntry } = require("./automationProofLedger");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -62,7 +63,6 @@ async function checkSentryIssues() {
       return;
     }
 
-    // NEW: Execution Boundary Guard
     const boundaryCheck = validateExecutionBoundary({
       requestedFile: "worker/supervisor.js",
       requirementLock,
@@ -90,9 +90,11 @@ async function checkSentryIssues() {
     let issue = null;
     let result = null;
     let safety = null;
+    let sentryStatus = "clean";
 
     if (Array.isArray(data) && data.length > 0) {
       issue = data[0];
+      sentryStatus = "issue_detected";
 
       console.log("🚨 Issue:", issue.title);
 
@@ -121,6 +123,7 @@ async function checkSentryIssues() {
     }
 
     const verification = await verifyDeployment();
+
     console.log("🔎 Deployment:", verification);
 
     const validation = validateRepairDecision({
@@ -131,6 +134,8 @@ async function checkSentryIssues() {
     });
 
     console.log("🤖 Validation:", validation);
+
+    let changedFiles = [];
 
     if (validation.approved && result?.type === "missing_dependency") {
       executeRunbookStep({
@@ -145,6 +150,8 @@ async function checkSentryIssues() {
         "// Auto-fix placeholder",
         "Auto-fix"
       );
+
+      changedFiles.push("worker/fix-log.txt");
     } else {
       console.log("⛔ Blocked by Validation");
     }
@@ -166,6 +173,18 @@ async function checkSentryIssues() {
     saveDeploymentSnapshot({ verification, loopStatus });
 
     const prediction = predictNextRisk({ verification, loopStatus });
+
+    // NEW: PROOF LEDGER SAVE
+    saveProofLedgerEntry({
+      requirementLockId: requirementLock.id,
+      allowedFiles: ["worker/supervisor.js"],
+      blockedFiles: [],
+      changedFiles,
+      validationResult: validation,
+      deploymentResult: verification,
+      rollbackStatus: rollback,
+      sentryStatus,
+    });
 
     executeRunbookStep({
       phase: "END",
