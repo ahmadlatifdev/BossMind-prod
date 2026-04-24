@@ -1,1 +1,1 @@
-require('dotenv').config(); const Sentry = require('@sentry/node'); Sentry.init({ dsn: process.env.SENTRY_DSN }); Sentry.captureException(new Error('FINAL SENTRY TEST')); setTimeout(()=>{ console.log('sent'); },3000);
+require('dotenv').config(); const Sentry = require('@sentry/node'); Sentry.init({ dsn: process.env.SENTRY_DSN }); async function run(){ try{ throw new Error('SENTRY FINAL SUCCESS'); } catch(e){ Sentry.captureException(e); await Sentry.flush(5000); console.log('FLUSH DONE'); process.exit(1); } } run();
