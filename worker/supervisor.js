@@ -20,6 +20,7 @@ const {
 const { executeRunbookStep } = require("./masterRunbookEngine");
 const { validateExecutionBoundary } = require("./executionBoundaryGuard");
 const { saveProofLedgerEntry } = require("./automationProofLedger");
+const { runControlledPowerShell } = require("./powerShellControlledRunner");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -74,6 +75,16 @@ async function checkSentryIssues() {
       console.log("⛔ Blocked by Boundary Guard:", boundaryCheck.reason);
       return;
     }
+
+    // PowerShell Safe Runner (example usage)
+    const psResult = await runControlledPowerShell({
+      command: "node",
+      args: ["-v"],
+      requirementLock,
+      boundaryCheck,
+    });
+
+    console.log("⚙️ PowerShell Controlled Runner:", psResult);
 
     const res = await fetch(
       `https://sentry.io/api/0/projects/${ORG}/${PROJECT}/issues/?query=is:unresolved`,
@@ -174,7 +185,6 @@ async function checkSentryIssues() {
 
     const prediction = predictNextRisk({ verification, loopStatus });
 
-    // NEW: PROOF LEDGER SAVE
     saveProofLedgerEntry({
       requirementLockId: requirementLock.id,
       allowedFiles: ["worker/supervisor.js"],
