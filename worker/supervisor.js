@@ -1,8 +1,9 @@
 const Sentry = require("@sentry/node");
-// Use secure environment variable (DO NOT hardcode token)
-const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 
-// Your Sentry org + project
+// Auto-fix engine
+const { classifyIssue } = require("./autoFixEngine");
+
+const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
 const PROJECT = "node-express";
 
@@ -25,7 +26,14 @@ async function checkSentryIssues() {
     const data = await res.json();
 
     if (Array.isArray(data) && data.length > 0) {
-      console.log("🚨 New Sentry issue detected:", data[0].title);
+      const issue = data[0];
+      console.log("🚨 New Sentry issue:", issue.title);
+
+      const result = classifyIssue(issue.title);
+
+      console.log("🧠 Auto-Fix Classification:");
+      console.log("Type:", result.type);
+      console.log("Action:", result.action);
     } else {
       console.log("✅ No new issues");
     }
@@ -34,8 +42,5 @@ async function checkSentryIssues() {
   }
 }
 
-// Run every 60 seconds
 setInterval(checkSentryIssues, 60000);
-
-// Run immediately on start
 checkSentryIssues();
