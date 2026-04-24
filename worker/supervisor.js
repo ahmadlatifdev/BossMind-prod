@@ -9,6 +9,7 @@ const { saveErrorPattern } = require("./errorPatternLibrary");
 const { isPatchSafe } = require("./safePatchGuard");
 const { verifyDeployment } = require("./deploymentVerifier");
 const { rollbackIfNeeded } = require("./rollbackController");
+const { validateRepairDecision } = require("./validationAI");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -32,12 +33,16 @@ async function checkSentryIssues() {
 
     const data = await res.json();
 
+    let issue = null;
+    let result = null;
+    let safety = null;
+
     if (Array.isArray(data) && data.length > 0) {
-      const issue = data[0];
+      issue = data[0];
 
       console.log("🚨 New Sentry issue:", issue.title);
 
-      const result = classifyIssue(issue.title);
+      result = classifyIssue(issue.title);
 
       console.log("🧠 Auto-Fix Classification:");
       console.log("Type:", result.type);
@@ -62,27 +67,9 @@ async function checkSentryIssues() {
         autoFixRule: result.action,
       });
 
-      // Safe auto-fix example
-      if (result.type === "missing_dependency") {
-        console.log("⚙️ Preparing GitHub auto-fix...");
-
-        const newContent = "// Auto-fix placeholder executed";
-
-        const safety = isPatchSafe(newContent);
-
-        if (!safety.safe) {
-          console.log("⛔ Patch blocked:", safety.reason);
-        } else {
-          console.log("✅ Patch approved, executing...");
-
-          await createFixCommit(
-            "worker/fix-log.txt",
-            newContent,
-            "Auto-fix: missing dependency detected"
-          );
-        }
-      }
-
+      // Prepare patch
+      const newContent = "// Auto-fix placeholder executed";
+      safety = isPatchSafe(newContent);
     } else {
       console.log("✅ No new issues");
     }
@@ -91,11 +78,36 @@ async function checkSentryIssues() {
     const verification = await verifyDeployment();
     console.log("🔎 Deployment status:", verification);
 
-    // Rollback decision
+    // Validation AI decision
+    const validation = validateRepairDecision({
+      issue,
+      classification: result,
+      patchSafety: safety,
+      deployment: verification,
+    });
+
+    console.log("🤖 Validation AI:", validation);
+
+    // Execute only if approved
+    if (validation.approved && result && result.type === "missing_dependency") {
+      console.log("⚙️ Approved → executing auto-fix...");
+
+      await createFixCommit(
+        "worker/fix-log.txt",
+        "// Auto-fix placeholder executed",
+        "Auto-fix: missing dependency detected"
+      );
+    } else if (!validation.approved) {
+      console.log("⛔ Blocked by Validation AI:", validation.reason);
+    }
+
+    // Rollback check
     const rollback = await rollbackIfNeeded(verification);
 
     if (rollback.rolledBack) {
       console.log("♻️ Rollback executed:", rollback.reason);
+    } else {
+      console.log("✅ Rollback not needed");
     }
 
   } catch (err) {
