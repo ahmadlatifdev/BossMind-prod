@@ -1,41 +1,29 @@
-const express = require("express");
 const Sentry = require("@sentry/node");
 
-// Init Sentry
 Sentry.init({
   dsn: "https://216ffa4485f88b8250100eee059110b5@o4511260643229696.ingest.us.sentry.io/4511260644474880",
   tracesSampleRate: 1.0,
+  environment: "production",
 });
 
-const app = express();
+async function runWorker() {
+  console.log("BossMind worker started");
 
-// Sentry request handler (FIXED)
-app.use(Sentry.Handlers.requestHandler());
+  const error = new Error("SENTRY TEST ERROR - BOSSMIND WORKER VALIDATION");
 
-// Middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+  Sentry.captureException(error);
 
-// Test route
-app.get("/", (req, res) => {
-  res.status(200).json({ ok: true });
-});
-setTimeout(() => {
-  throw new Error("SENTRY TEST ERROR");
-}, 3000);
+  await Sentry.flush(5000);
 
+  console.log("Sentry test error sent successfully");
 
-// Force error route (for testing)
-app.get("/error", () => {
-  throw new Error("SENTRY TEST ERROR");
-});
+  setInterval(() => {
+    console.log("BossMind worker alive");
+  }, 60000);
+}
 
-// Sentry error handler
-app.use(Sentry.Handlers.errorHandler());
-
-// Start server
-const PORT = Number(process.env.PORT) || 3010;
-
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+runWorker().catch(async (error) => {
+  Sentry.captureException(error);
+  await Sentry.flush(5000);
+  process.exit(1);
 });
