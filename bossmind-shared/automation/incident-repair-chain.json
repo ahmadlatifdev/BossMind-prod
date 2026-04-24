@@ -1,0 +1,67 @@
+{
+  "chain_name": "bossmind_default_incident_repair",
+  "version": "1.0",
+  "active": true,
+  "steps": [
+    {
+      "step": 1,
+      "name": "sentry_detect",
+      "tool": "Sentry",
+      "action": "capture_error",
+      "output": "error_event"
+    },
+    {
+      "step": 2,
+      "name": "deepseek_analysis",
+      "tool": "DeepSeek V3",
+      "action": "analyze_root_cause",
+      "input": "error_event",
+      "output": "root_cause_report"
+    },
+    {
+      "step": 3,
+      "name": "langgraph_task",
+      "tool": "LangGraph",
+      "action": "create_repair_task",
+      "input": "root_cause_report",
+      "output": "task_json"
+    },
+    {
+      "step": 4,
+      "name": "copilot_fix",
+      "tool": "GitHub Copilot",
+      "action": "generate_full_file_fix",
+      "input": "task_json",
+      "output": "fixed_code"
+    },
+    {
+      "step": 5,
+      "name": "deploy",
+      "tool": "Railway/Render",
+      "action": "deploy_updated_code",
+      "input": "fixed_code",
+      "output": "deployment_status"
+    },
+    {
+      "step": 6,
+      "name": "verify",
+      "tool": "Validation Agent",
+      "action": "check_live_system",
+      "input": "deployment_status",
+      "output": "verification_result"
+    },
+    {
+      "step": 7,
+      "name": "memory_save",
+      "tool": "Neon",
+      "action": "store_fix_pattern",
+      "input": [
+        "error_event",
+        "root_cause_report",
+        "fixed_code",
+        "verification_result"
+      ],
+      "output": "memory_log_id"
+    }
+  ]
+}
