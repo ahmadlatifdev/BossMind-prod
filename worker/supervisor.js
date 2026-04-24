@@ -10,6 +10,7 @@ const { isPatchSafe } = require("./safePatchGuard");
 const { verifyDeployment } = require("./deploymentVerifier");
 const { rollbackIfNeeded } = require("./rollbackController");
 const { validateRepairDecision } = require("./validationAI");
+const { closeRepairLoop } = require("./closedLoopEngine");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -48,10 +49,8 @@ async function checkSentryIssues() {
       console.log("Type:", result.type);
       console.log("Action:", result.action);
 
-      // Save repair task
       saveRepairTask(issue, result);
 
-      // Cross-project memory
       saveCrossProjectRepairMemory({
         project: PROJECT,
         issueTitle: issue.title,
@@ -59,7 +58,6 @@ async function checkSentryIssues() {
         action: result.action,
       });
 
-      // Error pattern learning
       saveErrorPattern({
         issueTitle: issue.title,
         issueType: result.type,
@@ -67,18 +65,15 @@ async function checkSentryIssues() {
         autoFixRule: result.action,
       });
 
-      // Prepare patch
       const newContent = "// Auto-fix placeholder executed";
       safety = isPatchSafe(newContent);
     } else {
       console.log("✅ No new issues");
     }
 
-    // Deployment verification
     const verification = await verifyDeployment();
     console.log("🔎 Deployment status:", verification);
 
-    // Validation AI decision
     const validation = validateRepairDecision({
       issue,
       classification: result,
@@ -88,7 +83,6 @@ async function checkSentryIssues() {
 
     console.log("🤖 Validation AI:", validation);
 
-    // Execute only if approved
     if (validation.approved && result && result.type === "missing_dependency") {
       console.log("⚙️ Approved → executing auto-fix...");
 
@@ -101,7 +95,6 @@ async function checkSentryIssues() {
       console.log("⛔ Blocked by Validation AI:", validation.reason);
     }
 
-    // Rollback check
     const rollback = await rollbackIfNeeded(verification);
 
     if (rollback.rolledBack) {
@@ -109,6 +102,14 @@ async function checkSentryIssues() {
     } else {
       console.log("✅ Rollback not needed");
     }
+
+    closeRepairLoop({
+      issue,
+      classification: result,
+      validation,
+      verification,
+      rollback,
+    });
 
   } catch (err) {
     console.log("Supervisor error:", err.message);
