@@ -1,1 +1,1 @@
-require('dotenv').config(); const Sentry = require('@sentry/node'); Sentry.init({ dsn: process.env.SENTRY_DSN }); throw new Error('SENTRY LIVE TEST NOW');
+require('dotenv').config(); const Sentry = require('@sentry/node'); Sentry.init({ dsn: process.env.SENTRY_DSN }); Sentry.captureException(new Error('FINAL SENTRY TEST')); setTimeout(()=>{ console.log('sent'); },3000);
