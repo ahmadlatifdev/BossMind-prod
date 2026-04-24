@@ -20,6 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.status(200).json({ ok: true });
 });
+setTimeout(() => {
+  throw new Error("SENTRY TEST ERROR");
+}, 3000);
+
 
 // Force error route (for testing)
 app.get("/error", () => {
