@@ -16,3 +16,5 @@ setTimeout(() => {
 setInterval(() => {
   console.log("BossMind worker alive");
 }, 60000);
+
+console.log('SENTRY FORCE UPDATE');
