@@ -7,6 +7,7 @@ const { createFixCommit } = require("./githubFixExecutor");
 const { saveCrossProjectRepairMemory } = require("./crossProjectMemoryRouter");
 const { saveErrorPattern } = require("./errorPatternLibrary");
 const { isPatchSafe } = require("./safePatchGuard");
+const { verifyDeployment } = require("./deploymentVerifier");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -60,7 +61,7 @@ async function checkSentryIssues() {
         autoFixRule: result.action,
       });
 
-      // Example auto-fix trigger with SAFE GUARD
+      // Safe auto-fix example
       if (result.type === "missing_dependency") {
         console.log("⚙️ Preparing GitHub auto-fix...");
 
@@ -85,6 +86,11 @@ async function checkSentryIssues() {
     } else {
       console.log("✅ No new issues");
     }
+
+    // NEW: verify deployment health continuously
+    const verification = await verifyDeployment();
+    console.log("🔎 Deployment status:", verification);
+
   } catch (err) {
     console.log("Supervisor error:", err.message);
   }
