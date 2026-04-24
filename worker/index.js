@@ -9,14 +9,6 @@ Sentry.init({
 async function runWorker() {
   console.log("BossMind worker started");
 
-  const error = new Error("SENTRY TEST ERROR - BOSSMIND WORKER VALIDATION");
-
-  Sentry.captureException(error);
-
-  await Sentry.flush(5000);
-
-  console.log("Sentry test error sent successfully");
-
   setInterval(() => {
     console.log("BossMind worker alive");
   }, 60000);
