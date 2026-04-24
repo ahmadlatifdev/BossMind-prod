@@ -18,6 +18,7 @@ const {
   validateRequirementLock,
 } = require("./requirementLockEngine");
 const { executeRunbookStep } = require("./masterRunbookEngine");
+const { validateExecutionBoundary } = require("./executionBoundaryGuard");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -29,14 +30,14 @@ function buildRequirementLock() {
   return createRequirementLock({
     project: "bossmind-prod",
     filePath: "worker/supervisor.js",
-    expectedOutput: "Full self-healing + validation + locked execution",
-    protectedPreviousState: "All automation layers must remain active",
+    expectedOutput: "Strict execution within locked boundary",
+    protectedPreviousState: "All core layers must remain intact",
     forbiddenChanges: [
-      "Do not hardcode SENTRY_TOKEN",
-      "Do not remove safety layers",
+      "Do not modify unrelated files",
+      "Do not extend execution scope",
     ],
     rollbackCheckpoint: "latest stable deploy",
-    successCondition: "System runs clean with no errors",
+    successCondition: "System runs clean within boundary",
   });
 }
 
@@ -58,6 +59,19 @@ async function checkSentryIssues() {
 
     if (!lockValidation.allowed) {
       console.log("⛔ Blocked:", lockValidation.reason);
+      return;
+    }
+
+    // NEW: Execution Boundary Guard
+    const boundaryCheck = validateExecutionBoundary({
+      requestedFile: "worker/supervisor.js",
+      requirementLock,
+    });
+
+    console.log("🛡️ Execution Boundary:", boundaryCheck);
+
+    if (!boundaryCheck.allowed) {
+      console.log("⛔ Blocked by Boundary Guard:", boundaryCheck.reason);
       return;
     }
 
