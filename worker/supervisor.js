@@ -6,6 +6,7 @@ const { saveRepairTask } = require("./repairTaskLog");
 const { createFixCommit } = require("./githubFixExecutor");
 const { saveCrossProjectRepairMemory } = require("./crossProjectMemoryRouter");
 const { saveErrorPattern } = require("./errorPatternLibrary");
+const { isPatchSafe } = require("./safePatchGuard");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -51,7 +52,7 @@ async function checkSentryIssues() {
         action: result.action,
       });
 
-      // NEW: Save reusable error pattern
+      // Error pattern learning
       saveErrorPattern({
         issueTitle: issue.title,
         issueType: result.type,
@@ -59,11 +60,20 @@ async function checkSentryIssues() {
         autoFixRule: result.action,
       });
 
-      // Example auto-fix trigger
+      // Example auto-fix trigger with SAFE GUARD
       if (result.type === "missing_dependency") {
-        console.log("⚙️ Triggering GitHub auto-fix...");
+        console.log("⚙️ Preparing GitHub auto-fix...");
 
         const newContent = "// Auto-fix placeholder executed";
+
+        const safety = isPatchSafe(newContent);
+
+        if (!safety.safe) {
+          console.log("⛔ Patch blocked:", safety.reason);
+          return;
+        }
+
+        console.log("✅ Patch approved, executing...");
 
         await createFixCommit(
           "worker/fix-log.txt",
