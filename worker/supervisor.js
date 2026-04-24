@@ -17,6 +17,7 @@ const {
   createRequirementLock,
   validateRequirementLock,
 } = require("./requirementLockEngine");
+const { executeRunbookStep } = require("./masterRunbookEngine");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -24,20 +25,18 @@ const PROJECT = "node-express";
 
 console.log("BossMind Self-Healing Supervisor started");
 
-function buildDefaultRequirementLock() {
+function buildRequirementLock() {
   return createRequirementLock({
     project: "bossmind-prod",
     filePath: "worker/supervisor.js",
-    expectedOutput:
-      "Supervisor full automation + validation + lock + deploy verify + snapshot + prediction",
-    protectedPreviousState:
-      "Do not remove core automation layers",
+    expectedOutput: "Full self-healing + validation + locked execution",
+    protectedPreviousState: "All automation layers must remain active",
     forbiddenChanges: [
       "Do not hardcode SENTRY_TOKEN",
-      "Do not re-add node-fetch",
+      "Do not remove safety layers",
     ],
     rollbackCheckpoint: "latest stable deploy",
-    successCondition: "logs show clean + no issues",
+    successCondition: "System runs clean with no errors",
   });
 }
 
@@ -45,7 +44,14 @@ async function checkSentryIssues() {
   try {
     console.log("Supervisor check: scanning Sentry issues...");
 
-    const requirementLock = buildDefaultRequirementLock();
+    executeRunbookStep({
+      phase: "START",
+      project: PROJECT,
+      action: "scan_sentry",
+      expectedOutput: "Scan for unresolved issues",
+    });
+
+    const requirementLock = buildRequirementLock();
     const lockValidation = validateRequirementLock(requirementLock);
 
     console.log("🔐 Requirement Lock:", lockValidation);
@@ -113,6 +119,13 @@ async function checkSentryIssues() {
     console.log("🤖 Validation:", validation);
 
     if (validation.approved && result?.type === "missing_dependency") {
+      executeRunbookStep({
+        phase: "FIX",
+        project: PROJECT,
+        action: "auto_fix_commit",
+        expectedOutput: "Fix applied via GitHub",
+      });
+
       await createFixCommit(
         "worker/fix-log.txt",
         "// Auto-fix placeholder",
@@ -138,7 +151,14 @@ async function checkSentryIssues() {
 
     saveDeploymentSnapshot({ verification, loopStatus });
 
-    predictNextRisk({ verification, loopStatus });
+    const prediction = predictNextRisk({ verification, loopStatus });
+
+    executeRunbookStep({
+      phase: "END",
+      project: PROJECT,
+      action: "cycle_complete",
+      expectedOutput: prediction.riskLevel,
+    });
   } catch (err) {
     console.log("Supervisor error:", err.message);
   }
