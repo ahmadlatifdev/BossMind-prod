@@ -1,6 +1,4 @@
 const Sentry = require("@sentry/node");
-const fetch = require("node-fetch");
-
 // Use secure environment variable (DO NOT hardcode token)
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 
