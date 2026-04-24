@@ -4,6 +4,7 @@ const Sentry = require("@sentry/node");
 const { classifyIssue } = require("./autoFixEngine");
 const { saveRepairTask } = require("./repairTaskLog");
 const { createFixCommit } = require("./githubFixExecutor");
+const { saveCrossProjectRepairMemory } = require("./crossProjectMemoryRouter");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -38,10 +39,18 @@ async function checkSentryIssues() {
       console.log("Type:", result.type);
       console.log("Action:", result.action);
 
-      // Save task
+      // Save repair task
       const task = saveRepairTask(issue, result);
 
-      // 🔥 Example auto-fix trigger (safe placeholder)
+      // NEW: Cross-project memory save
+      saveCrossProjectRepairMemory({
+        project: PROJECT,
+        issueTitle: issue.title,
+        issueType: result.type,
+        action: result.action,
+      });
+
+      // Example auto-fix trigger
       if (result.type === "missing_dependency") {
         console.log("⚙️ Triggering GitHub auto-fix...");
 
