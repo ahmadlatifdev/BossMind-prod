@@ -8,6 +8,7 @@ const { saveCrossProjectRepairMemory } = require("./crossProjectMemoryRouter");
 const { saveErrorPattern } = require("./errorPatternLibrary");
 const { isPatchSafe } = require("./safePatchGuard");
 const { verifyDeployment } = require("./deploymentVerifier");
+const { rollbackIfNeeded } = require("./rollbackController");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -43,7 +44,7 @@ async function checkSentryIssues() {
       console.log("Action:", result.action);
 
       // Save repair task
-      const task = saveRepairTask(issue, result);
+      saveRepairTask(issue, result);
 
       // Cross-project memory
       saveCrossProjectRepairMemory({
@@ -71,25 +72,31 @@ async function checkSentryIssues() {
 
         if (!safety.safe) {
           console.log("⛔ Patch blocked:", safety.reason);
-          return;
+        } else {
+          console.log("✅ Patch approved, executing...");
+
+          await createFixCommit(
+            "worker/fix-log.txt",
+            newContent,
+            "Auto-fix: missing dependency detected"
+          );
         }
-
-        console.log("✅ Patch approved, executing...");
-
-        await createFixCommit(
-          "worker/fix-log.txt",
-          newContent,
-          "Auto-fix: missing dependency detected"
-        );
       }
 
     } else {
       console.log("✅ No new issues");
     }
 
-    // NEW: verify deployment health continuously
+    // Deployment verification
     const verification = await verifyDeployment();
     console.log("🔎 Deployment status:", verification);
+
+    // Rollback decision
+    const rollback = await rollbackIfNeeded(verification);
+
+    if (rollback.rolledBack) {
+      console.log("♻️ Rollback executed:", rollback.reason);
+    }
 
   } catch (err) {
     console.log("Supervisor error:", err.message);
