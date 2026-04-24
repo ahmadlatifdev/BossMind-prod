@@ -12,6 +12,7 @@ const { rollbackIfNeeded } = require("./rollbackController");
 const { validateRepairDecision } = require("./validationAI");
 const { closeRepairLoop } = require("./closedLoopEngine");
 const { saveDeploymentSnapshot } = require("./snapshotDeployEngine");
+const { predictNextRisk } = require("./predictiveSystem");
 
 const SENTRY_TOKEN = process.env.SENTRY_TOKEN;
 const ORG = "bossmind-main-ke";
@@ -112,12 +113,15 @@ async function checkSentryIssues() {
       rollback,
     });
 
-    // NEW: snapshot after each cycle
     saveDeploymentSnapshot({
       verification,
       loopStatus,
     });
 
+    predictNextRisk({
+      verification,
+      loopStatus,
+    });
   } catch (err) {
     console.log("Supervisor error:", err.message);
   }
