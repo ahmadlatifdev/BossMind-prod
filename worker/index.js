@@ -20,3 +20,4 @@ runWorker().catch(async (error) => {
   await Sentry.flush(5000);
   process.exit(1);
 });
+try { require('./futureAutomationEngine').startFutureAutomationEngine(); } catch(e) { console.log('Future automation engine safe-skip:', e.message); }
