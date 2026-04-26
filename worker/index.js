@@ -21,3 +21,4 @@ runWorker().catch(async (error) => {
   process.exit(1);
 });
 try { require('./futureAutomationEngine').startFutureAutomationEngine(); } catch(e) { console.log('Future automation engine safe-skip:', e.message); }
+// LOCKED_BASELINE_95_PERCENT
