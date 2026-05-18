@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-18T19:45:00Z",
+  "lastStabilization": "13-shared-memory/resumora-stabilization-2026-05-18.json",
+  "description": "BossMind hub registry of production-stable interfaces. Cursor agents must read this before UI/route edits. Canonical detail lives in each repo's config/.",
+  "masterWorkspace": "D:\\BossMind\\BossMind.code-workspace",
+  "products": {
+    "resumora": {
+      "canonicalRepo": "bossmind-resumora",
+      "productionUrl": "https://www.resumora.net",
+      "frontendHost": "Render",
+      "backendHost": "Railway",
+      "database": "Neon",
+      "uiAuthority": "luxury-v1",
+      "pricingUiMarker": "data-rs-pricing-ui=\"20260517-lux-v4\"",
+      "requiredHomeHtmlMarkers": [
+        "id=\"top\"",
+        "id=\"home-intake\"",
+        "id=\"pricing\"",
+        "data-rs-pricing-ui=\"20260517-lux-v4\"",
+        "data-rs-pricing-order=\"basic,professional,elite,essential_advanced\"",
+        "rs-pricing-grid--final"
+      ],
+      "forbiddenLiveHtmlPatterns": [
+        "Trust at a glance",
+        "rs-trust-panel--slim",
+        "Greenhouse · Lever · Workday"
+      ],
+      "protectedShellPaths": [
+        "components/marketing/SiteChrome.js",
+        "components/marketing/MinimalAppChrome.js",
+        "components/marketing/HomePage.jsx",
+        "components/marketing/sections/PricingPanel.jsx",
+        "styles/resumora-global.css",
+        "context/LanguageContext.js"
+      ],
+      "criticalApiRoutes": [
+        "/api/health",
+        "/api/checkout",
+        "/api/engagement/register",
+        "/api/engagement/login",
+        "/api/webhooks/stripe",
+        "/api/orchestration/bossmind-health"
+      ],
+      "registryPaths": {
+        "protectedComponents": "docs/PROTECTED_COMPONENTS_REGISTRY.md",
+        "protectedSurface": "config/bossmind-protected-surface.json",
+        "uiAuthority": "config/bossmind-protected-ui-authority.json",
+        "immutableBaseline": "config/bossmind-immutable-production-baseline.json"
+      }
+    }
+  },
+  "executionFlow": [
+    "Search",
+    "Analyze",
+    "Patch",
+    "Local Build",
+    "Commit",
+    "Push",
+    "Deploy",
+    "Verify",
+    "Lock State"
+  ],
+  "verifyScripts": {
+    "imports": "11-scripts/verify-imports.ps1",
+    "build": "11-scripts/verify-build.ps1",
+    "routes": "11-scripts/verify-routes.ps1",
+    "env": "11-scripts/verify-env.ps1",
+    "recovery": "11-scripts/bossmind-recovery.ps1"
+  }
+}

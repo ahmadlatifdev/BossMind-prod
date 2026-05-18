@@ -1,0 +1,50 @@
+{
+  "folders": [
+    { "name": "01-active", "path": "01-active" },
+    { "name": "02-resumora", "path": "bossmind-resumora" },
+    { "name": "03-elegancyart", "path": "bossmind-elegancyart" },
+    { "name": "04-ai-video", "path": "bossmind-ai-video-generator" },
+    { "name": "05-tiktok-ai", "path": "bossmind-tiktok-ai" },
+    { "name": "06-global-stock", "path": "bossmind-global-stock" },
+    { "name": "07-master-admin", "path": "bossmind-master-admin" },
+    { "name": "08-backups", "path": "08-backups" },
+    { "name": "09-archives", "path": "09-archives" },
+    { "name": "10-docs", "path": "10-docs" },
+    { "name": "11-scripts", "path": "11-scripts" },
+    { "name": "12-stitch-design", "path": "12-Stitch-Design" },
+    { "name": "13-shared-memory", "path": "13-shared-memory" },
+    { "name": "14-railway-production", "path": "14-Railway-Production" },
+    { "name": "15-render-production", "path": "15-render-production" },
+    { "name": "16-neon", "path": "16-neon" },
+    { "name": "17-prompts", "path": "17-prompts" },
+    { "name": "18-recovery", "path": "18-recovery" },
+    { "name": "bossmind-shared", "path": "bossmind-shared" },
+    { "name": "bossmind-supervisor", "path": "bossmind-supervisor-service" }
+  ],
+  "settings": {
+    "git.autofetch": false,
+    "files.watcherExclude": {
+      "**/.next/**": true,
+      "**/node_modules/**": true,
+      "**/.git/objects/**": true,
+      "**/windows-heal/**": true,
+      "**/.bossmind/backups/**": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/dist": true,
+      "**/.bossmind/backups": true,
+      "**/windows-heal/logs": true,
+      "09-archives/**": true,
+      "08-backups/**": true
+    },
+    "files.exclude": {
+      "09-archives": true
+    },
+    "typescript.tsserver.maxTsServerMemory": 4096
+  },
+  "extensions": {
+    "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+  }
+}

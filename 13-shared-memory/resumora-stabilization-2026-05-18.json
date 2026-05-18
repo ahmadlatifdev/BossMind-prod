@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "verifiedAt": "2026-05-18T19:45:00.000Z",
+  "runtimeRoot": "D:\\BossMind",
+  "canonicalRepo": "bossmind-resumora",
+  "commit": "32435ea91c618c8188af18267479d37010d13d18",
+  "productionUrl": "https://www.resumora.net",
+  "localVerification": {
+    "verifyImports": "pass",
+    "verifyRoutes": "pass",
+    "npmCi": "pass",
+    "npmBuild": "pass",
+    "validateRuntime": "pass_local_no_db_url",
+    "hostingGuard": "pass",
+    "routeAudit": "pass"
+  },
+  "liveVerification": {
+    "homepageLoads": true,
+    "luxuryUiVisible": true,
+    "apiHealthHttp": 200,
+    "apiHealthOk": false,
+    "apiHealthReason": "no_database_url_on_render",
+    "stripeCheckoutReady": false
+  },
+  "hubFixes": [
+    "11-scripts/verify-routes.ps1: LiteralPath for bracket routes; ASCII log text",
+    "11-scripts/verify-env.ps1: ASCII log text",
+    "11-scripts/verify-build.ps1: ASCII log text",
+    "BossMind.code-workspace: exclude 09-archives from search",
+    ".cursorignore: exclude archives/backups from indexing"
+  ],
+  "renderReadiness": {
+    "buildCommand": "npm run build",
+    "startCommand": "node server.js",
+    "nodeStack": "Next.js 16.2.6",
+    "blockingEnvKeys": [
+      "NEON_DATABASE_URL",
+      "DATABASE_URL",
+      "STRIPE_SECRET_KEY",
+      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+      "STRIPE_WEBHOOK_SECRET"
+    ],
+    "action": "Set env on Render resumora-web then clear-cache redeploy"
+  }
+}

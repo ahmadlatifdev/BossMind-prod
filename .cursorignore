@@ -1,0 +1,10 @@
+# BossMind hub - exclude archives/legacy from Cursor indexing (not .gitignore)
+09-archives/
+08-backups/
+**/node_modules/
+**/.next/
+**/dist/
+**/.bossmind/backups/
+**/windows-heal/logs/
+**/windows-heal/state/
+**/windows-heal/reports/
