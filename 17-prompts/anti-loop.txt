@@ -4,7 +4,7 @@ Stop if:
 - Same fix attempted 3+ times without new evidence
 - Suggesting full rewrite / "start fresh" / new folder
 - Changing locked UI without BOSSMIND_BASELINE_OVERRIDE=1
-- Adding Vercel or duplicate routes/components
+- Adding Vercel, Cloudflare, Supabase, Windsurf, or duplicate routes/components
 
 Do instead:
 - Read latest git log and CI failure log

@@ -5,7 +5,7 @@ Context: Open only via D:\BossMind\BossMind.code-workspace. Resumora canonical r
 Task:
 1. Run 11-scripts/verify-imports.ps1 and 11-scripts/verify-build.ps1 before any push.
 2. Fix only deployment blockers (imports, build, env) — no UI redesign.
-3. Hosting: Render (frontend), Railway (API/workers), Neon (DB). Never Vercel unless user reapproves.
+3. Hosting: Render (app), Railway (API/workers), Neon (DB), Squarespace (live). Dropped: Cloudflare, Vercel, Supabase, Windsurf — never wire.
 4. Commit with clear message, push to connected GitHub, trigger Render redeploy.
 5. Verify: https://www.resumora.net loads, GET /api/health returns OK, registration flow works, no stale UI markers (data-rs-pricing-ui).
 6. Record outcome in 13-shared-memory/ or Neon task log if configured.

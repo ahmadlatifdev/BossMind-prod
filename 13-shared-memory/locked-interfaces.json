@@ -1,6 +1,17 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-18T19:45:00Z",
+  "updatedAt": "2026-05-19T00:00:00Z",
+  "hostingPolicy": {
+    "approved": {
+      "render": "Resumora frontend app (resumora.net)",
+      "railway": "APIs, workers, orchestration",
+      "neon": "Postgres authority",
+      "github": "Source control + deploy triggers",
+      "squarespace": "Live — marketing / domain presence"
+    },
+    "dropped": ["cloudflare", "vercel", "supabase", "windsurf"],
+    "note": "Do not propose or wire dropped providers. Squarespace stays live; Resumora app stays on Render."
+  },
   "lastStabilization": "13-shared-memory/resumora-stabilization-2026-05-18.json",
   "lastRenderEnvSync": "13-shared-memory/resumora-render-env-sync-2026-05-19.json",
   "description": "BossMind hub registry of production-stable interfaces. Cursor agents must read this before UI/route edits. Canonical detail lives in each repo's config/.",

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-19",
+  "approved": {
+    "render": "Resumora app runtime (www.resumora.net)",
+    "railway": "APIs, workers, orchestration",
+    "neon": "Postgres authority",
+    "github": "Source control and deploy triggers",
+    "squarespace": "Live — marketing / domain presence"
+  },
+  "dropped": {
+    "cloudflare": "Not a BossMind hosting target (platform/pages/workers)",
+    "vercel": "Removed from architecture",
+    "supabase": "Removed — Neon is the database authority",
+    "windsurf": "Removed from toolchain"
+  },
+  "enforcedBy": [
+    ".cursorrules",
+    "13-shared-memory/locked-interfaces.json",
+    "bossmind-resumora/scripts/bossmind-hosting-guard.mjs"
+  ]
+}

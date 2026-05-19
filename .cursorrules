@@ -18,11 +18,13 @@ Always open **BossMind.code-workspace** — never isolated random folders.
 
 ## Hosting (locked)
 
-- **Render** = frontend/public (Resumora: resumora.net)
+- **Render** = frontend/public app runtime (Resumora: resumora.net)
 - **Railway** = backend APIs, workers, orchestration
 - **Neon** = Postgres authority (`task_state`, `event_log`, snapshots)
 - **GitHub** = source control + deploy triggers
-- **Never** recommend or wire Vercel unless user explicitly reapproves in-thread.
+- **Squarespace** = live (marketing / domain presence — do not replace or duplicate)
+- **Dropped (never wire, deploy, or recommend):** Cloudflare (as platform), Vercel, Supabase, Windsurf
+- Legacy DNS/CDN in front of Render is fine; do not migrate Resumora app hosting off Render.
 
 ## Execution flow
 
