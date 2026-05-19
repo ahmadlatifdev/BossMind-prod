@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "verifiedAt": "2026-05-19T12:00:00.000Z",
+  "issue": "Render deploy crashed: column project_key of relation event_log does not exist",
+  "rootCause": "Production Neon had legacy event_log/task_state/error_memory schemas without project_key",
+  "legacyRenamed": [
+    { "from": "event_log", "to": "event_log_legacy_v0" },
+    { "from": "task_state", "to": "task_state_legacy_v0" },
+    { "from": "error_memory", "to": "error_memory_legacy_v0" }
+  ],
+  "migrationScript": "npm run bossmind:neon:legacy-schema-migrate",
+  "migrationResult": {
+    "probeOk": true,
+    "saveEventOk": true,
+    "engagementProfilesIntact": true
+  },
+  "codeFix": {
+    "commit": "cb27856",
+    "files": [
+      "lib/shared/neon-memory.js",
+      "server.js",
+      "scripts/bossmind-neon-legacy-schema-migrate.mjs"
+    ]
+  },
+  "renderEnvStillRequired": [
+    "NEON_DATABASE_URL",
+    "DATABASE_URL",
+    "NEXT_PUBLIC_STRIPE_PRICE_BASIC",
+    "NEXT_PUBLIC_STRIPE_PRICE_PRO",
+    "NEXT_PUBLIC_STRIPE_PRICE_ELITE",
+    "NEXT_PUBLIC_STRIPE_PRICE_ESSENTIAL_ADVANCED"
+  ],
+  "renderApiBlocked": "RENDER_API_KEY not in hub env — paste .bossmind/render-production-env.env or add API key for npm run bossmind:render:env-handsfree"
+}
