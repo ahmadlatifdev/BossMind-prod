@@ -1,0 +1,4 @@
+#!/bin/sh
+# BossMind — block commits containing likely secrets
+ROOT="$(git rev-parse --show-toplevel)"
+pwsh -NoProfile -ExecutionPolicy Bypass -File "$ROOT/11-scripts/bossmind-pre-commit-secrets.ps1" || exit 1

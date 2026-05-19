@@ -1,7 +1,7 @@
 ﻿{
-    "risk":  "HIGH",
+    "recommended_action":  "NONE",
+    "timestamp":  "2026-05-18T22:01:45",
     "project":  "resumora",
-    "timestamp":  "2026-05-18T21:51:29",
-    "reason":  "Latency exceeded threshold",
-    "recommended_action":  "AUTO_HEAL"
+    "reason":  "No rising performance risk detected",
+    "risk":  "LOW"
 }

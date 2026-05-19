@@ -14406,3 +14406,19 @@
     "status":  "OK",
     "project":  "resumora"
 }
+{
+    "value":  766.49,
+    "timestamp":  "2026-05-18T21:56:37",
+    "threshold":  1500,
+    "metric_type":  "api_latency",
+    "status":  "OK",
+    "project":  "resumora"
+}
+{
+    "value":  1059.73,
+    "timestamp":  "2026-05-18T22:01:48",
+    "threshold":  1500,
+    "metric_type":  "api_latency",
+    "status":  "OK",
+    "project":  "resumora"
+}

@@ -1,0 +1,5 @@
+#!/bin/sh
+# BossMind — block push if staged/working tree scan fails
+ROOT="$(git rev-parse --show-toplevel)"
+pwsh -NoProfile -ExecutionPolicy Bypass -File "$ROOT/11-scripts/bossmind-secret-scan.ps1" || exit 1
+pwsh -NoProfile -ExecutionPolicy Bypass -File "$ROOT/11-scripts/bossmind-pre-push-secrets.ps1" || exit 1
