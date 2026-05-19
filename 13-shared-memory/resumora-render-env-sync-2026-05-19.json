@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "verifiedAt": "2026-05-19T00:25:00.000Z",
+  "runtimeRoot": "D:\\BossMind",
+  "canonicalRepo": "bossmind-resumora",
+  "hubEnvScan": {
+    "sourcesMerged": 11,
+    "neonUrlPresent": true,
+    "stripePresent": true,
+    "renderApiKeyPresent": false,
+    "renderServiceIdPresent": false
+  },
+  "localVerification": {
+    "hubBootstrap": "pass",
+    "renderBundle": "pass",
+    "databaseProbeLocal": "pass",
+    "renderApiSync": "blocked_missing_render_credentials"
+  },
+  "githubSecretsPushed": [
+    "NEON_DATABASE_URL",
+    "DATABASE_URL",
+    "STRIPE_SECRET_KEY",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+    "NEXT_PUBLIC_STRIPE_PRICE_BASIC",
+    "NEXT_PUBLIC_STRIPE_PRICE_PRO",
+    "NEXT_PUBLIC_STRIPE_PRICE_ELITE",
+    "NEXT_PUBLIC_STRIPE_PRICE_ESSENTIAL_ADVANCED"
+  ],
+  "liveProduction": {
+    "apiHealthOk": false,
+    "databaseReason": "no_database_url",
+    "registrationBlocked": true
+  },
+  "automationScripts": {
+    "bootstrap": "npm run bossmind:hub-env-bootstrap",
+    "handsfree": "npm run bossmind:render:env-handsfree",
+    "githubSecrets": "node scripts/bossmind-github-render-secrets-push.mjs",
+    "workflow": ".github/workflows/render-env-sync.yml",
+    "bundlePath": "bossmind-resumora/.bossmind/render-production-env.env"
+  },
+  "unblockOptions": [
+    "Add RENDER_API_KEY + RENDER_SERVICE_ID to bossmind-resumora/.env then npm run bossmind:render:env-handsfree",
+    "Or gh secret set RENDER_API_KEY and RENDER_SERVICE_ID then gh workflow run render-env-sync.yml",
+    "Or paste NEON_DATABASE_URL + DATABASE_URL from render-production-env.env into Render Dashboard → resumora-web → Environment → Clear cache deploy"
+  ]
+}

@@ -2,6 +2,7 @@
   "version": 1,
   "updatedAt": "2026-05-18T19:45:00Z",
   "lastStabilization": "13-shared-memory/resumora-stabilization-2026-05-18.json",
+  "lastRenderEnvSync": "13-shared-memory/resumora-render-env-sync-2026-05-19.json",
   "description": "BossMind hub registry of production-stable interfaces. Cursor agents must read this before UI/route edits. Canonical detail lives in each repo's config/.",
   "masterWorkspace": "D:\\BossMind\\BossMind.code-workspace",
   "products": {
