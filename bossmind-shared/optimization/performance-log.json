@@ -14310,3 +14310,59 @@
     "status":  "OK",
     "project":  "resumora"
 }
+{
+    "value":  699.16,
+    "timestamp":  "2026-05-18T20:34:22",
+    "threshold":  1500,
+    "metric_type":  "api_latency",
+    "status":  "OK",
+    "project":  "resumora"
+}
+{
+    "value":  661.43,
+    "timestamp":  "2026-05-18T20:39:28",
+    "threshold":  1500,
+    "metric_type":  "api_latency",
+    "status":  "OK",
+    "project":  "resumora"
+}
+{
+    "value":  932.51,
+    "timestamp":  "2026-05-18T20:44:36",
+    "threshold":  1500,
+    "metric_type":  "api_latency",
+    "status":  "OK",
+    "project":  "resumora"
+}
+{
+    "value":  694.31,
+    "timestamp":  "2026-05-18T20:49:42",
+    "threshold":  1500,
+    "metric_type":  "api_latency",
+    "status":  "OK",
+    "project":  "resumora"
+}
+{
+    "value":  907.93,
+    "timestamp":  "2026-05-18T20:54:48",
+    "threshold":  1500,
+    "metric_type":  "api_latency",
+    "status":  "OK",
+    "project":  "resumora"
+}
+{
+    "value":  973.93,
+    "timestamp":  "2026-05-18T20:59:57",
+    "threshold":  1500,
+    "metric_type":  "api_latency",
+    "status":  "OK",
+    "project":  "resumora"
+}
+{
+    "value":  781.32,
+    "timestamp":  "2026-05-18T21:05:04",
+    "threshold":  1500,
+    "metric_type":  "api_latency",
+    "status":  "OK",
+    "project":  "resumora"
+}
