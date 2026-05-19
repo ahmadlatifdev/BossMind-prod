@@ -14382,3 +14382,11 @@
     "status":  "OK",
     "project":  "resumora"
 }
+{
+    "value":  1045.54,
+    "timestamp":  "2026-05-18T21:20:34",
+    "threshold":  1500,
+    "metric_type":  "api_latency",
+    "status":  "OK",
+    "project":  "resumora"
+}
