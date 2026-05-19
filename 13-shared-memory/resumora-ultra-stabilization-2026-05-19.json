@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "generatedAt": "2026-05-19T01:10:20.689Z",
+  "generatedAt": "2026-05-19T02:14:04.874Z",
   "runtimeRoot": "D:/BossMind",
   "canonicalRepo": "bossmind-resumora",
-  "commit": "08ab8bb4d3b0649edd7fb88c9e927964eb17a85f",
-  "hubCommit": "518047c807f32b1cdce1bbc167238bcd3f34942f",
+  "commit": "f799a6cb82b0e162fae00b8f978ac5c042d0ba8d",
+  "hubCommit": "4b337a085f166c294362d234c8127f342bacfdad",
   "productionUrl": "https://www.resumora.net",
   "fullyOperational": true,
   "blockers": [],
-  "deploymentChecksum": "ba21318356ec7694",
+  "deploymentChecksum": "7403a0aaa3d3d700",
   "scores": {
     "cursorRuntimeStability": 100,
     "autonomousEnvSynchronization": 75,
@@ -55,10 +55,10 @@
     "registerStatus": 201,
     "dbHealthStatus": 200,
     "stripeCheckoutReady": false,
-    "uptimeSec": 275.230577403,
+    "uptimeSec": 1843.789099723,
     "render": true
   },
   "stripeNote": "Checkout needs NEXT_PUBLIC_STRIPE_PRICE_* on Render; registration is independent",
   "healingLoop": "detect → diagnose → repair → verify → memory",
-  "localReportPath": "D:\\BossMind\\bossmind-resumora\\.bossmind\\ultra-stabilization\\ultra-1779153020692.json"
+  "localReportPath": "D:\\BossMind\\bossmind-resumora\\.bossmind\\ultra-stabilization\\ultra-1779156844878.json"
 }
