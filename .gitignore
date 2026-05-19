@@ -1,11 +1,50 @@
-
+# Dependencies & build
 node_modules/
 **/node_modules/
-.env
-
-
 .next/
 **/.next/
+dist/
+**/dist/
+build/
+.turbo/
 
-
+# Environment & secrets (never commit)
 .env
+.env.*
+!.env.example
+!.env.*.example
+**/.env
+**/.env.local
+**/.env.production
+**/.env.development
+**/.env.master
+**/.env.master.local
+**/.env.core
+**/.env.bossmind
+**/render-production-env.env
+.bossmind/render-production-env.env
+bossmind-shared/automation/memory/env-registry.json
+
+# Local-only secret vault (copy from .env.master.example)
+bossmind-shared/automation/.env.master.local
+bossmind-shared/.env.master.local
+bossmind-shared/Global-files/.env.master.local
+16-neon/.env.bossmind.local
+
+# Archives & backups (not active runtime)
+09-archives/
+08-backups/
+**/.bossmind/backups/
+
+# Logs & heal artifacts
+**/windows-heal/logs/
+**/windows-heal/state/
+**/windows-heal/reports/
+*.log.jsonl
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/settings.json

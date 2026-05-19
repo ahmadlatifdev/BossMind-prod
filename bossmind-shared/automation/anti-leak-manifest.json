@@ -2,6 +2,9 @@
   "scan_targets": [
     "D:\\BossMind\\bossmind-shared\\automation\\*.ps1",
     "D:\\BossMind\\bossmind-shared\\automation\\*.json",
+    "D:\\BossMind\\bossmind-shared\\**\\.env.master",
+    "D:\\BossMind\\bossmind-shared\\**\\.env.core",
+    "D:\\BossMind\\13-shared-memory\\*.json",
     "D:\\BossMind\\bossmind-resumora\\app\\page.tsx",
     "D:\\BossMind\\bossmind-resumora\\app\\layout.tsx",
     "D:\\BossMind\\bossmind-resumora\\app\\api\\**\\route.ts",

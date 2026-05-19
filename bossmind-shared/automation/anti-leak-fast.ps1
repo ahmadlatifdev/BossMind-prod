@@ -23,6 +23,10 @@ foreach ($pattern in $data.scan_targets) {
 
     if ($content.Contains($left) -or $content.Contains($mid) -or $content.Contains($right)) {
       $violations += $file.FullName
+      continue
+    }
+    if ($content -match 'sk-proj-|sk-or-v1-|ghp_|github_pat_|rnd_|postgresql://[^:]+:[^@\s]+@') {
+      $violations += $file.FullName
     }
   }
 }

@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "remediatedAt": "2026-05-19T01:45:00.000Z",
+  "actionsCompleted": [
+    "Tracked .env.master / .env.core / .env.bossmind removed from git index",
+    "Secrets backed up to gitignored *.local files",
+    "Tracked env files redacted to empty templates",
+    ".gitignore expanded for all env and vault paths",
+    "hub-env-sources.js loads .env.master.local only (no tracked master)",
+    "pre-commit and pre-push secret hooks installed",
+    "GitHub Actions secret-scan workflow added",
+    "anti-leak-fast.ps1 extended with API key patterns"
+  ],
+  "manualRotationRequired": true,
+  "rotationTargets": [
+    "OPENAI_API_KEY",
+    "OPENROUTER_API_KEY",
+    "DEEPSEEK_API_KEY",
+    "NEON_DATABASE_URL",
+    "DATABASE_URL",
+    "GITHUB_TOKEN",
+    "RENDER_API_KEY",
+    "STRIPE_SECRET_KEY",
+    "STRIPE_WEBHOOK_SECRET",
+    "SENTRY_DSN"
+  ],
+  "historyPurge": {
+    "status": "pending",
+    "script": "11-scripts/bossmind-git-history-purge-secrets.ps1",
+    "note": "Run with -Confirm after rotating keys; then force-push with lease"
+  },
+  "localVault": "bossmind-shared/automation/.env.master.local",
+  "template": "bossmind-shared/automation/.env.master.example"
+}
