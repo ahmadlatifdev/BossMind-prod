@@ -1,0 +1,367 @@
+{
+  "generatedAt": "2026-05-19T00:00:10.101Z",
+  "envFilesScanned": 25,
+  "masterFile": "D:\\BossMind\\bossmind-shared\\automation\\.env.master",
+  "keys": {
+    "NODE_ENV": {
+      "maskedValue": "deve********ment",
+      "sourceFile": "D:\\BossMind\\09-archives\\02-resumora\\.env.local"
+    },
+    "NEXT_TELEMETRY_DISABLED": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\BossMind\\09-archives\\02-resumora\\.env.local"
+    },
+    "SENTRY_DSN": {
+      "maskedValue": "http********4880",
+      "sourceFile": "D:\\BossMind\\09-archives\\deprecated-tools\\worker\\.env"
+    },
+    "STRIPE_SECRET_KEY": {
+      "maskedValue": "sk_t********OUit",
+      "sourceFile": "D:\\BossMind\\09-archives\\old-resumora\\resumora-fresh\\.env.local"
+    },
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": {
+      "maskedValue": "pk_t********IZcG",
+      "sourceFile": "D:\\BossMind\\09-archives\\old-resumora\\resumora-fresh\\.env.local"
+    },
+    "NEXT_PUBLIC_STRIPE_PRICE_BASIC": {
+      "maskedValue": "pric********bSuy",
+      "sourceFile": "D:\\BossMind\\09-archives\\old-resumora\\resumora-fresh\\.env.local"
+    },
+    "NEXT_PUBLIC_STRIPE_PRICE_PRO": {
+      "maskedValue": "pric********wB02",
+      "sourceFile": "D:\\BossMind\\09-archives\\old-resumora\\resumora-fresh\\.env.local"
+    },
+    "NEXT_PUBLIC_STRIPE_PRICE_ELITE": {
+      "maskedValue": "pric********BSan",
+      "sourceFile": "D:\\BossMind\\09-archives\\old-resumora\\resumora-fresh\\.env.local"
+    },
+    "NEON_DATABASE_URL": {
+      "maskedValue": "post********uire",
+      "sourceFile": "D:\\BossMind\\09-archives\\old-resumora\\resumora-fresh\\.env.local"
+    },
+    "NEXT_PUBLIC_STRIPE_PRICE_ESSENTIAL_ADVANCED": {
+      "maskedValue": "pric********LeGv",
+      "sourceFile": "D:\\BossMind\\09-archives\\old-resumora\\resumora-fresh\\.env.local"
+    },
+    "DATABASE_URL": {
+      "maskedValue": "post********uire",
+      "sourceFile": "D:\\BossMind\\09-archives\\old-resumora\\resumora-fresh\\.env.local"
+    },
+    "DEEPSEEK_API_KEY": {
+      "maskedValue": "sk-8********e9a0",
+      "sourceFile": "D:\\BossMind\\16-neon\\.env"
+    },
+    "N8N_WEBHOOK_URL": {
+      "maskedValue": "http********-url",
+      "sourceFile": "D:\\BossMind\\16-neon\\.env"
+    },
+    "NEON_DB": {
+      "maskedValue": "post********uire",
+      "sourceFile": "D:\\BossMind\\bossmind-master-admin\\.env.local"
+    },
+    "BOSSMIND_REMOTE_RUN_KEY": {
+      "maskedValue": "6eef********7e2b",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "BOSSMIND_MASTER_RUNNER": {
+      "maskedValue": "D:\\B********.ps1",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "BOSSMIND_ALLOWED_PROJECTS": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "BOSSMIND_ALLOWED_ACTIONS": {
+      "maskedValue": "rest********rify",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "BOSSMIND_AGENT_PORT": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "STRIPE_RESUMORA_BASIC_PRODUCT_ID": {
+      "maskedValue": "http********go0a",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "STRIPE_RESUMORA_BASIC_PRICE_ID": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "STRIPE_RESUMORA_ESSENTIAL_PRODUCT_ID": {
+      "maskedValue": "http********go09",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "STRIPE_RESUMORA_ESSENTIAL_PRICE_ID": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "STRIPE_RESUMORA_PROFESSIONAL_PRODUCT_ID": {
+      "maskedValue": "http********go08",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "STRIPE_RESUMORA_PROFESSIONAL_PRICE_ID": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "STRIPE_RESUMORA_EXECUTIVE_PRODUCT_ID": {
+      "maskedValue": "http********go07",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "STRIPE_RESUMORA_EXECUTIVE_PRICE_ID": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "Neon DATABASE_URL": {
+      "maskedValue": "post********uire",
+      "sourceFile": "D:\\BossMind\\bossmind-shared\\.env"
+    },
+    "sslmode": {
+      "maskedValue": "requ********ire'",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "paddle_api_key": {
+      "maskedValue": "your********here",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "cj_API_key": {
+      "maskedValue": "CJ12********4b0b",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "TIKTOK_CLIENT_KEY": {
+      "maskedValue": "your********_key",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "TIKTOK_CLIENT_SECRET": {
+      "maskedValue": "your********cret",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "TIKTOK_ACCESS_TOKEN": {
+      "maskedValue": "your********oken",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "BACKUP_ENCRYPTION_KEY": {
+      "maskedValue": "Boss********2026",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "S3_BUCKET": {
+      "maskedValue": "bosm********oads",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "SUPABASE_URL": {
+      "maskedValue": "http********keys",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "SUPABASE_ANON_KEY": {
+      "maskedValue": "eyJh********_qso",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "SUPABASE_BUCKET": {
+      "maskedValue": "Boss********ator",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "PORT": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "BOSSMIND_DATABASE_URL": {
+      "maskedValue": "post********uire",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "BOSSMIND_ACTIVE": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "BOSSMIND_DISPATCHER_KEY": {
+      "maskedValue": "boss********uire",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "BACKUP_PASSPHRASE": {
+      "maskedValue": "Boss********eKey",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "BOSSMIND_MEMORY_SCHEMA": {
+      "maskedValue": "boss********mory",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "BOSSMIND_SYSTEM_NAME": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "BOSSMIND_SOURCE_MODULE": {
+      "maskedValue": "orch********ator",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "BOSSMIND_CACHE_TTL_MS": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "OPENAI_API_KEY": {
+      "maskedValue": "sk-p********QN8A",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "OPENAI_EMBEDDING_MODEL": {
+      "maskedValue": "text********mall",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "bossmind.active": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "Resumora make automation key": {
+      "maskedValue": "key_********aa3f",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "SUPABASE_API_URL": {
+      "maskedValue": "http********deos",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
+    },
+    "REACT_APP_API_URL": {
+      "maskedValue": "http********5000",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\bossmind-dashboard\\.env"
+    },
+    "DEEPSEEK_BASE_URL": {
+      "maskedValue": "http********ions",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\bossmind-dashboard\\src\\.env"
+    },
+    "GOOGLE_SERVICE_ACCOUNT_JSON": {
+      "maskedValue": "{\"ty********..\"}",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\bossmind-sheets-service\\.env"
+    },
+    "ALLOWED_ORIGIN": {
+      "maskedValue": "http********.com",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\bossmind-sheets-service\\.env"
+    },
+    "��N\u0000E\u0000X\u0000T\u0000_\u0000P\u0000U\u0000B\u0000L\u0000I\u0000C\u0000_\u0000S\u0000U\u0000P\u0000A\u0000B\u0000A\u0000S\u0000E\u0000_\u0000U\u0000R\u0000L\u0000": {
+      "maskedValue": "\u0000h\u0000t********o\u0000\r\u0000",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\elegancyart-website\\.env.local"
+    },
+    "\u0000N\u0000E\u0000X\u0000T\u0000_\u0000P\u0000U\u0000B\u0000L\u0000I\u0000C\u0000_\u0000S\u0000U\u0000P\u0000A\u0000B\u0000A\u0000S\u0000E\u0000_\u0000A\u0000N\u0000O\u0000N\u0000_\u0000K\u0000E\u0000Y\u0000": {
+      "maskedValue": "\u0000s\u0000b********5\u0000\r\u0000",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\elegancyart-website\\.env.local"
+    },
+    "VERCEL_OIDC_TOKEN": {
+      "maskedValue": "\"eyJ********zVA\"",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\resumora\\.env.local"
+    },
+    "HOST": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "RESUMEAI_ADMIN_TOKEN": {
+      "maskedValue": "eaaf********915c",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "OPENROUTER_API_KEY": {
+      "maskedValue": "sk-o********498a",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "OPENROUTER_DEFAULT_MODEL": {
+      "maskedValue": "open********auto",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "OPENROUTER_PROVIDERS_ALLOW": {
+      "maskedValue": "deep********enai",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "OPENROUTER_PROVIDERS_ORDER": {
+      "maskedValue": "deep********enai",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "OPENROUTER_PROVIDERS_DISALLOW": {
+      "maskedValue": "deep********groq",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "OPENROUTER_TIMEOUT_MS": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "OPENROUTER_RETRIES": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "RESUMEAI_ROUTER_ENFORCED": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "RESUMEAI_MANUAL_MODEL_OVERRIDE": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env"
+    },
+    "NEXTAUTH_URL": {
+      "maskedValue": "\"htt********000\"",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\resumora-dashboard\\.env"
+    },
+    "NEXTAUTH_SECRET": {
+      "maskedValue": "\"8x!********tion",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\resumora-dashboard\\.env"
+    },
+    "EMAIL_SERVER_HOST": {
+      "maskedValue": "\"smt********com\"",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\resumora-dashboard\\.env"
+    },
+    "EMAIL_SERVER_PORT": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\resumora-dashboard\\.env"
+    },
+    "EMAIL_SERVER_USER": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\resumora-dashboard\\.env"
+    },
+    "EMAIL_SERVER_PASSWORD": {
+      "maskedValue": "\"re_******** key",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\resumora-dashboard\\.env"
+    },
+    "EMAIL_FROM": {
+      "maskedValue": "\"nor********net\"",
+      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\resumora-dashboard\\.env"
+    },
+    "DIRECT_URL": {
+      "maskedValue": "\"pos********ire\"",
+      "sourceFile": "D:\\Shakhsy11\\BossMind\\.env"
+    },
+    "SOCIAL_ENCRYPTION_SECRET": {
+      "maskedValue": "\"bos********345\"",
+      "sourceFile": "D:\\Shakhsy11\\BossMind\\.env"
+    },
+    "WORKER_SECRET": {
+      "maskedValue": "\"bos********345\"",
+      "sourceFile": "D:\\Shakhsy11\\BossMind\\.env"
+    },
+    "META_APP_ID": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\BossMind\\.env"
+    },
+    "META_APP_SECRET": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\BossMind\\.env"
+    },
+    "META_REDIRECT_URI": {
+      "maskedValue": "\"htt********ack\"",
+      "sourceFile": "D:\\Shakhsy11\\BossMind\\.env"
+    },
+    "LINKEDIN_CLIENT_ID": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\BossMind\\.env"
+    },
+    "LINKEDIN_CLIENT_SECRET": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\BossMind\\.env"
+    },
+    "LINKEDIN_REDIRECT_URI": {
+      "maskedValue": "\"htt********ack\"",
+      "sourceFile": "D:\\Shakhsy11\\BossMind\\.env"
+    },
+    "LINKEDIN_API_VERSION": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\BossMind\\.env"
+    },
+    "BOSSMIND_API_URL": {
+      "maskedValue": "http********.app",
+      "sourceFile": "D:\\Shakhsy11\\BossMind-Apps\\bossmind-resumora\\.env"
+    },
+    "PROJECT_KEY": {
+      "maskedValue": "********",
+      "sourceFile": "D:\\Shakhsy11\\BossMind-Apps\\bossmind-resumora\\.env"
+    }
+  }
+}

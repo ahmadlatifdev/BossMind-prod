@@ -1,0 +1,168 @@
+
+(function () {
+  const config = window.APP_CONFIG;
+  if (!config) return;
+
+  const apiBase = (window.BOSSMIND_API_BASE_URL || localStorage.getItem('BOSSMIND_API_BASE_URL') || '').replace(/\/$/, '');
+  const endpoint = apiBase ? apiBase + '/api/chat' : '/api/chat';
+
+  const app = document.getElementById('app');
+  const nav = config.sections.map((s, i) => `
+    <a href="#${s.id}" class="${i === 0 ? 'active' : ''}">${s.label}</a>
+  `).join('');
+
+  const kpis = config.kpis.map(k => `
+    <div class="card">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value">${k.value}</div>
+      <div class="kpi-trend ${k.trendClass}">${k.trend}</div>
+    </div>
+  `).join('');
+
+  const activity = config.activity.map(item => `
+    <div class="list-item">
+      <strong>${item.title}</strong>
+      <div>${item.body}</div>
+      <small>${item.time}</small>
+    </div>
+  `).join('');
+
+  const rows = config.table.rows.map(r => `
+    <tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>
+  `).join('');
+
+  app.innerHTML = `
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-badge">BM</div>
+          <div class="brand-copy">
+            <h1>${config.name}</h1>
+            <p>${config.subtitle}</p>
+          </div>
+        </div>
+        <nav class="nav">${nav}</nav>
+        <div class="footer-note">Connected PWA • Desktop • Tablet • Mobile</div>
+      </aside>
+      <main class="main">
+        <section class="hero">
+          <div class="card">
+            <h2>${config.hero.title}</h2>
+            <p>${config.hero.text}</p>
+            <div class="actions">
+              ${config.hero.actions.map(a => `<button class="btn ${a.kind}">${a.label}</button>`).join('')}
+            </div>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">BossMind Connected Workspace</h3>
+            <div class="chatbox connected-chatbox">
+              <label class="kpi-label">Project</label>
+              <input id="projectKey" value="${config.projectKey}" readonly />
+              <label class="kpi-label" style="margin-top:12px">API Base URL</label>
+              <div class="actions" style="margin-top:8px; margin-bottom:8px; gap:8px; flex-wrap:wrap;">
+                <input id="apiBase" placeholder="https://your-bossmind-domain.com" value="${apiBase}" style="flex:1; min-width:260px;" />
+                <button id="saveApiBase" class="btn btn-secondary">Save API URL</button>
+              </div>
+              <label class="kpi-label">Message</label>
+              <textarea id="messageInput" placeholder="Type and press Enter...">${config.workspace.input}</textarea>
+              <div class="actions" style="margin-top:12px; gap:8px; flex-wrap:wrap;">
+                <button id="sendAuto" class="btn btn-primary">Send Auto</button>
+                <button id="sendBrain" class="btn btn-secondary">Brain</button>
+                <button id="sendWorker" class="btn btn-secondary">Worker</button>
+                <button id="sendBackground" class="btn btn-secondary">Background</button>
+              </div>
+              <div class="meta-row" style="margin-top:14px; display:flex; gap:16px; flex-wrap:wrap;">
+                <div><span class="kpi-label">Model:</span> <span id="modelUsed">-</span></div>
+                <div><span class="kpi-label">Endpoint:</span> <span id="endpointUsed">${endpoint}</span></div>
+              </div>
+              <div class="output" id="outputBox">${config.workspace.output}</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="kpis">${kpis}</section>
+
+        <section class="grid-2">
+          <div class="card">
+            <h3 style="margin-top:0">Recent activity</h3>
+            <div class="list">${activity}</div>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">${config.table.title}</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>${config.table.headers.map(h => `<th>${h}</th>`).join('')}</tr>
+                </thead>
+                <tbody>${rows}</tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  `;
+
+  const messageInput = document.getElementById('messageInput');
+  const outputBox = document.getElementById('outputBox');
+  const modelUsed = document.getElementById('modelUsed');
+  const endpointUsed = document.getElementById('endpointUsed');
+  const apiBaseInput = document.getElementById('apiBase');
+  const saveApiBaseBtn = document.getElementById('saveApiBase');
+
+  function getEndpoint() {
+    const base = (apiBaseInput.value || '').trim().replace(/\/$/, '');
+    return base ? base + '/api/chat' : '/api/chat';
+  }
+
+  function persistApiBase() {
+    const val = (apiBaseInput.value || '').trim();
+    if (val) localStorage.setItem('BOSSMIND_API_BASE_URL', val.replace(/\/$/, ''));
+    else localStorage.removeItem('BOSSMIND_API_BASE_URL');
+    endpointUsed.textContent = getEndpoint();
+    outputBox.textContent = 'BossMind API URL saved.';
+  }
+
+  saveApiBaseBtn.addEventListener('click', persistApiBase);
+
+  async function sendMessage(mode) {
+    const message = messageInput.value.trim();
+    if (!message) return;
+
+    const body = { message, project: config.projectKey };
+    if (mode !== 'auto') body.type = mode;
+
+    outputBox.textContent = 'Working...';
+    modelUsed.textContent = 'routing...';
+    endpointUsed.textContent = getEndpoint();
+
+    try {
+      const res = await fetch(getEndpoint(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const data = await res.json();
+      modelUsed.textContent = data.model_used || (mode === 'auto' ? 'auto' : mode);
+      outputBox.textContent = data.output || data.error || 'No response';
+    } catch (err) {
+      modelUsed.textContent = 'error';
+      outputBox.textContent = 'Connection failed. Save the BossMind API URL, then retry.';
+    }
+  }
+
+  document.getElementById('sendAuto').addEventListener('click', () => sendMessage('auto'));
+  document.getElementById('sendBrain').addEventListener('click', () => sendMessage('brain'));
+  document.getElementById('sendWorker').addEventListener('click', () => sendMessage('worker'));
+  document.getElementById('sendBackground').addEventListener('click', () => sendMessage('background'));
+  messageInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage('auto');
+    }
+  });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  }
+})();

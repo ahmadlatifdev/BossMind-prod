@@ -1,0 +1,74 @@
+export default function PricingPage() {
+  return (
+    <main style={{
+      background: "#0b1c3a",
+      minHeight: "100vh",
+      color: "white",
+      padding: "40px"
+    }}>
+      <h1 style={{ fontSize: "40px", marginBottom: "30px" }}>
+        Resumora Pricing
+      </h1>
+
+      <div style={{
+        display: "flex",
+        gap: "20px",
+        flexWrap: "wrap"
+      }}>
+        <div style={{
+          background: "#122b5c",
+          padding: "20px",
+          borderRadius: "10px",
+          width: "280px"
+        }}>
+          <h2>Basic</h2>
+          <p>$19 USD</p>
+          <button style={{
+            background: "#d4af37",
+            border: "none",
+            padding: "10px 15px",
+            cursor: "pointer"
+          }}>
+            Choose Plan
+          </button>
+        </div>
+
+        <div style={{
+          background: "#122b5c",
+          padding: "20px",
+          borderRadius: "10px",
+          width: "280px"
+        }}>
+          <h2>Pro</h2>
+          <p>$49 USD</p>
+          <button style={{
+            background: "#d4af37",
+            border: "none",
+            padding: "10px 15px",
+            cursor: "pointer"
+          }}>
+            Choose Plan
+          </button>
+        </div>
+
+        <div style={{
+          background: "#122b5c",
+          padding: "20px",
+          borderRadius: "10px",
+          width: "280px"
+        }}>
+          <h2>Premium</h2>
+          <p>$99 USD</p>
+          <button style={{
+            background: "#d4af37",
+            border: "none",
+            padding: "10px 15px",
+            cursor: "pointer"
+          }}>
+            Choose Plan
+          </button>
+        </div>
+      </div>
+    </main>
+  );
+}

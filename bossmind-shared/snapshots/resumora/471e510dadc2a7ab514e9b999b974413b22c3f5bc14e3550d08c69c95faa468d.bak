@@ -1,0 +1,28 @@
+# BossMind Connected Responsive PWA Apps Pack
+
+This pack contains 5 installable apps already wired to the shared BossMind `/api/chat` route.
+
+## Included apps
+1. Resumora
+2. ElegancyArt Builder
+3. AI Video Generator
+4. TikTok AI
+5. Global Stock
+
+## What is already connected
+- Shared BossMind chat client
+- Project key per app
+- Enter-to-send chat
+- Auto / Brain / Worker / Background modes
+- Saved API base URL in browser local storage
+- Responsive layout for desktop, tablet, and mobile
+- PWA install support
+
+## How to use
+1. Host these files on any static host.
+2. Open one app.
+3. Enter your BossMind backend base URL once.
+4. Press Enter to send requests to `/api/chat`.
+
+## Important
+This pack is pre-wired, but it cannot deploy itself into your local machine, GitHub, Railway, or Render without access to those systems.

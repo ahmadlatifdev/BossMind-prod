@@ -1,0 +1,12 @@
+{
+  "project": "resumora",
+  "locked_host": "railway",
+  "locked_domain": "resumora.net",
+  "dns_provider": "squarespace",
+  "execution_engine": "powershell",
+  "blocked_hosts": ["render", "vercel"],
+  "allow_partial_updates": false,
+  "require_build_before_push": true,
+  "require_live_verify_after_deploy": true,
+  "status": "anti_leak_boundary_active"
+}

@@ -1,0 +1,8 @@
+﻿{
+    "id":  4,
+    "name":  "sentry_cloud_test",
+    "command":  "node D:\\\\BossMind\\\\bossmind-shared\\\\automation\\\\sentry-test.js",
+    "start":  "2026-05-01 21:13:31",
+    "end":  "2026-05-01 21:13:33",
+    "exit_code":  0
+}

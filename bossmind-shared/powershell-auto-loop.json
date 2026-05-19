@@ -1,0 +1,17 @@
+{
+  "engine": "powershell_auto_loop",
+  "status": "active",
+  "loop_mode": "watch_and_execute",
+  "task_source": "neon_task_state",
+  "execution_flow": [
+    "read_task",
+    "execute_command",
+    "capture_output",
+    "write_log",
+    "verify_result",
+    "lock_if_success"
+  ],
+  "retry_on_fail": true,
+  "max_retries": 3,
+  "anti_leak_enforced": true
+}

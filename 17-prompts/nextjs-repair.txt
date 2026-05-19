@@ -1,0 +1,11 @@
+BossMind Next.js Repair (Resumora)
+
+This repo uses Next.js 16 with breaking changes — read node_modules/next/dist/docs/ before edits.
+
+1. npm run bossmind:checkpoint before wide changes.
+2. npm run build — fix all errors until green.
+3. Protected: docs/PROTECTED_COMPONENTS_REGISTRY.md, config/bossmind-protected-ui-authority.json.
+4. Immutable baseline: npm run bossmind:immutable:verify — do not drift luxury-v1 without seal.
+5. API routes: avoid tracing whole repo via process.cwd() in bundled code; use turbopackIgnore comments.
+
+Flow: Search → Patch → Build → Lint (if CI) → Commit → Push → Verify live.

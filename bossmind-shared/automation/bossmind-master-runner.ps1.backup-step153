@@ -1,0 +1,99 @@
+# BossMind Master Runner - Final Clean Version (Neon + Task-State Connected)
+
+$projects = @(
+    "D:\BossMind\bossmind-resumora",
+    "D:\BossMind\bossmind-elegancyart",
+    "D:\BossMind\bossmind-ai-video-generator",
+    "D:\BossMind\bossmind-tiktok-ai",
+    "D:\BossMind\bossmind-global-stock"
+)
+
+$automationRoot = "D:\BossMind\bossmind-shared\automation"
+$logRoot = "D:\BossMind\bossmind-shared\logs"
+$logFile = "$logRoot\master-runner-log.json"
+
+if (!(Test-Path $logRoot)) {
+    New-Item -ItemType Directory -Path $logRoot -Force | Out-Null
+}
+
+function Send-ToNeonDB {
+    param ([object]$Payload)
+
+    try {
+        $tempFile = "$logRoot\temp-payload.json"
+        $Payload | ConvertTo-Json -Depth 10 | Set-Content $tempFile -Encoding utf8
+
+        node "$automationRoot\neon-insert-log.js"
+        node "$automationRoot\bossmind-task-state-writer.js"
+
+        node "$automationRoot\bossmind-error-memory-writer.js"
+
+        Write-Host "Neon DB + Task-State write OK" -ForegroundColor Green
+    } catch {
+        Write-Host "Neon DB / Task-State write FAILED: $($_.Exception.Message)" -ForegroundColor Red
+    }
+}
+
+$results = @()
+
+foreach ($project in $projects) {
+
+    Write-Host ""
+    Write-Host "=== Processing $project ===" -ForegroundColor Cyan
+
+    $projectExists = Test-Path $project
+
+    $preflight = "$automationRoot\bossmind-preflight-scan.ps1"
+    $autoFix = "$automationRoot\bossmind-auto-fix.ps1"
+    $deployVerify = "$automationRoot\bossmind-deploy-verify.ps1"
+
+    if (Test-Path $preflight) {
+        & $preflight -projectPath $project
+    }
+
+    if (Test-Path $autoFix) {
+        & $autoFix -projectPath $project
+    }
+
+    if ($projectExists) {
+        Set-Location $project
+
+        git status
+
+        $changes = git status --porcelain
+
+        if ($changes) {
+            git add .
+            git commit -m "BossMind automated update"
+            git push
+        } else {
+            Write-Host "No Git changes found. Push skipped." -ForegroundColor Cyan
+        }
+    } else {
+        Write-Host "Project missing: $project" -ForegroundColor Yellow
+    }
+
+    if (Test-Path $deployVerify) {
+        & $deployVerify -projectPath $project
+    }
+
+    $result = @{
+        project = $project
+        project_exists = $projectExists
+        status = if ($projectExists) { "processed" } else { "skipped" }
+        reason = if ($projectExists) { "project processed" } else { "project folder missing" }
+        timestamp = (Get-Date).ToString("s")
+    }
+
+    $results += $result
+
+    Send-ToNeonDB -Payload $result
+}
+
+$results | ConvertTo-Json -Depth 10 | Out-File $logFile -Encoding utf8
+
+Set-Location $automationRoot
+
+Write-Host ""
+Write-Host "=== BossMind Master Runner Complete ===" -ForegroundColor Green
+Write-Host "Log saved to: $logFile" -ForegroundColor Green

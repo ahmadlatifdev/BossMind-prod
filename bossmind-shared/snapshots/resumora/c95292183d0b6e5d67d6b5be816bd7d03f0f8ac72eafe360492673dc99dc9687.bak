@@ -1,0 +1,68 @@
+import { Client } from "pg";
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+});
+
+const uiData = {
+  project: "resumora",
+  memory_type: "client_interface",
+  version: "real_blue_locked",
+  status: "active",
+  saved_at: new Date().toISOString(),
+  source: "real_resumora_ui"
+};
+
+async function run() {
+  await client.connect();
+
+  await client.query(`
+    CREATE TABLE IF NOT EXISTS system_memory (
+      id SERIAL PRIMARY KEY
+    );
+  `);
+
+  const cols = await client.query(`
+    SELECT column_name
+    FROM information_schema.columns
+    WHERE table_name = 'system_memory'
+  `);
+
+  const columnNames = cols.rows.map(r => r.column_name);
+
+  if (columnNames.includes("data")) {
+    await client.query(
+      `INSERT INTO system_memory (data) VALUES ($1::jsonb)`,
+      [JSON.stringify(uiData)]
+    );
+    console.log("UI_SAVED_TO_NEON_OK");
+    return;
+  }
+
+  if (columnNames.includes("memory_key") && columnNames.includes("memory_value")) {
+    await client.query(
+      `INSERT INTO system_memory (memory_key, memory_value) VALUES ($1, $2::jsonb)`,
+      ["resumora_real_blue_locked_ui", JSON.stringify(uiData)]
+    );
+    console.log("UI_SAVED_TO_NEON_OK");
+    return;
+  }
+
+  if (!columnNames.includes("data")) {
+    await client.query(`ALTER TABLE system_memory ADD COLUMN data JSONB`);
+    await client.query(
+      `INSERT INTO system_memory (data) VALUES ($1::jsonb)`,
+      [JSON.stringify(uiData)]
+    );
+    console.log("UI_SAVED_TO_NEON_OK");
+    return;
+  }
+}
+
+run()
+  .catch(err => {
+    console.error("ERROR:", err.message);
+  })
+  .finally(async () => {
+    await client.end();
+  });

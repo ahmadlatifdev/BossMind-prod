@@ -1,0 +1,40 @@
+# BossMind Global Cursor Rules (hub: D:\BossMind)
+
+Always open **BossMind.code-workspace** — never isolated random folders.
+
+## Core posture
+
+- Always start from latest locked state (`13-shared-memory/locked-interfaces.json`, per-repo `config/bossmind-protected-ui-authority.json`).
+- Never recreate existing systems. Never overwrite stable interfaces.
+- Always scan all BossMind projects in workspace before generating code.
+- Always verify imports before build (run `11-scripts/verify-imports.ps1`).
+- Always run local build before deployment (`11-scripts/verify-build.ps1` or `npm run build` in target repo).
+- Always preserve production-safe UI (Resumora luxury-v1 baseline is immutable unless explicitly approved).
+- Always use shared templates from `bossmind-shared` when available.
+- Always verify Render/Railway deployments after push.
+- Always store stable fixes into `13-shared-memory` or per-repo Neon locks.
+- Never create duplicate routes, layouts, or components.
+- Prefer patching over rebuilding.
+
+## Hosting (locked)
+
+- **Render** = frontend/public (Resumora: resumora.net)
+- **Railway** = backend APIs, workers, orchestration
+- **Neon** = Postgres authority (`task_state`, `event_log`, snapshots)
+- **GitHub** = source control + deploy triggers
+- **Never** recommend or wire Vercel unless user explicitly reapproves in-thread.
+
+## Execution flow
+
+Search → Analyze → Patch → Local Build → Commit → Push → Deploy → Verify → Lock State
+
+## Resumora-specific
+
+- Canonical repo: `bossmind-resumora` (workspace folder `02-resumora`)
+- Protected registry: `docs/PROTECTED_COMPONENTS_REGISTRY.md`
+- Preflight: `npm run bossmind:enterprise:preflight` before wide edits
+- Fix-only mode unless user explicitly requests redesign
+
+## Prompt library
+
+Reuse templates from `17-prompts/` — do not rewrite long prompts from scratch each session.

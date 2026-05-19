@@ -1,0 +1,32 @@
+import { Client } from "pg";
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+});
+
+async function run() {
+  await client.connect();
+
+  const res = await client.query(`
+    SELECT data
+    FROM system_memory
+    WHERE data->>'project' = 'resumora'
+    AND data->>'version' = 'real_blue_locked'
+    ORDER BY id DESC
+    LIMIT 1;
+  `);
+
+  if (!res.rows.length) {
+    console.log("NO_UI_FOUND");
+    return;
+  }
+
+  console.log("ACTIVE_UI:");
+  console.log(JSON.stringify(res.rows[0].data, null, 2));
+
+  await client.end();
+}
+
+run().catch(err => {
+  console.error("ERROR:", err.message);
+});

@@ -1,0 +1,12 @@
+{
+  "connection": "neon",
+  "mode": "task_listener",
+  "listen_table": "task_state",
+  "write_logs_to": "event_log",
+  "write_errors_to": "error_log",
+  "poll_interval_seconds": 5,
+  "on_task_received": "execute_powershell",
+  "on_success": "lock_task",
+  "on_fail": "retry_or_log",
+  "status": "neon_bridge_active"
+}

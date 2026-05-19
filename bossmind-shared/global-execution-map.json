@@ -1,0 +1,14 @@
+{
+  "mode": "global_execution",
+  "projects": [
+    "bossmind-resumora",
+    "bossmind-elegancyart",
+    "bossmind-ai-video-generator",
+    "bossmind-tiktok-ai",
+    "bossmind-global-stock"
+  ],
+  "execution_engine": "powershell",
+  "routing": "by_project",
+  "task_distribution": "enabled",
+  "status": "global_powershell_active"
+}

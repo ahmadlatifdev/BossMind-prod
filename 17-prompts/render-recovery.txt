@@ -1,0 +1,11 @@
+BossMind Render Recovery
+
+1. Search repo for invalid imports: ROOT, @/ROOT, /ROOT, dynamic require('./' + x) in API routes.
+2. Replace with @/* alias or relative paths; use turbopackIgnore on scoped path.join(cwd, 'config', ...).
+3. Confirm tsconfig paths "@/*": ["./*"] and next.config.ts turbopack.root.
+4. Local: npm run build in bossmind-resumora until pass.
+5. Push main → Render auto-deploy.
+6. Probe: curl https://www.resumora.net/api/health (follow redirects).
+7. Check HTML markers from 13-shared-memory/locked-interfaces.json requiredHomeHtmlMarkers.
+
+Fix-only. No luxury UI changes.

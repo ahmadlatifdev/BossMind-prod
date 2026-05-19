@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "runId": "2026-05-15T01-02-05-629Z-a1",
+  "ts": "2026-05-15T01:02:05.635Z",
+  "cwd": "D:/BossMind/bossmind-master-admin",
+  "projectId": "master_admin",
+  "files": [
+    {
+      "relativePath": "package-lock.json",
+      "size": 31219,
+      "sha256": "4c8dd36207e65c95bddc25a7abc60ebc57b48bd8b288d5a3fca47f57cccba5cd"
+    },
+    {
+      "relativePath": "package.json",
+      "size": 356,
+      "sha256": "3290909977667709bc53b8ba6c6966887282c53400ba7f6aca6bcaabcd7d6410"
+    },
+    {
+      "relativePath": "tsconfig.json",
+      "size": 657,
+      "sha256": "1abf2cd3ca95b468e459348a6c6b09d36bfc35b92382d1f1e3ee6b64a15944c5"
+    }
+  ]
+}

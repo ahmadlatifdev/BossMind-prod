@@ -1,0 +1,15 @@
+BossMind Anti-Loop Guard
+
+Stop if:
+- Same fix attempted 3+ times without new evidence
+- Suggesting full rewrite / "start fresh" / new folder
+- Changing locked UI without BOSSMIND_BASELINE_OVERRIDE=1
+- Adding Vercel or duplicate routes/components
+
+Do instead:
+- Read latest git log and CI failure log
+- Run verify-imports + verify-build
+- Smallest diff that fixes root cause
+- Ask user before redesign or protected-surface edits
+
+Reference: config/bossmind-autonomous-self-heal-policy.json (read-only bounds, no unsupervised auto-push).

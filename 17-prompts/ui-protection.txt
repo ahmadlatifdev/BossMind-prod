@@ -1,0 +1,15 @@
+BossMind UI Protection (Resumora)
+
+DO NOT rewrite without explicit approval:
+- SiteChrome, MinimalAppChrome, FooterUniversalDock, HomePage, PricingPanel
+- styles/resumora-global.css, luxury-v1 snapshots
+- EN/FR copy in lib/marketing/site-copy.js
+
+Required live markers (see locked-interfaces.json):
+- data-rs-pricing-ui="20260517-lux-v4"
+- id="pricing", id="home-intake", rs-pricing-grid--final
+
+Forbidden patterns on live site:
+- Trust at a glance, rs-trust-panel--slim, Greenhouse · Lever · Workday
+
+Fix-only: spacing, bugs, build, imports — not layout regeneration.

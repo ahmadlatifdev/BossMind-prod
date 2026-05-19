@@ -1,0 +1,21 @@
+{
+  "runner": "powershell",
+  "mode": "active",
+  "execution_type": "direct",
+  "auto_trigger": true,
+  "allowed_commands": [
+    "git",
+    "npm",
+    "node",
+    "curl",
+    "nslookup"
+  ],
+  "blocked_commands": [
+    "rm -rf",
+    "format",
+    "shutdown /s"
+  ],
+  "log_output": true,
+  "write_to": "neon_event_log",
+  "status": "powershell_runner_active"
+}

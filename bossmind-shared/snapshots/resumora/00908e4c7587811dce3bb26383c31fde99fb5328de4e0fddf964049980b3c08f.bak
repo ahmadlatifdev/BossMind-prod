@@ -1,0 +1,82 @@
+import Link from "next/link";
+
+export default function ResumoraClientLoginPage() {
+  return (
+    <main className="min-h-screen bg-[#0B1220] text-white">
+      <section className="mx-auto flex min-h-screen max-w-7xl items-center px-6 py-12">
+        <div className="grid w-full gap-10 lg:grid-cols-2">
+          <div className="flex flex-col justify-center">
+            <Link
+              href="/client"
+              className="mb-6 text-2xl font-bold tracking-wide text-[#D4AF37]"
+            >
+              Resumora
+            </Link>
+
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#D4AF37]">
+              Client Access
+            </p>
+
+            <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl">
+              Login to Your Account
+            </h1>
+
+            <p className="max-w-xl text-lg text-white/80">
+              Access your resume orders, uploaded files, service history, and premium requests
+              through the Resumora client portal.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-[#D4AF37]/20 bg-white/5 p-8 shadow-2xl">
+            <form className="space-y-6">
+              <div>
+                <label className="mb-2 block text-sm font-medium text-white/80">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  placeholder="privategate777@gmail.com"
+                  className="w-full rounded-2xl border border-white/10 bg-[#111827] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-medium text-white/80">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  className="w-full rounded-2xl border border-white/10 bg-[#111827] px-4 py-3 text-white outline-none transition focus:border-[#D4AF37]"
+                />
+              </div>
+
+              <Link
+                href="/client/dashboard"
+                className="inline-flex w-full items-center justify-center rounded-2xl bg-[#D4AF37] px-6 py-3 font-semibold text-black transition hover:opacity-90"
+              >
+                Login
+              </Link>
+            </form>
+
+            <div className="mt-6 flex flex-col gap-3 text-sm">
+              <Link
+                href="/client/reset-password"
+                className="text-[#D4AF37] transition hover:opacity-80"
+              >
+                Forgot Password
+              </Link>
+
+              <Link
+                href="/client/register"
+                className="text-white/80 transition hover:text-[#D4AF37]"
+              >
+                Create New Account
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

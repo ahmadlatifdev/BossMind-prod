@@ -1,0 +1,32 @@
+{
+  "resumora": {
+    "service_name": "resumora",
+    "platform": "railway",
+    "railway_service_id": "",
+    "base_url": ""
+  },
+  "elegancyart": {
+    "service_name": "elegancyart",
+    "platform": "railway",
+    "railway_service_id": "",
+    "base_url": ""
+  },
+  "ai_video_generator": {
+    "service_name": "ai-video-generator",
+    "platform": "railway",
+    "railway_service_id": "",
+    "base_url": ""
+  },
+  "tiktok_ai": {
+    "service_name": "tiktok-ai",
+    "platform": "railway",
+    "railway_service_id": "",
+    "base_url": ""
+  },
+  "global_stock": {
+    "service_name": "global-stock",
+    "platform": "railway",
+    "railway_service_id": "",
+    "base_url": ""
+  }
+}

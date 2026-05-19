@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "error": "getaddrinfo ENOTFOUND base",
+  "stack": "Error: getaddrinfo ENOTFOUND base\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)"
+}

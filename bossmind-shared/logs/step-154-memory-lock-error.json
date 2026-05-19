@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "error": "column \"task_key\" of relation \"bossmind_task_state\" does not exist",
+  "stack": "error: column \"task_key\" of relation \"bossmind_task_state\" does not exist\n    at D:\\BossMind\\bossmind-shared\\automation\\node_modules\\pg\\lib\\client.js:631:17\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async main (D:\\BossMind\\bossmind-shared\\automation\\bossmind-safe-memory-writer.cjs:86:5)"
+}

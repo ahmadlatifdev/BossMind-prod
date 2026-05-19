@@ -1,0 +1,27 @@
+{
+  "bossmind-resumora": {
+    "provider": "railway",
+    "service": "resumora",
+    "status": "pending_real_service_id"
+  },
+  "bossmind-elegancyart": {
+    "provider": "railway",
+    "service": "bossmind-elegancyart",
+    "status": "pending_real_service_id"
+  },
+  "bossmind-ai-video-generator": {
+    "provider": "railway",
+    "service": "bossmind-ai-video-generator",
+    "status": "pending_real_service_id"
+  },
+  "bossmind-tiktok-ai": {
+    "provider": "railway",
+    "service": "bossmind-tiktok-ai",
+    "status": "pending_real_service_id"
+  },
+  "bossmind-global-stock": {
+    "provider": "railway",
+    "service": "bossmind-global-stock",
+    "status": "pending_real_service_id"
+  }
+}

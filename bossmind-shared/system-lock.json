@@ -1,0 +1,11 @@
+{
+  "system": "BossMind",
+  "execution": "powershell_global",
+  "mode": "real_automation",
+  "projects_active": [
+    "resumora"
+  ],
+  "status": "live_running",
+  "next_phase": "expand_to_all_projects",
+  "timestamp": "'$(Get-Date -Format "yyyy-MM-dd HH:mm:ss")'"
+}

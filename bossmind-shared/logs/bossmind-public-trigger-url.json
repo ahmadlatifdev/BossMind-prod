@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-05-03T02:10:15",
+  "step": "Step #18",
+  "layer": "BossMind Public Trigger",
+  "local_bridge": "http://localhost:6060",
+  "public_trigger_url": null,
+  "n8n_http_request_url": null,
+  "test_action": "health",
+  "status": "ACTIVE",
+  "result": null
+}

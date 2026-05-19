@@ -1,0 +1,4 @@
+const CONFIG = {
+  API_URL: "https://bossmind-resumora-production.up.railway.app",
+  PROJECT_KEY: "resumora"
+};

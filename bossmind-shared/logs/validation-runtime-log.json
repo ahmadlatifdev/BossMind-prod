@@ -1,0 +1,60 @@
+﻿{
+    "timestamp":  "2026-05-03T01:20:31",
+    "layer":  "BossMind Validation Runtime",
+    "scope":  "All 5 projects",
+    "database_url_loaded":  true,
+    "validation_runtime":  "ACTIVE",
+    "total_projects_checked":  5,
+    "results":  [
+                    {
+                        "project":  "bossmind-resumora",
+                        "path":  "D:\\BossMind\\bossmind-resumora",
+                        "folder_exists":  true,
+                        "automation_folder_exists":  false,
+                        "required_files_json_exists":  false,
+                        "route_map_json_exists":  false,
+                        "deploy_config_json_exists":  false,
+                        "error_patterns_json_exists":  false
+                    },
+                    {
+                        "project":  "bossmind-elegancyart",
+                        "path":  "D:\\BossMind\\bossmind-elegancyart",
+                        "folder_exists":  true,
+                        "automation_folder_exists":  false,
+                        "required_files_json_exists":  false,
+                        "route_map_json_exists":  false,
+                        "deploy_config_json_exists":  false,
+                        "error_patterns_json_exists":  false
+                    },
+                    {
+                        "project":  "bossmind-ai-video-generator",
+                        "path":  "D:\\BossMind\\bossmind-ai-video-generator",
+                        "folder_exists":  true,
+                        "automation_folder_exists":  false,
+                        "required_files_json_exists":  false,
+                        "route_map_json_exists":  false,
+                        "deploy_config_json_exists":  false,
+                        "error_patterns_json_exists":  false
+                    },
+                    {
+                        "project":  "bossmind-tiktok-ai",
+                        "path":  "D:\\BossMind\\bossmind-tiktok-ai",
+                        "folder_exists":  true,
+                        "automation_folder_exists":  false,
+                        "required_files_json_exists":  false,
+                        "route_map_json_exists":  false,
+                        "deploy_config_json_exists":  false,
+                        "error_patterns_json_exists":  false
+                    },
+                    {
+                        "project":  "bossmind-global-stock",
+                        "path":  "D:\\BossMind\\bossmind-global-stock",
+                        "folder_exists":  true,
+                        "automation_folder_exists":  false,
+                        "required_files_json_exists":  false,
+                        "route_map_json_exists":  false,
+                        "deploy_config_json_exists":  false,
+                        "error_patterns_json_exists":  false
+                    }
+                ]
+}

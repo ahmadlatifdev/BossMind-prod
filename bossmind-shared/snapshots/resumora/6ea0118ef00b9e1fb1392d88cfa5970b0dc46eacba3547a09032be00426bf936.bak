@@ -1,0 +1,113 @@
+import Link from "next/link";
+
+const orders = [
+  {
+    id: "RES-1001",
+    service: "Premium Career Pack",
+    status: "In Progress",
+    date: "2026-04-12"
+  },
+  {
+    id: "RES-1002",
+    service: "Resume Rewrite",
+    status: "Pending",
+    date: "2026-04-12"
+  }
+];
+
+export default function ResumoraClientDashboardPage() {
+  return (
+    <main className="min-h-screen bg-[#0B1220] text-white">
+      <section className="mx-auto max-w-7xl px-6 py-10">
+        <div className="mb-8 flex items-center justify-between border-b border-white/10 pb-6">
+          <Link
+            href="/client"
+            className="text-2xl font-bold tracking-wide text-[#D4AF37]"
+          >
+            Resumora
+          </Link>
+
+          <div className="flex items-center gap-3">
+            <Link
+              href="/client/pricing"
+              className="rounded-xl border border-[#D4AF37] px-4 py-2 font-semibold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-black"
+            >
+              New Order
+            </Link>
+
+            <Link
+              href="/client/login"
+              className="rounded-xl bg-[#D4AF37] px-4 py-2 font-semibold text-black transition hover:opacity-90"
+            >
+              Logout
+            </Link>
+          </div>
+        </div>
+
+        <div className="mb-10">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#D4AF37]">
+            Client Dashboard
+          </p>
+
+          <h1 className="mb-4 text-4xl font-bold md:text-5xl">
+            Welcome to Your Resumora Account
+          </h1>
+
+          <p className="max-w-3xl text-lg text-white/80">
+            Track orders, review service status, and continue your professional document requests.
+          </p>
+        </div>
+
+        <div className="mb-10 grid gap-6 md:grid-cols-3">
+          <div className="rounded-3xl border border-[#D4AF37]/20 bg-white/5 p-6">
+            <p className="mb-2 text-sm text-white/70">Active Orders</p>
+            <h2 className="text-3xl font-bold text-[#D4AF37]">2</h2>
+          </div>
+
+          <div className="rounded-3xl border border-[#D4AF37]/20 bg-white/5 p-6">
+            <p className="mb-2 text-sm text-white/70">Completed Orders</p>
+            <h2 className="text-3xl font-bold text-[#D4AF37]">0</h2>
+          </div>
+
+          <div className="rounded-3xl border border-[#D4AF37]/20 bg-white/5 p-6">
+            <p className="mb-2 text-sm text-white/70">Preferred Language</p>
+            <h2 className="text-3xl font-bold text-[#D4AF37]">EN</h2>
+          </div>
+        </div>
+
+        <div className="rounded-3xl border border-[#D4AF37]/20 bg-white/5 p-8">
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="text-2xl font-bold text-[#D4AF37]">Recent Orders</h2>
+            <Link
+              href="/client/pricing"
+              className="rounded-xl bg-[#D4AF37] px-4 py-2 font-semibold text-black transition hover:opacity-90"
+            >
+              Start New Order
+            </Link>
+          </div>
+
+          <div className="space-y-4">
+            {orders.map((order) => (
+              <div
+                key={order.id}
+                className="rounded-2xl border border-white/10 bg-[#111827] p-5"
+              >
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <p className="text-sm text-white/60">{order.id}</p>
+                    <h3 className="text-xl font-semibold text-white">{order.service}</h3>
+                    <p className="text-sm text-white/70">{order.date}</p>
+                  </div>
+
+                  <div className="rounded-full border border-[#D4AF37]/40 px-4 py-2 text-sm font-semibold text-[#D4AF37]">
+                    {order.status}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

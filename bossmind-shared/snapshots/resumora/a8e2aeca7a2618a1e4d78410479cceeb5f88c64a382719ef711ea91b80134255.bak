@@ -1,0 +1,37 @@
+# BossMind Responsive PWA Apps Pack
+
+This package contains 5 installable responsive web apps, one for each BossMind project:
+
+1. Resumora
+2. ElegancyArt Builder
+3. AI Video Generator
+4. TikTok AI
+5. Global Stock
+
+## Run locally
+
+Open any app folder and launch `index.html` in a browser, or serve the root with a simple server:
+
+```bash
+python -m http.server 8080
+```
+
+Then open:
+
+- `http://localhost:8080/apps/resumora/`
+- `http://localhost:8080/apps/elegancyart-builder/`
+- `http://localhost:8080/apps/ai-video-generator/`
+- `http://localhost:8080/apps/tiktok-ai/`
+- `http://localhost:8080/apps/global-stock/`
+
+## Install as app
+
+In Chrome/Edge on desktop or Android, open any app URL and use **Install app** from the browser menu.
+On iPhone/iPad Safari, use **Share > Add to Home Screen**.
+
+## Notes
+
+- Fully responsive layout
+- PWA manifest included for each app
+- Service worker included for basic offline shell caching
+- Ready to expand into your live BossMind backend routes

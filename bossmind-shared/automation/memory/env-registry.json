@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-05-18T23:53:16.576Z",
+  "rootsScanned": [
+    "D:\\BossMind",
+    "D:\\Shakhsy11"
+  ],
+  "envFilesScanned": 25,
+  "envFiles": [
+    "D:\\BossMind\\09-archives\\02-resumora\\.env.local",
+    "D:\\BossMind\\09-archives\\deprecated-tools\\worker\\.env",
+    "D:\\BossMind\\09-archives\\old-resumora\\resumora-fresh\\.env.local",
+    "D:\\BossMind\\16-neon\\.env",
+    "D:\\BossMind\\bossmind-ai-video-generator\\.env",
+    "D:\\BossMind\\bossmind-elegancyart\\.env",
+    "D:\\BossMind\\bossmind-global-stock\\.env",
+    "D:\\BossMind\\bossmind-master-admin\\.env.local",
+    "D:\\BossMind\\bossmind-resumora\\.env.local",
+    "D:\\BossMind\\bossmind-shared\\.env",
+    "D:\\BossMind\\bossmind-shared\\automation\\.env",
+    "D:\\BossMind\\bossmind-shared\\Global-files\\.env",
+    "D:\\BossMind\\bossmind-tiktok-ai\\.env",
+    "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env",
+    "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\bossmind-dashboard\\.env",
+    "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\bossmind-dashboard\\src\\.env",
+    "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\bossmind-sheets-service\\.env",
+    "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\elegancyart-website\\.env",
+    "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\elegancyart-website\\.env.local",
+    "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\resumora\\.env.local",
+    "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\.env",
+    "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\Server\\resumora-dashboard\\.env",
+    "D:\\Shakhsy11\\BossMind\\.env",
+    "D:\\Shakhsy11\\BossMind-Apps\\bossmind-resumora\\.env",
+    "D:\\Shakhsy11\\BossMind-Apps\\bossmind_connected_pwa_apps\\.env"
+  ],
+  "keys": {
+    "SENTRY_DSN": {
+      "exists": true,
+      "maskedValue": "http********4880",
+      "sourceFile": "D:\\BossMind\\09-archives\\deprecated-tools\\worker\\.env"
+    },
+    "NEON_DATABASE_URL": {
+      "exists": true,
+      "maskedValue": "post********uire",
+      "sourceFile": "D:\\BossMind\\09-archives\\old-resumora\\resumora-fresh\\.env.local"
+    },
+    "DEEPSEEK_API_KEY": {
+      "exists": true,
+      "maskedValue": "sk-8********e9a0",
+      "sourceFile": "D:\\BossMind\\16-neon\\.env"
+    }
+  }
+}

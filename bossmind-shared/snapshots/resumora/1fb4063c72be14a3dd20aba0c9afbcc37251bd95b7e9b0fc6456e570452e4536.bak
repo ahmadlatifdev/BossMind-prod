@@ -1,0 +1,29 @@
+﻿import Image from "next/image";
+import Link from "next/link";
+
+export default function Page() {
+  return (
+    <main className="min-h-screen bg-[#061535] text-white px-6 py-10">
+
+      <Image src='/resumora-logo.png' alt="logo" width={120} height={120} />
+
+      <h1 className="text-4xl font-bold mt-6 mb-6">Create Account</h1>
+
+      <div className="max-w-md space-y-4">
+        <input className="w-full p-3 rounded bg-black/30" placeholder="Full Name" />
+        <input className="w-full p-3 rounded bg-black/30" placeholder="Email" />
+        <input className="w-full p-3 rounded bg-black/30" placeholder="Password" />
+
+        <button className="w-full bg-[#D4AF37] text-black py-3 rounded">
+          Create Account
+        </button>
+      </div>
+
+      <Link href="/client/login" className="block mt-6">
+        Login instead
+      </Link>
+
+    </main>
+  );
+}
+

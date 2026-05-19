@@ -1,0 +1,11 @@
+BossMind Railway Rebuild
+
+Scope: bossmind-supervisor-service, Railway orchestration APIs (not Resumora Render frontend).
+
+1. Read docs/RAILWAY_DEPLOY.md in target repo.
+2. Verify railway.toml / service env on Railway dashboard (no secrets in chat).
+3. npm run build or service start command per package.json.
+4. POST /api/orchestration/railway-incident-webhook only with BOSSMIND_* secrets set.
+5. Confirm GET /api/orchestration/bossmind-health on deployed origin.
+
+Patch deploy blockers only. Cross-check Neon connectivity.

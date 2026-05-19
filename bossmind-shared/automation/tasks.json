@@ -1,0 +1,26 @@
+﻿[
+    {
+        "id":  1,
+        "name":  "anti_leak_fast_scan",
+        "command":  "powershell -ExecutionPolicy Bypass -File D:\\BossMind\\bossmind-shared\\automation\\anti-leak-fast.ps1",
+        "status":  "done"
+    },
+    {
+        "id":  2,
+        "name":  "auto_health_check",
+        "command":  "powershell -ExecutionPolicy Bypass -File D:\\BossMind\\bossmind-shared\\automation\\auto-health.ps1",
+        "status":  "done"
+    },
+    {
+        "id":  3,
+        "name":  "sentry_history_record",
+        "command":  "powershell -ExecutionPolicy Bypass -File D:\\BossMind\\bossmind-shared\\automation\\sentry-history.ps1",
+        "status":  "done"
+    },
+    {
+        "id":  4,
+        "name":  "sentry_cloud_test",
+        "command":  "node D:\\\\BossMind\\\\bossmind-shared\\\\automation\\\\sentry-test.js",
+        "status":  "done"
+    }
+]

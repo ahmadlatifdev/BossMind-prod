@@ -1,0 +1,11 @@
+BossMind Memory Lock
+
+After a verified stable fix:
+1. npm run bossmind:checkpoint (Resumora)
+2. Optional Neon: npm run bossmind:autonomous:self-heal:arch-lock -- --i-understand-policy-bounds --notes="..."
+3. Update 13-shared-memory/locked-interfaces.json only with owner-approved route/UI locks
+4. Do not export .env, Gmail, n8n, or Cursor chat DB
+
+Rolling backup: npm run bossmind:backup:daily (never copies secrets).
+
+Shared hub memory: bossmind-shared + Neon project_key per product.

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BossMind Apps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial; background: #0b0b0b; color: #fff; text-align: center; }
+    h1 { margin-top: 40px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 20px; padding: 40px; }
+    a { display: block; padding: 20px; background: #111; border-radius: 12px; text-decoration: none; color: #fff; }
+    a:hover { background: #1a1a1a; }
+  </style>
+</head>
+<body>
+
+<h1>BossMind Apps</h1>
+
+<div class="grid">
+  <a href="./resumora/">Resumora</a>
+  <a href="./elegancyart-builder/">ElegancyArt Builder</a>
+  <a href="./ai-video-generator/">AI Video Generator</a>
+  <a href="./tiktok-ai/">TikTok AI</a>
+  <a href="./global-stock/">Global Stock</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "scan_targets": [
+    "D:\\BossMind\\bossmind-shared\\automation\\*.ps1",
+    "D:\\BossMind\\bossmind-shared\\automation\\*.json",
+    "D:\\BossMind\\bossmind-resumora\\app\\page.tsx",
+    "D:\\BossMind\\bossmind-resumora\\app\\layout.tsx",
+    "D:\\BossMind\\bossmind-resumora\\app\\api\\**\\route.ts",
+    "D:\\BossMind\\bossmind-elegancyart\\**\\*.ts",
+    "D:\\BossMind\\bossmind-ai-video-generator\\**\\*.ts"
+  ]
+}

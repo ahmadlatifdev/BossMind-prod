@@ -1,0 +1,323 @@
+"use client";
+
+import { useState } from "react";
+
+export default function Home() {
+  const [lang, setLang] = useState<"EN" | "FR">("EN");
+
+  const t = {
+    EN: {
+      badge: "PREMIUM CLIENT INTERFACE",
+      title: "Welcome to your Resumora client interface",
+      subtitle: "Manage your resume, cover letter, LinkedIn, translation, TLS, and interview services inside a clean, modern, professional experience.",
+      view: "View Services",
+      account: "Create Account",
+      services: "Services",
+      pricing: "Pricing",
+      countries: "Countries",
+      results: "Results",
+      why: "WHY RESUMORA",
+      success: "Success Rate",
+      response: "Average Response",
+      countriesServed: "Countries Served",
+      helped: "Professionals Helped",
+      included: "Free update included on applicable services",
+      login: "Login",
+      register: "Register",
+      cta: "Start Now"
+    },
+    FR: {
+      badge: "INTERFACE CLIENT PREMIUM",
+      title: "Bienvenue dans votre interface client Resumora",
+      subtitle: "Gérez votre CV, lettre de motivation, LinkedIn, traduction, TLS et préparation d'entretien dans une expérience moderne et professionnelle.",
+      view: "Voir les services",
+      account: "Créer un compte",
+      services: "Services",
+      pricing: "Tarifs",
+      countries: "Pays",
+      results: "Résultats",
+      why: "POURQUOI RESUMORA",
+      success: "Taux de réussite",
+      response: "Réponse moyenne",
+      countriesServed: "Pays couverts",
+      helped: "Professionnels aidés",
+      included: "Mise à jour gratuite incluse selon le service",
+      login: "Connexion",
+      register: "Inscription",
+      cta: "Commencer"
+    }
+  }[lang];
+
+  const services = [
+    ["Starter Resume", "$49", "ATS resume rewrite, modern layout, 1 revision"],
+    ["Professional Package", "$99", "Resume + cover letter + LinkedIn headline"],
+    ["Executive Package", "$179", "Executive resume, cover letter, LinkedIn optimization, 3 revisions"],
+    ["LinkedIn Optimization", "$79", "Headline, About section, experience rewrite, recruiter keywords"],
+    ["Translation / TLS", "$39+", "English/French translation and career document localization"],
+    ["Interview Preparation", "$59", "Interview questions, answers, coaching script"]
+  ];
+
+  return (
+    <main className="min-h-screen bg-[#061126] text-white">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#061126]/95 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 text-xl font-black text-[#061126] shadow-lg shadow-cyan-500/20">R</div>
+            <div>
+              <div className="text-xl font-black tracking-tight">Resumora</div>
+              <div className="text-xs font-semibold text-cyan-200">Career Documents Studio</div>
+            </div>
+          </div>
+
+          <nav className="hidden items-center gap-8 text-sm font-semibold text-slate-200 md:flex">
+            <a href="#services">{t.services}</a>
+            <a href="#pricing">{t.pricing}</a>
+            <a href="#countries">{t.countries}</a>
+            <a href="#results">{t.results}</a>
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <button onClick={() => setLang("EN")} className={`rounded-full px-5 py-3 text-xs font-black ${lang === "EN" ? "bg-yellow-400 text-[#061126]" : "bg-white/10"}`}>English</button>
+            <button onClick={() => setLang("FR")} className={`rounded-full px-5 py-3 text-xs font-black ${lang === "FR" ? "bg-yellow-400 text-[#061126]" : "bg-white/10"}`}>Français</button>
+            <button className="hidden rounded-full border border-white/20 px-5 py-3 text-xs font-black md:block">{t.login}</button>
+            <button className="hidden rounded-full bg-yellow-400 px-5 py-3 text-xs font-black text-[#061126] md:block">{t.register}</button>
+          </div>
+        </div>
+      </header>
+
+      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-20 lg:grid-cols-2 lg:items-center">
+        <div>
+          <div className="mb-8 inline-flex rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2 text-xs font-black tracking-[0.35em] text-yellow-300">{t.badge}</div>
+          <h1 className="max-w-3xl text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">{t.title}</h1>
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-200">{t.subtitle}</p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <a href="#services" className="rounded-full bg-yellow-400 px-8 py-4 text-sm font-black text-[#061126] shadow-xl shadow-yellow-500/20">{t.view}</a>
+            <a href="#pricing" className="rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-black">{t.account}</a>
+          </div>
+        </div>
+
+        <div className="rounded-[2rem] border border-white/15 bg-white/8 p-6 shadow-2xl shadow-black/30">
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              ["98%", t.success],
+              ["24h", t.response],
+              ["50+", t.countriesServed],
+              ["10K+", t.helped]
+            ].map(([n, l]) => (
+              <div key={l} className="rounded-3xl border border-cyan-300/15 bg-blue-950/60 p-6">
+                <div className="text-4xl font-black text-yellow-300">{n}</div>
+                <div className="mt-2 text-sm font-bold text-slate-100">{l}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 rounded-3xl border border-yellow-300/20 bg-blue-950/70 p-6">
+            <h3 className="mb-5 text-sm font-black tracking-[0.35em] text-yellow-300">{t.why}</h3>
+            {[
+              "Clean premium client interface",
+              "English and French support",
+              "Transparent competitive pricing",
+              t.included
+            ].map((x) => (
+              <div key={x} className="mb-3 flex items-center gap-3 text-sm font-semibold text-slate-100">
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+                {x}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="mx-auto max-w-6xl px-6 py-14">
+        <h2 className="mb-8 text-4xl font-black">{t.services}</h2>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {services.map(([name, price, desc]) => (
+            <div key={name} className="rounded-[1.75rem] border border-white/15 bg-white/[0.06] p-7 shadow-xl shadow-black/20">
+              <h3 className="text-2xl font-black">{name}</h3>
+              <div className="mt-4 text-4xl font-black text-cyan-300">{price}</div>
+              <p className="mt-5 min-h-[64px] text-sm leading-7 text-slate-200">{desc}</p>
+              <button className="mt-6 w-full rounded-full bg-white px-6 py-4 text-sm font-black text-[#061126]">{t.cta}</button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="pricing" className="mx-auto max-w-6xl px-6 py-14">
+        <div className="grid gap-6 md:grid-cols-3">
+          <div className="rounded-[1.75rem] bg-cyan-300 p-8 text-[#061126]">
+            <div className="text-5xl font-black">96%</div>
+            <div className="mt-2 font-black">ATS optimization rate</div>
+          </div>
+          <div className="rounded-[1.75rem] bg-white p-8 text-[#061126]">
+            <div className="text-5xl font-black">7+</div>
+            <div className="mt-2 font-black">Career services activated</div>
+          </div>
+          <div className="rounded-[1.75rem] bg-blue-600 p-8">"use client"
+
+import { useState } from "react"
+
+export default function ResumoraPage() {
+  const [lang, setLang] = useState<"en" | "fr">("en")
+
+  const t = {
+    en: {
+      title: "Premium Resume, Cover Letter & Career Documents",
+      subtitle: "Professional bilingual career support for Canada, USA, Europe, and global applications.",
+      start: "Start Now",
+      services: "View Services",
+      packages: "Services",
+    },
+    fr: {
+      title: "CV Premium, Lettre de Motivation et Documents de Carrière",
+      subtitle: "Support professionnel bilingue pour le Canada, les États-Unis, l’Europe et les candidatures internationales.",
+      start: "Commencer",
+      services: "Voir les services",
+      packages: "Services",
+    }
+  }[lang]
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#020617] to-[#0f172a] text-white font-sans">
+
+      {/* NAVBAR */}
+      <div className="flex justify-between items-center px-10 py-6">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center font-bold text-black">R</div>
+          <div>
+            <div className="font-bold text-lg">Resumora</div>
+            <div className="text-xs text-gray-400">Career Documents Studio</div>
+          </div>
+        </div>
+
+        <div className="flex gap-6 items-center text-sm">
+          <span className="cursor-pointer">Services</span>
+          <span className="cursor-pointer">Pricing</span>
+          <span className="cursor-pointer">Countries</span>
+          <span className="cursor-pointer">Results</span>
+
+          <div className="flex gap-2 ml-6">
+            <button onClick={() => setLang("en")} className={`px-3 py-1 rounded-full ${lang === "en" ? "bg-cyan-500 text-black" : "bg-gray-700"}`}>EN</button>
+            <button onClick={() => setLang("fr")} className={`px-3 py-1 rounded-full ${lang === "fr" ? "bg-cyan-500 text-black" : "bg-gray-700"}`}>FR</button>
+          </div>
+        </div>
+      </div>
+
+      {/* HERO */}
+      <div className="grid md:grid-cols-2 gap-10 px-10 py-16 items-center">
+
+        <div>
+          <div className="mb-4 inline-block px-4 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm">
+            ATS-ready • Bilingual • Professional
+          </div>
+
+          <h1 className="text-5xl font-bold leading-tight mb-6">
+            {t.title}
+          </h1>
+
+          <p className="text-gray-400 mb-8">
+            {t.subtitle}
+          </p>
+
+          <div className="flex gap-4">
+            <button className="bg-cyan-500 text-black px-6 py-3 rounded-lg font-semibold">
+              {t.start}
+            </button>
+            <button className="border border-gray-600 px-6 py-3 rounded-lg">
+              {t.services}
+            </button>
+          </div>
+        </div>
+
+        {/* STATS CARD */}
+        <div className="bg-[#0f172a] p-6 rounded-2xl border border-gray-800">
+          {[
+            ["ATS Score", "96%"],
+            ["Interview Readiness", "91%"],
+            ["LinkedIn Impact", "88%"],
+            ["Canada Market Fit", "94%"]
+          ].map(([label, value], i) => (
+            <div key={i} className="mb-6">
+              <div className="flex justify-between text-sm mb-1">
+                <span>{label}</span>
+                <span>{value}</span>
+              </div>
+              <div className="h-2 bg-gray-700 rounded">
+                <div className="h-2 bg-cyan-500 rounded" style={{ width: value }}></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* SERVICES */}
+      <div className="px-10 pb-20">
+        <h2 className="text-2xl font-bold mb-8">{t.packages}</h2>
+
+        <div className="grid md:grid-cols-3 gap-6">
+
+          {[
+            ["Starter Resume", "$49", "ATS resume rewrite, modern layout, 1 revision"],
+            ["Professional Package", "$99", "Resume + cover letter + LinkedIn headline"],
+            ["Executive Package", "$179", "Executive resume, cover letter, LinkedIn optimization, 3 revisions"],
+            ["Translation / TLS", "$39+", "English/French translation and career document localization"],
+            ["Interview Prep", "$59", "Interview questions, answers, coaching script"]
+          ].map(([title, price, desc], i) => (
+            <div key={i} className="bg-[#020617] border border-gray-800 p-6 rounded-2xl">
+              <h3 className="text-lg font-semibold mb-2">{title}</h3>
+              <div className="text-cyan-400 text-xl font-bold mb-2">{price}</div>
+              <p className="text-gray-400 text-sm mb-4">{desc}</p>
+              <button className="w-full bg-gray-200 text-black py-2 rounded-lg">
+                Start Now
+              </button>
+            </div>
+          ))}
+
+        </div>
+      </div>
+
+      {/* FOOTER STATS */}
+      <div className="grid md:grid-cols-3 gap-6 px-10 pb-20">
+        <div className="bg-cyan-500 text-black p-6 rounded-2xl font-bold text-xl">
+          96%<br />
+          <span className="text-sm font-normal">ATS optimization rate</span>
+        </div>
+
+        <div className="bg-gray-200 text-black p-6 rounded-2xl font-bold text-xl">
+          7+<br />
+          <span className="text-sm font-normal">Career services activated</span>
+        </div>
+
+        <div className="bg-blue-600 p-6 rounded-2xl font-bold text-xl">
+          EN / FR<br />
+          <span className="text-sm font-normal">Full bilingual interface</span>
+        </div>
+      </div>
+
+    </div>
+  )
+}
+            <div className="text-5xl font-black">EN / FR</div>
+            <div className="mt-2 font-black">Full bilingual interface</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="countries" className="mx-auto max-w-6xl px-6 py-14">
+        <h2 className="mb-8 text-4xl font-black">{t.countries}</h2>
+        <div className="flex flex-wrap gap-4">
+          {["Canada", "USA", "France", "UK", "Germany", "UAE", "Australia"].map((c) => (
+            <span key={c} className="rounded-full border border-white/15 bg-white/[0.06] px-6 py-4 text-sm font-black">{c}</span>
+          ))}
+        </div>
+      </section>
+
+      <section id="results" className="mx-auto max-w-6xl px-6 py-14 pb-24">
+        <div className="rounded-[2rem] border border-white/15 bg-gradient-to-br from-blue-950 to-[#08142d] p-8">
+          <h2 className="text-4xl font-black">{t.results}</h2>
+          <p className="mt-4 max-w-3xl text-slate-200">Premium bilingual career-document system prepared for resume, cover letter, LinkedIn, translation, TLS, interview preparation, and client account flow.</p>
+        </div>
+      </section>
+    </main>
+  );
+}
+// force rebuild 20260426195539

@@ -1,0 +1,306 @@
+﻿import Image from "next/image";
+import Link from "next/link";
+
+type Lang = "en" | "fr";
+
+type SearchParamsInput =
+  | Promise<Record<string, string | string[] | undefined>>
+  | Record<string, string | string[] | undefined>
+  | undefined;
+
+async function getLang(searchParams: SearchParamsInput): Promise<Lang> {
+  const resolved = searchParams instanceof Promise ? await searchParams : searchParams;
+  const raw = resolved?.lang;
+  const value = Array.isArray(raw) ? raw[0] : raw;
+  return value === "fr" ? "fr" : "en";
+}
+
+export default async function ClientInterfacePage({
+  searchParams,
+}: {
+  searchParams?: SearchParamsInput;
+}) {
+  const lang = await getLang(searchParams);
+
+  const t =
+    lang === "fr"
+      ? {
+          badge: "Interface Client Premium",
+          heroTitle: "Bienvenue dans votre espace client Resumora",
+          heroText:
+            "Gérez vos services de CV, lettre, LinkedIn, traduction et entretien dans une interface client moderne, claire et professionnelle.",
+          english: "English",
+          french: "Français",
+          pricing: "Tarifs",
+          login: "Connexion",
+          register: "Inscription",
+          reset: "Réinitialiser mot de passe",
+          primaryAction: "Voir les services",
+          secondaryAction: "Créer un compte",
+          trustTitle: "Pourquoi Resumora",
+          trustPoints: [
+            "Interface client claire et premium",
+            "Support anglais et français",
+            "Tarifs compétitifs et transparents",
+            "Mise à jour gratuite incluse sur les services applicables",
+          ],
+          quickTitle: "Accès rapide",
+          quickCards: [
+            {
+              title: "Services & Tarifs",
+              text: "Consultez tous les services professionnels et choisissez l’offre adaptée.",
+              href: `/client/pricing?lang=${lang}`,
+              cta: "Ouvrir",
+            },
+            {
+              title: "Créer un compte",
+              text: "Enregistrez un compte client pour suivre vos demandes et documents.",
+              href: `/client/register?lang=${lang}`,
+              cta: "Commencer",
+            },
+            {
+              title: "Connexion Client",
+              text: "Accédez à votre espace client sécurisé pour gérer vos commandes.",
+              href: `/client/login?lang=${lang}`,
+              cta: "Connexion",
+            },
+            {
+              title: "Mot de passe",
+              text: "Récupérez rapidement l’accès à votre compte client en toute sécurité.",
+              href: `/client/reset-password?lang=${lang}`,
+              cta: "Réinitialiser",
+            },
+          ],
+          highlights: [
+            { value: "98%", label: "Taux de réussite" },
+            { value: "24h", label: "Réponse moyenne" },
+            { value: "50+", label: "Pays servis" },
+            { value: "10K+", label: "Professionnels aidés" },
+          ],
+        }
+      : {
+          badge: "Premium Client Interface",
+          heroTitle: "Welcome to your Resumora client interface",
+          heroText:
+            "Manage your resume, cover letter, LinkedIn, translation, and interview services inside a cleaner, more modern, professional client experience.",
+          english: "English",
+          french: "Français",
+          pricing: "Pricing",
+          login: "Login",
+          register: "Register",
+          reset: "Reset Password",
+          primaryAction: "View Services",
+          secondaryAction: "Create Account",
+          trustTitle: "Why Resumora",
+          trustPoints: [
+            "Clean premium client interface",
+            "English and French support",
+            "Transparent competitive pricing",
+            "Free update included on applicable services",
+          ],
+          quickTitle: "Quick Access",
+          quickCards: [
+            {
+              title: "Services & Pricing",
+              text: "Review all professional services and choose the right plan.",
+              href: `/client/pricing?lang=${lang}`,
+              cta: "Open",
+            },
+            {
+              title: "Create Account",
+              text: "Register a client account to manage requests and uploaded documents.",
+              href: `/client/register?lang=${lang}`,
+              cta: "Start",
+            },
+            {
+              title: "Client Login",
+              text: "Access your secure client area to manage orders and activity.",
+              href: `/client/login?lang=${lang}`,
+              cta: "Login",
+            },
+            {
+              title: "Password Reset",
+              text: "Recover secure access to your client account quickly and safely.",
+              href: `/client/reset-password?lang=${lang}`,
+              cta: "Reset",
+            },
+          ],
+          highlights: [
+            { value: "98%", label: "Success Rate" },
+            { value: "24h", label: "Average Response" },
+            { value: "50+", label: "Countries Served" },
+            { value: "10K+", label: "Professionals Helped" },
+          ],
+        };
+
+  return (
+    <main className="min-h-screen overflow-hidden bg-[#061535] text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.18),transparent_30%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.14),transparent_24%),linear-gradient(180deg,#081a43_0%,#061535_55%,#04112b_100%)]" />
+
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-4 sm:px-6 lg:px-8">
+        <header className="flex flex-col gap-4 border-b border-white/10 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <Link
+            href={`/client?lang=${lang}`}
+            className="flex w-fit items-center"
+            aria-label="Resumora"
+          >
+            <Image
+              src='/resumora-logo.png'
+              alt="Resumora logo"
+              width={140}
+              height={140}
+              priority
+              className="h-16 w-auto object-contain sm:h-20"
+            />
+          </Link>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href="/client?lang=en"
+              className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition ${
+                lang === "en"
+                  ? "border-[#D4AF37] bg-[#D4AF37] text-[#061535]"
+                  : "border-white/15 bg-white/5 text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              }`}
+            >
+              {t.english}
+            </Link>
+
+            <Link
+              href="/client?lang=fr"
+              className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition ${
+                lang === "fr"
+                  ? "border-[#D4AF37] bg-[#D4AF37] text-[#061535]"
+                  : "border-white/15 bg-white/5 text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              }`}
+            >
+              {t.french}
+            </Link>
+
+            <Link
+              href={`/client/login?lang=${lang}`}
+              className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+            >
+              {t.login}
+            </Link>
+
+            <Link
+              href={`/client/register?lang=${lang}`}
+              className="rounded-full bg-[#D4AF37] px-5 py-2.5 text-sm font-semibold text-[#061535] transition hover:opacity-90"
+            >
+              {t.register}
+            </Link>
+          </div>
+        </header>
+
+        <section className="grid gap-10 py-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-16">
+          <div className="flex flex-col justify-center">
+            <div className="mb-5 inline-flex w-fit items-center rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-[#E7C45B]">
+              {t.badge}
+            </div>
+
+            <h1 className="max-w-4xl text-4xl font-black leading-[1.05] sm:text-5xl lg:text-7xl">
+              {t.heroTitle}
+            </h1>
+
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/78 sm:text-xl">
+              {t.heroText}
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href={`/client/pricing?lang=${lang}`}
+                className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#D4AF37] px-7 text-sm font-bold text-[#061535] transition hover:opacity-90"
+              >
+                {t.primaryAction}
+              </Link>
+
+              <Link
+                href={`/client/register?lang=${lang}`}
+                className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 text-sm font-bold text-white transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              >
+                {t.secondaryAction}
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-[34px] border border-white/10 bg-white/[0.045] p-4 shadow-[0_30px_120px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-6">
+            <div className="rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5 sm:p-6">
+              <div className="grid gap-4 sm:grid-cols-2">
+                {t.highlights.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-[24px] border border-white/10 bg-[#0d2358]/80 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
+                  >
+                    <div className="text-4xl font-black tracking-tight text-[#F0C85A]">
+                      {item.value}
+                    </div>
+                    <div className="mt-2 text-sm font-medium text-white/76">
+                      {item.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 rounded-[24px] border border-[#D4AF37]/20 bg-[#091c49]/90 p-5">
+                <div className="text-sm font-bold uppercase tracking-[0.24em] text-[#D4AF37]">
+                  {t.trustTitle}
+                </div>
+
+                <div className="mt-4 grid gap-3">
+                  {t.trustPoints.map((point) => (
+                    <div key={point} className="flex items-start gap-3 text-sm text-white/82">
+                      <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-[#D4AF37]" />
+                      <span>{point}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="pb-16 lg:pb-24">
+          <div className="mb-6 text-sm font-bold uppercase tracking-[0.24em] text-[#D4AF37]">
+            {t.quickTitle}
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {t.quickCards.map((card) => (
+              <article
+                key={card.title}
+                className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(19,45,99,0.92),rgba(10,27,66,0.96))] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.34)] transition duration-300 hover:-translate-y-1 hover:border-[#D4AF37]/50"
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.14),transparent_28%)] opacity-0 transition duration-300 group-hover:opacity-100" />
+
+                <div className="relative">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[22px] border border-white/10 bg-white/10 text-3xl text-[#E8C96B] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                    ★
+                  </div>
+
+                  <h3 className="min-h-[72px] text-2xl font-black leading-tight text-white">
+                    {card.title}
+                  </h3>
+
+                  <p className="mt-5 min-h-[112px] text-base leading-8 text-white/84">
+                    {card.text}
+                  </p>
+
+                  <div className="mt-8">
+                    <Link
+                      href={card.href}
+                      className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[#D4AF37] bg-transparent px-6 text-center text-sm font-bold text-white transition hover:bg-[#D4AF37] hover:text-[#061535]"
+                    >
+                      {card.cta}
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
+    </main>
+  );
+}
+

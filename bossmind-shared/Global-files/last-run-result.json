@@ -1,0 +1,8 @@
+﻿{
+    "engine":  "PowerShell",
+    "timestamp":  "2026-04-30 20:34:41",
+    "anti_leak":  "active",
+    "system":  "BossMind",
+    "status":  "executed",
+    "task":  "bossmind-global-stock"
+}

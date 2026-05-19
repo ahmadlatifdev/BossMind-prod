@@ -1,0 +1,18 @@
+BossMind Import Fix
+
+Search entire workspace (Ctrl+Shift+F):
+- ROOT
+- @/ROOT
+- /ROOT/
+- require(process.cwd() + 
+- require('./' +
+
+For each hit in pages/ or lib/ used by API routes:
+- Use static import/require paths
+- JSON: import from config/*.json or read with path.join(/* turbopackIgnore: true */ cwd, 'config', 'file.json')
+- Never import next.config from lib/
+
+Run: D:\BossMind\11-scripts\verify-imports.ps1
+Then: npm run build in bossmind-resumora
+
+Commit: "fix: resolve invalid ROOT/Turbopack import paths for production build"

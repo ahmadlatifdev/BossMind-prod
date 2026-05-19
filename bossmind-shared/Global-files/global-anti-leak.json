@@ -1,0 +1,22 @@
+{
+  "system": "BossMind",
+  "mode": "global_anti_leak",
+  "locked_execution": "powershell",
+  "shared_memory": "neon",
+  "projects": [
+    "bossmind-resumora",
+    "bossmind-elegancyart",
+    "bossmind-ai-video-generator",
+    "bossmind-tiktok-ai",
+    "bossmind-global-stock"
+  ],
+  "rules": {
+    "no_mixed_hosts": true,
+    "no_partial_updates": true,
+    "require_build_before_deploy": true,
+    "require_verify_after_deploy": true,
+    "block_duplicate_routes": true,
+    "block_old_artifacts": true
+  },
+  "status": "global_anti_leak_active"
+}
