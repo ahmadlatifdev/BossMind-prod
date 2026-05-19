@@ -3,7 +3,8 @@
   "verifiedAt": "2026-05-18T19:45:00.000Z",
   "runtimeRoot": "D:\\BossMind",
   "canonicalRepo": "bossmind-resumora",
-  "commit": "32435ea91c618c8188af18267479d37010d13d18",
+  "commit": "43371e6",
+  "hubCommit": "d3ba428",
   "productionUrl": "https://www.resumora.net",
   "localVerification": {
     "verifyImports": "pass",
