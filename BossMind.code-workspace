@@ -23,12 +23,20 @@
   ],
   "settings": {
     "git.autofetch": false,
+    "git.autoRepositoryDetection": false,
     "files.watcherExclude": {
       "**/.next/**": true,
       "**/node_modules/**": true,
       "**/.git/objects/**": true,
       "**/windows-heal/**": true,
-      "**/.bossmind/backups/**": true
+      "**/.bossmind/backups/**": true,
+      "bossmind-elegancyart/**": true,
+      "bossmind-ai-video-generator/**": true,
+      "bossmind-tiktok-ai/**": true,
+      "bossmind-global-stock/**": true,
+      "bossmind-master-admin/**": true,
+      "bossmind-supervisor-service/**": true,
+      "bossmind-shared/automation/memory/**": true
     },
     "search.exclude": {
       "**/node_modules": true,

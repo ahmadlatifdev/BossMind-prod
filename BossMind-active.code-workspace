@@ -1,0 +1,32 @@
+{
+  "folders": [
+    { "name": "02-resumora", "path": "bossmind-resumora" },
+    { "name": "bossmind-shared", "path": "bossmind-shared" },
+    { "name": "11-scripts", "path": "11-scripts" },
+    { "name": "13-shared-memory", "path": "13-shared-memory" },
+    { "name": "15-render-production", "path": "15-render-production" },
+    { "name": "16-neon", "path": "16-neon" },
+    { "name": "18-recovery", "path": "18-recovery" }
+  ],
+  "settings": {
+    "git.autofetch": false,
+    "git.autoRepositoryDetection": false,
+    "files.watcherExclude": {
+      "**/.next/**": true,
+      "**/node_modules/**": true,
+      "**/.git/objects/**": true,
+      "**/windows-heal/**": true,
+      "**/.bossmind/backups/**": true,
+      "**/bossmind-shared/automation/memory/**": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/dist": true,
+      "**/.bossmind/backups": true,
+      "09-archives/**": true,
+      "08-backups/**": true
+    },
+    "typescript.tsserver.maxTsServerMemory": 4096
+  }
+}

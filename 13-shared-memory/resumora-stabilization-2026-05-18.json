@@ -19,9 +19,13 @@
     "homepageLoads": true,
     "luxuryUiVisible": true,
     "apiHealthHttp": 200,
-    "apiHealthOk": false,
-    "apiHealthReason": "no_database_url_on_render",
-    "stripeCheckoutReady": false
+    "apiHealthOk": true,
+    "apiHealthReason": null,
+    "databaseSource": "NEON_DATABASE_URL",
+    "registrationHttp": 201,
+    "registrationOk": true,
+    "stripeCheckoutReady": false,
+    "supersededBy": "13-shared-memory/resumora-ultra-stabilization-2026-05-19.json"
   },
   "hubFixes": [
     "11-scripts/verify-routes.ps1: LiteralPath for bracket routes; ASCII log text",
