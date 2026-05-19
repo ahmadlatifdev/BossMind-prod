@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "generatedAt": "2026-05-19T01:10:20.689Z",
+  "runtimeRoot": "D:/BossMind",
+  "canonicalRepo": "bossmind-resumora",
+  "commit": "08ab8bb4d3b0649edd7fb88c9e927964eb17a85f",
+  "hubCommit": "518047c807f32b1cdce1bbc167238bcd3f34942f",
+  "productionUrl": "https://www.resumora.net",
+  "fullyOperational": true,
+  "blockers": [],
+  "deploymentChecksum": "ba21318356ec7694",
+  "scores": {
+    "cursorRuntimeStability": 100,
+    "autonomousEnvSynchronization": 75,
+    "renderDeploymentSelfRepair": 75,
+    "productionRuntimeReconciliation": 59,
+    "closedLoopAutonomousHealing": 90
+  },
+  "phases": {
+    "cursorStability": {
+      "score": 100,
+      "checks": {
+        "cursorignoreExists": true,
+        "workspaceExists": true,
+        "activeWorkspaceExists": true,
+        "archivesExcludedInCursorignore": true,
+        "gitAutofetchDisabled": true,
+        "watcherExcludesPresent": true
+      }
+    },
+    "hubEnvBootstrapOk": true,
+    "hostingGuardOk": true,
+    "renderEnvChecklistOk": false,
+    "localEnvMissing": [
+      "STRIPE_WEBHOOK_SECRET",
+      "RENDER_API_KEY",
+      "RENDER_SERVICE_ID"
+    ],
+    "reconciliation": {
+      "ok": false,
+      "score": 59
+    },
+    "runtimeSyncOk": false,
+    "redeploy": {
+      "skipped": true
+    }
+  },
+  "live": {
+    "origin": "https://www.resumora.net",
+    "databaseOk": true,
+    "registerOk": true,
+    "healthStatus": 200,
+    "healthOk": true,
+    "databaseSource": "NEON_DATABASE_URL",
+    "registerStatus": 201,
+    "dbHealthStatus": 200,
+    "stripeCheckoutReady": false,
+    "uptimeSec": 275.230577403,
+    "render": true
+  },
+  "stripeNote": "Checkout needs NEXT_PUBLIC_STRIPE_PRICE_* on Render; registration is independent",
+  "healingLoop": "detect → diagnose → repair → verify → memory",
+  "localReportPath": "D:\\BossMind\\bossmind-resumora\\.bossmind\\ultra-stabilization\\ultra-1779153020692.json"
+}
