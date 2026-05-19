@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-19T03:18:26.976Z",
+  "activeStripeProducts": [
+    "basic",
+    "essential_advanced",
+    "professional",
+    "elite",
+    "addon_linkedin",
+    "addon_interview",
+    "addon_cover_letter",
+    "addon_translation"
+  ],
+  "activePriceIds": {
+    "basic": "price_1TYBDuGjsXTaeZBgFRYpbSuy",
+    "essential_advanced": "price_1TYBCQGjsXTaeZBg2q8BLeGv",
+    "professional": "price_1TYBCSGjsXTaeZBgt9c9wB02",
+    "elite": "price_1TYBCTGjsXTaeZBgE4R4BSan",
+    "addon_linkedin": "price_1TYBCUGjsXTaeZBgECP0g9ew",
+    "addon_interview": "price_1TYBCWGjsXTaeZBgBF7CPhUx",
+    "addon_cover_letter": "price_1TYBCXGjsXTaeZBgvxZCHrnZ",
+    "addon_translation": "price_1TYBCZGjsXTaeZBga7gcf1V7"
+  },
+  "webhookStatus": {
+    "signingReady": false,
+    "endpoint": "/api/webhooks/stripe",
+    "events": [
+      "checkout.session.completed",
+      "payment_intent.succeeded",
+      "invoice.paid",
+      "customer.subscription.created"
+    ]
+  },
+  "checkoutReadiness": {
+    "local": true,
+    "financialPipelineReady": true,
+    "operational": {
+      "paymentLinksOperational": true,
+      "pricesResolvable": true,
+      "lockPriceIdsPresent": true,
+      "publishableOptionalWhenLinks": true
+    }
+  },
+  "plans": {
+    "ok": true,
+    "planIds": [
+      "basic",
+      "professional",
+      "elite",
+      "essential_advanced"
+    ],
+    "plans": {
+      "basic": {
+        "deliverable": true,
+        "studioPath": "/studio",
+        "bilingual": true,
+        "freeEdits": 1,
+        "stripePriceConfigured": true,
+        "paymentLinkConfigured": true,
+        "paymentLinkTestMode": true
+      },
+      "professional": {
+        "deliverable": true,
+        "studioPath": "/studio",
+        "bilingual": true,
+        "freeEdits": 2,
+        "stripePriceConfigured": true,
+        "paymentLinkConfigured": true,
+        "paymentLinkTestMode": true
+      },
+      "elite": {
+        "deliverable": true,
+        "studioPath": "/studio",
+        "bilingual": true,
+        "freeEdits": 3,
+        "stripePriceConfigured": true,
+        "paymentLinkConfigured": true,
+        "paymentLinkTestMode": true
+      },
+      "essential_advanced": {
+        "deliverable": true,
+        "studioPath": "/studio/essential-advanced",
+        "bilingual": true,
+        "freeEdits": 2,
+        "stripePriceConfigured": true,
+        "paymentLinkConfigured": true,
+        "paymentLinkTestMode": true
+      }
+    },
+    "paymentLinksManifest": true,
+    "allDeliverables": true,
+    "allStripePrices": true,
+    "allPaymentLinks": true,
+    "freeEditsAudit": {
+      "ok": true,
+      "expected": {
+        "basic": 1,
+        "professional": 2,
+        "elite": 3,
+        "essential_advanced": 2
+      },
+      "actual": {
+        "basic": 1,
+        "professional": 2,
+        "elite": 3,
+        "essential_advanced": 2
+      }
+    }
+  },
+  "phases": {
+    "repairOk": true,
+    "renderApplyOk": false
+  },
+  "live": {
+    "https://bossmind-resumora-web.onrender.com": {
+      "health": {
+        "ok": true,
+        "checkoutReady": false,
+        "financialPipelineReady": false,
+        "allStripePrices": false
+      },
+      "checkoutApi": {
+        "status": 503,
+        "ok": false,
+        "bodyKeys": [
+          "error",
+          "hint"
+        ]
+      }
+    },
+    "https://www.resumora.net": {
+      "health": {
+        "ok": true,
+        "checkoutReady": false,
+        "financialPipelineReady": false,
+        "allStripePrices": false
+      },
+      "checkoutApi": {
+        "status": 503,
+        "ok": false,
+        "bodyKeys": [
+          "error",
+          "hint"
+        ]
+      }
+    }
+  },
+  "productionReadinessScore": 85,
+  "partialItems": [
+    "render_env_sync_needs_api_or_manual_paste",
+    "live_health_checkout_pending_deploy"
+  ]
+}
