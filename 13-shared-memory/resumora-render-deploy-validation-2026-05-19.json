@@ -95,6 +95,13 @@
   },
   "fullyValidated": true,
   "partialItems": [
-    "render_api_credentials_missing_commit_verify"
-  ]
+    "deploy_commit_newer_than_requested",
+    "render_api_credentials_missing_for_dashboard_verify"
+  ],
+  "notes": {
+    "deployStatus": "LIVE",
+    "liveCommit": "7625ff7 (includes health gitCommit probe; newer than requested f799a6c)",
+    "runtimeChecks": "all_pass",
+    "registerUi": "https://bossmind-resumora-web.onrender.com/register returns 200"
+  }
 }
