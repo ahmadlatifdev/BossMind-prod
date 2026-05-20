@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-20T08:29:00.000Z",
+  "scope": "post_payment_client_delivery_automation_all_plans",
+  "plans": ["basic", "professional", "elite", "essential_advanced"],
+  "implemented": {
+    "postPaymentRedirect": "success page verifies Stripe session and auto-redirects to plan-specific studio path",
+    "successPageGuidance": true,
+    "emailConfirmationWorkflow": "post_purchase webhook payload now includes plan, studio URL, upload instructions, timeline, free edits, support contact",
+    "secureUploads": {
+      "api": "/api/client/documents",
+      "docTypes": [
+        "resume",
+        "cover_letter",
+        "linkedin_notes",
+        "credentials",
+        "job_description",
+        "supporting_file",
+        "generated_resume"
+      ],
+      "accessModel": "authenticated + entitled profile only",
+      "privacy": "private storage path under tmp/client-workspace/{profileId}"
+    },
+    "documentRemoval": "confirm + remove from storage + db status update + safe event log",
+    "deliveryStatus": "client_delivery_status table + admin mark-ready action + optional delivery webhook notification",
+    "freeEditPolicy": {
+      "basic": 1,
+      "professional": 2,
+      "elite": 3,
+      "essential_advanced": 2,
+      "decrementRule": "only after edit request is accepted"
+    },
+    "editRequestFlow": {
+      "clientApi": "/api/client/edit-requests",
+      "adminAcceptApi": "/api/orchestration/client-delivery-admin?action=accept_edit_request"
+    },
+    "adminVisibility": "/api/orchestration/client-delivery-admin (GET paid clients, plan, docs count, delivery status, edit requests)"
+  },
+  "runtimeValidation": {
+    "build": "pass",
+    "workspaceFlowAutomationTest": {
+      "register": true,
+      "uploadDocument": true,
+      "removeDocument": true,
+      "createEditRequest": true,
+      "acceptEditRequest": true,
+      "freeEditRemainingAfterAccept": 0
+    },
+    "notes": [
+      "Stripe checkout / registration / EA content logic preserved",
+      "No rollback of existing luxury UI or payment links"
+    ]
+  },
+  "remainingWeakPoints": [
+    "SMTP/provider-specific direct email sender is not native in this repo; email send is orchestrated via post-purchase webhook integration",
+    "Render redeploy required for live endpoints to expose new health + workspace automation paths"
+  ]
+}
