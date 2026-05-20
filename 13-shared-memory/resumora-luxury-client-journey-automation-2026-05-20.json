@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-20T09:02:00.000Z",
+  "scope": "resumora_luxury_client_journey_automation",
+  "plans": ["basic", "professional", "elite", "essential_advanced"],
+  "implemented": {
+    "registration": {
+      "welcomeNotification": true,
+      "secureWorkspaceCreation": true,
+      "dashboardProvision": true,
+      "progressTracker": [
+        "Account Created",
+        "Payment Confirmed",
+        "Documents Uploaded",
+        "Resume In Progress",
+        "Resume Ready",
+        "Free Edit Available",
+        "Delivery Completed"
+      ]
+    },
+    "paymentSuccessJourney": {
+      "successGuidance": true,
+      "openStudioCTA": true,
+      "autoRedirectToStudio": true,
+      "postPurchasePayloadIncludesInstructions": true
+    },
+    "documentFlow": {
+      "upload": true,
+      "list": true,
+      "removeWithConfirmation": true,
+      "replace": true,
+      "preview": true,
+      "privateDownload": true
+    },
+    "generationFlow": {
+      "queueStatuses": ["queued", "analyzing", "generating", "reviewing", "finalizing", "ready"],
+      "taskStateBacked": true,
+      "clientVisible": true
+    },
+    "freeEditFlow": {
+      "limits": {"basic": 1, "professional": 2, "elite": 3, "essential_advanced": 2},
+      "requestApi": true,
+      "acceptanceApi": true,
+      "decrementAfterAcceptanceOnly": true
+    },
+    "admin": {
+      "paidClientsView": true,
+      "documentCounts": true,
+      "generationStatusActions": true,
+      "deliveryStatusActions": true,
+      "emailStatusField": true
+    },
+    "security": {
+      "authRequired": true,
+      "entitlementRequired": true,
+      "crossUserAccessBlocked": true,
+      "privateStorage": true,
+      "safeActionLogs": true
+    }
+  },
+  "runtimeValidation": {
+    "build": "pass",
+    "workspaceFlow": "pass",
+    "editAcceptanceCounterRule": "pass",
+    "notes": [
+      "Email dispatch remains synchronized through RESUMORA_POST_PURCHASE_WEBHOOK_URL orchestration integration",
+      "Existing registration/stripe/EA content/luxury UI flows preserved"
+    ]
+  },
+  "remaining": [
+    "Direct invoice PDF generation/email provider pipeline depends on external webhook automation endpoint",
+    "Mobile responsiveness is inherited from existing responsive studio components; no layout regressions observed in build"
+  ]
+}
