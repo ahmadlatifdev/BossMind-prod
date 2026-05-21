@@ -1,0 +1,13 @@
+{
+  "schema": "bossmind-security-report-v1",
+  "generatedAt": "2026-05-21T16:31:50.332Z",
+  "scan": {
+    "hitCount": null,
+    "parseError": true
+  },
+  "preCommitHook": true,
+  "prePushHook": true,
+  "ciWorkflow": true,
+  "secretsLeakedInTree": false,
+  "safe": false
+}

@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "validatedAt": "2026-05-20T10:34:51.943Z",
+  "service": "bossmind-resumora-web",
+  "serviceUrl": "https://bossmind-resumora-web.onrender.com",
+  "expectedCommit": "f799a6c",
+  "deploy": {
+    "apiReady": false,
+    "hint": "RENDER_API_KEY + RENDER_SERVICE_ID in .env.master.local",
+    "liveGitCommit": "f3161f2464467f3cd3c8479160a3ebd1857fc6f8",
+    "resolvedCommit": "f3161f2464467f3cd3c8479160a3ebd1857fc6f8",
+    "commitMatchesExpected": false,
+    "live": true
+  },
+  "registerPage": {
+    "ok": true,
+    "status": 200,
+    "path": "/register"
+  },
+  "publicUrl": {
+    "ok": true,
+    "status": 200
+  },
+  "health": {
+    "ok": true,
+    "status": 200,
+    "databaseOk": true,
+    "render": true
+  },
+  "registration": {
+    "registerOk": true,
+    "registerStatus": 201,
+    "loginOk": true,
+    "loginStatus": 200,
+    "profileId": "7a77f72d-b480-43a6-8ffd-75155cb86ad7"
+  },
+  "selfHeal": {
+    "orchestratorPercent": 80,
+    "neonEnabled": true,
+    "errorCapture": true,
+    "failedRuntimeDetection": true,
+    "repairTaskCreation": true,
+    "deploymentVerification": true,
+    "closedLoopInfrastructurePercent": 55,
+    "components": {
+      "sentryRuntime": true,
+      "sentryRepairIngress": false,
+      "neonMemory": true,
+      "langgraphRepairPlanner": true,
+      "railwayWorkerRedeployCapable": false,
+      "postDeployHealthProbeConfigured": false
+    },
+    "checks": [
+      {
+        "id": "sentry_configured",
+        "pass": true
+      },
+      {
+        "id": "neon_memory_save",
+        "pass": true
+      },
+      {
+        "id": "live_verification_url",
+        "pass": true
+      },
+      {
+        "id": "langgraph_available",
+        "pass": true
+      },
+      {
+        "id": "last_run_completed",
+        "pass": true
+      },
+      {
+        "id": "majority_stages_configured",
+        "pass": false
+      },
+      {
+        "id": "retry_manager_ready",
+        "pass": true
+      },
+      {
+        "id": "escalation_under_limit",
+        "pass": true
+      },
+      {
+        "id": "rollback_intel_present",
+        "pass": false
+      },
+      {
+        "id": "repair_confirmation_recent",
+        "pass": true
+      }
+    ]
+  },
+  "fullyValidated": true,
+  "partialItems": [
+    "render_api_credentials_missing_commit_verify"
+  ]
+}

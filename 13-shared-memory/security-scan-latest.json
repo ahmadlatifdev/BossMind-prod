@@ -1,7 +1,11 @@
-{
-  "hitCount": 0,
-  "byPattern": null,
-  "scannedAt": "2026-05-19T03:24:00.0511782Z",
-  "root": "D:\\BossMind",
-  "files": null
+﻿{
+    "files":  {
+
+              },
+    "root":  "D:\\BossMind",
+    "scannedAt":  "2026-05-21T16:35:06.6543820Z",
+    "hitCount":  0,
+    "byPattern":  {
+
+                  }
 }

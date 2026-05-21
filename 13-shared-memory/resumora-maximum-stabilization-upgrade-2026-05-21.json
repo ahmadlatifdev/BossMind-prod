@@ -1,0 +1,30 @@
+{
+  "schema": "resumora-maximum-stabilization-upgrade-v1",
+  "generatedAt": "2026-05-21T11:08:00.000Z",
+  "summary": "Luxury post-payment activation polish, shared activation stages API, closed-loop maximum stabilization orchestrator, premium no-plan state with silent recovery.",
+  "deliverables": {
+    "luxuryActivation": {
+      "activationStagesModule": "lib/client/activation-stages.js",
+      "apiFields": ["luxuryStages", "conciergeMessage", "progressPercent", "preload"],
+      "ui": "PostPaymentActivation + ClientStudioHub prefetch and concierge copy",
+      "removedDeadEnds": ["No active plans yet during post-payment", "raw attempt counter in UI"]
+    },
+    "orchestration": {
+      "script": "npm run bossmind:maximum:stabilize",
+      "chains": ["build", "enterprise:preflight", "secretScan", "entitlement:proof", "activation:recover", "final:production-validation", "liveProbes"]
+    },
+    "productionValidation": {
+      "aggregateReadinessPercent": 100,
+      "paymentLinksRedirectOk": 8,
+      "routesOk": true,
+      "databaseOk": true,
+      "liveGitCommit": "fadd4a9cc13b4b617cabd8b92cc45c6840600dfd",
+      "deployCommit": "bdbc89c",
+      "deployStatus": "pushed to main — Render auto-deploy expected"
+    }
+  },
+  "weakPoints": [
+    "checkoutReady=false until NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY on Render",
+    "Sandbox E2E still requires manual card + signed-in profile"
+  ]
+}

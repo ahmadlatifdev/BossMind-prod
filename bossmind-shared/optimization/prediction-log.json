@@ -1,7 +1,7 @@
 ﻿{
-    "recommended_action":  "NONE",
-    "timestamp":  "2026-05-18T22:43:13",
+    "risk":  "MEDIUM",
     "project":  "resumora",
-    "reason":  "No rising performance risk detected",
-    "risk":  "LOW"
+    "timestamp":  "2026-05-21T18:00:16",
+    "reason":  "Latency rising across last 3 cycles",
+    "recommended_action":  "PREVENTIVE_VERIFY"
 }
