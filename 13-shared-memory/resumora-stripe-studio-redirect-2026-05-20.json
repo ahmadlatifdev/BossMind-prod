@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "fix": "stripe-success-redirect-to-studio",
+  "commit": "2072f3a",
+  "deployedAt": "2026-05-20",
+  "successUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}",
+  "changes": [
+    "lib/marketing/stripe-checkout-urls.js — canonical success/cancel URLs",
+    "pages/api/checkout.js — all plans use studio success_url",
+    "lib/marketing/stripe-payment-links-engine.js — after_completion redirect on create/update",
+    "lib/marketing/client-hooks.js — default Checkout Session API (payment links opt-in via NEXT_PUBLIC_STRIPE_USE_PAYMENT_LINKS=1)",
+    "components/client/ClientStudioHub.jsx — verify session_id, payment banner, upload wizard",
+    "pages/api/verify-session.js — link profile, provision email/invoice"
+  ],
+  "sandboxValidation": {
+    "steps": [
+      "Register/login on production",
+      "Select any plan (Basic/Professional/Elite/Essential Advanced)",
+      "Complete Stripe test checkout",
+      "Expect redirect to /studio?checkout=success&session_id=cs_…",
+      "Expect Payment confirmed banner + guided upload steps"
+    ],
+    "automatedProof": {
+      "successUrlHelper": true,
+      "studioRoute200": true,
+      "liveCommit": "2072f3a"
+    }
+  },
+  "note": "Run npm run bossmind:stripe:payment-links:apply on Render (or fix hub memory schema) to sync legacy payment link redirects if NEXT_PUBLIC_STRIPE_USE_PAYMENT_LINKS=1."
+}

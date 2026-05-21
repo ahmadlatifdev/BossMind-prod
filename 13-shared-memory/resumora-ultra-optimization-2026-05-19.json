@@ -1,13 +1,13 @@
 {
   "version": 3,
   "mission": "ultra-optimization",
-  "generatedAt": "2026-05-19T02:14:11.084Z",
+  "generatedAt": "2026-05-19T03:25:44.796Z",
   "runtimeRoot": "D:/BossMind",
   "productionUrl": "https://www.resumora.net",
-  "commit": "f799a6cb82b0e162fae00b8f978ac5c042d0ba8d",
-  "fullyOperational": true,
-  "compositeScore": 96,
-  "targetMet": true,
+  "commit": "40601d6f7031a05ffd58b9d51c2ea39a87f4088b",
+  "fullyOperational": false,
+  "compositeScore": 91,
+  "targetMet": false,
   "scores": {
     "secretSecurityHardening": 98,
     "autonomousEnvSynchronization": 92,
@@ -15,12 +15,14 @@
     "productionRuntimeReconciliation": 90,
     "closedLoopAutonomousHealing": 93,
     "importDetection": 98,
-    "buildVerification": 98,
+    "buildVerification": 60,
     "cursorRuntimeStability": 98,
     "runtimeHealthValidation": 98
   },
-  "blockers": [],
-  "deploymentChecksum": "7403a0aaa3d3d700",
+  "blockers": [
+    "local_build_or_verify"
+  ],
+  "deploymentChecksum": "f221444d6445fbf5",
   "phases": {
     "security": {
       "score": 98,
@@ -52,12 +54,12 @@
     },
     "codeIntegrity": {
       "importDetection": 98,
-      "buildVerification": 98,
-      "ok": true,
+      "buildVerification": 60,
+      "ok": false,
       "phases": {
         "imports": true,
         "routes": true,
-        "build": true
+        "build": false
       }
     },
     "hostingGuard": {
@@ -102,7 +104,7 @@
         }
       ],
       "render": true,
-      "uptimeSec": 1847.330726805
+      "uptimeSec": 752.42564974
     },
     "closedLoop": {
       "score": 93,
@@ -154,48 +156,48 @@
         "configuredCount": 0,
         "lastRun": {
           "ok": true,
-          "completedAt": "2026-05-19T02:10:04.207Z",
+          "completedAt": "2026-05-19T02:14:11.056Z",
           "results": [
             {
               "stage": "live_verification",
               "ok": true,
               "code": 0,
-              "stdout": "{\n  \"generatedAt\": \"2026-05-19T02:10:03.116Z\",\n  \"origin\": \"https://resumora.net\",\n  \"repo\": {\n    \"planOrderOk\": true,\n    \"homeNoTrustImport\": true,\n    \"trustPanelNoOp\": true,\n    \"swNetworkFirstHtml\": true\n  },\n  \"live\": {\n    \"/\": {\n      \"label\": \"/\",\n      \"trustAtAGlance\": false,\n      \"rsTrustPanel\": false,\n      \"greenhouseStrip\": false,\n      \"pricingUiMarker\": true,\n      \"pricingOrderAttr\": true,\n      \"tierSequence\": [\n        \"basic\",\n        \"professional\",\n        \"elite\",\n        \"essential_advanced\"\n      ],\n      \"essentialAdvanced\": true,\n      \"tiers\": {\n        \"basic\": true,\n        \"essential_advanced\": true,\n        \"professional\": true,\n        \"elite\": true\n      }\n    },\n    \"/pricing\": {\n      \"label\": \"/pricing\",\n      \"trustAtAGlance\": false,\n      \"rsTrustPanel\": false,\n      \"greenhouseStrip\": false,\n      \"pricingUiMarker\": true,\n      \"pricingOrderAttr\": true,\n      \"tierSequence\": [\n        \"basic\",\n        \"professional\",\n        \"elite\",\n        \"essential_advanced\"\n      ],\n      \"essentialAdvanced\": true,\n      \"tiers\": {\n        \"basic\": true,\n        \"essential_advanced\": true,\n        \"professional\": true,\n        \"elite\": true\n      }\n    }\n  },\n  \"checks\": [\n    {\n      \"id\": \"repo_plan_order\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"repo_trust_removed\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"repo_sw_no_stale_home_cache\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_no_trust_home\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_ea_home\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_pricing_marker\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_ea_far_right\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_four_tiers_pricing\",\n      \"pass\": true\n    }\n  ],\n  \"passPercent\": 100,\n  \"pass\": true,\n  \"note\": \"If live_pricing_marker fails, deploy latest commit to Render and hard-refresh (Ctrl+Shift+R) or clear site data to drop old service worker.\",\n  \"reportFile\": \"D:/BossMind/bossmind-resumora/wi"
+              "stdout": "{\n  \"generatedAt\": \"2026-05-19T02:14:09.637Z\",\n  \"origin\": \"https://resumora.net\",\n  \"repo\": {\n    \"planOrderOk\": true,\n    \"homeNoTrustImport\": true,\n    \"trustPanelNoOp\": true,\n    \"swNetworkFirstHtml\": true\n  },\n  \"live\": {\n    \"/\": {\n      \"label\": \"/\",\n      \"trustAtAGlance\": false,\n      \"rsTrustPanel\": false,\n      \"greenhouseStrip\": false,\n      \"pricingUiMarker\": true,\n      \"pricingOrderAttr\": true,\n      \"tierSequence\": [\n        \"basic\",\n        \"professional\",\n        \"elite\",\n        \"essential_advanced\"\n      ],\n      \"essentialAdvanced\": true,\n      \"tiers\": {\n        \"basic\": true,\n        \"essential_advanced\": true,\n        \"professional\": true,\n        \"elite\": true\n      }\n    },\n    \"/pricing\": {\n      \"label\": \"/pricing\",\n      \"trustAtAGlance\": false,\n      \"rsTrustPanel\": false,\n      \"greenhouseStrip\": false,\n      \"pricingUiMarker\": true,\n      \"pricingOrderAttr\": true,\n      \"tierSequence\": [\n        \"basic\",\n        \"professional\",\n        \"elite\",\n        \"essential_advanced\"\n      ],\n      \"essentialAdvanced\": true,\n      \"tiers\": {\n        \"basic\": true,\n        \"essential_advanced\": true,\n        \"professional\": true,\n        \"elite\": true\n      }\n    }\n  },\n  \"checks\": [\n    {\n      \"id\": \"repo_plan_order\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"repo_trust_removed\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"repo_sw_no_stale_home_cache\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_no_trust_home\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_ea_home\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_pricing_marker\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_ea_far_right\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_four_tiers_pricing\",\n      \"pass\": true\n    }\n  ],\n  \"passPercent\": 100,\n  \"pass\": true,\n  \"note\": \"If live_pricing_marker fails, deploy latest commit to Render and hard-refresh (Ctrl+Shift+R) or clear site data to drop old service worker.\",\n  \"reportFile\": \"D:/BossMind/bossmind-resumora/wi"
             },
             {
               "stage": "memory_save",
               "ok": false,
               "code": 1,
-              "stdout": "{\n  \"phase\": \"DetectCompareDiagnoseRepairValidateLock\",\n  \"ts\": \"2026-05-19T02:10:03.377Z\",\n  \"projectKey\": \"resumora\",\n  \"origin\": \"http://127.0.0.1:3001\",\n  \"gitHead\": \"f799a6cb82b0e162fae00b8f978ac5c042d0ba8d\",\n  \"neonEnabled\": false,\n  \"authorityKey\": \"luxury_ui_baseline\",\n  \"authority\": null,\n  \"continuePoint\": null,\n  \"continuePointSource\": \"none\",\n  \"fingerprint\": {\n    \"files\": [\n      \"components/marketing/HomePage.jsx\",\n      \"components/marketing/InstallPrompt.jsx\",\n      \"components/marketing/MinimalAppChrome.js\",\n      \"components/marketing/SiteChrome.js\",\n      \"components/marketing/sections/PricingPanel.jsx\",\n      \"components/marketing/sections/TrustMetricsPanel.jsx\",\n      \"components/marketing/sections/UploadPanel.jsx\",\n      \"config/bossmind-protected-ui-authority.json\",\n      \"config/bossmind-ultra-antileak-policy.json\",\n      \"config/branding-asset-version.json\",\n      \"context/LanguageContext.js\",\n      \"lib/marketing/branding-assets.js\",\n      \"lib/marketing/site-copy.js\",\n      \"lib/orchestration/bossmind-interface-authority.js\",\n      \"next.config.ts\",\n      \"pages/_app.js\",\n      \"pages/_document.js\",\n      \"pages/about.js\",\n      \"pages/api/ai/deepseek-status.js\",\n      \"pages/api/analytics/track.js\",\n      \"pages/api/branding-manifest.js\",\n      \"pages/api/checkout.js\",\n      \"pages/api/engagement/action.js\",\n      \"pages/api/engagement/analytics.js\",\n      \"pages/api/engagement/login.js\",\n      \"pages/api/engagement/logout.js\",\n      \"pages/api/engagement/register.js\",\n      \"pages/api/engagement/stats.js\",\n      \"pages/api/free-test.js\",\n      \"pages/api/health.js\",\n      \"pages/api/integrations/social-growth-orchestrate.js\",\n      \"pages/api/integrations/social-ingest.js\",\n      \"pages/api/orchestration/ai-video/dashboard.js\",\n      \"pages/api/orchestration/ai-video/job/[id].js\",\n      \"pages/api/orchestration/ai-video/n8n-webhook.js\",\n      \"pages/api/orchestration/ai-video/queue.js\",\n      \"pages/api/orchestration/ai-video/queue/[id]"
+              "stdout": "{\n  \"phase\": \"DetectCompareDiagnoseRepairValidateLock\",\n  \"ts\": \"2026-05-19T02:14:09.963Z\",\n  \"projectKey\": \"resumora\",\n  \"origin\": \"http://127.0.0.1:3001\",\n  \"gitHead\": \"f799a6cb82b0e162fae00b8f978ac5c042d0ba8d\",\n  \"neonEnabled\": false,\n  \"authorityKey\": \"luxury_ui_baseline\",\n  \"authority\": null,\n  \"continuePoint\": null,\n  \"continuePointSource\": \"none\",\n  \"fingerprint\": {\n    \"files\": [\n      \"components/marketing/HomePage.jsx\",\n      \"components/marketing/InstallPrompt.jsx\",\n      \"components/marketing/MinimalAppChrome.js\",\n      \"components/marketing/SiteChrome.js\",\n      \"components/marketing/sections/PricingPanel.jsx\",\n      \"components/marketing/sections/TrustMetricsPanel.jsx\",\n      \"components/marketing/sections/UploadPanel.jsx\",\n      \"config/bossmind-protected-ui-authority.json\",\n      \"config/bossmind-ultra-antileak-policy.json\",\n      \"config/branding-asset-version.json\",\n      \"context/LanguageContext.js\",\n      \"lib/marketing/branding-assets.js\",\n      \"lib/marketing/site-copy.js\",\n      \"lib/orchestration/bossmind-interface-authority.js\",\n      \"next.config.ts\",\n      \"pages/_app.js\",\n      \"pages/_document.js\",\n      \"pages/about.js\",\n      \"pages/api/ai/deepseek-status.js\",\n      \"pages/api/analytics/track.js\",\n      \"pages/api/branding-manifest.js\",\n      \"pages/api/checkout.js\",\n      \"pages/api/engagement/action.js\",\n      \"pages/api/engagement/analytics.js\",\n      \"pages/api/engagement/login.js\",\n      \"pages/api/engagement/logout.js\",\n      \"pages/api/engagement/register.js\",\n      \"pages/api/engagement/stats.js\",\n      \"pages/api/free-test.js\",\n      \"pages/api/health.js\",\n      \"pages/api/integrations/social-growth-orchestrate.js\",\n      \"pages/api/integrations/social-ingest.js\",\n      \"pages/api/orchestration/ai-video/dashboard.js\",\n      \"pages/api/orchestration/ai-video/job/[id].js\",\n      \"pages/api/orchestration/ai-video/n8n-webhook.js\",\n      \"pages/api/orchestration/ai-video/queue.js\",\n      \"pages/api/orchestration/ai-video/queue/[id]"
             }
           ]
         },
         "state": {
           "attempts": 0,
           "escalations": 0,
-          "lastSuccessAt": "2026-05-19T02:10:04.215Z"
+          "lastSuccessAt": "2026-05-19T02:14:11.068Z"
         }
       },
       "run": {
         "ok": true,
-        "completedAt": "2026-05-19T02:14:11.074Z",
+        "completedAt": "2026-05-19T03:25:44.789Z",
         "attempts": [
           {
             "attempt": 1,
             "ok": true,
-            "completedAt": "2026-05-19T02:14:11.056Z",
+            "completedAt": "2026-05-19T03:25:44.775Z",
             "results": [
               {
                 "stage": "live_verification",
                 "ok": true,
                 "code": 0,
-                "stdout": "{\n  \"generatedAt\": \"2026-05-19T02:14:09.637Z\",\n  \"origin\": \"https://resumora.net\",\n  \"repo\": {\n    \"planOrderOk\": true,\n    \"homeNoTrustImport\": true,\n    \"trustPanelNoOp\": true,\n    \"swNetworkFirstHtml\": true\n  },\n  \"live\": {\n    \"/\": {\n      \"label\": \"/\",\n      \"trustAtAGlance\": false,\n      \"rsTrustPanel\": false,\n      \"greenhouseStrip\": false,\n      \"pricingUiMarker\": true,\n      \"pricingOrderAttr\": true,\n      \"tierSequence\": [\n        \"basic\",\n        \"professional\",\n        \"elite\",\n        \"essential_advanced\"\n      ],\n      \"essentialAdvanced\": true,\n      \"tiers\": {\n        \"basic\": true,\n        \"essential_advanced\": true,\n        \"professional\": true,\n        \"elite\": true\n      }\n    },\n    \"/pricing\": {\n      \"label\": \"/pricing\",\n      \"trustAtAGlance\": false,\n      \"rsTrustPanel\": false,\n      \"greenhouseStrip\": false,\n      \"pricingUiMarker\": true,\n      \"pricingOrderAttr\": true,\n      \"tierSequence\": [\n        \"basic\",\n        \"professional\",\n        \"elite\",\n        \"essential_advanced\"\n      ],\n      \"essentialAdvanced\": true,\n      \"tiers\": {\n        \"basic\": true,\n        \"essential_advanced\": true,\n        \"professional\": true,\n        \"elite\": true\n      }\n    }\n  },\n  \"checks\": [\n    {\n      \"id\": \"repo_plan_order\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"repo_trust_removed\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"repo_sw_no_stale_home_cache\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_no_trust_home\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_ea_home\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_pricing_marker\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_ea_far_right\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_four_tiers_pricing\",\n      \"pass\": true\n    }\n  ],\n  \"passPercent\": 100,\n  \"pass\": true,\n  \"note\": \"If live_pricing_marker fails, deploy latest commit to Render and hard-refresh (Ctrl+Shift+R) or clear site data to drop old service worker.\",\n  \"reportFile\": \"D:/BossMind/bossmind-resumora/wi"
+                "stdout": "{\n  \"generatedAt\": \"2026-05-19T03:25:43.550Z\",\n  \"origin\": \"https://resumora.net\",\n  \"repo\": {\n    \"planOrderOk\": true,\n    \"homeNoTrustImport\": true,\n    \"trustPanelNoOp\": true,\n    \"swNetworkFirstHtml\": true\n  },\n  \"live\": {\n    \"/\": {\n      \"label\": \"/\",\n      \"trustAtAGlance\": false,\n      \"rsTrustPanel\": false,\n      \"greenhouseStrip\": false,\n      \"pricingUiMarker\": true,\n      \"pricingOrderAttr\": true,\n      \"tierSequence\": [\n        \"basic\",\n        \"professional\",\n        \"elite\",\n        \"essential_advanced\"\n      ],\n      \"essentialAdvanced\": true,\n      \"tiers\": {\n        \"basic\": true,\n        \"essential_advanced\": true,\n        \"professional\": true,\n        \"elite\": true\n      }\n    },\n    \"/pricing\": {\n      \"label\": \"/pricing\",\n      \"trustAtAGlance\": false,\n      \"rsTrustPanel\": false,\n      \"greenhouseStrip\": false,\n      \"pricingUiMarker\": true,\n      \"pricingOrderAttr\": true,\n      \"tierSequence\": [\n        \"basic\",\n        \"professional\",\n        \"elite\",\n        \"essential_advanced\"\n      ],\n      \"essentialAdvanced\": true,\n      \"tiers\": {\n        \"basic\": true,\n        \"essential_advanced\": true,\n        \"professional\": true,\n        \"elite\": true\n      }\n    }\n  },\n  \"checks\": [\n    {\n      \"id\": \"repo_plan_order\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"repo_trust_removed\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"repo_sw_no_stale_home_cache\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_no_trust_home\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_ea_home\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_pricing_marker\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_ea_far_right\",\n      \"pass\": true\n    },\n    {\n      \"id\": \"live_four_tiers_pricing\",\n      \"pass\": true\n    }\n  ],\n  \"passPercent\": 100,\n  \"pass\": true,\n  \"note\": \"If live_pricing_marker fails, deploy latest commit to Render and hard-refresh (Ctrl+Shift+R) or clear site data to drop old service worker.\",\n  \"reportFile\": \"D:/BossMind/bossmind-resumora/wi"
               },
               {
                 "stage": "memory_save",
                 "ok": false,
                 "code": 1,
-                "stdout": "{\n  \"phase\": \"DetectCompareDiagnoseRepairValidateLock\",\n  \"ts\": \"2026-05-19T02:14:09.963Z\",\n  \"projectKey\": \"resumora\",\n  \"origin\": \"http://127.0.0.1:3001\",\n  \"gitHead\": \"f799a6cb82b0e162fae00b8f978ac5c042d0ba8d\",\n  \"neonEnabled\": false,\n  \"authorityKey\": \"luxury_ui_baseline\",\n  \"authority\": null,\n  \"continuePoint\": null,\n  \"continuePointSource\": \"none\",\n  \"fingerprint\": {\n    \"files\": [\n      \"components/marketing/HomePage.jsx\",\n      \"components/marketing/InstallPrompt.jsx\",\n      \"components/marketing/MinimalAppChrome.js\",\n      \"components/marketing/SiteChrome.js\",\n      \"components/marketing/sections/PricingPanel.jsx\",\n      \"components/marketing/sections/TrustMetricsPanel.jsx\",\n      \"components/marketing/sections/UploadPanel.jsx\",\n      \"config/bossmind-protected-ui-authority.json\",\n      \"config/bossmind-ultra-antileak-policy.json\",\n      \"config/branding-asset-version.json\",\n      \"context/LanguageContext.js\",\n      \"lib/marketing/branding-assets.js\",\n      \"lib/marketing/site-copy.js\",\n      \"lib/orchestration/bossmind-interface-authority.js\",\n      \"next.config.ts\",\n      \"pages/_app.js\",\n      \"pages/_document.js\",\n      \"pages/about.js\",\n      \"pages/api/ai/deepseek-status.js\",\n      \"pages/api/analytics/track.js\",\n      \"pages/api/branding-manifest.js\",\n      \"pages/api/checkout.js\",\n      \"pages/api/engagement/action.js\",\n      \"pages/api/engagement/analytics.js\",\n      \"pages/api/engagement/login.js\",\n      \"pages/api/engagement/logout.js\",\n      \"pages/api/engagement/register.js\",\n      \"pages/api/engagement/stats.js\",\n      \"pages/api/free-test.js\",\n      \"pages/api/health.js\",\n      \"pages/api/integrations/social-growth-orchestrate.js\",\n      \"pages/api/integrations/social-ingest.js\",\n      \"pages/api/orchestration/ai-video/dashboard.js\",\n      \"pages/api/orchestration/ai-video/job/[id].js\",\n      \"pages/api/orchestration/ai-video/n8n-webhook.js\",\n      \"pages/api/orchestration/ai-video/queue.js\",\n      \"pages/api/orchestration/ai-video/queue/[id]"
+                "stdout": "{\n  \"phase\": \"DetectCompareDiagnoseRepairValidateLock\",\n  \"ts\": \"2026-05-19T03:25:43.836Z\",\n  \"projectKey\": \"resumora\",\n  \"origin\": \"http://127.0.0.1:3001\",\n  \"gitHead\": \"40601d6f7031a05ffd58b9d51c2ea39a87f4088b\",\n  \"neonEnabled\": false,\n  \"authorityKey\": \"luxury_ui_baseline\",\n  \"authority\": null,\n  \"continuePoint\": null,\n  \"continuePointSource\": \"none\",\n  \"fingerprint\": {\n    \"files\": [\n      \"components/marketing/HomePage.jsx\",\n      \"components/marketing/InstallPrompt.jsx\",\n      \"components/marketing/MinimalAppChrome.js\",\n      \"components/marketing/SiteChrome.js\",\n      \"components/marketing/sections/PricingPanel.jsx\",\n      \"components/marketing/sections/TrustMetricsPanel.jsx\",\n      \"components/marketing/sections/UploadPanel.jsx\",\n      \"config/bossmind-protected-ui-authority.json\",\n      \"config/bossmind-ultra-antileak-policy.json\",\n      \"config/branding-asset-version.json\",\n      \"context/LanguageContext.js\",\n      \"lib/marketing/branding-assets.js\",\n      \"lib/marketing/site-copy.js\",\n      \"lib/orchestration/bossmind-interface-authority.js\",\n      \"next.config.ts\",\n      \"pages/_app.js\",\n      \"pages/_document.js\",\n      \"pages/about.js\",\n      \"pages/api/ai/deepseek-status.js\",\n      \"pages/api/analytics/track.js\",\n      \"pages/api/branding-manifest.js\",\n      \"pages/api/checkout.js\",\n      \"pages/api/engagement/action.js\",\n      \"pages/api/engagement/analytics.js\",\n      \"pages/api/engagement/login.js\",\n      \"pages/api/engagement/logout.js\",\n      \"pages/api/engagement/register.js\",\n      \"pages/api/engagement/stats.js\",\n      \"pages/api/free-test.js\",\n      \"pages/api/health.js\",\n      \"pages/api/integrations/social-growth-orchestrate.js\",\n      \"pages/api/integrations/social-ingest.js\",\n      \"pages/api/orchestration/ai-video/dashboard.js\",\n      \"pages/api/orchestration/ai-video/job/[id].js\",\n      \"pages/api/orchestration/ai-video/n8n-webhook.js\",\n      \"pages/api/orchestration/ai-video/queue.js\",\n      \"pages/api/orchestration/ai-video/queue/[id]"
               }
             ]
           }
@@ -234,8 +236,8 @@
       }
     ],
     "render": true,
-    "uptimeSec": 1847.330726805
+    "uptimeSec": 752.42564974
   },
   "rotationReminder": "Rotate keys in provider dashboards if ever committed; vault: bossmind-shared/automation/.env.master.local",
-  "localReportPath": "D:\\BossMind\\bossmind-resumora\\.bossmind\\ultra-optimization\\optimize-1779156851084.json"
+  "localReportPath": "D:\\BossMind\\bossmind-resumora\\.bossmind\\ultra-optimization\\optimize-1779161144796.json"
 }

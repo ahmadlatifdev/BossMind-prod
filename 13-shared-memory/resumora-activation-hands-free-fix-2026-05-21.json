@@ -1,0 +1,14 @@
+{
+  "schema": "resumora-activation-hands-free-fix-v1",
+  "generatedAt": "2026-05-21T12:00:00.000Z",
+  "summary": "Eliminated harsh activation_failed dead-end; extended silent orchestration; fixed addon plan grants and session/profile entitlement binding.",
+  "fixes": [
+    "Addon plan_ids (linkedin, interview, cover letter, translation) map to grantable studio tiers",
+    "listEntitlementsByStripeSession + force linkEntitlementByStripeSession when profile has paid session",
+    "activate-plan hasAccess uses plansCount and entitled flag; needsSignIn when paid but anonymous",
+    "Client: 30 fast retries + 24 tail retries at 10s; parallel verify-session + checkout-recovery + activate-plan",
+    "Removed activation_failed auto screen; soft extended luxury UI with quiet retry link",
+    "Unsigned checkout keeps activating state with sign-in deep link preserving session_id"
+  ],
+  "deployCommit": "28d9c74"
+}

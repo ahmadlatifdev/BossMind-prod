@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "reportType": "luxury-zero-guidance-production-proof",
+  "generatedAt": "2026-05-20T10:35:00.000Z",
+  "repository": "https://github.com/ahmadlatifdev/bossmind-resumora",
+  "deployedCommit": "f3161f2464467f3cd3c8479160a3ebd1857fc6f8",
+  "deployedCommitShort": "f3161f2",
+  "deployment": {
+    "status": "live",
+    "trigger": "git push origin main",
+    "service": "bossmind-resumora-web",
+    "renderAutoDeploy": true,
+    "verifiedOnBothUrls": true
+  },
+  "liveUrls": {
+    "primary": "https://www.resumora.net",
+    "render": "https://bossmind-resumora-web.onrender.com",
+    "studio": "/studio",
+    "essentialAdvancedStudio": "/studio/essential-advanced",
+    "success": "/success",
+    "onboardingApi": "/api/client/onboarding",
+    "workspaceApi": "/api/client/workspace",
+    "generationApi": "/api/client/generation-status"
+  },
+  "journeyAutomation": {
+    "registrationLoginRedirect": true,
+    "onboardingNextStepApi": true,
+    "paymentSuccessCountdownRedirect": true,
+    "studioProgressTracker": true,
+    "guidedUploadWizard": true,
+    "generationPipelineAdvance": true,
+    "resumeReadyBanner": true,
+    "freeEditRequestUi": true,
+    "essentialAdvancedPremiumSection": true,
+    "uploadToasts": true
+  },
+  "progressTrackerSteps": [
+    "accountCreated",
+    "planSelected",
+    "paymentCompleted",
+    "documentsUploaded",
+    "resumeInProgress",
+    "resumeReady",
+    "downloadDelivered",
+    "freeEditAvailable"
+  ],
+  "plansValidated": {
+    "basic": { "freeEdits": 1, "studioPath": "/studio", "bilingual": true, "paymentLink": true },
+    "professional": { "freeEdits": 2, "studioPath": "/studio", "bilingual": true, "paymentLink": true },
+    "elite": { "freeEdits": 3, "studioPath": "/studio", "bilingual": true, "paymentLink": true },
+    "essential_advanced": {
+      "freeEdits": 2,
+      "premiumEditsLabel": "2 premium edits",
+      "studioPath": "/studio/essential-advanced",
+      "premiumVideos": 3,
+      "qaLibrary": "50-60 Q&A",
+      "interviewTips": 20,
+      "bilingualEnFr": true,
+      "gatedDelivery": true
+    }
+  },
+  "proofs": {
+    "deployment": { "pass": true, "gitCommitMatch": "f3161f2 on resumora.net + Render" },
+    "routes": { "pass": true, "readinessScore": 100, "allCoreRoutes200": true },
+    "registration": { "pass": true, "note": "Render deploy-validate register 201 + login 200" },
+    "onboardingApi": { "pass": true, "status": 200, "postDeploy": true },
+    "workspaceApi": { "pass": true, "status": 200 },
+    "payment": { "pass": "partial", "note": "Payment links operational; health checkoutReady=false (publishable key env on Render)" },
+    "uploadRemove": { "pass": "code+api", "note": "Live signed-in E2E requires entitled session cookie" },
+    "generation": { "pass": "code+api", "endpoint": "/api/client/generation-status" },
+    "email": { "pass": "partial", "note": "Lifecycle webhooks fire when RESUMORA_POST_PURCHASE_WEBHOOK_URL configured" },
+    "download": { "pass": "code", "endpoints": ["/api/client/file", "/api/client/download"] },
+    "freeEdit": { "pass": "code+ui", "endpoint": "/api/client/edit-requests" },
+    "enFr": { "pass": true, "note": "LanguageContext + bilingual deliverables in health plans" },
+    "mobile": { "pass": "css", "note": "Responsive hub/onboarding CSS @640px; manual device QA recommended" }
+  },
+  "e2eScript": "bossmind-resumora/scripts/bossmind-luxury-journey-e2e.mjs",
+  "aggregateReadinessScore": 92,
+  "readinessBreakdown": {
+    "routeAvailability": 100,
+    "database": 100,
+    "journeyOrchestration": 95,
+    "stripeHealthFlag": 70,
+    "emailAutomationProof": 75,
+    "signedInUploadPaymentProof": 80
+  },
+  "remainingWeakPoints": [
+    "Health reports stripe.checkoutReady=false until NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY (or full checkout env) is set on Render",
+    "RENDER_API_KEY not in vault — deploy commit verify via health polling only",
+    "Full live Stripe sandbox checkout + receipt email proof needs manual/browser session with test card",
+    "Signed-in upload/generation/download loop not run in this automated pass (no stored prod credentials)"
+  ],
+  "commits": [
+    "594906b post-payment client journey + workspace",
+    "f3161f2 zero-guidance onboarding orchestration"
+  ]
+}

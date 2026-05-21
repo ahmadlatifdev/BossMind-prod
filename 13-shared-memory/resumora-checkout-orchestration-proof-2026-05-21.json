@@ -1,0 +1,105 @@
+{
+  "schema": "bossmind-checkout-orchestration-proof-v1",
+  "generatedAt": "2026-05-21T16:33:24.310Z",
+  "successRedirectUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}",
+  "codeChecks": {
+    "checkoutBootstrapApi": true,
+    "studioCalmPrepare": true,
+    "silentCheckoutSync": true,
+    "postPaymentActivationRemoved": true,
+    "clientHubUsesBootstrap": true,
+    "clientHubSilentPrepare": true,
+    "noProvisioningState": true
+  },
+  "sites": [
+    {
+      "base": "https://bossmind-resumora-web.onrender.com",
+      "gitCommit": "242b2115318f5cd47dda72c2f6651e70939202d8",
+      "routes": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "ok": true,
+          "ms": 343
+        },
+        {
+          "path": "/api/client/checkout-bootstrap?lang=en",
+          "status": 200,
+          "ok": true,
+          "ms": 205
+        },
+        {
+          "path": "/api/client/activate-plan?lang=en",
+          "status": 200,
+          "ok": true,
+          "ms": 184
+        },
+        {
+          "path": "/api/client/workspace?lang=en",
+          "status": 200,
+          "ok": true,
+          "ms": 190
+        },
+        {
+          "path": "/api/verify-session?lang=en",
+          "status": 400,
+          "ok": true,
+          "ms": 197
+        },
+        {
+          "path": "/studio",
+          "status": 200,
+          "ok": true,
+          "ms": 192
+        }
+      ],
+      "databaseOk": true,
+      "handsFreeApis": true
+    },
+    {
+      "base": "https://www.resumora.net",
+      "gitCommit": "242b2115318f5cd47dda72c2f6651e70939202d8",
+      "routes": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "ok": true,
+          "ms": 164
+        },
+        {
+          "path": "/api/client/checkout-bootstrap?lang=en",
+          "status": 200,
+          "ok": true,
+          "ms": 165
+        },
+        {
+          "path": "/api/client/activate-plan?lang=en",
+          "status": 200,
+          "ok": true,
+          "ms": 232
+        },
+        {
+          "path": "/api/client/workspace?lang=en",
+          "status": 200,
+          "ok": true,
+          "ms": 194
+        },
+        {
+          "path": "/api/verify-session?lang=en",
+          "status": 400,
+          "ok": true,
+          "ms": 148
+        },
+        {
+          "path": "/studio",
+          "status": 200,
+          "ok": true,
+          "ms": 186
+        }
+      ],
+      "databaseOk": true,
+      "handsFreeApis": true
+    }
+  ],
+  "closedLoopReady": true
+}

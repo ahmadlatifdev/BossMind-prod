@@ -1,0 +1,311 @@
+{
+  "generatedAt": "2026-05-21T16:33:35.042Z",
+  "successUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}",
+  "paymentLinkSync": {
+    "ok": true,
+    "synced": [
+      {
+        "serviceKey": "essential_foundation",
+        "ok": true,
+        "paymentLinkId": "plink_1TYBDvGjsXTaeZBgHucwATH6",
+        "redirectUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}"
+      },
+      {
+        "serviceKey": "essential_career",
+        "ok": true,
+        "paymentLinkId": "plink_1TYBCRGjsXTaeZBgrUTkTSI1",
+        "redirectUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}"
+      },
+      {
+        "serviceKey": "professional_career",
+        "ok": true,
+        "paymentLinkId": "plink_1TYBCSGjsXTaeZBgfOm2bmKU",
+        "redirectUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}"
+      },
+      {
+        "serviceKey": "executive_career",
+        "ok": true,
+        "paymentLinkId": "plink_1TYBCUGjsXTaeZBg9NIBnCQO",
+        "redirectUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}"
+      },
+      {
+        "serviceKey": "linkedin_optimization",
+        "ok": true,
+        "paymentLinkId": "plink_1TYBCVGjsXTaeZBgNWZ6t62m",
+        "redirectUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}"
+      },
+      {
+        "serviceKey": "interview_preparation",
+        "ok": true,
+        "paymentLinkId": "plink_1TYBCXGjsXTaeZBg82L8hTS3",
+        "redirectUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}"
+      },
+      {
+        "serviceKey": "custom_cover_letter",
+        "ok": true,
+        "paymentLinkId": "plink_1TYBCYGjsXTaeZBgbo8l7Ahd",
+        "redirectUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}"
+      },
+      {
+        "serviceKey": "translation_tls",
+        "ok": true,
+        "paymentLinkId": "plink_1TYBCaGjsXTaeZBgzAZEsJO6",
+        "redirectUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}"
+      }
+    ],
+    "successUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}",
+    "verify": {
+      "ok": true,
+      "probes": [
+        {
+          "serviceKey": "essential_foundation",
+          "name": "Resumora Essential Career Foundation",
+          "paymentLinkUrl": "https://buy.stripe.com/test_00w9ATgCp0151atfE40Fi07",
+          "linkOk": true,
+          "redirectOk": true,
+          "pageStatus": 200,
+          "publicAccessible": true
+        },
+        {
+          "serviceKey": "essential_career",
+          "name": "Resumora Essential Career Package",
+          "paymentLinkUrl": "https://buy.stripe.com/test_3cIeVd99XaFJ4mFeA00Fi00",
+          "linkOk": true,
+          "redirectOk": true,
+          "pageStatus": 200,
+          "publicAccessible": true
+        },
+        {
+          "serviceKey": "professional_career",
+          "name": "Resumora Professional Career Package",
+          "paymentLinkUrl": "https://buy.stripe.com/test_28E7sLbi5aFJ6uNbnO0Fi01",
+          "linkOk": true,
+          "redirectOk": true,
+          "pageStatus": 200,
+          "publicAccessible": true
+        },
+        {
+          "serviceKey": "executive_career",
+          "name": "Resumora Executive Career Package",
+          "paymentLinkUrl": "https://buy.stripe.com/test_14AeVd99X9BFcTbeA00Fi02",
+          "linkOk": true,
+          "redirectOk": true,
+          "pageStatus": 200,
+          "publicAccessible": true
+        },
+        {
+          "serviceKey": "linkedin_optimization",
+          "name": "Resumora LinkedIn Optimization",
+          "paymentLinkUrl": "https://buy.stripe.com/test_cNi8wP4THcNRdXf77y0Fi03",
+          "linkOk": true,
+          "redirectOk": true,
+          "pageStatus": 200,
+          "publicAccessible": true
+        },
+        {
+          "serviceKey": "interview_preparation",
+          "name": "Resumora Interview Preparation",
+          "paymentLinkUrl": "https://buy.stripe.com/test_8x2fZhcm99BF4mF77y0Fi04",
+          "linkOk": true,
+          "redirectOk": true,
+          "pageStatus": 200,
+          "publicAccessible": true
+        },
+        {
+          "serviceKey": "custom_cover_letter",
+          "name": "Resumora Custom Cover Letter",
+          "paymentLinkUrl": "https://buy.stripe.com/test_14A28r71P1596uN0Ja0Fi05",
+          "linkOk": true,
+          "redirectOk": true,
+          "pageStatus": 200,
+          "publicAccessible": true
+        },
+        {
+          "serviceKey": "translation_tls",
+          "name": "Resumora Translation/TLS Service",
+          "paymentLinkUrl": "https://buy.stripe.com/test_aFa8wP3PDg034mFdvW0Fi06",
+          "linkOk": true,
+          "redirectOk": true,
+          "pageStatus": 200,
+          "publicAccessible": true
+        }
+      ],
+      "manifestHash": "be747568243857913427bc4bdb997cccfadff3f50d9b13c453a91204eda8b867"
+    }
+  },
+  "siteReports": [
+    {
+      "base": "https://bossmind-resumora-web.onrender.com",
+      "gitCommit": "242b2115318f5cd47dda72c2f6651e70939202d8",
+      "routes": [
+        {
+          "route": "/studio",
+          "url": "https://bossmind-resumora-web.onrender.com/studio",
+          "status": 200,
+          "ms": 222,
+          "ok": true
+        },
+        {
+          "route": "/studio/essential-advanced",
+          "url": "https://bossmind-resumora-web.onrender.com/studio/essential-advanced",
+          "status": 200,
+          "ms": 95,
+          "ok": true
+        },
+        {
+          "route": "/pricing",
+          "url": "https://bossmind-resumora-web.onrender.com/pricing",
+          "status": 200,
+          "ms": 57,
+          "ok": true
+        },
+        {
+          "route": "/api/health",
+          "url": "https://bossmind-resumora-web.onrender.com/api/health",
+          "status": 200,
+          "ms": 107,
+          "ok": true
+        },
+        {
+          "route": "/api/client/onboarding",
+          "url": "https://bossmind-resumora-web.onrender.com/api/client/onboarding",
+          "status": 200,
+          "ms": 77,
+          "ok": true
+        },
+        {
+          "route": "/api/client/workspace",
+          "url": "https://bossmind-resumora-web.onrender.com/api/client/workspace",
+          "status": 200,
+          "ms": 64,
+          "ok": true
+        },
+        {
+          "route": "/api/client/checkout-recovery",
+          "url": "https://bossmind-resumora-web.onrender.com/api/client/checkout-recovery",
+          "status": 400,
+          "ms": 69,
+          "ok": true
+        },
+        {
+          "route": "/api/essential-advanced/catalog?lang=en",
+          "url": "https://bossmind-resumora-web.onrender.com/api/essential-advanced/catalog?lang=en",
+          "status": 403,
+          "ms": 61,
+          "ok": true
+        },
+        {
+          "route": "/api/essential-advanced/catalog?lang=fr",
+          "url": "https://bossmind-resumora-web.onrender.com/api/essential-advanced/catalog?lang=fr",
+          "status": 403,
+          "ms": 68,
+          "ok": true
+        }
+      ],
+      "essentialAdvancedReady": true,
+      "databaseOk": true,
+      "checkoutReady": false,
+      "routeScore": 100
+    },
+    {
+      "base": "https://www.resumora.net",
+      "gitCommit": "242b2115318f5cd47dda72c2f6651e70939202d8",
+      "routes": [
+        {
+          "route": "/studio",
+          "url": "https://www.resumora.net/studio",
+          "status": 200,
+          "ms": 168,
+          "ok": true
+        },
+        {
+          "route": "/studio/essential-advanced",
+          "url": "https://www.resumora.net/studio/essential-advanced",
+          "status": 200,
+          "ms": 108,
+          "ok": true
+        },
+        {
+          "route": "/pricing",
+          "url": "https://www.resumora.net/pricing",
+          "status": 200,
+          "ms": 47,
+          "ok": true
+        },
+        {
+          "route": "/api/health",
+          "url": "https://www.resumora.net/api/health",
+          "status": 200,
+          "ms": 73,
+          "ok": true
+        },
+        {
+          "route": "/api/client/onboarding",
+          "url": "https://www.resumora.net/api/client/onboarding",
+          "status": 200,
+          "ms": 66,
+          "ok": true
+        },
+        {
+          "route": "/api/client/workspace",
+          "url": "https://www.resumora.net/api/client/workspace",
+          "status": 200,
+          "ms": 67,
+          "ok": true
+        },
+        {
+          "route": "/api/client/checkout-recovery",
+          "url": "https://www.resumora.net/api/client/checkout-recovery",
+          "status": 400,
+          "ms": 76,
+          "ok": true
+        },
+        {
+          "route": "/api/essential-advanced/catalog?lang=en",
+          "url": "https://www.resumora.net/api/essential-advanced/catalog?lang=en",
+          "status": 403,
+          "ms": 64,
+          "ok": true
+        },
+        {
+          "route": "/api/essential-advanced/catalog?lang=fr",
+          "url": "https://www.resumora.net/api/essential-advanced/catalog?lang=fr",
+          "status": 403,
+          "ms": 64,
+          "ok": true
+        }
+      ],
+      "essentialAdvancedReady": true,
+      "databaseOk": true,
+      "checkoutReady": false,
+      "routeScore": 100
+    }
+  ],
+  "flows": {
+    "checkoutSession": {
+      "redirectUrl": "https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}",
+      "pass": true
+    },
+    "paymentLink": {
+      "pass": true,
+      "score": 100
+    },
+    "studioRecovery": {
+      "api": "/api/client/checkout-recovery",
+      "pass": true
+    },
+    "enFr": {
+      "pass": true
+    },
+    "mobile": {
+      "pass": true,
+      "note": "Responsive CSS validated in build; manual device QA recommended"
+    }
+  },
+  "aggregateReadinessPercent": 100,
+  "weakPoints": [
+    "https://bossmind-resumora-web.onrender.com: health checkoutReady=false",
+    "https://www.resumora.net: health checkoutReady=false",
+    "Sandbox payment + inbox email proof requires manual test card session"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "issue": "paid_clients_see_no_active_plans_on_studio",
+  "fixCommit": "57aa49f",
+  "rootCauses": [
+    "Entitlements granted by Stripe email only without binding profile_id on UPDATE",
+    "Payment link metadata missing plan_id (only service_key)",
+    "Studio loaded workspace before activation linked session to logged-in profile",
+    "verify-session did not use unified activation pipeline"
+  ],
+  "fixes": [
+    "lib/client/entitlement-activation.js — single activateFromStripeSession pipeline",
+    "lib/client/entitlements-store.js — bind profile_id on grant/update, session_id lookup, plan_ids metadata",
+    "pages/api/client/activate-plan.js — explicit activation endpoint",
+    "pages/api/client/workspace.js — auto-activate from session_id + retry",
+    "pages/api/verify-session.js — uses activation pipeline",
+    "pages/api/client/checkout-recovery.js — uses activation pipeline",
+    "pages/api/webhooks/stripe.js — uses activation pipeline",
+    "components/client/ClientStudioHub.jsx — activate-plan on checkout, retry on empty, activation states UI",
+    "stripe-payment-links-engine — plan_id in payment link metadata"
+  ],
+  "activationStates": [
+    "paymentConfirmed",
+    "planActivated",
+    "workspaceReady",
+    "uploadsUnlocked",
+    "generationReady"
+  ],
+  "planRules": {
+    "basic": { "freeEdits": 1 },
+    "professional": { "freeEdits": 2 },
+    "elite": { "freeEdits": 3 },
+    "essential_advanced": { "premium": true, "freeEdits": 2 }
+  },
+  "validationCommands": [
+    "npm run bossmind:entitlement:proof",
+    "npm run bossmind:final:production-validation"
+  ],
+  "targetReadinessPercent": 96
+}
