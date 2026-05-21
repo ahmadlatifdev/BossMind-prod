@@ -1,0 +1,122 @@
+{
+  "schema": "bossmind-deployment-validation-v1",
+  "generatedAt": "2026-05-21T16:31:50.332Z",
+  "bases": [
+    "https://bossmind-resumora-web.onrender.com",
+    "https://www.resumora.net"
+  ],
+  "sites": [
+    {
+      "base": "https://bossmind-resumora-web.onrender.com",
+      "gitCommit": "242b2115318f5cd47dda72c2f6651e70939202d8",
+      "databaseOk": true,
+      "databaseSource": "NEON_DATABASE_URL",
+      "checkoutReady": false,
+      "commerceReady": false,
+      "registerStatus": 201,
+      "registerOk": true,
+      "registerError": null,
+      "loginReachable": true,
+      "stripeStatus": 404,
+      "checkoutBootstrapStatus": 200,
+      "studioStatus": 200,
+      "studioCalmPrepare": true,
+      "studioLuxuryStepsExposed": false,
+      "routes": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/api/runtime/database-health",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/api/engagement/register",
+          "status": 201,
+          "ok": true
+        },
+        {
+          "path": "/api/engagement/login",
+          "status": 401,
+          "ok": true
+        },
+        {
+          "path": "/api/stripe/status",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "path": "/api/client/checkout-bootstrap",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/studio",
+          "status": 200,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "base": "https://www.resumora.net",
+      "gitCommit": "242b2115318f5cd47dda72c2f6651e70939202d8",
+      "databaseOk": true,
+      "databaseSource": "NEON_DATABASE_URL",
+      "checkoutReady": false,
+      "commerceReady": false,
+      "registerStatus": 201,
+      "registerOk": true,
+      "registerError": null,
+      "loginReachable": true,
+      "stripeStatus": 404,
+      "checkoutBootstrapStatus": 200,
+      "studioStatus": 200,
+      "studioCalmPrepare": true,
+      "studioLuxuryStepsExposed": false,
+      "routes": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/api/runtime/database-health",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/api/engagement/register",
+          "status": 201,
+          "ok": true
+        },
+        {
+          "path": "/api/engagement/login",
+          "status": 401,
+          "ok": true
+        },
+        {
+          "path": "/api/stripe/status",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "path": "/api/client/checkout-bootstrap",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/studio",
+          "status": 200,
+          "ok": true
+        }
+      ]
+    }
+  ],
+  "deployDrift": true,
+  "localHead": "faadc590415e239ba8b33c2dd4a835ad4addfaf1",
+  "renderEnvPresent": false,
+  "loopsClosed": false
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "resumora-silent-activation-confirm-v1",
+  "confirmedAt": "2026-05-21T16:20:00.000Z",
+  "deployedCommit": "242b2115318f5cd47dda72c2f6651e70939202d8",
+  "deployedCommitMessage": "BossMind automated update",
+  "productionHealth": {
+    "render": "https://bossmind-resumora-web.onrender.com/api/health",
+    "resumoraNet": "https://www.resumora.net/api/health",
+    "gitCommitMatch": true
+  },
+  "codeConfirmed": {
+    "studioCalmPrepare": "bossmind-resumora/components/client/StudioCalmPrepare.jsx",
+    "silentCheckoutSync": "bossmind-resumora/lib/client/silent-checkout-sync.js",
+    "clientHubNoLuxuryLoader": true,
+    "clientHubNoProvisioningState": true,
+    "maxSilentAttempts": 8,
+    "exponentialBackoff": true
+  },
+  "productionHtmlProbe": {
+    "url": "https://www.resumora.net/studio",
+    "found": [
+      "rs-client-hub--calm-prepare",
+      "rs-studio-calm-prepare-title",
+      "Preparing your secure Resumora workspace"
+    ],
+    "notFound": [
+      "Payment confirmed",
+      "rs-studio-luxury-loader",
+      "rs-studio-luxury-loader-steps"
+    ]
+  },
+  "clientVisibleUx": {
+    "duringCheckout": "Preparing your secure Resumora workspace… + calm bar only",
+    "hidden": "Payment/Plan/Upload step pills, luxury loader, shimmer skeleton cards, 30+40 retry UI ticks"
+  },
+  "ifStillSeeingOldUi": [
+    "Hard refresh: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)",
+    "Open studio in private/incognito window",
+    "Confirm URL is https://www.resumora.net/studio (not archived copy)",
+    "After Stripe checkout, sign in with the same email used at payment"
+  ],
+  "functionalTest": [
+    "Complete test checkout → land on /studio?session_id=cs_...",
+    "Stay on calm prepare (no step pills) until studio hub loads",
+    "No screen shake or browser freeze during wait"
+  ]
+}

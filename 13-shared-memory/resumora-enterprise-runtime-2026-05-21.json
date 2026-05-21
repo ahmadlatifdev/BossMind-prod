@@ -1,0 +1,156 @@
+{
+  "schema": "bossmind-runtime-report-v1",
+  "generatedAt": "2026-05-21T16:31:50.332Z",
+  "localGitHead": "faadc590415e239ba8b33c2dd4a835ad4addfaf1",
+  "productionSites": [
+    {
+      "base": "https://bossmind-resumora-web.onrender.com",
+      "gitCommit": "242b2115318f5cd47dda72c2f6651e70939202d8",
+      "databaseOk": true,
+      "databaseSource": "NEON_DATABASE_URL",
+      "checkoutReady": false,
+      "commerceReady": false,
+      "registerStatus": 201,
+      "registerOk": true,
+      "registerError": null,
+      "loginReachable": true,
+      "stripeStatus": 404,
+      "checkoutBootstrapStatus": 200,
+      "studioStatus": 200,
+      "studioCalmPrepare": true,
+      "studioLuxuryStepsExposed": false,
+      "routes": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/api/runtime/database-health",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/api/engagement/register",
+          "status": 201,
+          "ok": true
+        },
+        {
+          "path": "/api/engagement/login",
+          "status": 401,
+          "ok": true
+        },
+        {
+          "path": "/api/stripe/status",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "path": "/api/client/checkout-bootstrap",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/studio",
+          "status": 200,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "base": "https://www.resumora.net",
+      "gitCommit": "242b2115318f5cd47dda72c2f6651e70939202d8",
+      "databaseOk": true,
+      "databaseSource": "NEON_DATABASE_URL",
+      "checkoutReady": false,
+      "commerceReady": false,
+      "registerStatus": 201,
+      "registerOk": true,
+      "registerError": null,
+      "loginReachable": true,
+      "stripeStatus": 404,
+      "checkoutBootstrapStatus": 200,
+      "studioStatus": 200,
+      "studioCalmPrepare": true,
+      "studioLuxuryStepsExposed": false,
+      "routes": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/api/runtime/database-health",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/api/engagement/register",
+          "status": 201,
+          "ok": true
+        },
+        {
+          "path": "/api/engagement/login",
+          "status": 401,
+          "ok": true
+        },
+        {
+          "path": "/api/stripe/status",
+          "status": 404,
+          "ok": false
+        },
+        {
+          "path": "/api/client/checkout-bootstrap",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "path": "/studio",
+          "status": 200,
+          "ok": true
+        }
+      ]
+    }
+  ],
+  "localRegistration": {
+    "ok": true,
+    "databaseOk": true,
+    "neonSource": "NEON_DATABASE_URL",
+    "registerOk": true,
+    "loginOk": true,
+    "error": null
+  },
+  "selfHealingActive": true,
+  "autonomousRecoveryActive": false,
+  "runtimeStable": true,
+  "phases": [
+    {
+      "name": "security_scan",
+      "ok": true,
+      "status": 0,
+      "stdout": "BossMind secret scan: 0 hit(s) in 0 file(s)\nReport: D:\\BossMind\\13-shared-memory\\security-scan-latest.json\n",
+      "stderr": ""
+    },
+    {
+      "name": "deploy_verify_live",
+      "ok": true,
+      "status": 0,
+      "stdout": "Deploy verify live: allHealthy=True drift=True\n",
+      "stderr": ""
+    },
+    {
+      "name": "checkout_proof",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"schema\": \"bossmind-checkout-orchestration-proof-v1\",\n  \"generatedAt\": \"2026-05-21T16:33:24.310Z\",\n  \"successRedirectUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\",\n  \"codeChecks\": {\n    \"checkoutBootstrapApi\": true,\n    \"studioCalmPrepare\": true,\n    \"silentCheckoutSync\": true,\n    \"postPaymentActivationRemoved\": true,\n    \"clientHubUsesBootstrap\": true,\n    \"clientHubSilentPrepare\": true,\n    \"noProvisioningState\": true\n  },\n  \"sites\": [\n    {\n      \"base\": \"https://bossmind-resumora-web.onrender.com\",\n      \"gitCommit\": \"242b2115318f5cd47dda72c2f6651e70939202d8\",\n      \"routes\": [\n        {\n          \"path\": \"/api/health\",\n          \"status\": 200,\n          \"ok\": true,\n          \"ms\": 343\n        },\n        {\n          \"path\": \"/api/client/checkout-bootstrap?lang=en\",\n          \"status\": 200,\n          \"ok\": true,\n          \"ms\": 205\n        },\n        {\n          \"path\": \"/api/client/activate-plan?lang=en\",\n          \"status\": 200,\n          \"ok\": true,\n          \"ms\": 184\n        },\n        {\n          \"path\": \"/api/client/workspace?lang=en\",\n          \"status\": 200,\n          \"ok\": true,\n          \"ms\": 190\n        },\n        {\n          \"path\": \"/api/verify-session?lang=en\",\n          \"status\": 400,\n          \"ok\": true,\n          \"ms\": 197\n        },\n        {\n          \"path\": \"/studio\",\n          \"status\": 200,\n          \"ok\": true,\n          \"ms\": 192\n        }\n      ],\n      \"databaseOk\": true,\n      \"handsFreeApis\": true\n    },\n    {\n      \"base\": \"https://www.resumora.net\",\n      \"gitCommit\": \"242b2115318f5cd47dda72c2f6651e70939202d8\",\n      \"routes\": [\n        {\n          \"path\": \"/api/health\",\n          \"status\": 200,\n          \"ok\": true,\n          \"ms\": 164\n        },\n        {\n          \"path\": \"/api/client/checkout-bootstrap?lang=en\",\n          \"status\": 200,\n          \"ok\": true,\n          \"ms\": 165\n        },\n        {\n          \"path\": \"/api/client/activate-plan?lang=en\",\n          \"status\": 200,\n          \"ok\": true,\n          \"ms\": 232\n        },\n        {\n          \"path\": \"/api/client/workspace?lang=en\",\n          \"status\": 200,\n          \"ok\": true,\n          \"ms\": 194\n        },\n        {\n          \"path\": \"/api/verify-session?lang=en\",\n          \"status\": 400,\n          \"ok\": true,\n          \"ms\": 148\n        },\n        {\n          \"path\": \"/studio\",\n          \"status\": 200,\n          \"ok\": true,\n          \"ms\": 186\n        }\n      ],\n      \"databaseOk\": true,\n      \"handsFreeApis\": true\n    }\n  ],\n  \"closedLoopReady\": true\n}\nWrote D:\\BossMind\\13-shared-memory\\resumora-checkout-orchestration-proof-2026-05-21.json\n",
+      "stderr": ""
+    },
+    {
+      "name": "final_production_validation",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"generatedAt\": \"2026-05-21T16:33:35.042Z\",\n  \"successUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\",\n  \"paymentLinkSync\": {\n    \"ok\": true,\n    \"synced\": [\n      {\n        \"serviceKey\": \"essential_foundation\",\n        \"ok\": true,\n        \"paymentLinkId\": \"plink_1TYBDvGjsXTaeZBgHucwATH6\",\n        \"redirectUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\"\n      },\n      {\n        \"serviceKey\": \"essential_career\",\n        \"ok\": true,\n        \"paymentLinkId\": \"plink_1TYBCRGjsXTaeZBgrUTkTSI1\",\n        \"redirectUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\"\n      },\n      {\n        \"serviceKey\": \"professional_career\",\n        \"ok\": true,\n        \"paymentLinkId\": \"plink_1TYBCSGjsXTaeZBgfOm2bmKU\",\n        \"redirectUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\"\n      },\n      {\n        \"serviceKey\": \"executive_career\",\n        \"ok\": true,\n        \"paymentLinkId\": \"plink_1TYBCUGjsXTaeZBg9NIBnCQO\",\n        \"redirectUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\"\n      },\n      {\n        \"serviceKey\": \"linkedin_optimization\",\n        \"ok\": true,\n        \"paymentLinkId\": \"plink_1TYBCVGjsXTaeZBgNWZ6t62m\",\n        \"redirectUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\"\n      },\n      {\n        \"serviceKey\": \"interview_preparation\",\n        \"ok\": true,\n        \"paymentLinkId\": \"plink_1TYBCXGjsXTaeZBg82L8hTS3\",\n        \"redirectUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\"\n      },\n      {\n        \"serviceKey\": \"custom_cover_letter\",\n        \"ok\": true,\n        \"paymentLinkId\": \"plink_1TYBCYGjsXTaeZBgbo8l7Ahd\",\n        \"redirectUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\"\n      },\n      {\n        \"serviceKey\": \"translation_tls\",\n        \"ok\": true,\n        \"paymentLinkId\": \"plink_1TYBCaGjsXTaeZBgzAZEsJO6\",\n        \"redirectUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\"\n      }\n    ],\n    \"successUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\",\n    \"verify\": {\n      \"ok\": true,\n      \"probes\": [\n        {\n          \"serviceKey\": \"essential_foundation\",\n          \"name\": \"Resumora Essential Career Foundation\",\n          \"paymentLinkUrl\": \"https://buy.stripe.com/test_00w9ATgCp0151atfE40Fi07\",\n          \"linkOk\": true,\n          \"redirectOk\": true,\n          \"pageStatus\": 200,\n          \"publicAccessible\": true\n        },\n        {\n          \"serviceKey\": \"essential_career\",\n          \"name\": \"Resumora Essential Career Package\",\n          \"paymentLinkUrl\": \"https://buy.stripe.com/test_3cIeVd99XaFJ4mFeA00Fi00\",\n          \"linkOk\": true,\n          \"redirectOk\": true,\n          \"pageStatus\": 200,\n          \"publicAccessible\": true\n        },\n        {\n          \"serviceKey\": \"professional_career\",\n          \"name\": \"Resumora Professional Career Package\",\n          \"paymentLinkUrl\": \"https://buy.stripe.com/test_28E7sLbi5aFJ6uNbnO0Fi01\",\n          \"linkOk\": true,\n          \"redirectOk\": true,\n          \"pageStatus\": 200,\n          \"publicAccessible\": true\n        },\n        {\n          \"serviceKey\": \"executive_career\",\n          \"name\": \"Resumora Executive Career Package\",\n          \"paymentLinkUrl\": \"https://buy.stripe.com/test_14AeVd99X9BFcTbeA00Fi02\",\n          \"linkOk\": true,\n          \"redirectOk\": true,\n          \"pageStatus\": 200,\n          \"publicAccessible\": true\n        },\n        {\n          \"serviceKey\": \"linkedin_optimization\",\n          \"name\": \"Resumora LinkedIn Optimization\",\n          \"paymentLinkUrl\": \"https://buy.stripe.com/test_cNi8wP4THcNRdXf77y0Fi03\",\n          \"linkOk\": true,\n          \"redirectOk\": true,\n          \"pageStatus\": 200,\n          \"publicAccessible\": true\n        },\n        {\n          \"serviceKey\": \"interview_preparation\",\n          \"name\": \"Resumora Interview Preparation\",\n          \"paymentLinkUrl\": \"https://buy.stripe.com/test_8x2fZhcm99BF4mF77y0Fi04\",\n          \"linkOk\": true,\n          \"redirectOk\": true,\n          \"pageStatus\": 200,\n          \"publicAccessible\": true\n        },\n        {\n          \"serviceKey\": \"custom_cover_letter\",\n          \"name\": \"Resumora Custom Cover Letter\",\n          \"paymentLinkUrl\": \"https://buy.stripe.com/test_14A28r71P1596uN0Ja0Fi05\",\n          \"linkOk\": true,\n          \"redirectOk\": true,\n          \"pageStatus\": 200,\n          \"publicAccessible\": true\n        },\n        {\n          \"serviceKey\": \"translation_tls\",\n          \"name\": \"Resumora Translation/TLS Service\",\n          \"paymentLinkUrl\": \"https://buy.stripe.com/test_aFa8wP3PDg034mFdvW0Fi06\",\n          \"linkOk\": true,\n          \"redirectOk\": true,\n          \"pageStatus\": 200,\n          \"publicAccessible\": true\n        }\n      ],\n      \"manifestHash\": \"be747568243857913427bc4bdb997cccfadff3f50d9b13c453a91204eda8b867\"\n    }\n  },\n  \"siteReports\": [\n    {\n      \"base\": \"https://bossmind-resumora-web.onrender.com\",\n      \"gitCommit\": \"242b2115318f5cd47dda72c2f6651e70939202d8\",\n      \"routes\": [\n        {\n          \"route\": \"/studio\",\n          \"url\": \"https://bossmind-resumora-web.onrender.com/studio\",\n          \"status\": 200,\n          \"ms\": 222,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/studio/essential-advanced\",\n          \"url\": \"https://bossmind-resumora-web.onrender.com/studio/essential-advanced\",\n          \"status\": 200,\n          \"ms\": 95,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/pricing\",\n          \"url\": \"https://bossmind-resumora-web.onrender.com/pricing\",\n          \"status\": 200,\n          \"ms\": 57,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/health\",\n          \"url\": \"https://bossmind-resumora-web.onrender.com/api/health\",\n          \"status\": 200,\n          \"ms\": 107,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/client/onboarding\",\n          \"url\": \"https://bossmind-resumora-web.onrender.com/api/client/onboarding\",\n          \"status\": 200,\n          \"ms\": 77,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/client/workspace\",\n          \"url\": \"https://bossmind-resumora-web.onrender.com/api/client/workspace\",\n          \"status\": 200,\n          \"ms\": 64,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/client/checkout-recovery\",\n          \"url\": \"https://bossmind-resumora-web.onrender.com/api/client/checkout-recovery\",\n          \"status\": 400,\n          \"ms\": 69,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/essential-advanced/catalog?lang=en\",\n          \"url\": \"https://bossmind-resumora-web.onrender.com/api/essential-advanced/catalog?lang=en\",\n          \"status\": 403,\n          \"ms\": 61,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/essential-advanced/catalog?lang=fr\",\n          \"url\": \"https://bossmind-resumora-web.onrender.com/api/essential-advanced/catalog?lang=fr\",\n          \"status\": 403,\n          \"ms\": 68,\n          \"ok\": true\n        }\n      ],\n      \"essentialAdvancedReady\": true,\n      \"databaseOk\": true,\n      \"checkoutReady\": false,\n      \"routeScore\": 100\n    },\n    {\n      \"base\": \"https://www.resumora.net\",\n      \"gitCommit\": \"242b2115318f5cd47dda72c2f6651e70939202d8\",\n      \"routes\": [\n        {\n          \"route\": \"/studio\",\n          \"url\": \"https://www.resumora.net/studio\",\n          \"status\": 200,\n          \"ms\": 168,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/studio/essential-advanced\",\n          \"url\": \"https://www.resumora.net/studio/essential-advanced\",\n          \"status\": 200,\n          \"ms\": 108,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/pricing\",\n          \"url\": \"https://www.resumora.net/pricing\",\n          \"status\": 200,\n          \"ms\": 47,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/health\",\n          \"url\": \"https://www.resumora.net/api/health\",\n          \"status\": 200,\n          \"ms\": 73,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/client/onboarding\",\n          \"url\": \"https://www.resumora.net/api/client/onboarding\",\n          \"status\": 200,\n          \"ms\": 66,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/client/workspace\",\n          \"url\": \"https://www.resumora.net/api/client/workspace\",\n          \"status\": 200,\n          \"ms\": 67,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/client/checkout-recovery\",\n          \"url\": \"https://www.resumora.net/api/client/checkout-recovery\",\n          \"status\": 400,\n          \"ms\": 76,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/essential-advanced/catalog?lang=en\",\n          \"url\": \"https://www.resumora.net/api/essential-advanced/catalog?lang=en\",\n          \"status\": 403,\n          \"ms\": 64,\n          \"ok\": true\n        },\n        {\n          \"route\": \"/api/essential-advanced/catalog?lang=fr\",\n          \"url\": \"https://www.resumora.net/api/essential-advanced/catalog?lang=fr\",\n          \"status\": 403,\n          \"ms\": 64,\n          \"ok\": true\n        }\n      ],\n      \"essentialAdvancedReady\": true,\n      \"databaseOk\": true,\n      \"checkoutReady\": false,\n      \"routeScore\": 100\n    }\n  ],\n  \"flows\": {\n    \"checkoutSession\": {\n      \"redirectUrl\": \"https://bossmind-resumora-web.onrender.com/studio?checkout=success&session_id={CHECKOUT_SESSION_ID}\",\n      \"pass\": true\n    },\n    \"paymentLink\": {\n      \"pass\": true,\n      \"score\": 100\n    },\n    \"studioRecovery\": {\n      \"api\": \"/api/client/checkout-recovery\",\n      \"pass\": true\n    },\n    \"enFr\": {\n      \"pass\": true\n    },\n    \"mobile\": {\n      \"pass\": true,\n      \"note\": \"Responsive CSS validated in build; manual device QA recommended\"\n    }\n  },\n  \"aggregateReadinessPercent\": 100,\n  \"weakPoints\": [\n    \"https://bossmind-resumora-web.onrender.com: health checkoutReady=false\",\n    \"https://www.resumora.net: health checkoutReady=false\",\n    \"Sandbox payment + inbox email proof requires manual test card session\"\n  ]\n}\n",
+      "stderr": "Wrote D:\\BossMind\\13-shared-memory\\resumora-final-production-proof-2026-05-21.json\n"
+    }
+  ]
+}
