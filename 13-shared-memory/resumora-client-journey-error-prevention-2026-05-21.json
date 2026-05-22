@@ -1,0 +1,47 @@
+{
+  "schema": "bossmind-error-prevention-v1",
+  "project": "resumora",
+  "updatedAt": "2026-05-21T00:00:00.000Z",
+  "patterns": [
+    {
+      "id": "redirect_login_studio_loop",
+      "symptom": "Infinite switching between /login and /studio after Stripe checkout",
+      "rootCause": "Signed-in user receives activationStatus needs_sign_in when Stripe fails; studio redirects to login despite valid session",
+      "repairStrategy": "Only redirect to login when signedIn=false; use activation_pending for signed-in failures; resolvePostAuthRedirect honors session_id before onboarding pricing path",
+      "files": ["lib/client/luxury-checkout-client.js", "lib/client/activation-engine.js", "components/client/ClientStudioHub.jsx", "pages/login.js", "lib/marketing/post-auth-redirect.js"]
+    },
+    {
+      "id": "post_login_pricing_redirect",
+      "symptom": "After login user lands on /pricing instead of studio with session_id",
+      "rootCause": "login.js prioritized onboarding next.path before getPostAuthRedirectPath next query",
+      "repairStrategy": "hasPaidCheckoutPending blocks onboarding pricing; pass session_id to onboarding API",
+      "files": ["pages/login.js", "pages/register.js", "lib/client/onboarding-journey.js"]
+    },
+    {
+      "id": "service_worker_stale_html",
+      "symptom": "Cached auth/pricing/studio pages cause routing loops after deploy",
+      "rootCause": "SW served stale HTML navigation fallback",
+      "repairStrategy": "SW version bump; mustBypassHtml for /login /studio /pricing /success; clear old resumora-shell caches on checkout routes; API routes network-only",
+      "files": ["public/sw.js", "pages/_app.js", "lib/client/checkout-runtime.js"]
+    },
+    {
+      "id": "success_duplicate_redirect",
+      "symptom": "success.js triggers multiple router.replace",
+      "rootCause": "useEffect without redirect guard ref",
+      "repairStrategy": "redirectedRef single-flight; prefetch checkout-complete before studio redirect",
+      "files": ["pages/success.js"]
+    },
+    {
+      "id": "stripe_render_env_missing",
+      "symptom": "checkoutReady false on production; activation never completes",
+      "rootCause": "STRIPE_SECRET_KEY not configured on Render",
+      "repairStrategy": "Manual Render env: STRIPE_SECRET_KEY, NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY, STRIPE_WEBHOOK_SECRET; verify /api/health checkoutReady true",
+      "files": ["scripts/bossmind-render-production-env-sync.mjs"]
+    }
+  ],
+  "autonomousCommands": [
+    "npm run bossmind:client-journey:autonomous-repair",
+    "powershell -File D:/BossMind/11-scripts/bossmind-client-journey-autonomous-repair.ps1",
+    "npm run bossmind:render:env-checklist"
+  ]
+}
