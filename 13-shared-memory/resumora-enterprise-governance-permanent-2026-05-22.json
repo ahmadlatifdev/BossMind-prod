@@ -1,0 +1,40 @@
+{
+  "schema": "bossmind-permanent-governance-v1",
+  "project": "resumora",
+  "mandate": "Replace temporary reactivation with permanent orchestration governance",
+  "artifacts": {
+    "productionLock": "config/bossmind-governance/production-lock.json",
+    "deploymentState": "config/bossmind-governance/deployment-state.json",
+    "runtimeChecksumLedger": "config/bossmind-governance/runtime-checksum-ledger.json",
+    "orchestrationIntegrity": "config/bossmind-governance/orchestration-integrity.json",
+    "stableReleaseManifest": "config/bossmind-governance/stable-release-manifest.json",
+    "liveState": ".bossmind/governance/"
+  },
+  "engines": {
+    "productionGovernance": "lib/orchestration/bossmind-production-governance.js",
+    "closedLoopDeployment": "lib/orchestration/bossmind-closed-loop-deployment.js",
+    "runtimeImmunity": "lib/orchestration/bossmind-runtime-immunity.js",
+    "orchestrationMemoryHub": "lib/orchestration/bossmind-orchestration-memory-hub.js"
+  },
+  "commands": {
+    "governanceCycle": "npm run bossmind:governance:cycle",
+    "closedLoop": "npm run bossmind:governance:cycle:closed-loop",
+    "powershell": "powershell -File D:/BossMind/11-scripts/bossmind-enterprise-governance.ps1 -ClosedLoop",
+    "dashboard": "/api/orchestration/governance-dashboard"
+  },
+  "githubWorkflows": [
+    "bossmind-production-governance.yml",
+    "bossmind-enterprise-stabilization.yml",
+    "deploy-render.yml",
+    "validate-production.yml"
+  ],
+  "enforcement": [
+    "blockUnverifiedDeploy",
+    "deploymentDriftDetection",
+    "stableReleaseManifest",
+    "antiLeakGate",
+    "redirectLoopImmunity",
+    "serviceWorkerVersionLock",
+    "sessionExpiryCleanup"
+  ]
+}
