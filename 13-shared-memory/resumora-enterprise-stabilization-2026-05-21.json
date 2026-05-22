@@ -1,0 +1,27 @@
+{
+  "schema": "bossmind-enterprise-stabilization-memory-v1",
+  "project": "resumora",
+  "updatedAt": "2026-05-21T00:00:00.000Z",
+  "systemsActivated": [
+    "enterprise-stabilization-cycle",
+    "runtime-stability-engine",
+    "production-journey-e2e",
+    "github-deploy-render",
+    "github-deploy-railway",
+    "github-validate-production",
+    "github-enterprise-stabilization",
+    "powershell-enterprise-stabilization",
+    "enterprise-health-api",
+    "checkout-runtime-session-cleanup",
+    "service-worker-v3-bypass"
+  ],
+  "autonomousCommands": [
+    "npm run bossmind:enterprise:stabilization",
+    "npm run bossmind:production:journey-e2e",
+    "npm run bossmind:client-journey:autonomous-repair",
+    "powershell -File D:/BossMind/11-scripts/bossmind-enterprise-stabilization.ps1"
+  ],
+  "remainingManualSteps": [
+    "Add GitHub secrets: RENDER_DEPLOY_HOOK_URL, RENDER_API_KEY, RENDER_SERVICE_ID, STRIPE_* for full deploy+checkout automation"
+  ]
+}
