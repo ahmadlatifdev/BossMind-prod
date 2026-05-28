@@ -1,0 +1,25 @@
+{
+  "_comment": "Production health endpoints for BossMind automation probes.",
+  "resumora": {
+    "endpoints": [
+      {
+        "name": "production-health",
+        "url": "https://www.resumora.net/api/health",
+        "expected_status": 200,
+        "timeout_sec": 15
+      },
+      {
+        "name": "production-stripe-health",
+        "url": "https://www.resumora.net/api/runtime/stripe-health",
+        "expected_status": 200,
+        "timeout_sec": 15
+      },
+      {
+        "name": "production-orchestration-health",
+        "url": "https://www.resumora.net/api/orchestration/bossmind-health",
+        "expected_status": 200,
+        "timeout_sec": 20
+      }
+    ]
+  }
+}

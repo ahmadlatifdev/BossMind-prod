@@ -1,0 +1,177 @@
+{
+  "__prae_manifest_version": "2.0.0",
+  "__schema": "PRAE-EXECUTION-AUTHORITY-GATE",
+  "__signed_by": "PRAE-GOVERNANCE-ENGINE",
+  "__authority_checksum": "PRAE-SHA256-AUTHORITY-GATE-v2",
+
+  "authority": {
+    "mode": "ENFORCEMENT_ACTIVE",
+    "gate_status": "LOCKED",
+    "governance_mode": "LOCKED",
+    "auto_repair": "DISABLED",
+    "production_mutation": "NONE",
+    "enforcement_level": "FULL",
+    "relay_active": true,
+    "registry_integrity_required": true,
+    "mutation_lock": true
+  },
+
+  "allowed_execution_scopes": [
+    "prae:governance:read",
+    "prae:ledger:append",
+    "prae:registry:read",
+    "prae:relay:ping",
+    "prae:observability:read",
+    "prae:dashboard:render",
+    "prae:validation:run",
+    "prae:report:generate",
+    "bossmind:runtime:read",
+    "bossmind:deployment:validate",
+    "bossmind:health:check",
+    "powershell:read-only",
+    "powershell:governance-scripts",
+    "scheduled-task:governance-watcher",
+    "scheduled-task:health-monitor"
+  ],
+
+  "blocked_mutation_scopes": [
+    "production:mutate",
+    "production:deploy:unverified",
+    "runtime:patch:unauthorized",
+    "ui:mutate",
+    "design:mutate",
+    "database:schema:mutate",
+    "environment:governance:overwrite",
+    "registry:unsigned:write",
+    "auto_repair:execute",
+    "deployment:unsigned",
+    "powershell:unrestricted",
+    "scheduled-task:create:unauthorized",
+    "shared-memory:mutate:unauthorized"
+  ],
+
+  "deployment_permissions": {
+    "require_prae_token": true,
+    "require_signed_manifest": true,
+    "require_registry_integrity": true,
+    "require_relay_active": true,
+    "require_mutation_mode_check": true,
+    "allowed_deployers": ["PRAE-AUTHORITY", "GOVERNANCE-RELAY"],
+    "blocked_deployers": ["ANONYMOUS", "UNSIGNED", "EXTERNAL-UNVERIFIED"],
+    "deployment_flow": "PRAE-VALIDATED-ONLY",
+    "rollback_on_failure": true,
+    "preserve_production_state": true
+  },
+
+  "protected_projects": {
+    "bossmind-resumora": {
+      "protection_level": "MAXIMUM",
+      "mutation_allowed": false,
+      "deployment_requires_prae_token": true,
+      "ui_lock": true,
+      "design_lock": true
+    },
+    "bossmind-elegancyart": {
+      "protection_level": "MAXIMUM",
+      "mutation_allowed": false,
+      "deployment_requires_prae_token": true,
+      "ui_lock": true,
+      "design_lock": true
+    },
+    "bossmind-ai-video-generator": {
+      "protection_level": "MAXIMUM",
+      "mutation_allowed": false,
+      "deployment_requires_prae_token": true,
+      "ui_lock": true,
+      "design_lock": true
+    },
+    "bossmind-global-stock": {
+      "protection_level": "MAXIMUM",
+      "mutation_allowed": false,
+      "deployment_requires_prae_token": true,
+      "ui_lock": true,
+      "design_lock": true
+    },
+    "bossmind-master-admin": {
+      "protection_level": "CRITICAL",
+      "mutation_allowed": false,
+      "deployment_requires_prae_token": true,
+      "ui_lock": true,
+      "design_lock": true,
+      "admin_override_required": true
+    },
+    "shared-memory": {
+      "protection_level": "CRITICAL",
+      "mutation_allowed": false,
+      "write_requires_prae_token": true,
+      "read_only_by_default": true
+    },
+    "deployment-scripts": {
+      "protection_level": "HIGH",
+      "mutation_allowed": false,
+      "execution_requires_prae_token": true,
+      "signature_required": true
+    },
+    "environment-governance-files": {
+      "protection_level": "CRITICAL",
+      "mutation_allowed": false,
+      "overwrite_blocked": true,
+      "prae_signed_only": true
+    }
+  },
+
+  "runtime_validation_policies": {
+    "pre_execution_checks": [
+      "VERIFY_PRAE_AUTHORITY_ACTIVE",
+      "VERIFY_REGISTRY_INTEGRITY",
+      "VERIFY_GOVERNANCE_RELAY_ACTIVE",
+      "VERIFY_MUTATION_MODE",
+      "VERIFY_AUTHORIZED_EXECUTION_SCOPE",
+      "VERIFY_EXECUTION_FINGERPRINT",
+      "VERIFY_GOVERNANCE_TOKEN",
+      "VERIFY_AUTHORITY_CHECKSUM"
+    ],
+    "on_validation_failure": [
+      "BLOCK_EXECUTION",
+      "WRITE_GOVERNANCE_VIOLATION_TO_LEDGER",
+      "PRESERVE_RUNTIME_STATE",
+      "DO_NOT_MUTATE_PRODUCTION",
+      "ALERT_GOVERNANCE_RELAY"
+    ],
+    "on_validation_success": [
+      "ISSUE_EXECUTION_TOKEN",
+      "LOG_AUTHORIZED_EXECUTION",
+      "PROCEED_WITH_GOVERNANCE_SCOPE"
+    ],
+    "fingerprint_algorithm": "SHA-256",
+    "token_ttl_seconds": 300,
+    "max_retry_attempts": 0,
+    "strict_mode": true
+  },
+
+  "signed_governance_metadata": {
+    "issuer": "PRAE-AUTHORITY-ENGINE",
+    "governance_version": "2.0.0",
+    "enforcement_phase": "AUTHORITATIVE_EXECUTION_ENFORCEMENT",
+    "previous_phases_confirmed": [
+      "SHARED_MEMORY_BRIDGE",
+      "GOVERNANCE_LEDGER",
+      "RUNTIME_DRIFT_WATCHER",
+      "DISTRIBUTED_GOVERNANCE_RELAY",
+      "RUNTIME_REGISTRY",
+      "DEPLOYMENT_AUTHORITY_CENTRALIZATION",
+      "RUNTIME_OBSERVABILITY",
+      "MUTATION_LOCK_GOVERNANCE"
+    ],
+    "current_phase": "AUTHORITATIVE_EXECUTION_ENFORCEMENT",
+    "phase_status": "ACTIVE"
+  },
+
+  "timestamp_ledger": {
+    "authority_manifest_created": "{{TIMESTAMP_ISO8601}}",
+    "last_validated": "{{TIMESTAMP_ISO8601}}",
+    "next_validation_due": "{{TIMESTAMP_ISO8601_PLUS_1H}}",
+    "governance_epoch": 1,
+    "ledger_sequence": 1
+  }
+}

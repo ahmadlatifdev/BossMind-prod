@@ -1,0 +1,57 @@
+﻿{
+    "schema":  "bossmind-prae-checksum-report/v1",
+    "timestamp_utc":  "2026-05-24T01:45:32.8912189Z",
+    "event":  "PRAE_LIVE_CHECKSUM_VALIDATION",
+    "authority":  "PRAE_ONLY",
+    "governance_mode":  "LOCKED",
+    "deployment_mode":  "STAGED",
+    "production_mutation":  "NONE",
+    "auto_repair":  "DISABLED",
+    "secret_values_exposed":  false,
+    "hash_method":  "System.Security.Cryptography.SHA256",
+    "checksum_count":  7,
+    "checksums":  [
+                      {
+                          "file":  "D:\\BossMind\\bossmind-resumora\\lib\\client\\webhook-activation.js",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  "1d30c7d622ea31e1b5ee56d4f93d6aeaa23c8fea7d9186a7e73886c00e4f4f90"
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-resumora\\pages\\api\\webhooks\\stripe.js",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  "0c23cf976f910558747d0e469f8e581c5ea758ba724ff65ff95fec6e907125df"
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-resumora\\pages\\api\\stripe\\webhook-health.js",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  "687f7e47de1174e1d32ddc565256a4d105e0979aee723debafad05756d164ee5"
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-shared\\prae\\runtime-ledger\\prae-runtime-ledger.json",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  "e91d6e35ab5d25ac2d2c94726c870f44a760f40597c7c94f18842a457935ef81"
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-registry.json",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  "d909e8171a17409210e106739705e539cc6ce8420329f4d653b2d710bc606b71"
+                      },
+                      {
+                          "file":  "D:\\BossMind\\13-shared-memory\\locked-interfaces.json",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  "f0de4929aa720dbcc559447ffe31fd663c269c6bf16f41fcc50b2134884fac50"
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-report-MISSING-TEST.json",
+                          "exists":  false,
+                          "algorithm":  "SHA256",
+                          "checksum":  "FILE_NOT_FOUND"
+                      }
+                  ]
+}

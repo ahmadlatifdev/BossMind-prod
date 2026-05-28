@@ -1,0 +1,74 @@
+{
+  "schema": "bossmind-autonomous-execution-config/v1",
+  "version": 1,
+  "hubRoot": "D:/BossMind",
+  "backupRoot": "D:/BossMind/08-backups",
+  "sharedMemoryRoot": "D:/BossMind/13-shared-memory",
+  "automationRoot": "D:/BossMind/bossmind-shared/automation",
+  "lockedInterfacesPath": "D:/BossMind/13-shared-memory/locked-interfaces.json",
+  "errorMemoryPaths": [
+    "D:/BossMind/bossmind-shared/logs/error-memory-log.jsonl",
+    "D:/Shakhsy11/BossMind/core/memory/logs/error-memory-log.jsonl"
+  ],
+  "taskStatePaths": [
+    "D:/BossMind/bossmind-shared/logs/task-state-log.jsonl",
+    "D:/Shakhsy11/BossMind/core/memory/logs/task-state-log.jsonl"
+  ],
+  "coreRule": "NO_DIRECT_EXECUTION",
+  "mandatoryPhases": [
+    "classification",
+    "impact_analysis",
+    "snapshot_protection",
+    "tool_routing",
+    "execution_engine",
+    "validation_gates",
+    "self_healing",
+    "design_lock",
+    "autonomy_score",
+    "human_gate"
+  ],
+  "executionSequence": [
+    "dry_run",
+    "syntax_validation",
+    "dependency_validation",
+    "isolated_execution",
+    "local_validation",
+    "staging_validation",
+    "deployment_validation",
+    "production_rollout",
+    "health_check_verification",
+    "regression_scan",
+    "autonomy_verification",
+    "report_generation"
+  ],
+  "classificationCategories": [
+    "UI/Frontend",
+    "Backend/API",
+    "Stripe/Billing",
+    "Automation",
+    "Infrastructure",
+    "Deployment",
+    "Database",
+    "Security",
+    "SEO/Marketing",
+    "AI Logic",
+    "Repair/Fix",
+    "Monitoring",
+    "Performance",
+    "Refactor",
+    "Emergency Recovery"
+  ],
+  "toolRouting": {
+    "Claude": ["orchestration", "architecture", "long_context", "report_generation"],
+    "Cursor": ["repo_editing", "multi_file_refactor", "implementation"],
+    "PowerShell": ["validation", "filesystem", "automation_runners", "health_checks", "deployment_validation"],
+    "GitHub Actions": ["ci_cd", "build_validation", "rollback_validation"],
+    "Railway": ["backend_runtime"],
+    "Render": ["frontend_runtime"],
+    "DeepSeek": ["code_optimization", "refactor_analysis", "automation_refinement"],
+    "ChatGPT": ["strategic_coordination", "debugging_guidance", "architecture_review"]
+  },
+  "autonomyTargetPercent": 95,
+  "highRiskThreshold": 70,
+  "designLockProjects": ["resumora"]
+}

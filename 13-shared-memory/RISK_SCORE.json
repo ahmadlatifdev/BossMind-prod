@@ -1,0 +1,25 @@
+{
+  "schema": "bossmind-risk-score/v1",
+  "timestamp": "2026-05-24T00:18:32.623Z",
+  "score": 100,
+  "level": "high",
+  "factors": [
+    {
+      "factor": "design_lock",
+      "weight": 20
+    },
+    {
+      "factor": "stripe_billing",
+      "weight": 25
+    },
+    {
+      "factor": "deployment",
+      "weight": 30
+    }
+  ],
+  "scannedFilesTotal": 1639,
+  "rollbackRequired": true,
+  "snapshotRequired": true,
+  "designLockRequired": true,
+  "humanApprovalRequired": true
+}

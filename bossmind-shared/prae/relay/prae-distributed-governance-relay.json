@@ -1,0 +1,18 @@
+﻿{
+    "mutation_control":  "LOCKED",
+    "authority":  "PRAE",
+    "timestamp_utc":  "2026-05-24T02:16:20.6012614Z",
+    "deployment_authority":  "CENTRALIZED",
+    "repair_execution":  "DISABLED",
+    "drift_propagation":  "ACTIVE",
+    "targets":  [
+                    "bossmind-resumora",
+                    "bossmind-elegancyart",
+                    "bossmind-ai-video-generator",
+                    "bossmind-global-stock",
+                    "bossmind-master-admin"
+                ],
+    "relay_mode":  "DISTRIBUTED",
+    "observability":  "LIVE",
+    "governance_fabric":  "GLOBAL"
+}

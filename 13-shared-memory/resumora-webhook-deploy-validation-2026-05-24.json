@@ -1,0 +1,56 @@
+{
+  "schema": "bossmind-webhook-deploy-validation/v1",
+  "timestamp": "2026-05-24T00:42:00.000Z",
+  "commitHash": "a9b934b274bfb8bfcd1a42f7d58b84465985cea4",
+  "previousCommit": "f9eb74d7ae4a42f4752fc782eab837debcd2b28d",
+  "renderDeployment": {
+    "status": "ACTIVE",
+    "gitCommitLive": "a9b934b274bfb8bfcd1a42f7d58b84465985cea4",
+    "deployDetectedAfterPolls": 4,
+    "uptimeAtDetectionSeconds": 41
+  },
+  "productionHealth": {
+    "status": "ACTIVE",
+    "ok": true,
+    "commerceReady": true,
+    "checkoutReady": true,
+    "databaseOk": true,
+    "allPlansConfigured": true
+  },
+  "stripeWebhook": {
+    "status": "ACTIVE",
+    "webhookReady": true,
+    "webhookSecretPresent": true,
+    "stripeHealthEndpointOk": true,
+    "checkoutReadyOnStripeHealthEndpoint": false,
+    "checkoutReadyConsistencyNote": "Main /api/health reports checkoutReady true; /api/runtime/stripe-health reports false — pre-existing endpoint inconsistency, not introduced by this deploy"
+  },
+  "entitlementActivation": {
+    "status": "ACTIVE",
+    "webhookModule": "lib/client/webhook-activation.js",
+    "webhookHandler": "pages/api/webhooks/stripe.js",
+    "clientFallback": "/api/client/checkout-complete",
+    "activationEngine": "lib/client/activation-engine.js",
+    "deployedOnProduction": true
+  },
+  "studioUnlockPath": {
+    "status": "ACTIVE",
+    "studioRoute": "/studio",
+    "essentialAdvancedRoute": "/studio/essential-advanced",
+    "checkoutBootstrap": "/api/client/checkout-bootstrap"
+  },
+  "uiRegression": {
+    "status": "ACTIVE",
+    "livePricingMarker": true,
+    "livePricingGrid": true,
+    "homeIntakePresent": true,
+    "forbiddenPatternsAbsent": true,
+    "uiFilesModifiedInDeploy": false
+  },
+  "postDeployGate": {
+    "status": "PARTIAL",
+    "buildPassed": true,
+    "lockedProductionVerifyFailedReason": "local LUXURY_SLICE_MISMATCH — not run restore/seal per deploy rules; live production UI markers verified OK"
+  },
+  "backupPath": "D:/BossMind/08-backups/pre-deploy-webhook-2026-05-23T203413"
+}

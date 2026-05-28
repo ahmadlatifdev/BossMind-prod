@@ -1,12 +1,7 @@
 ﻿{
-    "timestamp":  "2026-05-22T07:45:34",
+    "action":  "AUTO_HEAL_WITH_RETRY",
     "project":  "resumora",
-    "reason":  "System healthy",
-    "action":  "NONE",
-    "validation":  {
-                       "memory":  "VALID",
-                       "performance":  "OK",
-                       "errors":  "NONE",
-                       "deployment":  "LIVE"
-                   }
+    "timestamp":  "2026-05-28T15:16:28",
+    "reason":  "Degradation detected; retry engine triggered",
+    "validation":  null
 }

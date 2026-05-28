@@ -1,0 +1,36 @@
+{
+  "schema": "bossmind-prae-governance-inheritance/v1",
+  "version": 1,
+  "authority": "PRAE_ONLY",
+  "inheritance_mode": "LOCKED",
+  "required_env_keys": {
+    "PRAE_GOVERNANCE_MODE": "LOCKED",
+    "PRAE_DEPLOYMENT_MODE": "STAGED",
+    "PRAE_UI_LOCK": "ENABLED",
+    "PRAE_PRODUCTION_MUTATION": "BLOCKED",
+    "PRAE_AUTO_REPAIR": "DISABLED",
+    "PRAE_AUTHORITY": "PRAE_ONLY",
+    "PRAE_RESTORE_SEAL": "DISABLED",
+    "PRAE_AUTONOMOUS_MUTATION": "RESTRICTED"
+  },
+  "projects": [
+    { "project_id": "resumora", "root": "D:/BossMind/bossmind-resumora" },
+    { "project_id": "elegancyart", "root": "D:/BossMind/bossmind-elegancyart" },
+    { "project_id": "ai-video-generator", "root": "D:/BossMind/bossmind-ai-video-generator" },
+    { "project_id": "tiktok-ai", "root": "D:/BossMind/bossmind-tiktok-ai" },
+    { "project_id": "global-stock", "root": "D:/BossMind/bossmind-global-stock" },
+    { "project_id": "bossmind-shared", "root": "D:/BossMind/bossmind-shared" },
+    { "project_id": "master-admin", "root": "D:/BossMind/bossmind-master-admin" }
+  ],
+  "blocked_actions": [
+    "force_deploy",
+    "baseline_reset",
+    "baseline_restore",
+    "baseline_seal",
+    "unsafe_repair_loop",
+    "direct_production_mutation",
+    "unauthorized_orchestration_override",
+    "automatic_ui_overwrite",
+    "auto_repair"
+  ]
+}

@@ -1,0 +1,134 @@
+﻿[
+    {
+        "project":  "bossmind-resumora",
+        "governance_mode":  "LOCKED",
+        "validated_at":  "2026-05-24T15:58:11.1479503+00:00",
+        "caller":  "DESKTOP-57NGLMT\\user",
+        "overall":  "DEPLOYMENT_BLOCKED",
+        "passed_count":  6,
+        "blocked_count":  2,
+        "warning_count":  1,
+        "domains":  [
+                        {
+                            "domain":  "GitState",
+                            "pass":  true,
+                            "detail":  "Clean on branch \u0027main\u0027 @ beec677",
+                            "severity":  "OK"
+                        },
+                        {
+                            "domain":  "RequiredFiles",
+                            "pass":  true,
+                            "detail":  "All required files present",
+                            "severity":  "OK"
+                        },
+                        {
+                            "domain":  "EnvCompleteness",
+                            "pass":  true,
+                            "detail":  "Env file valid (88 keys in .env)",
+                            "severity":  "OK"
+                        },
+                        {
+                            "domain":  "DependencyIntegrity",
+                            "pass":  false,
+                            "detail":  "package-lock.json is not valid JSON: Cannot process argument because the value of argument \"name\" is not valid. Change the value of the \"name\" argument and run the operation again.",
+                            "severity":  "BLOCKED"
+                        },
+                        {
+                            "domain":  "BuildConfig",
+                            "pass":  true,
+                            "detail":  "next.config.ts present and valid (3088 bytes)",
+                            "severity":  "OK"
+                        },
+                        {
+                            "domain":  "RailwayConfig",
+                            "pass":  true,
+                            "detail":  "railway.json present and valid (133 bytes)",
+                            "severity":  "OK"
+                        },
+                        {
+                            "domain":  "RollbackCheckpoint",
+                            "pass":  false,
+                            "detail":  "No rollback checkpoint found at D:\\BossMind\\bossmind-shared\\shared-memory\\resumora-rollback-checkpoint.json - run A1 watcher -Snapshot first",
+                            "severity":  "WARN"
+                        },
+                        {
+                            "domain":  "WatcherDrift",
+                            "pass":  true,
+                            "detail":  "No checksum registry yet (run A1 watcher first)",
+                            "severity":  "WARN"
+                        },
+                        {
+                            "domain":  "PRAEGate",
+                            "pass":  false,
+                            "detail":  "Gate BLOCKED: GOVERNANCE_RELAY_OFFLINE",
+                            "severity":  "BLOCKED"
+                        }
+                    ]
+    },
+    {
+        "project":  "bossmind-resumora",
+        "governance_mode":  "LOCKED",
+        "validated_at":  "2026-05-24T16:03:00.1170043+00:00",
+        "caller":  "DESKTOP-57NGLMT\\user",
+        "overall":  "DEPLOYMENT_BLOCKED",
+        "passed_count":  5,
+        "blocked_count":  3,
+        "warning_count":  1,
+        "domains":  [
+                        {
+                            "domain":  "GitState",
+                            "pass":  false,
+                            "detail":  "1 uncommitted change(s):  M package-lock.json",
+                            "severity":  "BLOCKED"
+                        },
+                        {
+                            "domain":  "RequiredFiles",
+                            "pass":  true,
+                            "detail":  "All required files present",
+                            "severity":  "OK"
+                        },
+                        {
+                            "domain":  "EnvCompleteness",
+                            "pass":  true,
+                            "detail":  "Env file valid (88 keys in .env)",
+                            "severity":  "OK"
+                        },
+                        {
+                            "domain":  "DependencyIntegrity",
+                            "pass":  false,
+                            "detail":  "package-lock.json is not valid JSON: Cannot process argument because the value of argument \"name\" is not valid. Change the value of the \"name\" argument and run the operation again.",
+                            "severity":  "BLOCKED"
+                        },
+                        {
+                            "domain":  "BuildConfig",
+                            "pass":  true,
+                            "detail":  "next.config.ts present and valid (3088 bytes)",
+                            "severity":  "OK"
+                        },
+                        {
+                            "domain":  "RailwayConfig",
+                            "pass":  true,
+                            "detail":  "railway.json present and valid (133 bytes)",
+                            "severity":  "OK"
+                        },
+                        {
+                            "domain":  "RollbackCheckpoint",
+                            "pass":  false,
+                            "detail":  "No rollback checkpoint found at D:\\BossMind\\bossmind-shared\\shared-memory\\resumora-rollback-checkpoint.json - run A1 watcher -Snapshot first",
+                            "severity":  "WARN"
+                        },
+                        {
+                            "domain":  "WatcherDrift",
+                            "pass":  true,
+                            "detail":  "No HIGH-RISK drift | registry updated 2.1m ago | 0 files tracked",
+                            "severity":  "OK"
+                        },
+                        {
+                            "domain":  "PRAEGate",
+                            "pass":  false,
+                            "detail":  "Gate BLOCKED: GOVERNANCE_RELAY_OFFLINE",
+                            "severity":  "BLOCKED"
+                        }
+                    ]
+    }
+]

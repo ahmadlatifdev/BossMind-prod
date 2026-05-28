@@ -1,0 +1,12 @@
+{
+  "schema": "bossmind-prae-deployment-proof/v1",
+  "timestamp_utc": "2026-05-24T01:24:15.938Z",
+  "checksum": "80129576f1a8e84ce5d2970b7eef3ba91371d920a387d350081b51fa730e37b3",
+  "secret_values_exposed": false,
+  "project_id": "resumora",
+  "git_commit": "f3138591e90f40669fd8cf172f56bdc666c66548",
+  "health_ok": true,
+  "webhook_ready": true,
+  "ui_modified": false,
+  "source": "prae-bridge-cycle"
+}

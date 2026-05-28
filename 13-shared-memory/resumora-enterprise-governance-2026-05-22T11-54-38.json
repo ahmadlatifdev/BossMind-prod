@@ -1,0 +1,950 @@
+{
+  "schema": "bossmind-enterprise-governance-cycle-v1",
+  "startedAt": "2026-05-22T11:54:34.615Z",
+  "origin": "https://www.resumora.net",
+  "phases": [
+    {
+      "phase": "production_governance",
+      "percent": 100,
+      "checks": [
+        {
+          "id": "local_git_clean",
+          "pass": true
+        },
+        {
+          "id": "fingerprint_paths",
+          "pass": true,
+          "missing": []
+        },
+        {
+          "id": "sw_version_locked",
+          "pass": true
+        },
+        {
+          "id": "no_deployment_drift",
+          "pass": true
+        },
+        {
+          "id": "live_health_reachable",
+          "pass": true
+        },
+        {
+          "id": "route_integrity",
+          "pass": true
+        },
+        {
+          "id": "ui_snapshot_verify",
+          "pass": true
+        }
+      ],
+      "blockDeploy": false,
+      "driftDetected": false,
+      "fingerprint": {
+        "workspaceHash": "ab0f2fa133340055c1f957bbca8334f85af926845fedd6f53bbaec5e1632bf21",
+        "missing": [],
+        "swVersion": "20260521-journey-v3",
+        "gitHead": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+        "at": "2026-05-22T11:54:34.896Z"
+      },
+      "liveAlign": {
+        "localGitHead": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+        "probes": [
+          {
+            "origin": "https://www.resumora.net",
+            "ok": true,
+            "gitCommit": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+            "checkoutReady": false,
+            "databaseOk": true,
+            "commerceReady": false
+          }
+        ],
+        "driftDetected": false,
+        "driftSites": [],
+        "ok": true
+      },
+      "routeOwnership": {
+        "percent": 100,
+        "checks": [
+          {
+            "id": "home_bootstrap_exists",
+            "pass": true
+          },
+          {
+            "id": "home_component_exists",
+            "pass": true
+          },
+          {
+            "id": "home_no_trust_mount",
+            "pass": true
+          },
+          {
+            "id": "pricing_marker_locked",
+            "pass": true
+          },
+          {
+            "id": "forbidden_active_components/marketing/sections/TrustMetricsPanel.jsx",
+            "pass": true
+          }
+        ],
+        "violations": [],
+        "blockDeploy": false
+      },
+      "deployVerify": {
+        "percent": 82.4,
+        "checks": [
+          {
+            "id": "route_/_ok",
+            "pass": true
+          },
+          {
+            "id": "route_/_no_forbidden",
+            "pass": true
+          },
+          {
+            "id": "route_/_markers",
+            "pass": true
+          },
+          {
+            "id": "route_/_four_tiers",
+            "pass": true
+          },
+          {
+            "id": "route_/_ea_far_right",
+            "pass": true
+          },
+          {
+            "id": "route_/pricing_ok",
+            "pass": true
+          },
+          {
+            "id": "route_/pricing_no_forbidden",
+            "pass": true
+          },
+          {
+            "id": "route_/pricing_markers",
+            "pass": false
+          },
+          {
+            "id": "route_/pricing_four_tiers",
+            "pass": true
+          },
+          {
+            "id": "route_/pricing_ea_far_right",
+            "pass": true
+          },
+          {
+            "id": "route_/login_ok",
+            "pass": true
+          },
+          {
+            "id": "route_/login_no_forbidden",
+            "pass": true
+          },
+          {
+            "id": "route_/login_markers",
+            "pass": false
+          },
+          {
+            "id": "route_/studio_ok",
+            "pass": true
+          },
+          {
+            "id": "route_/studio_no_forbidden",
+            "pass": true
+          },
+          {
+            "id": "route_/studio_markers",
+            "pass": false
+          },
+          {
+            "id": "api_health",
+            "pass": true
+          }
+        ],
+        "routeResults": {
+          "/": {
+            "status": 200,
+            "ok": true,
+            "forbiddenHits": [],
+            "requiredMissing": [],
+            "tierCount": 4,
+            "tierSequence": [
+              "basic",
+              "professional",
+              "elite",
+              "essential_advanced"
+            ],
+            "essentialAdvancedFarRight": true,
+            "error": null
+          },
+          "/pricing": {
+            "status": 200,
+            "ok": true,
+            "forbiddenHits": [],
+            "requiredMissing": [
+              "rs-hero-lux-wrap--centered"
+            ],
+            "tierCount": 4,
+            "tierSequence": [
+              "basic",
+              "professional",
+              "elite",
+              "essential_advanced"
+            ],
+            "essentialAdvancedFarRight": true,
+            "error": null
+          },
+          "/login": {
+            "status": 200,
+            "ok": true,
+            "forbiddenHits": [],
+            "requiredMissing": [
+              "id=\"top\"",
+              "id=\"home-intake\"",
+              "id=\"pricing\"",
+              "data-rs-pricing-ui=\"20260517-lux-v4\"",
+              "data-rs-pricing-order=\"basic,professional,elite,essential_advanced\"",
+              "data-tier=\"essential_advanced\"",
+              "rs-week-main",
+              "rs-btn-accent",
+              "rs-cta-strip",
+              "rs-pricing-grid"
+            ],
+            "tierCount": 0,
+            "tierSequence": [],
+            "essentialAdvancedFarRight": false,
+            "error": null
+          },
+          "/studio": {
+            "status": 200,
+            "ok": true,
+            "forbiddenHits": [],
+            "requiredMissing": [
+              "id=\"top\"",
+              "id=\"home-intake\"",
+              "id=\"pricing\"",
+              "data-rs-pricing-ui=\"20260517-lux-v4\"",
+              "data-rs-pricing-order=\"basic,professional,elite,essential_advanced\"",
+              "data-tier=\"essential_advanced\"",
+              "rs-week-main",
+              "rs-btn-accent",
+              "rs-cta-strip",
+              "rs-pricing-grid"
+            ],
+            "tierCount": 0,
+            "tierSequence": [],
+            "essentialAdvancedFarRight": false,
+            "error": null
+          }
+        },
+        "apiHealthOk": true,
+        "origin": "https://www.resumora.net",
+        "blockDeploy": false
+      },
+      "stableRelease": {
+        "schema": "bossmind-stable-release-v1",
+        "markedStable": false,
+        "gitCommit": null,
+        "gitBranch": "main",
+        "markedAt": null,
+        "origins": {},
+        "runtimeFingerprint": null,
+        "verification": {
+          "buildOk": false,
+          "journeyE2eOk": false,
+          "runtimeStabilityOk": false,
+          "checkoutReady": false
+        },
+        "notes": "Updated only when closed-loop deployment completes all required stages."
+      }
+    },
+    {
+      "phase": "runtime_immunity",
+      "percent": 92.3,
+      "checks": [
+        {
+          "id": "health_200",
+          "pass": true
+        },
+        {
+          "id": "database_ok",
+          "pass": true
+        },
+        {
+          "id": "checkout_ready",
+          "pass": false,
+          "optional": true
+        },
+        {
+          "id": "login_no_redirect_loop",
+          "pass": true
+        },
+        {
+          "id": "studio_no_redirect_loop",
+          "pass": true
+        },
+        {
+          "id": "studio_reachable",
+          "pass": true
+        },
+        {
+          "id": "pricing_200",
+          "pass": true
+        },
+        {
+          "id": "checkout_bootstrap_api",
+          "pass": true
+        },
+        {
+          "id": "sw_version_local",
+          "pass": true
+        },
+        {
+          "id": "redirect_loop_breaker",
+          "pass": true
+        },
+        {
+          "id": "sw_version_match",
+          "pass": true
+        },
+        {
+          "id": "no_deployment_drift",
+          "pass": true
+        },
+        {
+          "id": "governance_block_clear",
+          "pass": true
+        }
+      ],
+      "stability": {
+        "percent": 88.9,
+        "requiredPercent": 100,
+        "checks": [
+          {
+            "id": "health_200",
+            "pass": true
+          },
+          {
+            "id": "database_ok",
+            "pass": true
+          },
+          {
+            "id": "checkout_ready",
+            "pass": false,
+            "optional": true
+          },
+          {
+            "id": "login_no_redirect_loop",
+            "pass": true
+          },
+          {
+            "id": "studio_no_redirect_loop",
+            "pass": true
+          },
+          {
+            "id": "studio_reachable",
+            "pass": true
+          },
+          {
+            "id": "pricing_200",
+            "pass": true
+          },
+          {
+            "id": "checkout_bootstrap_api",
+            "pass": true
+          },
+          {
+            "id": "sw_version_local",
+            "pass": true
+          }
+        ],
+        "health": {
+          "gitCommit": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+          "checkoutReady": false,
+          "commerceReady": false
+        },
+        "redirectChains": {
+          "login": [
+            {
+              "url": "https://www.resumora.net/login?cachebust=1779450876697",
+              "status": 200
+            }
+          ],
+          "studio": [
+            {
+              "url": "https://www.resumora.net/studio?cachebust=1779450876740",
+              "status": 200
+            }
+          ],
+          "pricing": [
+            {
+              "url": "https://www.resumora.net/pricing?cachebust=1779450876792",
+              "status": 200
+            }
+          ]
+        },
+        "serviceWorker": {
+          "expected": "20260521-journey-v3",
+          "local": "20260521-journey-v3"
+        },
+        "blockDeploy": false,
+        "loopDetected": false
+      },
+      "fingerprint": {
+        "workspaceHash": "ab0f2fa133340055c1f957bbca8334f85af926845fedd6f53bbaec5e1632bf21",
+        "missing": [],
+        "swVersion": "20260521-journey-v3",
+        "gitHead": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+        "at": "2026-05-22T11:54:37.201Z"
+      },
+      "governance": {
+        "percent": 100,
+        "checks": [
+          {
+            "id": "local_git_clean",
+            "pass": true
+          },
+          {
+            "id": "fingerprint_paths",
+            "pass": true,
+            "missing": []
+          },
+          {
+            "id": "sw_version_locked",
+            "pass": true
+          },
+          {
+            "id": "no_deployment_drift",
+            "pass": true
+          },
+          {
+            "id": "live_health_reachable",
+            "pass": true
+          },
+          {
+            "id": "route_integrity",
+            "pass": true
+          },
+          {
+            "id": "ui_snapshot_verify",
+            "pass": true
+          }
+        ],
+        "blockDeploy": false,
+        "driftDetected": false,
+        "fingerprint": {
+          "workspaceHash": "ab0f2fa133340055c1f957bbca8334f85af926845fedd6f53bbaec5e1632bf21",
+          "missing": [],
+          "swVersion": "20260521-journey-v3",
+          "gitHead": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+          "at": "2026-05-22T11:54:37.488Z"
+        },
+        "liveAlign": {
+          "localGitHead": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+          "probes": [
+            {
+              "origin": "https://www.resumora.net",
+              "ok": true,
+              "gitCommit": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+              "checkoutReady": false,
+              "databaseOk": true,
+              "commerceReady": false
+            }
+          ],
+          "driftDetected": false,
+          "driftSites": [],
+          "ok": true
+        },
+        "routeOwnership": {
+          "percent": 100,
+          "checks": [
+            {
+              "id": "home_bootstrap_exists",
+              "pass": true
+            },
+            {
+              "id": "home_component_exists",
+              "pass": true
+            },
+            {
+              "id": "home_no_trust_mount",
+              "pass": true
+            },
+            {
+              "id": "pricing_marker_locked",
+              "pass": true
+            },
+            {
+              "id": "forbidden_active_components/marketing/sections/TrustMetricsPanel.jsx",
+              "pass": true
+            }
+          ],
+          "violations": [],
+          "blockDeploy": false
+        },
+        "deployVerify": {
+          "percent": 82.4,
+          "checks": [
+            {
+              "id": "route_/_ok",
+              "pass": true
+            },
+            {
+              "id": "route_/_no_forbidden",
+              "pass": true
+            },
+            {
+              "id": "route_/_markers",
+              "pass": true
+            },
+            {
+              "id": "route_/_four_tiers",
+              "pass": true
+            },
+            {
+              "id": "route_/_ea_far_right",
+              "pass": true
+            },
+            {
+              "id": "route_/pricing_ok",
+              "pass": true
+            },
+            {
+              "id": "route_/pricing_no_forbidden",
+              "pass": true
+            },
+            {
+              "id": "route_/pricing_markers",
+              "pass": false
+            },
+            {
+              "id": "route_/pricing_four_tiers",
+              "pass": true
+            },
+            {
+              "id": "route_/pricing_ea_far_right",
+              "pass": true
+            },
+            {
+              "id": "route_/login_ok",
+              "pass": true
+            },
+            {
+              "id": "route_/login_no_forbidden",
+              "pass": true
+            },
+            {
+              "id": "route_/login_markers",
+              "pass": false
+            },
+            {
+              "id": "route_/studio_ok",
+              "pass": true
+            },
+            {
+              "id": "route_/studio_no_forbidden",
+              "pass": true
+            },
+            {
+              "id": "route_/studio_markers",
+              "pass": false
+            },
+            {
+              "id": "api_health",
+              "pass": true
+            }
+          ],
+          "routeResults": {
+            "/": {
+              "status": 200,
+              "ok": true,
+              "forbiddenHits": [],
+              "requiredMissing": [],
+              "tierCount": 4,
+              "tierSequence": [
+                "basic",
+                "professional",
+                "elite",
+                "essential_advanced"
+              ],
+              "essentialAdvancedFarRight": true,
+              "error": null
+            },
+            "/pricing": {
+              "status": 200,
+              "ok": true,
+              "forbiddenHits": [],
+              "requiredMissing": [
+                "rs-hero-lux-wrap--centered"
+              ],
+              "tierCount": 4,
+              "tierSequence": [
+                "basic",
+                "professional",
+                "elite",
+                "essential_advanced"
+              ],
+              "essentialAdvancedFarRight": true,
+              "error": null
+            },
+            "/login": {
+              "status": 200,
+              "ok": true,
+              "forbiddenHits": [],
+              "requiredMissing": [
+                "id=\"top\"",
+                "id=\"home-intake\"",
+                "id=\"pricing\"",
+                "data-rs-pricing-ui=\"20260517-lux-v4\"",
+                "data-rs-pricing-order=\"basic,professional,elite,essential_advanced\"",
+                "data-tier=\"essential_advanced\"",
+                "rs-week-main",
+                "rs-btn-accent",
+                "rs-cta-strip",
+                "rs-pricing-grid"
+              ],
+              "tierCount": 0,
+              "tierSequence": [],
+              "essentialAdvancedFarRight": false,
+              "error": null
+            },
+            "/studio": {
+              "status": 200,
+              "ok": true,
+              "forbiddenHits": [],
+              "requiredMissing": [
+                "id=\"top\"",
+                "id=\"home-intake\"",
+                "id=\"pricing\"",
+                "data-rs-pricing-ui=\"20260517-lux-v4\"",
+                "data-rs-pricing-order=\"basic,professional,elite,essential_advanced\"",
+                "data-tier=\"essential_advanced\"",
+                "rs-week-main",
+                "rs-btn-accent",
+                "rs-cta-strip",
+                "rs-pricing-grid"
+              ],
+              "tierCount": 0,
+              "tierSequence": [],
+              "essentialAdvancedFarRight": false,
+              "error": null
+            }
+          },
+          "apiHealthOk": true,
+          "origin": "https://www.resumora.net",
+          "blockDeploy": false
+        },
+        "stableRelease": {
+          "schema": "bossmind-stable-release-v1",
+          "markedStable": false,
+          "gitCommit": null,
+          "gitBranch": "main",
+          "markedAt": null,
+          "origins": {},
+          "runtimeFingerprint": null,
+          "verification": {
+            "buildOk": false,
+            "journeyE2eOk": false,
+            "runtimeStabilityOk": false,
+            "checkoutReady": false
+          },
+          "notes": "Updated only when closed-loop deployment completes all required stages."
+        }
+      },
+      "immune": false,
+      "loopDetected": false,
+      "blockDeploy": false
+    }
+  ],
+  "ok": false,
+  "intelligence": {
+    "entries": [],
+    "repairReuseCount": 0
+  },
+  "governanceBundle": {
+    "productionLock": {
+      "schema": "bossmind-production-lock-v1",
+      "enabled": true,
+      "projectKey": "resumora",
+      "protectedBranch": "main",
+      "productionOrigins": [
+        "https://www.resumora.net",
+        "https://bossmind-resumora-web.onrender.com"
+      ],
+      "primaryOrigin": "https://www.resumora.net",
+      "renderService": "bossmind-resumora-web",
+      "rules": {
+        "blockUnverifiedDeploy": true,
+        "requireBuildPass": true,
+        "requireJourneyE2ePass": true,
+        "requireCheckoutReadyWarningOnly": true,
+        "preventSilentRollback": true,
+        "maxDeploymentDriftCommits": 0,
+        "verifyRouteIntegrity": true,
+        "verifyUiSnapshots": true,
+        "enforceProductionCommit": true
+      },
+      "immutableConfig": "config/bossmind-immutable-production-baseline.json",
+      "protectedSurface": "config/bossmind-protected-surface.json",
+      "lastHealthyRelease": null,
+      "updatedAt": null
+    },
+    "deploymentState": {
+      "schema": "bossmind-deployment-state-v1",
+      "lastDeployment": null,
+      "lastVerification": "2026-05-22T11:54:38.082Z",
+      "driftDetected": false,
+      "rollbackCount": 0,
+      "history": [],
+      "localGitHead": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+      "liveProbes": [
+        {
+          "origin": "https://www.resumora.net",
+          "ok": true,
+          "gitCommit": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+          "checkoutReady": false,
+          "databaseOk": true,
+          "commerceReady": false
+        }
+      ]
+    },
+    "checksumLedger": {
+      "schema": "bossmind-runtime-checksum-ledger-v1",
+      "entries": [
+        {
+          "at": "2026-05-22T11:54:36.490Z",
+          "gitCommit": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+          "fingerprint": {
+            "workspaceHash": "ab0f2fa133340055c1f957bbca8334f85af926845fedd6f53bbaec5e1632bf21",
+            "missing": [],
+            "swVersion": "20260521-journey-v3",
+            "gitHead": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+            "at": "2026-05-22T11:54:34.896Z"
+          },
+          "liveAlign": {
+            "localGitHead": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+            "probes": [
+              {
+                "origin": "https://www.resumora.net",
+                "ok": true,
+                "gitCommit": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+                "checkoutReady": false,
+                "databaseOk": true,
+                "commerceReady": false
+              }
+            ],
+            "driftDetected": false,
+            "driftSites": [],
+            "ok": true
+          },
+          "blockDeploy": false,
+          "checks": [
+            {
+              "id": "local_git_clean",
+              "pass": true
+            },
+            {
+              "id": "fingerprint_paths",
+              "pass": true,
+              "missing": []
+            },
+            {
+              "id": "sw_version_locked",
+              "pass": true
+            },
+            {
+              "id": "no_deployment_drift",
+              "pass": true
+            },
+            {
+              "id": "live_health_reachable",
+              "pass": true
+            },
+            {
+              "id": "route_integrity",
+              "pass": true
+            },
+            {
+              "id": "ui_snapshot_verify",
+              "pass": true
+            }
+          ]
+        },
+        {
+          "at": "2026-05-22T11:54:38.082Z",
+          "gitCommit": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+          "fingerprint": {
+            "workspaceHash": "ab0f2fa133340055c1f957bbca8334f85af926845fedd6f53bbaec5e1632bf21",
+            "missing": [],
+            "swVersion": "20260521-journey-v3",
+            "gitHead": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+            "at": "2026-05-22T11:54:37.488Z"
+          },
+          "liveAlign": {
+            "localGitHead": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+            "probes": [
+              {
+                "origin": "https://www.resumora.net",
+                "ok": true,
+                "gitCommit": "ab831b52a809f0df27990dc6d3e7ee4a019d3cc7",
+                "checkoutReady": false,
+                "databaseOk": true,
+                "commerceReady": false
+              }
+            ],
+            "driftDetected": false,
+            "driftSites": [],
+            "ok": true
+          },
+          "blockDeploy": false,
+          "checks": [
+            {
+              "id": "local_git_clean",
+              "pass": true
+            },
+            {
+              "id": "fingerprint_paths",
+              "pass": true,
+              "missing": []
+            },
+            {
+              "id": "sw_version_locked",
+              "pass": true
+            },
+            {
+              "id": "no_deployment_drift",
+              "pass": true
+            },
+            {
+              "id": "live_health_reachable",
+              "pass": true
+            },
+            {
+              "id": "route_integrity",
+              "pass": true
+            },
+            {
+              "id": "ui_snapshot_verify",
+              "pass": true
+            }
+          ]
+        }
+      ]
+    },
+    "integrity": {
+      "schema": "bossmind-orchestration-integrity-v1",
+      "closedLoopStages": [
+        {
+          "id": "commit_verify",
+          "required": true,
+          "failFast": true
+        },
+        {
+          "id": "build",
+          "required": true,
+          "failFast": true
+        },
+        {
+          "id": "antileak",
+          "required": true,
+          "failFast": true
+        },
+        {
+          "id": "local_validate",
+          "required": true,
+          "failFast": true
+        },
+        {
+          "id": "deploy_render",
+          "required": false,
+          "failFast": false
+        },
+        {
+          "id": "verify_runtime",
+          "required": true,
+          "failFast": true
+        },
+        {
+          "id": "verify_auth",
+          "required": true,
+          "failFast": true
+        },
+        {
+          "id": "verify_stripe",
+          "required": true,
+          "failFast": false
+        },
+        {
+          "id": "verify_studio",
+          "required": true,
+          "failFast": true
+        },
+        {
+          "id": "verify_apis",
+          "required": true,
+          "failFast": true
+        },
+        {
+          "id": "verify_session",
+          "required": true,
+          "failFast": true
+        },
+        {
+          "id": "save_proof",
+          "required": true,
+          "failFast": false
+        },
+        {
+          "id": "mark_stable",
+          "required": true,
+          "failFast": false
+        }
+      ],
+      "selfHealingTriggers": [
+        "deployment_drift",
+        "redirect_loop",
+        "checkout_not_ready",
+        "runtime_stability_fail",
+        "journey_e2e_fail",
+        "immutable_drift",
+        "stale_service_worker"
+      ],
+      "rollbackPolicy": {
+        "enabled": true,
+        "preserveLastHealthy": true,
+        "autoRedeployStable": false,
+        "maxRollbackAttempts": 1
+      },
+      "runtimeImmunity": {
+        "redirectLoopBreaker": true,
+        "sessionMaxAgeHours": 48,
+        "serviceWorkerVersion": "20260521-journey-v3",
+        "cacheBypassRoutes": [
+          "/login",
+          "/register",
+          "/studio",
+          "/pricing",
+          "/success",
+          "/dashboard"
+        ]
+      }
+    },
+    "stableRelease": {
+      "schema": "bossmind-stable-release-v1",
+      "markedStable": false,
+      "gitCommit": null,
+      "gitBranch": "main",
+      "markedAt": null,
+      "origins": {},
+      "runtimeFingerprint": null,
+      "verification": {
+        "buildOk": false,
+        "journeyE2eOk": false,
+        "runtimeStabilityOk": false,
+        "checkoutReady": false
+      },
+      "notes": "Updated only when closed-loop deployment completes all required stages."
+    }
+  },
+  "completedAt": "2026-05-22T11:54:38.108Z"
+}

@@ -1,0 +1,12 @@
+﻿services:
+  - type: web
+    name: bossmind-miki
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python miki_production.py
+    envVars:
+      - key: DEEPSEEK_API_KEY
+        value: sk-100fc369bcb843e5a6e9f90f338e3402
+      - key: SENTRY_DSN
+        value: https://87eb27529c7384f915bc2d91ebfafbs@o4512754909614080.ingest.us.sentry.io/451794933731328
+    plan: free

@@ -1,0 +1,438 @@
+{
+  "schema": "bossmind-prae-bridge-validation/v1",
+  "runId": "2026-05-24T01-24-14-028Z-56625d47",
+  "timestamp": "2026-05-24T01:24:15.966Z",
+  "coreRule": "NO_DIRECT_EXECUTION",
+  "praeAuthority": "PRAE_ONLY",
+  "governance": {
+    "ok": true,
+    "inherited": [
+      {
+        "project_scope": "all_registered",
+        "key": "PRAE_GOVERNANCE_MODE",
+        "expected": "LOCKED",
+        "actual": "LOCKED",
+        "inherited": true,
+        "status": "ACTIVE"
+      },
+      {
+        "project_scope": "all_registered",
+        "key": "PRAE_DEPLOYMENT_MODE",
+        "expected": "STAGED",
+        "actual": "STAGED",
+        "inherited": true,
+        "status": "ACTIVE"
+      },
+      {
+        "project_scope": "all_registered",
+        "key": "PRAE_UI_LOCK",
+        "expected": "ENABLED",
+        "actual": "ENABLED",
+        "inherited": true,
+        "status": "ACTIVE"
+      },
+      {
+        "project_scope": "all_registered",
+        "key": "PRAE_PRODUCTION_MUTATION",
+        "expected": "BLOCKED",
+        "actual": "BLOCKED",
+        "inherited": true,
+        "status": "ACTIVE"
+      },
+      {
+        "project_scope": "all_registered",
+        "key": "PRAE_AUTO_REPAIR",
+        "expected": "DISABLED",
+        "actual": "DISABLED",
+        "inherited": true,
+        "status": "ACTIVE"
+      },
+      {
+        "project_scope": "all_registered",
+        "key": "PRAE_AUTHORITY",
+        "expected": "PRAE_ONLY",
+        "actual": "PRAE_ONLY",
+        "inherited": true,
+        "status": "ACTIVE"
+      },
+      {
+        "project_scope": "all_registered",
+        "key": "PRAE_RESTORE_SEAL",
+        "expected": "DISABLED",
+        "actual": "DISABLED",
+        "inherited": true,
+        "status": "ACTIVE"
+      },
+      {
+        "project_scope": "all_registered",
+        "key": "PRAE_AUTONOMOUS_MUTATION",
+        "expected": "RESTRICTED",
+        "actual": "RESTRICTED",
+        "inherited": true,
+        "status": "ACTIVE"
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "projects": [
+    {
+      "project_id": "resumora",
+      "root": "D:/BossMind/bossmind-resumora",
+      "exists_on_disk": true,
+      "governance": {
+        "PRAE_GOVERNANCE_MODE": "LOCKED",
+        "PRAE_DEPLOYMENT_MODE": "STAGED",
+        "PRAE_UI_LOCK": "ENABLED",
+        "PRAE_PRODUCTION_MUTATION": "BLOCKED",
+        "PRAE_AUTO_REPAIR": "DISABLED",
+        "PRAE_AUTHORITY": "PRAE_ONLY",
+        "PRAE_RESTORE_SEAL": "DISABLED",
+        "PRAE_AUTONOMOUS_MUTATION": "RESTRICTED"
+      },
+      "inheritance_status": "ACTIVE"
+    },
+    {
+      "project_id": "elegancyart",
+      "root": "D:/BossMind/bossmind-elegancyart",
+      "exists_on_disk": true,
+      "governance": {
+        "PRAE_GOVERNANCE_MODE": "LOCKED",
+        "PRAE_DEPLOYMENT_MODE": "STAGED",
+        "PRAE_UI_LOCK": "ENABLED",
+        "PRAE_PRODUCTION_MUTATION": "BLOCKED",
+        "PRAE_AUTO_REPAIR": "DISABLED",
+        "PRAE_AUTHORITY": "PRAE_ONLY",
+        "PRAE_RESTORE_SEAL": "DISABLED",
+        "PRAE_AUTONOMOUS_MUTATION": "RESTRICTED"
+      },
+      "inheritance_status": "ACTIVE"
+    },
+    {
+      "project_id": "ai-video-generator",
+      "root": "D:/BossMind/bossmind-ai-video-generator",
+      "exists_on_disk": true,
+      "governance": {
+        "PRAE_GOVERNANCE_MODE": "LOCKED",
+        "PRAE_DEPLOYMENT_MODE": "STAGED",
+        "PRAE_UI_LOCK": "ENABLED",
+        "PRAE_PRODUCTION_MUTATION": "BLOCKED",
+        "PRAE_AUTO_REPAIR": "DISABLED",
+        "PRAE_AUTHORITY": "PRAE_ONLY",
+        "PRAE_RESTORE_SEAL": "DISABLED",
+        "PRAE_AUTONOMOUS_MUTATION": "RESTRICTED"
+      },
+      "inheritance_status": "ACTIVE"
+    },
+    {
+      "project_id": "tiktok-ai",
+      "root": "D:/BossMind/bossmind-tiktok-ai",
+      "exists_on_disk": true,
+      "governance": {
+        "PRAE_GOVERNANCE_MODE": "LOCKED",
+        "PRAE_DEPLOYMENT_MODE": "STAGED",
+        "PRAE_UI_LOCK": "ENABLED",
+        "PRAE_PRODUCTION_MUTATION": "BLOCKED",
+        "PRAE_AUTO_REPAIR": "DISABLED",
+        "PRAE_AUTHORITY": "PRAE_ONLY",
+        "PRAE_RESTORE_SEAL": "DISABLED",
+        "PRAE_AUTONOMOUS_MUTATION": "RESTRICTED"
+      },
+      "inheritance_status": "ACTIVE"
+    },
+    {
+      "project_id": "global-stock",
+      "root": "D:/BossMind/bossmind-global-stock",
+      "exists_on_disk": true,
+      "governance": {
+        "PRAE_GOVERNANCE_MODE": "LOCKED",
+        "PRAE_DEPLOYMENT_MODE": "STAGED",
+        "PRAE_UI_LOCK": "ENABLED",
+        "PRAE_PRODUCTION_MUTATION": "BLOCKED",
+        "PRAE_AUTO_REPAIR": "DISABLED",
+        "PRAE_AUTHORITY": "PRAE_ONLY",
+        "PRAE_RESTORE_SEAL": "DISABLED",
+        "PRAE_AUTONOMOUS_MUTATION": "RESTRICTED"
+      },
+      "inheritance_status": "ACTIVE"
+    },
+    {
+      "project_id": "bossmind-shared",
+      "root": "D:/BossMind/bossmind-shared",
+      "exists_on_disk": true,
+      "governance": {
+        "PRAE_GOVERNANCE_MODE": "LOCKED",
+        "PRAE_DEPLOYMENT_MODE": "STAGED",
+        "PRAE_UI_LOCK": "ENABLED",
+        "PRAE_PRODUCTION_MUTATION": "BLOCKED",
+        "PRAE_AUTO_REPAIR": "DISABLED",
+        "PRAE_AUTHORITY": "PRAE_ONLY",
+        "PRAE_RESTORE_SEAL": "DISABLED",
+        "PRAE_AUTONOMOUS_MUTATION": "RESTRICTED"
+      },
+      "inheritance_status": "ACTIVE"
+    },
+    {
+      "project_id": "master-admin",
+      "root": "D:/BossMind/bossmind-master-admin",
+      "exists_on_disk": true,
+      "governance": {
+        "PRAE_GOVERNANCE_MODE": "LOCKED",
+        "PRAE_DEPLOYMENT_MODE": "STAGED",
+        "PRAE_UI_LOCK": "ENABLED",
+        "PRAE_PRODUCTION_MUTATION": "BLOCKED",
+        "PRAE_AUTO_REPAIR": "DISABLED",
+        "PRAE_AUTHORITY": "PRAE_ONLY",
+        "PRAE_RESTORE_SEAL": "DISABLED",
+        "PRAE_AUTONOMOUS_MUTATION": "RESTRICTED"
+      },
+      "inheritance_status": "ACTIVE"
+    }
+  ],
+  "authority": {
+    "ok": true,
+    "results": [
+      {
+        "file": "authority/prae-runtime-validation.json",
+        "exists": true,
+        "status": "UNKNOWN",
+        "system": null
+      },
+      {
+        "file": "deployment-validation/prae-deployment-authority.json",
+        "exists": true,
+        "status": "UNKNOWN",
+        "system": null
+      },
+      {
+        "file": "drift-detection/prae-drift-authority.json",
+        "exists": true,
+        "status": "UNKNOWN",
+        "system": null
+      },
+      {
+        "file": "repair-simulation/prae-repair-authority.json",
+        "exists": true,
+        "status": "UNKNOWN",
+        "system": null
+      },
+      {
+        "file": "checksums/prae-checksum-registry.json",
+        "exists": true,
+        "status": "UNKNOWN",
+        "system": null
+      }
+    ],
+    "status": "ACTIVE"
+  },
+  "security": {
+    "ok": true,
+    "blockedActionsEnforced": [
+      "force_deploy",
+      "force-deployment",
+      "baseline_reset",
+      "baseline-reset",
+      "baseline_restore",
+      "baseline_seal",
+      "unsafe_repair_loop",
+      "direct_production_mutation",
+      "unauthorized_orchestration_override",
+      "automatic_ui_overwrite",
+      "auto_repair",
+      "auto-repair"
+    ],
+    "triggered": [],
+    "status": "ACTIVE"
+  },
+  "deployment": {
+    "ok": true,
+    "deployment_mode": "STAGED",
+    "deployment_authority": "PRAE_ONLY",
+    "blocked_actions": [],
+    "gates": [
+      {
+        "gate": "checksum_validation",
+        "status": "ACTIVE",
+        "directDeploymentAllowed": false
+      },
+      {
+        "gate": "runtime_validation",
+        "status": "ACTIVE",
+        "directDeploymentAllowed": false
+      },
+      {
+        "gate": "webhook_validation",
+        "status": "ACTIVE",
+        "directDeploymentAllowed": false
+      },
+      {
+        "gate": "ui_lock_validation",
+        "status": "ACTIVE",
+        "directDeploymentAllowed": false
+      },
+      {
+        "gate": "prae_governance_validation",
+        "status": "ACTIVE",
+        "directDeploymentAllowed": false
+      }
+    ],
+    "directDeploymentBlocked": true,
+    "status": "ACTIVE"
+  },
+  "drift": {
+    "detected": true,
+    "auto_repair": "DISABLED",
+    "targets": [],
+    "evidence": {
+      "type": "env_checkout_consistency",
+      "note": "Strict checkoutReady env keys missing on Render"
+    },
+    "propagation": {
+      "ok": true,
+      "alerts": [
+        {
+          "timestamp_utc": "2026-05-24T01:24:15.881Z",
+          "project_id": "resumora",
+          "alert_type": "PRAE_DRIFT_DETECTED",
+          "auto_repair": "DISABLED",
+          "production_mutation": "BLOCKED",
+          "ui_overwrite": "BLOCKED",
+          "drift": {
+            "type": "env_checkout_consistency",
+            "note": "Strict checkoutReady env keys missing on Render"
+          }
+        },
+        {
+          "timestamp_utc": "2026-05-24T01:24:15.888Z",
+          "project_id": "elegancyart",
+          "alert_type": "PRAE_DRIFT_DETECTED",
+          "auto_repair": "DISABLED",
+          "production_mutation": "BLOCKED",
+          "ui_overwrite": "BLOCKED",
+          "drift": {
+            "type": "env_checkout_consistency",
+            "note": "Strict checkoutReady env keys missing on Render"
+          }
+        },
+        {
+          "timestamp_utc": "2026-05-24T01:24:15.892Z",
+          "project_id": "ai-video-generator",
+          "alert_type": "PRAE_DRIFT_DETECTED",
+          "auto_repair": "DISABLED",
+          "production_mutation": "BLOCKED",
+          "ui_overwrite": "BLOCKED",
+          "drift": {
+            "type": "env_checkout_consistency",
+            "note": "Strict checkoutReady env keys missing on Render"
+          }
+        },
+        {
+          "timestamp_utc": "2026-05-24T01:24:15.900Z",
+          "project_id": "tiktok-ai",
+          "alert_type": "PRAE_DRIFT_DETECTED",
+          "auto_repair": "DISABLED",
+          "production_mutation": "BLOCKED",
+          "ui_overwrite": "BLOCKED",
+          "drift": {
+            "type": "env_checkout_consistency",
+            "note": "Strict checkoutReady env keys missing on Render"
+          }
+        },
+        {
+          "timestamp_utc": "2026-05-24T01:24:15.904Z",
+          "project_id": "global-stock",
+          "alert_type": "PRAE_DRIFT_DETECTED",
+          "auto_repair": "DISABLED",
+          "production_mutation": "BLOCKED",
+          "ui_overwrite": "BLOCKED",
+          "drift": {
+            "type": "env_checkout_consistency",
+            "note": "Strict checkoutReady env keys missing on Render"
+          }
+        },
+        {
+          "timestamp_utc": "2026-05-24T01:24:15.909Z",
+          "project_id": "bossmind-shared",
+          "alert_type": "PRAE_DRIFT_DETECTED",
+          "auto_repair": "DISABLED",
+          "production_mutation": "BLOCKED",
+          "ui_overwrite": "BLOCKED",
+          "drift": {
+            "type": "env_checkout_consistency",
+            "note": "Strict checkoutReady env keys missing on Render"
+          }
+        },
+        {
+          "timestamp_utc": "2026-05-24T01:24:15.915Z",
+          "project_id": "master-admin",
+          "alert_type": "PRAE_DRIFT_DETECTED",
+          "auto_repair": "DISABLED",
+          "production_mutation": "BLOCKED",
+          "ui_overwrite": "BLOCKED",
+          "drift": {
+            "type": "env_checkout_consistency",
+            "note": "Strict checkoutReady env keys missing on Render"
+          }
+        }
+      ],
+      "status": "ACTIVE",
+      "autoRepair": false
+    }
+  },
+  "productionProbes": [
+    {
+      "url": "https://www.resumora.net/api/health",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://www.resumora.net/api/stripe/webhook-health",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://www.resumora.net/api/runtime/database-health",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "systems": {
+    "sharedMemorySync": {
+      "status": "ACTIVE",
+      "ledger": "global-ledger/governance-events.jsonl"
+    },
+    "governanceInheritance": {
+      "status": "ACTIVE",
+      "projects": 7
+    },
+    "runtimeLedgerPropagation": {
+      "status": "ACTIVE"
+    },
+    "driftPropagation": {
+      "status": "ACTIVE"
+    },
+    "deploymentAuthority": {
+      "status": "ACTIVE"
+    },
+    "validationRunner": {
+      "status": "ACTIVE"
+    },
+    "unauthorizedMutation": {
+      "status": "ACTIVE",
+      "detected": []
+    },
+    "productionOverwrite": {
+      "status": "NONE",
+      "ui_lock": "ENABLED"
+    }
+  },
+  "overallStatus": "ACTIVE",
+  "blockedItems": [],
+  "nextRequiredAction": "Schedule prae-governance-runner.ps1 every 15 minutes",
+  "completion": {
+    "validated": true,
+    "deployed": false,
+    "production_mutated": false,
+    "ui_modified": false,
+    "auto_repair_executed": false
+  }
+}

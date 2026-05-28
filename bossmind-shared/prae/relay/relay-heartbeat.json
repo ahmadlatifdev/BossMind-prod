@@ -1,0 +1,8 @@
+﻿{
+    "relay_status":  "ACTIVE",
+    "last_heartbeat":  "2026-05-24T16:13:14.7726553+00:00",
+    "version":  "2.0.0",
+    "governance_mode":  "LOCKED",
+    "refreshed_by":  "PRAE-RelayRefresh",
+    "note":  "Update last_heartbeat every 600s or less to keep relay active"
+}

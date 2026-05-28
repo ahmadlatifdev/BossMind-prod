@@ -1,0 +1,767 @@
+{
+    "deployment_mode":  "STAGED",
+    "authority":  "PRAE",
+    "result":  "SUCCESS",
+    "mutation_policy":  "RESTRICTED",
+    "event":  "PRAE_GOVERNANCE_INITIALIZED",
+    "checksum_enforcement":  "ACTIVE",
+    "timestamp_utc":  "2026-05-24T00:57:26.2374390Z",
+    "governance_mode":  "LOCKED",
+    "deployment_authority":  "PRAE_ONLY",
+    "ui_lock":  "ENABLED"
+}
+{
+    "timestamp_utc":  "2026-05-24T01:03:03.4032718Z",
+    "result":  "SUCCESS",
+    "checked_files":  [
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\runtime-ledger\\prae-runtime-ledger.json",
+                              "exists":  true
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-registry.json",
+                              "exists":  true
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\deployment-validation\\prae-deployment-authority.json",
+                              "exists":  true
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\drift-detection\\prae-drift-authority.json",
+                              "exists":  true
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\repair-simulation\\prae-repair-authority.json",
+                              "exists":  true
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\authority\\prae-runtime-validation.json",
+                              "exists":  true
+                          }
+                      ],
+    "event":  "PRAE_VALIDATION_RUN"
+}
+{
+    "ui_mutation":  "NONE",
+    "result":  "FAILED_OR_PARTIAL",
+    "production_mutation":  "NONE",
+    "authority":  "PRAE",
+    "restore_seal":  "DISABLED",
+    "targets":  [
+                    {
+                        "name":  "resumora-production-health",
+                        "url":  "https://www.resumora.net/api/health",
+                        "status_code":  200,
+                        "success":  true
+                    },
+                    {
+                        "name":  "resumora-orchestration-health",
+                        "url":  "https://www.resumora.net/api/orchestration/bossmind-health",
+                        "status_code":  null,
+                        "success":  false,
+                        "error":  "The remote server returned an error: (401) Unauthorized."
+                    }
+                ],
+    "timestamp_utc":  "2026-05-24T01:06:30.3540160Z",
+    "event":  "PRAE_RUNTIME_HEALTH_VALIDATION"
+}
+{
+    "event":  "PRAE_SECURE_AUTH_SECRET_DISCOVERY",
+    "timestamp_utc":  "2026-05-24T01:09:08.4336026Z",
+    "result":  "SECRET_REFERENCE_NOT_FOUND",
+    "secret_value_exposed":  false,
+    "checked_files":  [
+                          {
+                              "file":  "D:\\BossMind\\bossmind-resumora\\.env.local",
+                              "exists":  true,
+                              "has_orchestration_secret":  false
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-resumora\\.env",
+                              "exists":  true,
+                              "has_orchestration_secret":  false
+                          },
+                          {
+                              "file":  "D:\\BossMind\\.env.master.local",
+                              "exists":  false,
+                              "has_orchestration_secret":  false
+                          }
+                      ],
+    "production_mutation":  "NONE"
+}
+{
+    "event":  "PRAE_RENDER_ENV_REFERENCE_CHECK",
+    "render_mutation":  "NONE",
+    "secret_values_exposed":  false,
+    "timestamp_utc":  "2026-05-24T01:11:10.1782846Z",
+    "result":  "LOCAL_REFERENCE_SCAN_COMPLETE",
+    "checked_files":  [
+                          {
+                              "file":  "D:\\BossMind\\bossmind-resumora\\.env.local",
+                              "exists":  true,
+                              "keys":  {
+                                           "RENDER_API_KEY":  false,
+                                           "BOSSMIND_ORCHESTRATION_SECRET":  false,
+                                           "STRIPE_WEBHOOK_SECRET":  false,
+                                           "RENDER_SERVICE_ID":  false
+                                       }
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-resumora\\.env",
+                              "exists":  true,
+                              "keys":  {
+                                           "RENDER_API_KEY":  false,
+                                           "BOSSMIND_ORCHESTRATION_SECRET":  false,
+                                           "STRIPE_WEBHOOK_SECRET":  false,
+                                           "RENDER_SERVICE_ID":  false
+                                       }
+                          },
+                          {
+                              "file":  "D:\\BossMind\\.env.master.local",
+                              "exists":  false,
+                              "keys":  {
+                                           "RENDER_API_KEY":  false,
+                                           "BOSSMIND_ORCHESTRATION_SECRET":  false,
+                                           "STRIPE_WEBHOOK_SECRET":  false,
+                                           "RENDER_SERVICE_ID":  false
+                                       }
+                          }
+                      ],
+    "production_mutation":  "NONE"
+}
+{
+    "event":  "PRAE_GOVERNANCE_LOADER_VALIDATION",
+    "governance_checks":  [
+                              {
+                                  "key":  "PRAE_DEPLOYMENT_MODE",
+                                  "expected":  "STAGED",
+                                  "actual":  "STAGED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_AUTO_REPAIR",
+                                  "expected":  "DISABLED",
+                                  "actual":  "DISABLED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_UI_LOCK",
+                                  "expected":  "ENABLED",
+                                  "actual":  "ENABLED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_GOVERNANCE_MODE",
+                                  "expected":  "LOCKED",
+                                  "actual":  "LOCKED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_RESTORE_SEAL",
+                                  "expected":  "DISABLED",
+                                  "actual":  "DISABLED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_PRODUCTION_MUTATION",
+                                  "expected":  "BLOCKED",
+                                  "actual":  "BLOCKED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_AUTHORITY",
+                                  "expected":  "PRAE_ONLY",
+                                  "actual":  "PRAE_ONLY",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_AUTONOMOUS_MUTATION",
+                                  "expected":  "RESTRICTED",
+                                  "actual":  "RESTRICTED",
+                                  "passed":  true
+                              }
+                          ],
+    "secret_values_exposed":  false,
+    "timestamp_utc":  "2026-05-24T01:15:15.5634509Z",
+    "result":  "SUCCESS",
+    "master_env_exists":  true,
+    "production_mutation":  "NONE"
+}
+{
+    "event":  "PRAE_GOVERNANCE_LOADER_VALIDATION",
+    "governance_checks":  [
+                              {
+                                  "key":  "PRAE_DEPLOYMENT_MODE",
+                                  "expected":  "STAGED",
+                                  "actual":  "STAGED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_AUTO_REPAIR",
+                                  "expected":  "DISABLED",
+                                  "actual":  "DISABLED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_UI_LOCK",
+                                  "expected":  "ENABLED",
+                                  "actual":  "ENABLED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_GOVERNANCE_MODE",
+                                  "expected":  "LOCKED",
+                                  "actual":  "LOCKED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_RESTORE_SEAL",
+                                  "expected":  "DISABLED",
+                                  "actual":  "DISABLED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_PRODUCTION_MUTATION",
+                                  "expected":  "BLOCKED",
+                                  "actual":  "BLOCKED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_AUTHORITY",
+                                  "expected":  "PRAE_ONLY",
+                                  "actual":  "PRAE_ONLY",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_AUTONOMOUS_MUTATION",
+                                  "expected":  "RESTRICTED",
+                                  "actual":  "RESTRICTED",
+                                  "passed":  true
+                              }
+                          ],
+    "secret_values_exposed":  false,
+    "timestamp_utc":  "2026-05-24T01:24:13.8085195Z",
+    "result":  "SUCCESS",
+    "master_env_exists":  true,
+    "production_mutation":  "NONE"
+}
+{"timestamp_utc":"2026-05-24T01:24:14.036Z","event":"PRAE_BRIDGE_CYCLE_START","bridge":true,"checksum":"6ba4c17db7eca44276da432ab86775a2c6551dd6577fed6f978a7e1faed6c889","result":"RUNNING"}
+{"timestamp_utc":"2026-05-24T01:24:15.920Z","event":"PRAE_DRIFT_PROPAGATED","bridge":true,"checksum":"eba680010aff60ba6bed3b78ec567a88748ea8cabbedf2b3ebe5f252fb64a0b9","result":"ALERT_ONLY"}
+{"timestamp_utc":"2026-05-24T01:24:15.942Z","event":"PRAE_DEPLOYMENT_PROOF_STORED","bridge":true,"checksum":"43119cdaaa6c8e6417a7c26129cce07d9bb0dd45694f2cc508001c3ef677502c","result":"SUCCESS"}
+{"timestamp_utc":"2026-05-24T01:24:15.977Z","event":"PRAE_BRIDGE_CYCLE_COMPLETE","bridge":true,"checksum":"cb346393f2df1c9c732a8cf9458ffc7e1fdd8d76788d2205415913d8a3372010","result":"ACTIVE"}
+{"timestamp_utc":"2026-05-24T01:24:16.308Z","event":"PRAE_BRIDGE_CYCLE_START","bridge":true,"checksum":"43aa16fd0bb5b30819f8ab20578d54c20b07e6c2fd418d660ca82b023c8789cc","result":"RUNNING"}
+{"timestamp_utc":"2026-05-24T01:24:16.840Z","event":"PRAE_DRIFT_PROPAGATED","bridge":true,"checksum":"2343dbe3f6b365340b1e44415e0bffebe1206e9d69a08ae0babca895e8e697c8","result":"ALERT_ONLY"}
+{"timestamp_utc":"2026-05-24T01:24:16.863Z","event":"PRAE_DEPLOYMENT_PROOF_STORED","bridge":true,"checksum":"2e72297b614d066e538b9b3e37f499574edeb006eb535bfe27b4e3a738ac6c2e","result":"SUCCESS"}
+{"timestamp_utc":"2026-05-24T01:24:16.904Z","event":"PRAE_BRIDGE_CYCLE_COMPLETE","bridge":true,"checksum":"fa39c730d4251dacff15c80e4ee2b6c8a141126d9c01e7c16dd47d06e094babf","result":"ACTIVE"}
+{
+    "event":  "PRAE_GOVERNANCE_LOADER_VALIDATION",
+    "governance_checks":  [
+                              {
+                                  "key":  "PRAE_DEPLOYMENT_MODE",
+                                  "expected":  "STAGED",
+                                  "actual":  "STAGED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_AUTO_REPAIR",
+                                  "expected":  "DISABLED",
+                                  "actual":  "DISABLED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_UI_LOCK",
+                                  "expected":  "ENABLED",
+                                  "actual":  "ENABLED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_GOVERNANCE_MODE",
+                                  "expected":  "LOCKED",
+                                  "actual":  "LOCKED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_RESTORE_SEAL",
+                                  "expected":  "DISABLED",
+                                  "actual":  "DISABLED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_PRODUCTION_MUTATION",
+                                  "expected":  "BLOCKED",
+                                  "actual":  "BLOCKED",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_AUTHORITY",
+                                  "expected":  "PRAE_ONLY",
+                                  "actual":  "PRAE_ONLY",
+                                  "passed":  true
+                              },
+                              {
+                                  "key":  "PRAE_AUTONOMOUS_MUTATION",
+                                  "expected":  "RESTRICTED",
+                                  "actual":  "RESTRICTED",
+                                  "passed":  true
+                              }
+                          ],
+    "secret_values_exposed":  false,
+    "timestamp_utc":  "2026-05-24T01:24:55.5830218Z",
+    "result":  "SUCCESS",
+    "master_env_exists":  true,
+    "production_mutation":  "NONE"
+}
+{
+    "timestamp_utc":  "2026-05-24T01:24:55.7117302Z",
+    "result":  "SUCCESS",
+    "checked_files":  [
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\runtime-ledger\\prae-runtime-ledger.json",
+                              "exists":  true
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-registry.json",
+                              "exists":  true
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\deployment-validation\\prae-deployment-authority.json",
+                              "exists":  true
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\drift-detection\\prae-drift-authority.json",
+                              "exists":  true
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\repair-simulation\\prae-repair-authority.json",
+                              "exists":  true
+                          },
+                          {
+                              "file":  "D:\\BossMind\\bossmind-shared\\prae\\authority\\prae-runtime-validation.json",
+                              "exists":  true
+                          }
+                      ],
+    "event":  "PRAE_VALIDATION_RUN"
+}
+{
+    "deployment_mode":  "STAGED",
+    "auto_repair":  "DISABLED",
+    "authority":  "PRAE_ONLY",
+    "production_mutation":  "BLOCKED",
+    "governance_mode":  "LOCKED",
+    "result":  "RUNNING",
+    "timestamp_utc":  "2026-05-24T01:28:41.6573678Z",
+    "event":  "PRAE_PERSISTENT_RUNNER_EXECUTION"
+}
+{
+    "event":  "PRAE_LIVE_CHECKSUM_VALIDATION",
+    "auto_repair":  "DISABLED",
+    "timestamp_utc":  "2026-05-24T01:33:18.0969038Z",
+    "checksums":  [
+                      {
+                          "file":  "D:\\BossMind\\bossmind-resumora\\.env.local",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  null
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-resumora\\.env",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  null
+                      },
+                      {
+                          "file":  "D:\\BossMind\\.env.master.local",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  null
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-shared\\prae\\runtime-ledger\\prae-runtime-ledger.json",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  null
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-registry.json",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  null
+                      }
+                  ],
+    "authority":  "PRAE",
+    "governance_mode":  "LOCKED",
+    "production_mutation":  "NONE"
+}
+{
+    "event":  "PRAE_LIVE_CHECKSUM_VALIDATION",
+    "auto_repair":  "DISABLED",
+    "timestamp_utc":  "2026-05-24T01:34:35.2573043Z",
+    "checksums":  [
+
+                  ],
+    "authority":  "PRAE",
+    "governance_mode":  "LOCKED",
+    "production_mutation":  "NONE"
+}
+{
+    "event":  "PRAE_LIVE_CHECKSUM_VALIDATION",
+    "auto_repair":  "DISABLED",
+    "timestamp_utc":  "2026-05-24T01:36:19.9193788Z",
+    "checksums":  [
+
+                  ],
+    "authority":  "PRAE",
+    "governance_mode":  "LOCKED",
+    "production_mutation":  "NONE"
+}
+{
+    "event":  "PRAE_LIVE_CHECKSUM_VALIDATION",
+    "auto_repair":  "DISABLED",
+    "timestamp_utc":  "2026-05-24T01:38:03.5011741Z",
+    "checksums":  [
+                      {
+                          "file":  "D:\\BossMind\\bossmind-resumora\\.env.local",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  null
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-resumora\\.env",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  null
+                      },
+                      {
+                          "file":  "D:\\BossMind\\.env.master.local",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  null
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-shared\\prae\\runtime-ledger\\prae-runtime-ledger.json",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  null
+                      },
+                      {
+                          "file":  "D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-registry.json",
+                          "exists":  true,
+                          "algorithm":  "SHA256",
+                          "checksum":  null
+                      }
+                  ],
+    "authority":  "PRAE",
+    "governance_mode":  "LOCKED",
+    "production_mutation":  "NONE"
+}
+{
+    "auto_repair":  "DISABLED",
+    "authority":  "PRAE",
+    "production_mutation":  "NONE",
+    "governance_mode":  "LOCKED",
+    "result":  "SUCCESS",
+    "timestamp_utc":  "2026-05-24T01:44:51.9649442Z",
+    "integrity_results":  [
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\runtime-ledger\\prae-runtime-ledger.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-registry.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\deployment-validation\\prae-deployment-authority.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\drift-detection\\prae-drift-authority.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\repair-simulation\\prae-repair-authority.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\authority\\prae-runtime-validation.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              }
+                          ],
+    "event":  "PRAE_INTEGRITY_MONITOR"
+}
+{"secret_values_exposed":false,"deployment_mode":"STAGED","checksums":[{"file":"D:\\BossMind\\bossmind-resumora\\lib\\client\\webhook-activation.js","exists":true,"algorithm":"SHA256","checksum":"1d30c7d622ea31e1b5ee56d4f93d6aeaa23c8fea7d9186a7e73886c00e4f4f90"},{"file":"D:\\BossMind\\bossmind-resumora\\pages\\api\\webhooks\\stripe.js","exists":true,"algorithm":"SHA256","checksum":"0c23cf976f910558747d0e469f8e581c5ea758ba724ff65ff95fec6e907125df"},{"file":"D:\\BossMind\\bossmind-resumora\\pages\\api\\stripe\\webhook-health.js","exists":true,"algorithm":"SHA256","checksum":"687f7e47de1174e1d32ddc565256a4d105e0979aee723debafad05756d164ee5"},{"file":"D:\\BossMind\\bossmind-shared\\prae\\runtime-ledger\\prae-runtime-ledger.json","exists":true,"algorithm":"SHA256","checksum":"e91d6e35ab5d25ac2d2c94726c870f44a760f40597c7c94f18842a457935ef81"},{"file":"D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-registry.json","exists":true,"algorithm":"SHA256","checksum":"d909e8171a17409210e106739705e539cc6ce8420329f4d653b2d710bc606b71"},{"file":"D:\\BossMind\\13-shared-memory\\locked-interfaces.json","exists":true,"algorithm":"SHA256","checksum":"f0de4929aa720dbcc559447ffe31fd663c269c6bf16f41fcc50b2134884fac50"},{"file":"D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-report-MISSING-TEST.json","exists":false,"algorithm":"SHA256","checksum":"FILE_NOT_FOUND"}],"auto_repair":"DISABLED","authority":"PRAE_ONLY","hash_method":"System.Security.Cryptography.SHA256","event":"PRAE_LIVE_CHECKSUM_VALIDATION","checksum_count":7,"timestamp_utc":"2026-05-24T01:45:32.8912189Z","governance_mode":"LOCKED","production_mutation":"NONE","result":"SUCCESS"}
+{
+    "auto_repair":  "DISABLED",
+    "authority":  "PRAE",
+    "production_mutation":  "NONE",
+    "governance_mode":  "LOCKED",
+    "result":  "SUCCESS",
+    "timestamp_utc":  "2026-05-24T01:47:27.2053679Z",
+    "integrity_results":  [
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\runtime-ledger\\prae-runtime-ledger.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-registry.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\deployment-validation\\prae-deployment-authority.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\drift-detection\\prae-drift-authority.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\repair-simulation\\prae-repair-authority.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\authority\\prae-runtime-validation.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              }
+                          ],
+    "event":  "PRAE_INTEGRITY_MONITOR"
+}
+{
+    "event":  "PRAE_CROSS_PROJECT_GOVERNANCE_PROPAGATION",
+    "auto_repair":  "DISABLED",
+    "timestamp_utc":  "2026-05-24T01:48:18.4048255Z",
+    "authority":  "PRAE",
+    "governance_mode":  "LOCKED",
+    "results":  [
+                    {
+                        "project":  "D:\\BossMind\\bossmind-resumora",
+                        "exists":  true,
+                        "governance_file":  "D:\\BossMind\\bossmind-resumora\\.prae-governance.local",
+                        "propagation":  "APPLIED"
+                    },
+                    {
+                        "project":  "D:\\BossMind\\elegancyart",
+                        "exists":  false,
+                        "governance_file":  "D:\\BossMind\\elegancyart\\.prae-governance.local",
+                        "propagation":  "SKIPPED_PROJECT_NOT_FOUND"
+                    },
+                    {
+                        "project":  "D:\\BossMind\\ai-video-generator",
+                        "exists":  false,
+                        "governance_file":  "D:\\BossMind\\ai-video-generator\\.prae-governance.local",
+                        "propagation":  "SKIPPED_PROJECT_NOT_FOUND"
+                    },
+                    {
+                        "project":  "D:\\BossMind\\tiktok-ai",
+                        "exists":  false,
+                        "governance_file":  "D:\\BossMind\\tiktok-ai\\.prae-governance.local",
+                        "propagation":  "SKIPPED_PROJECT_NOT_FOUND"
+                    },
+                    {
+                        "project":  "D:\\BossMind\\global-stock",
+                        "exists":  false,
+                        "governance_file":  "D:\\BossMind\\global-stock\\.prae-governance.local",
+                        "propagation":  "SKIPPED_PROJECT_NOT_FOUND"
+                    },
+                    {
+                        "project":  "D:\\BossMind\\bossmind-shared",
+                        "exists":  true,
+                        "governance_file":  "D:\\BossMind\\bossmind-shared\\.prae-governance.local",
+                        "propagation":  "APPLIED"
+                    },
+                    {
+                        "project":  "D:\\BossMind\\master-admin",
+                        "exists":  false,
+                        "governance_file":  "D:\\BossMind\\master-admin\\.prae-governance.local",
+                        "propagation":  "SKIPPED_PROJECT_NOT_FOUND"
+                    }
+                ],
+    "production_mutation":  "NONE"
+}
+{
+    "routes":  [
+                   {
+                       "name":  "resumora-production-health",
+                       "url":  "https://www.resumora.net/api/health",
+                       "expected_status":  200,
+                       "actual_status":  200,
+                       "passed":  true
+                   },
+                   {
+                       "name":  "resumora-orchestration-protected",
+                       "url":  "https://www.resumora.net/api/orchestration/bossmind-health",
+                       "expected_status":  401,
+                       "actual_status":  401,
+                       "passed":  true
+                   }
+               ],
+    "auto_repair":  "DISABLED",
+    "authority":  "PRAE",
+    "production_mutation":  "NONE",
+    "governance_mode":  "LOCKED",
+    "result":  "SUCCESS",
+    "timestamp_utc":  "2026-05-24T01:50:17.5083132Z",
+    "event":  "PRAE_RUNTIME_ROUTE_VALIDATION"
+}
+{
+    "routes":  [
+                   {
+                       "name":  "resumora-production-health",
+                       "url":  "https://www.resumora.net/api/health",
+                       "expected_status":  200,
+                       "actual_status":  200,
+                       "passed":  true
+                   },
+                   {
+                       "name":  "resumora-orchestration-protected",
+                       "url":  "https://www.resumora.net/api/orchestration/bossmind-health",
+                       "expected_status":  401,
+                       "actual_status":  401,
+                       "passed":  true
+                   }
+               ],
+    "auto_repair":  "DISABLED",
+    "authority":  "PRAE",
+    "production_mutation":  "NONE",
+    "governance_mode":  "LOCKED",
+    "result":  "SUCCESS",
+    "timestamp_utc":  "2026-05-24T01:52:30.3836614Z",
+    "event":  "PRAE_RUNTIME_ROUTE_VALIDATION"
+}
+{
+    "auto_repair":  "DISABLED",
+    "authority":  "PRAE",
+    "production_mutation":  "NONE",
+    "governance_mode":  "LOCKED",
+    "deployment_state":  "DEPLOYMENT_STABLE",
+    "timestamp_utc":  "2026-05-24T01:53:10.6543124Z",
+    "checks":  [
+                   {
+                       "type":  "runtime-route",
+                       "target":  "production-health",
+                       "expected":  200,
+                       "actual":  200,
+                       "passed":  true
+                   },
+                   {
+                       "type":  "runtime-route",
+                       "target":  "orchestration-protection",
+                       "expected":  401,
+                       "actual":  401,
+                       "passed":  true
+                   },
+                   {
+                       "type":  "governance-file",
+                       "target":  "D:\\BossMind\\bossmind-shared\\prae\\runtime-ledger\\prae-runtime-ledger.json",
+                       "expected":  "EXISTS",
+                       "actual":  "EXISTS",
+                       "passed":  true
+                   },
+                   {
+                       "type":  "governance-file",
+                       "target":  "D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-registry.json",
+                       "expected":  "EXISTS",
+                       "actual":  "EXISTS",
+                       "passed":  true
+                   },
+                   {
+                       "type":  "governance-file",
+                       "target":  "D:\\BossMind\\bossmind-shared\\prae\\deployment-validation\\prae-deployment-authority.json",
+                       "expected":  "EXISTS",
+                       "actual":  "EXISTS",
+                       "passed":  true
+                   },
+                   {
+                       "type":  "governance-file",
+                       "target":  "D:\\BossMind\\bossmind-shared\\prae\\authority\\prae-runtime-validation.json",
+                       "expected":  "EXISTS",
+                       "actual":  "EXISTS",
+                       "passed":  true
+                   }
+               ],
+    "event":  "PRAE_DEPLOYMENT_DRIFT_VALIDATION"
+}
+{
+    "auto_repair":  "DISABLED",
+    "authority":  "PRAE",
+    "production_mutation":  "NONE",
+    "governance_mode":  "LOCKED",
+    "result":  "SUCCESS",
+    "timestamp_utc":  "2026-05-24T02:02:28.4006819Z",
+    "integrity_results":  [
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\runtime-ledger\\prae-runtime-ledger.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\checksums\\prae-checksum-registry.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\deployment-validation\\prae-deployment-authority.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\drift-detection\\prae-drift-authority.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\repair-simulation\\prae-repair-authority.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              },
+                              {
+                                  "file":  "D:\\BossMind\\bossmind-shared\\prae\\authority\\prae-runtime-validation.json",
+                                  "exists":  true,
+                                  "integrity":  "VALID"
+                              }
+                          ],
+    "event":  "PRAE_INTEGRITY_MONITOR"
+}
+{
+    "routes":  [
+                   {
+                       "name":  "resumora-production-health",
+                       "url":  "https://www.resumora.net/api/health",
+                       "expected_status":  200,
+                       "actual_status":  200,
+                       "passed":  true
+                   },
+                   {
+                       "name":  "resumora-orchestration-protected",
+                       "url":  "https://www.resumora.net/api/orchestration/bossmind-health",
+                       "expected_status":  401,
+                       "actual_status":  401,
+                       "passed":  true
+                   }
+               ],
+    "auto_repair":  "DISABLED",
+    "authority":  "PRAE",
+    "production_mutation":  "NONE",
+    "governance_mode":  "LOCKED",
+    "result":  "SUCCESS",
+    "timestamp_utc":  "2026-05-24T02:07:30.8994384Z",
+    "event":  "PRAE_RUNTIME_ROUTE_VALIDATION"
+}
+{"timestamp_utc":"2026-05-24T02:14:19.2067117Z","authority":"PRAE","event":"PRAE_RUNTIME_WATCH_ACTIVE"}
+{"timestamp_utc":"2026-05-24T02:14:19.3681011Z","authority":"PRAE","event":"FILESYSTEM_CHANGED"}
+{"timestamp_utc":"2026-05-24T02:14:19.3819477Z","authority":"PRAE","event":"FILESYSTEM_CHANGED"}
+{"timestamp_utc":"2026-05-24T02:14:19.3951774Z","authority":"PRAE","event":"FILESYSTEM_CHANGED"}
+{"timestamp_utc":"2026-05-24T02:14:19.4071825Z","authority":"PRAE","event":"FILESYSTEM_CHANGED"}
+{"timestamp_utc":"2026-05-24T02:16:20.7228342Z","authority":"PRAE","event":"PRAE_DISTRIBUTED_GOVERNANCE_RELAY_ACTIVE","relay":"D:\\BossMind\\bossmind-shared\\prae\\relay\\prae-distributed-governance-relay.json"}
+{"timestamp_utc":"2026-05-24T02:17:13.4200895Z","authority":"PRAE","registry":"D:\\BossMind\\bossmind-shared\\prae\\registry\\prae-runtime-registry.json","event":"PRAE_RUNTIME_REGISTRY_ACTIVE"}

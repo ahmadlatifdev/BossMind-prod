@@ -1,0 +1,17 @@
+﻿{
+    "unauthorized_mutation":  "BLOCK",
+    "drift_response":  "ALERT_ONLY",
+    "enforcement_mode":  "LOCKED",
+    "created_utc":  "2026-05-24T00:55:29.2369255Z",
+    "protected_targets":  [
+                              "ui-layout",
+                              "stripe-runtime",
+                              "webhook-engine",
+                              "deployment-pipeline",
+                              "runtime-routes",
+                              "shared-memory",
+                              "error-memory"
+                          ],
+    "system":  "PRAE-CHECKSUM",
+    "status":  "ACTIVE"
+}

@@ -1,32 +1,5 @@
 ﻿{
-    "sites":  [
-                  {
-                      "registerOk":  true,
-                      "stripeStatus":  404,
-                      "origin":  "https://www.resumora.net",
-                      "healthy":  true,
-                      "registerStatus":  201,
-                      "gitCommit":  "826d083096f655a492b814e24c9ff329439da1d7",
-                      "loginStatus":  401,
-                      "databaseOk":  true,
-                      "bootstrapStatus":  200
-                  },
-                  {
-                      "registerOk":  true,
-                      "stripeStatus":  404,
-                      "origin":  "https://bossmind-resumora-web.onrender.com",
-                      "healthy":  true,
-                      "registerStatus":  201,
-                      "gitCommit":  "826d083096f655a492b814e24c9ff329439da1d7",
-                      "loginStatus":  401,
-                      "databaseOk":  true,
-                      "bootstrapStatus":  200
-                  }
-              ],
-    "deployDrift":  true,
-    "schema":  "bossmind-deploy-verify-live-v1",
-    "localGitHead":  "2d7f55b97bf5bc9be08821ee4383ac260adf6318",
-    "projectPath":  "D:/BossMind/bossmind-resumora",
-    "verifiedAt":  "2026-05-21T22:08:56.5378108Z",
-    "allHealthy":  true
+    "timestamp":  "2026-05-28T15:16:35",
+    "project":  "D:\\BossMind\\bossmind-global-stock",
+    "deploy_status":  "reachable_local"
 }

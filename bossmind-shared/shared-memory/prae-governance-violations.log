@@ -1,0 +1,54 @@
+﻿[2026-05-24T03:21:07.8737719+00:00] LEDGER_INIT | PRAE Governance Violation Ledger initialized | governance_version=2.0.0 | phase=AUTHORITATIVE_EXECUTION_ENFORCEMENT | governance_mode=LOCKED | auto_repair=DISABLED | production_mutation=NONE
+[2026-05-24T04:22:27.9699691+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:REGISTRY_CHECK | Registry parse failure: The property 'integrity_status' cannot be found on this object. Verify that the property exists. | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T04:22:28.0496924+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale ??? last beat 2026-05-24T03:21:07.8920708+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T04:22:28.0972069+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:REGISTRY_CHECK | Registry parse failure: The property 'integrity_status' cannot be found on this object. Verify that the property exists. | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T04:22:28.1000396+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:production:mutate | Runtime registry integrity check failed | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-24T04:22:28.1158276+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:REGISTRY_CHECK | Registry parse failure: The property 'integrity_status' cannot be found on this object. Verify that the property exists. | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T04:22:28.1395258+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:prae:governance:read | Runtime registry integrity check failed | FP:N/A | CALLER:PRAE-SELF-VALIDATION
+[2026-05-24T04:22:28.1491618+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test
+[2026-05-24T04:23:43.7583914+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:REGISTRY_CHECK | Registry parse failure: The property 'integrity_status' cannot be found on this object. Verify that the property exists. | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T04:23:43.8127640+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale ??? last beat 2026-05-24T03:21:07.8920708+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T04:23:43.8703421+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:REGISTRY_CHECK | Registry parse failure: The property 'integrity_status' cannot be found on this object. Verify that the property exists. | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T04:23:43.8795413+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:production:mutate | Runtime registry integrity check failed | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-24T04:23:43.9005426+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:REGISTRY_CHECK | Registry parse failure: The property 'integrity_status' cannot be found on this object. Verify that the property exists. | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T04:23:43.9160341+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:prae:governance:read | Runtime registry integrity check failed | FP:N/A | CALLER:PRAE-SELF-VALIDATION
+[2026-05-24T04:23:43.9258333+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test
+[2026-05-24T13:24:18.4325844+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:REGISTRY_CHECK | Registry parse failure: The property 'integrity_status' cannot be found on this object. Verify that the property exists. | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T13:24:18.4993713+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T03:21:07.8920708+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T13:24:18.5644657+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:REGISTRY_CHECK | Registry parse failure: The property 'integrity_status' cannot be found on this object. Verify that the property exists. | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T13:24:18.5644657+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:production:mutate | Runtime registry integrity check failed | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-24T13:24:18.5979847+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:REGISTRY_CHECK | Registry parse failure: The property 'integrity_status' cannot be found on this object. Verify that the property exists. | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T13:24:18.6148951+00:00] VIOLATION[REGISTRY_MISMATCH] | CTX:prae:governance:read | Runtime registry integrity check failed | FP:N/A | CALLER:PRAE-SELF-VALIDATION
+[2026-05-24T13:24:18.6209998+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test
+[2026-05-24T13:28:35.8891786+00:00] VIOLATION[UNAUTHORIZED_EXECUTION] | CTX:production:mutate | Scope 'production:mutate' not in allowlist and/or matches blocked list | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-24T13:28:35.9885926+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test
+[2026-05-24T13:36:44.0686058+00:00] VIOLATION[UNAUTHORIZED_EXECUTION] | CTX:production:mutate | Scope 'production:mutate' not in allowlist and/or matches blocked list | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-24T13:36:44.1683934+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test
+[2026-05-24T13:39:46.1327327+00:00] VIOLATION[UNAUTHORIZED_EXECUTION] | CTX:production:mutate | Scope 'production:mutate' not in allowlist and/or matches blocked list | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-24T13:39:46.2567925+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test
+[2026-05-24T13:42:19.2158059+00:00] VIOLATION[UNAUTHORIZED_EXECUTION] | CTX:production:mutate | Scope 'production:mutate' not in allowlist and/or matches blocked list | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-24T13:42:19.3481007+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test
+[2026-05-24T14:23:12.9131896+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T13:36:39.4365791+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T14:23:13.0202902+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T13:36:39.4365791+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T14:23:13.0676650+00:00] VIOLATION[UNAUTHORIZED_EXECUTION] | CTX:production:mutate | Scope 'production:mutate' not in allowlist and/or matches blocked list | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-24T14:23:13.0761913+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T13:36:39.4365791+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T14:23:13.1566769+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test
+[2026-05-24T15:58:11.0812027+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T13:36:39.4365791+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T15:58:11.1313770+00:00] VIOLATION[RELAY_OFFLINE] | CTX:bossmind:deployment:validate | Governance relay not active  -  execution blocked in strict mode | FP:N/A | CALLER:DESKTOP-57NGLMT\user
+[2026-05-24T16:01:48.3562492+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T13:36:39.4365791+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T16:01:48.4354224+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T13:36:39.4365791+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T16:01:48.4872644+00:00] VIOLATION[UNAUTHORIZED_EXECUTION] | CTX:production:mutate | Scope 'production:mutate' not in allowlist and/or matches blocked list | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-24T16:01:48.4991186+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T13:36:39.4365791+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T16:01:48.5784208+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test
+[2026-05-24T16:03:00.0529506+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T13:36:39.4365791+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-24T16:03:00.1019840+00:00] VIOLATION[RELAY_OFFLINE] | CTX:bossmind:deployment:validate | Governance relay not active  -  execution blocked in strict mode | FP:N/A | CALLER:DESKTOP-57NGLMT\user
+[2026-05-28T12:16:23.8565648+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T16:13:14.7726553+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-28T12:16:24.1396659+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T16:13:14.7726553+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-28T12:16:24.4156884+00:00] VIOLATION[UNAUTHORIZED_EXECUTION] | CTX:production:mutate | Scope 'production:mutate' not in allowlist and/or matches blocked list | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-28T12:16:24.4075945+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T16:13:14.7726553+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-28T12:16:24.5048030+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T16:13:14.7726553+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-28T12:16:24.6951478+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T16:13:14.7726553+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-28T12:16:24.8122986+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test
+[2026-05-28T12:16:24.8735431+00:00] VIOLATION[UNAUTHORIZED_EXECUTION] | CTX:production:mutate | Scope 'production:mutate' not in allowlist and/or matches blocked list | FP:N/A | CALLER:TEST-UNAUTHORIZED
+[2026-05-28T12:16:24.9565245+00:00] VIOLATION[RELAY_OFFLINE] | CTX:RELAY_CHECK | Relay heartbeat stale  -  last beat 2026-05-24T16:13:14.7726553+00:00 | FP:N/A | CALLER:UNKNOWN
+[2026-05-28T12:16:25.2503452+00:00] VALIDATION_TEST | PRAE full runtime validation ledger write test

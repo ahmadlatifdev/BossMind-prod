@@ -1,0 +1,23 @@
+﻿{
+    "created_utc":  "2026-05-24T01:00:57.8671882Z",
+    "authority":  "PRAE_ONLY",
+    "failed_validation_response":  "BLOCK_PRODUCTION",
+    "validation_requirements":  {
+                                    "webhook_signature_required":  true,
+                                    "ui_lock_required":  true,
+                                    "deployment_proof_required":  true,
+                                    "checksum_match_required":  true,
+                                    "runtime_health_required":  true
+                                },
+    "enforcement":  "STRICT",
+    "status":  "ACTIVE",
+    "system":  "PRAE-RUNTIME-VALIDATION",
+    "validation_targets":  [
+                               "render-deployment",
+                               "stripe-webhook",
+                               "runtime-health",
+                               "api-routes",
+                               "ui-integrity",
+                               "checksum-registry"
+                           ]
+}

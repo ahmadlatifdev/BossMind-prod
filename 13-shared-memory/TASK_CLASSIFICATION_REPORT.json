@@ -1,0 +1,57 @@
+{
+  "schema": "bossmind-task-classification/v1",
+  "timestamp": "2026-05-24T00:18:32.472Z",
+  "requestSummary": "Deploy Stripe webhook activation to Render and validate Resumora autonomous execution without UI changes",
+  "requestHash": "541bf738916b095ba0a5a7645096c5fcb1a846c8af5a33cd57d96c68db7706a8",
+  "primaryCategory": "UI/Frontend",
+  "categories": [
+    "UI/Frontend",
+    "Stripe/Billing",
+    "Deployment",
+    "Backend/API"
+  ],
+  "riskLevel": "high",
+  "riskScorePreview": 85,
+  "affectedProjects": [
+    "resumora",
+    "bossmind-hub",
+    "shakhsy11-memory-hub"
+  ],
+  "affectedServices": [
+    "Render",
+    "Railway",
+    "Stripe"
+  ],
+  "requiredTools": [
+    "PowerShell",
+    "Cursor",
+    "GitHub Actions",
+    "Render",
+    "Railway",
+    "Claude"
+  ],
+  "expectedFilePatterns": [
+    "components/**",
+    "pages/**",
+    "styles/**",
+    "pages/api/**",
+    "lib/**",
+    "**/stripe*",
+    "**/checkout*",
+    "**/webhook*",
+    "**/.github/**",
+    "**/render.yaml",
+    "package.json"
+  ],
+  "rollbackRequired": true,
+  "validationRequired": [
+    "build_passes",
+    "api_responds",
+    "ui_renders",
+    "stripe_validates",
+    "deployment_healthy",
+    "design_lock_intact"
+  ],
+  "designLockRequired": true,
+  "snapshotRequired": true
+}

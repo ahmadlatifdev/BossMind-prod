@@ -1,0 +1,22 @@
+﻿{
+    "created_utc":  "2026-05-24T00:58:33.8989586Z",
+    "drift_actions":  {
+                          "auto_repair":  "DISABLED",
+                          "ledger_append":  "ENABLED",
+                          "production_override":  "BLOCKED",
+                          "alert_mode":  "ACTIVE",
+                          "detect":  "ENABLED"
+                      },
+    "monitored_targets":  [
+                              "ui-layout",
+                              "stripe-runtime",
+                              "webhook-engine",
+                              "deployment-config",
+                              "runtime-routes",
+                              "shared-memory",
+                              "error-memory"
+                          ],
+    "system":  "PRAE-DRIFT",
+    "status":  "ACTIVE",
+    "enforcement":  "STRICT"
+}

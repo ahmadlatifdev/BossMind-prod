@@ -1,0 +1,27 @@
+﻿{
+    "auto_repair":  "DISABLED",
+    "deployment_mode":  "STAGED",
+    "scheduled_tasks":  [
+                            {
+                                "task":  "BossMind-PRAE-Persistent-Governance",
+                                "exists":  true,
+                                "state":  "Ready"
+                            },
+                            {
+                                "task":  "BossMind-PRAE-Continuous-Governance",
+                                "exists":  true,
+                                "state":  "Ready"
+                            },
+                            {
+                                "task":  "BossMind-PRAE-Runtime-Route-Validation",
+                                "exists":  true,
+                                "state":  "Ready"
+                            }
+                        ],
+    "system":  "PRAE-GOVERNANCE-DASHBOARD",
+    "timestamp_utc":  "2026-05-24T02:02:14.2748196Z",
+    "governance_mode":  "LOCKED",
+    "production_mutation":  "BLOCKED",
+    "authority":  "PRAE_ONLY",
+    "ui_lock":  "ENABLED"
+}

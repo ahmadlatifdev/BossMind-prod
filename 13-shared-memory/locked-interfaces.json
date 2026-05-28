@@ -63,16 +63,56 @@
     }
   },
   "executionFlow": [
-    "Search",
-    "Analyze",
-    "Patch",
-    "Local Build",
-    "Commit",
-    "Push",
-    "Deploy",
-    "Verify",
-    "Lock State"
+    "Phase1_Classification",
+    "Phase2_ImpactAnalysis",
+    "Phase3_SnapshotProtection",
+    "Phase4_ToolRouting",
+    "Phase5_ExecutionEngine",
+    "Phase6_ValidationGates",
+    "Phase7_SelfHealing",
+    "Phase8_DesignLock",
+    "Phase9_AutonomyScore",
+    "Phase10_HumanGate"
   ],
+  "autonomousExecutionEngine": {
+    "coreRule": "NO_DIRECT_EXECUTION",
+    "entryPowerShell": "bossmind-shared/automation/bossmind-autonomous-execution-runner.ps1",
+    "entryNode": "bossmind-shared/automation/autonomous-execution/bossmind-autonomous-execution-engine.mjs",
+    "config": "bossmind-shared/automation/autonomous-execution/config.json",
+    "outputs": {
+      "classification": "13-shared-memory/TASK_CLASSIFICATION_REPORT.json",
+      "risk": "13-shared-memory/RISK_SCORE.json",
+      "impact": "13-shared-memory/IMPACT_REPORT.md",
+      "plan": "13-shared-memory/SAFE_EXECUTION_PLAN.md",
+      "backups": "08-backups/{runId}/"
+    }
+  },
+  "praeSharedMemoryBridge": {
+    "coreRule": "PRAE_ONLY",
+    "noDirectExecution": true,
+    "noDirectDeployment": true,
+    "noAutoRepair": true,
+    "noProductionMutation": true,
+    "noUiOverwrite": true,
+    "restoreSealDisabled": true,
+    "entryPowerShell": "bossmind-shared/prae/shared-memory-bridge/prae-bridge-runner.ps1",
+    "bootstrap": "bossmind-shared/prae/shared-memory-bridge/prae-bridge-bootstrap.ps1",
+    "governanceRunner": "bossmind-shared/prae/shared-memory-bridge/prae-governance-runner.ps1",
+    "config": "bossmind-shared/prae/shared-memory-bridge/config.json",
+    "globalLedger": "bossmind-shared/prae/global-ledger/governance-events.jsonl",
+    "governanceInheritance": "bossmind-shared/prae/governance-inheritance.json",
+    "outputs": {
+      "latest": "13-shared-memory/prae-bridge-latest.json",
+      "runs": "13-shared-memory/prae-bridge-{runId}.json"
+    },
+    "deploymentGates": [
+      "checksum_validation",
+      "runtime_validation",
+      "webhook_validation",
+      "ui_lock_validation",
+      "prae_governance_validation"
+    ]
+  },
   "verifyScripts": {
     "imports": "11-scripts/verify-imports.ps1",
     "build": "11-scripts/verify-build.ps1",

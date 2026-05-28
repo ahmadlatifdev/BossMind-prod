@@ -1,0 +1,29 @@
+{
+  "schema": "bossmind-prae-global-ledger/v1",
+  "version": 1,
+  "description": "Centralized append-only PRAE governance event ledger",
+  "created_utc": "2026-05-24T01:00:00.000Z",
+  "append_only": true,
+  "immutable": true,
+  "checksum_on_append": true,
+  "secret_exposure": "FORBIDDEN",
+  "production_mutation": "BLOCKED",
+  "auto_repair": "DISABLED",
+  "streams": {
+    "governance_events": "governance-events.jsonl",
+    "drift_alerts": "drift-alerts.jsonl",
+    "deployment_proof": "deployment-proof/",
+    "drift_evidence": "drift-evidence/",
+    "repair_simulation": "repair-simulation/history.jsonl"
+  },
+  "event_types": [
+    "PRAE_BRIDGE_CYCLE_START",
+    "PRAE_BRIDGE_CYCLE_COMPLETE",
+    "PRAE_GOVERNANCE_LOADER_VALIDATION",
+    "PRAE_VALIDATION_RUN",
+    "PRAE_DRIFT_PROPAGATED",
+    "PRAE_DEPLOYMENT_PROOF_STORED",
+    "PRAE_REPAIR_SIMULATION",
+    "PRAE_GOVERNANCE_RUNNER_CYCLE"
+  ]
+}

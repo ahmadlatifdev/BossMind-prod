@@ -1,0 +1,18 @@
+﻿{
+    "timestamp_utc":  "2026-05-24T02:13:39.3982711Z",
+    "deployment_mode":  "STAGED",
+    "auto_repair":  "DISABLED",
+    "authority":  "PRAE",
+    "distributed_drift_propagation":  "WATCH_ONLY",
+    "persistent_shared_memory_sync":  "ENABLED",
+    "sources":  {
+                    "bridge_report":  "D:\\BossMind\\bossmind-shared\\prae\\shared-memory-bridge\\prae-shared-memory-bridge-report.json",
+                    "ledger":  "D:\\BossMind\\bossmind-shared\\shared-memory\\prae-events.log",
+                    "dashboard":  "D:\\BossMind\\bossmind-shared\\shared-memory\\prae-governance-dashboard.json"
+                },
+    "deployment_authority_centralization":  "PRAE_REQUIRED",
+    "centralized_governance_ledger":  "ENABLED",
+    "governance_mode":  "LOCKED",
+    "production_mutation":  "NONE",
+    "runtime_governance_observability":  "EXPANDING"
+}

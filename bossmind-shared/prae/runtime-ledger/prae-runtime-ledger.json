@@ -1,0 +1,11 @@
+{
+  "system": "PRAE",
+  "status": "ACTIVE",
+  "governance_mode": "LOCKED",
+  "deployment_validation": "ACTIVE",
+  "drift_detection": "ALERT",
+  "checksum_enforcement": "ACTIVE",
+  "bridge_sync": "ACTIVE",
+  "updated_utc": "2026-05-24T01:24:16.884Z",
+  "bridge_checksum": "662ed14803d37449bddaca87e164f939d560e072decd539c4b33b6fb042b4c9f"
+}

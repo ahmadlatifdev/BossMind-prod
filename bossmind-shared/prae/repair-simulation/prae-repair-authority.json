@@ -1,0 +1,23 @@
+﻿{
+    "repair_mode":  "SIMULATION_ONLY",
+    "production_mutation":  "BLOCKED",
+    "authority":  "PRAE_ONLY",
+    "blocked_actions":  [
+                            "direct-production-edit",
+                            "auto-ui-overwrite",
+                            "force-runtime-patch",
+                            "baseline-reset",
+                            "unsafe-auto-deploy"
+                        ],
+    "created_utc":  "2026-05-24T00:59:48.2893426Z",
+    "allowed_actions":  [
+                            "simulate-fix",
+                            "checksum-compare",
+                            "runtime-validate",
+                            "ledger-append",
+                            "generate-report"
+                        ],
+    "system":  "PRAE-REPAIR",
+    "deployment_policy":  "VALIDATION_REQUIRED",
+    "status":  "ACTIVE"
+}

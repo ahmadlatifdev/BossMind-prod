@@ -1,0 +1,72 @@
+{
+  "_comment": "BossMind project registry with PRAE governance inheritance.",
+  "prae_governance": {
+    "mode": "LOCKED",
+    "authority": "PRAE_ONLY",
+    "inheritance_config": "bossmind-shared/prae/governance-inheritance.json",
+    "bridge": "bossmind-shared/prae/shared-memory-bridge/prae-bridge-runner.ps1"
+  },
+  "projects": [
+    {
+      "project_id": "resumora",
+      "root": "D:/BossMind/bossmind-resumora",
+      "production_url": "https://www.resumora.net",
+      "render_service_id_env": "RENDER_SERVICE_ID",
+      "neon_url_env_key": "DATABASE_URL",
+      "stripe_webhook_path": "/api/webhooks/stripe",
+      "prae_inheritance": "ACTIVE",
+      "watch": true
+    },
+    {
+      "project_id": "elegancyart",
+      "root": "D:/BossMind/bossmind-elegancyart",
+      "prae_inheritance": "ACTIVE",
+      "watch": true
+    },
+    {
+      "project_id": "ai-video-generator",
+      "root": "D:/BossMind/bossmind-ai-video-generator",
+      "prae_inheritance": "ACTIVE",
+      "watch": true
+    },
+    {
+      "project_id": "tiktok-ai",
+      "root": "D:/BossMind/bossmind-tiktok-ai",
+      "prae_inheritance": "ACTIVE",
+      "watch": true
+    },
+    {
+      "project_id": "global-stock",
+      "root": "D:/BossMind/bossmind-global-stock",
+      "prae_inheritance": "ACTIVE",
+      "watch": true
+    },
+    {
+      "project_id": "bossmind-shared",
+      "root": "D:/BossMind/bossmind-shared",
+      "prae_inheritance": "ACTIVE",
+      "watch": true
+    },
+    {
+      "project_id": "master-admin",
+      "root": "D:/BossMind/bossmind-master-admin",
+      "prae_inheritance": "ACTIVE",
+      "watch": true
+    },
+    {
+      "project_id": "bossmind-hub",
+      "root": "D:/BossMind",
+      "shared_memory": "D:/BossMind/13-shared-memory",
+      "bossmind_shared": "D:/BossMind/bossmind-shared",
+      "prae_inheritance": "ACTIVE",
+      "watch": true
+    },
+    {
+      "project_id": "shakhsy11-memory-hub",
+      "root": "D:/Shakhsy11/BossMind",
+      "memory_root": "D:/Shakhsy11/BossMind/core/memory",
+      "prae_inheritance": "ACTIVE",
+      "watch": true
+    }
+  ]
+}
