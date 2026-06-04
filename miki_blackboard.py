@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 from collections import deque
 
-API_KEY = "sk-79f877637729408cbbecfabdefeac663"
+API_KEY = "sk-f305de3493cb455d9e086481ee2b80a7"
 MODEL = "deepseek-v4-flash"
 URL = "https://api.deepseek.com/v1/chat/completions"
 
@@ -112,6 +112,7 @@ class ResumoraAgent(Agent):
             text = task['input'].get('text', '')[:2000]
             prompt = f"Extract: name, email, skills, years_experience from this resume:\n{text}\nReturn JSON."
             return call_deepseek(prompt, system="Return only valid JSON.")
+        return super().execute(task)
 
 class ElegancyartAgent(Agent):
     def __init__(self, blackboard):
@@ -120,8 +121,17 @@ class ElegancyartAgent(Agent):
     def execute(self, task):
         if task['type'] == "generate_portfolio":
             brand = task['input'].get('brand', 'Portfolio')
-            prompt = f"Generate HTML/CSS for a {brand} portfolio website. Hero section, gallery, contact."
-            return call_deepseek(prompt, system="You are a web designer. Return complete HTML/CSS.")
+            prompt = f"Generate HTML/CSS for a {brand} portfolio website. Hero section, gallery, contact form."
+            result = call_deepseek(prompt, system="You are a web designer. Return complete HTML/CSS only, no explanations.")
+            
+            # Save to HTML file
+            filename = f"portfolio_{task['id']}.html"
+            with open(filename, "w", encoding="utf-8") as f:
+                f.write(result)
+            print(f"[Elegancyart] Saved: {filename}")
+            
+            return result
+        return super().execute(task)
 
 
 # ========== RUN ==========
@@ -152,7 +162,10 @@ if __name__ == "__main__":
     
     print("\n=== RESULTS ===")
     for task_id, result in board.results.items():
-        print(f"{task_id}: {str(result['result'])[:200]}...")
+        result_str = str(result['result'])
+        if len(result_str) > 200:
+            result_str = result_str[:200] + "..."
+        print(f"{task_id}: {result_str}")
     
     print(f"\n=== STATUS: {board.status()}")
     print("\nMiki Blackboard Ready for BossMind Automation")

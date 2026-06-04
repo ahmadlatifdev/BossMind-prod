@@ -1,0 +1,31 @@
+{
+  "projectId": "global-stock",
+  "updatedAt": "2026-06-04T12:24:54.132Z",
+  "projectStatus": "review_rejected",
+  "taskState": [
+    {
+      "taskKey": "sync:1780575892718",
+      "status": "in_progress",
+      "task": "Scheduled AI sync health pass."
+    }
+  ],
+  "errorMemory": [],
+  "deploymentHistory": [],
+  "aiDecisions": [
+    {
+      "engine": "deepseek",
+      "summary": "Scheduled AI sync health pass completed. No issues detected.",
+      "files": [],
+      "at": "2026-06-04T12:24:54.131Z"
+    }
+  ],
+  "reviewHistory": [
+    {
+      "via": "anthropic",
+      "at": "2026-06-04T12:24:54.131Z"
+    }
+  ],
+  "blockers": [
+    "review_approved"
+  ]
+}

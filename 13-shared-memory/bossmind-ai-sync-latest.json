@@ -1,0 +1,442 @@
+{
+  "command": "sync-all",
+  "at": "2026-06-04T12:24:54.608Z",
+  "env": {
+    "deepseek": {
+      "present": true,
+      "keys": [
+        "DEEPSEEK_API_KEY"
+      ],
+      "missing": [],
+      "requiredVar": "DEEPSEEK_API_KEY",
+      "active": true
+    },
+    "review": {
+      "claudeNative": {
+        "present": true,
+        "keys": [
+          "ANTHROPIC_API_KEY"
+        ],
+        "missing": []
+      },
+      "kimiNative": {
+        "present": false,
+        "keys": [],
+        "missing": [
+          "KIMI_API_KEY",
+          "MOONSHOT_API_KEY"
+        ]
+      },
+      "openRouter": {
+        "present": true,
+        "keys": [
+          "OPENROUTER_API_KEY"
+        ],
+        "missing": []
+      },
+      "reviewVia": "anthropic",
+      "active": true,
+      "requiredVarsIfMissing": []
+    },
+    "neon": {
+      "present": true,
+      "keys": [
+        "NEON_DATABASE_URL",
+        "DATABASE_URL"
+      ],
+      "missing": [],
+      "active": true,
+      "requiredVar": "NEON_DATABASE_URL or DATABASE_URL"
+    }
+  },
+  "result": {
+    "resumora": {
+      "ok": false,
+      "projectId": "resumora",
+      "deepseekResult": {
+        "ok": true,
+        "engine": "deepseek",
+        "model": "deepseek-chat",
+        "patch": {
+          "summary": "Scheduled AI sync health check completed. No issues detected.",
+          "risk": "low",
+          "files": [],
+          "patchPlan": "No changes required.",
+          "unifiedDiff": "",
+          "commands": []
+        },
+        "raw": "{\"summary\":\"Scheduled AI sync health check completed. No issues detected.\",\"risk\":\"low\",\"files\":[],\"patchPlan\":\"No changes required.\",\"unifiedDiff\":\"\",\"commands\":[]}"
+      },
+      "reviewResult": {
+        "ok": false,
+        "error": "model: claude-3-5-sonnet-20241022",
+        "via": "anthropic"
+      },
+      "gate": {
+        "approved": false,
+        "deployAllowed": false,
+        "checks": [
+          {
+            "id": "deepseek_present",
+            "pass": true,
+            "detail": "DeepSeek patch generated"
+          },
+          {
+            "id": "files_listed",
+            "pass": true,
+            "detail": "filesChanged=0"
+          },
+          {
+            "id": "review_approved",
+            "pass": false,
+            "detail": "model: claude-3-5-sonnet-20241022"
+          },
+          {
+            "id": "risk_review",
+            "pass": true,
+            "detail": "risk=n/a"
+          },
+          {
+            "id": "project_isolation",
+            "pass": true,
+            "detail": "isolated"
+          },
+          {
+            "id": "build_verification",
+            "pass": false,
+            "detail": "exit=1"
+          },
+          {
+            "id": "lint_verification",
+            "pass": false,
+            "detail": "exit=1"
+          }
+        ],
+        "blockedReason": "review_approved, build_verification, lint_verification"
+      },
+      "verificationResult": {
+        "build": {
+          "ok": false,
+          "detail": "exit=1",
+          "stderrTail": "s/messages/next-router-not-mounted\n    at q (D:\\BossMind\\bossmind-resumora\\.next\\server\\chunks\\ssr\\[root-of-the-server]__0etaz3e._.js:5:125)\n    at h (D:\\BossMind\\bossmind-resumora\\.next\\server\\chunks\\ssr\\[root-of-the-server]__002j_3o._.js:1:6761)\nExport encountered an error on /solutions/[slug]: /solutions/ats-resume, exiting the build.\n⨯ Next.js build worker exited with code: 1 and signal: null\n"
+        },
+        "lint": {
+          "ok": false,
+          "detail": "exit=1",
+          "stderrTail": ""
+        }
+      },
+      "deploymentResult": "blocked_gate",
+      "praeBlocked": false
+    },
+    "elegancyart": {
+      "ok": false,
+      "projectId": "elegancyart",
+      "deepseekResult": {
+        "ok": true,
+        "engine": "deepseek",
+        "model": "deepseek-chat",
+        "patch": {
+          "summary": "Running scheduled AI sync health check to verify system integrity and connectivity.",
+          "risk": "low",
+          "files": [],
+          "patchPlan": "No changes required. Performing passive health check only.",
+          "unifiedDiff": "",
+          "commands": []
+        },
+        "raw": "{\"summary\":\"Running scheduled AI sync health check to verify system integrity and connectivity.\",\"risk\":\"low\",\"files\":[],\"patchPlan\":\"No changes required. Performing passive health check only.\",\"unifiedDiff\":\"\",\"commands\":[]}"
+      },
+      "reviewResult": {
+        "ok": false,
+        "error": "model: claude-3-5-sonnet-20241022",
+        "via": "anthropic"
+      },
+      "gate": {
+        "approved": false,
+        "deployAllowed": false,
+        "checks": [
+          {
+            "id": "deepseek_present",
+            "pass": true,
+            "detail": "DeepSeek patch generated"
+          },
+          {
+            "id": "files_listed",
+            "pass": true,
+            "detail": "filesChanged=0"
+          },
+          {
+            "id": "review_approved",
+            "pass": false,
+            "detail": "model: claude-3-5-sonnet-20241022"
+          },
+          {
+            "id": "risk_review",
+            "pass": true,
+            "detail": "risk=n/a"
+          },
+          {
+            "id": "project_isolation",
+            "pass": true,
+            "detail": "isolated"
+          },
+          {
+            "id": "build_verification",
+            "pass": true,
+            "detail": "dry_run_skipped"
+          },
+          {
+            "id": "lint_verification",
+            "pass": true,
+            "detail": "dry_run_skipped"
+          }
+        ],
+        "blockedReason": "review_approved"
+      },
+      "verificationResult": {
+        "build": {
+          "ok": true,
+          "detail": "dry_run_skipped"
+        },
+        "lint": {
+          "ok": true,
+          "detail": "dry_run_skipped"
+        }
+      },
+      "deploymentResult": "blocked_gate",
+      "praeBlocked": false
+    },
+    "ai-video-generator": {
+      "ok": false,
+      "projectId": "ai-video-generator",
+      "deepseekResult": {
+        "ok": true,
+        "engine": "deepseek",
+        "model": "deepseek-chat",
+        "patch": {
+          "summary": "Scheduled AI sync health pass completed. No issues detected.",
+          "risk": "low",
+          "files": [],
+          "patchPlan": "No changes required.",
+          "unifiedDiff": "",
+          "commands": []
+        },
+        "raw": "{\"summary\":\"Scheduled AI sync health pass completed. No issues detected.\",\"risk\":\"low\",\"files\":[],\"patchPlan\":\"No changes required.\",\"unifiedDiff\":\"\",\"commands\":[]}"
+      },
+      "reviewResult": {
+        "ok": false,
+        "error": "model: claude-3-5-sonnet-20241022",
+        "via": "anthropic"
+      },
+      "gate": {
+        "approved": false,
+        "deployAllowed": false,
+        "checks": [
+          {
+            "id": "deepseek_present",
+            "pass": true,
+            "detail": "DeepSeek patch generated"
+          },
+          {
+            "id": "files_listed",
+            "pass": true,
+            "detail": "filesChanged=0"
+          },
+          {
+            "id": "review_approved",
+            "pass": false,
+            "detail": "model: claude-3-5-sonnet-20241022"
+          },
+          {
+            "id": "risk_review",
+            "pass": true,
+            "detail": "risk=n/a"
+          },
+          {
+            "id": "project_isolation",
+            "pass": true,
+            "detail": "isolated"
+          },
+          {
+            "id": "build_verification",
+            "pass": true,
+            "detail": "dry_run_skipped"
+          },
+          {
+            "id": "lint_verification",
+            "pass": true,
+            "detail": "dry_run_skipped"
+          }
+        ],
+        "blockedReason": "review_approved"
+      },
+      "verificationResult": {
+        "build": {
+          "ok": true,
+          "detail": "dry_run_skipped"
+        },
+        "lint": {
+          "ok": true,
+          "detail": "dry_run_skipped"
+        }
+      },
+      "deploymentResult": "blocked_gate",
+      "praeBlocked": false
+    },
+    "tiktok-ai": {
+      "ok": false,
+      "projectId": "tiktok-ai",
+      "deepseekResult": {
+        "ok": true,
+        "engine": "deepseek",
+        "model": "deepseek-chat",
+        "patch": {
+          "summary": "Scheduled AI sync health check passed. No issues detected.",
+          "risk": "low",
+          "files": [],
+          "patchPlan": "No patches required.",
+          "unifiedDiff": "",
+          "commands": []
+        },
+        "raw": "{\"summary\":\"Scheduled AI sync health check passed. No issues detected.\",\"risk\":\"low\",\"files\":[],\"patchPlan\":\"No patches required.\",\"unifiedDiff\":\"\",\"commands\":[]}"
+      },
+      "reviewResult": {
+        "ok": false,
+        "error": "model: claude-3-5-sonnet-20241022",
+        "via": "anthropic"
+      },
+      "gate": {
+        "approved": false,
+        "deployAllowed": false,
+        "checks": [
+          {
+            "id": "deepseek_present",
+            "pass": true,
+            "detail": "DeepSeek patch generated"
+          },
+          {
+            "id": "files_listed",
+            "pass": true,
+            "detail": "filesChanged=0"
+          },
+          {
+            "id": "review_approved",
+            "pass": false,
+            "detail": "model: claude-3-5-sonnet-20241022"
+          },
+          {
+            "id": "risk_review",
+            "pass": true,
+            "detail": "risk=n/a"
+          },
+          {
+            "id": "project_isolation",
+            "pass": true,
+            "detail": "isolated"
+          },
+          {
+            "id": "build_verification",
+            "pass": true,
+            "detail": "dry_run_skipped"
+          },
+          {
+            "id": "lint_verification",
+            "pass": true,
+            "detail": "dry_run_skipped"
+          }
+        ],
+        "blockedReason": "review_approved"
+      },
+      "verificationResult": {
+        "build": {
+          "ok": true,
+          "detail": "dry_run_skipped"
+        },
+        "lint": {
+          "ok": true,
+          "detail": "dry_run_skipped"
+        }
+      },
+      "deploymentResult": "blocked_gate",
+      "praeBlocked": false
+    },
+    "global-stock": {
+      "ok": false,
+      "projectId": "global-stock",
+      "deepseekResult": {
+        "ok": true,
+        "engine": "deepseek",
+        "model": "deepseek-chat",
+        "patch": {
+          "summary": "Scheduled AI sync health pass completed. No issues detected.",
+          "risk": "low",
+          "files": [],
+          "patchPlan": "No patches required.",
+          "unifiedDiff": "",
+          "commands": []
+        },
+        "raw": "{\"summary\":\"Scheduled AI sync health pass completed. No issues detected.\",\"risk\":\"low\",\"files\":[],\"patchPlan\":\"No patches required.\",\"unifiedDiff\":\"\",\"commands\":[]}"
+      },
+      "reviewResult": {
+        "ok": false,
+        "error": "model: claude-3-5-sonnet-20241022",
+        "via": "anthropic"
+      },
+      "gate": {
+        "approved": false,
+        "deployAllowed": false,
+        "checks": [
+          {
+            "id": "deepseek_present",
+            "pass": true,
+            "detail": "DeepSeek patch generated"
+          },
+          {
+            "id": "files_listed",
+            "pass": true,
+            "detail": "filesChanged=0"
+          },
+          {
+            "id": "review_approved",
+            "pass": false,
+            "detail": "model: claude-3-5-sonnet-20241022"
+          },
+          {
+            "id": "risk_review",
+            "pass": true,
+            "detail": "risk=n/a"
+          },
+          {
+            "id": "project_isolation",
+            "pass": true,
+            "detail": "isolated"
+          },
+          {
+            "id": "build_verification",
+            "pass": true,
+            "detail": "dry_run_skipped"
+          },
+          {
+            "id": "lint_verification",
+            "pass": true,
+            "detail": "dry_run_skipped"
+          }
+        ],
+        "blockedReason": "review_approved"
+      },
+      "verificationResult": {
+        "build": {
+          "ok": true,
+          "detail": "dry_run_skipped"
+        },
+        "lint": {
+          "ok": true,
+          "detail": "dry_run_skipped"
+        }
+      },
+      "deploymentResult": "blocked_gate",
+      "praeBlocked": false
+    }
+  },
+  "updatedAt": "2026-06-04T12:24:54.609Z"
+}

@@ -1,0 +1,31 @@
+{
+  "projectId": "ai-video-generator",
+  "updatedAt": "2026-06-04T12:24:49.436Z",
+  "projectStatus": "review_rejected",
+  "taskState": [
+    {
+      "taskKey": "sync:1780575887904",
+      "status": "in_progress",
+      "task": "Scheduled AI sync health pass."
+    }
+  ],
+  "errorMemory": [],
+  "deploymentHistory": [],
+  "aiDecisions": [
+    {
+      "engine": "deepseek",
+      "summary": "Scheduled AI sync health pass completed. No issues detected.",
+      "files": [],
+      "at": "2026-06-04T12:24:49.436Z"
+    }
+  ],
+  "reviewHistory": [
+    {
+      "via": "anthropic",
+      "at": "2026-06-04T12:24:49.436Z"
+    }
+  ],
+  "blockers": [
+    "review_approved"
+  ]
+}

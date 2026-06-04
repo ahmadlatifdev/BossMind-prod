@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "auto-trigger.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ai-sync:env": "node ai-sync/bossmind-ai-sync-orchestrator.mjs env-check",
+    "ai-sync:dry-run": "node ai-sync/bossmind-ai-sync-orchestrator.mjs dry-run",
+    "ai-sync:verify": "powershell -NoProfile -ExecutionPolicy Bypass -File ai-sync/scripts/Invoke-BossMindAiSyncVerify.ps1",
+    "ai-sync:all": "node ai-sync/bossmind-ai-sync-orchestrator.mjs sync-all --dry-run"
   },
   "keywords": [],
   "author": "",

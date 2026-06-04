@@ -1,7 +1,7 @@
 ﻿{
     "action":  "AUTO_HEAL_WITH_RETRY",
     "project":  "resumora",
-    "timestamp":  "2026-05-28T15:16:28",
+    "timestamp":  "2026-06-04T15:56:35",
     "reason":  "Degradation detected; retry engine triggered",
     "validation":  null
 }

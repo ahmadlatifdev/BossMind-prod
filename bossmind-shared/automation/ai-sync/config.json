@@ -1,0 +1,36 @@
+{
+  "schema": "bossmind-ai-sync/v1",
+  "hubRoot": "D:/BossMind",
+  "syncRoot": "D:/BossMind/bossmind-shared/automation/ai-sync",
+  "sharedMemoryRoot": "D:/BossMind/13-shared-memory",
+  "projectsRegistry": "D:/BossMind/bossmind-shared/automation/projects.json",
+  "activeProjectIds": [
+    "resumora",
+    "elegancyart",
+    "ai-video-generator",
+    "tiktok-ai",
+    "global-stock"
+  ],
+  "review": {
+    "openRouterModelClaude": "anthropic/claude-3.5-sonnet",
+    "openRouterModelKimi": "moonshotai/kimi-k2",
+    "moonshotModel": "moonshot-v1-8k",
+    "anthropicModel": "claude-3-5-sonnet-20241022"
+  },
+  "deepseek": {
+    "baseUrl": "https://api.deepseek.com",
+    "coderModel": "deepseek-chat",
+    "reasonerModel": "deepseek-reasoner"
+  },
+  "verification": {
+    "resumora": {
+      "build": "npm run build",
+      "lint": "npm run lint"
+    }
+  },
+  "governance": {
+    "blockDeployWithoutReview": true,
+    "blockCrossProjectPaths": true,
+    "requireNeonForPersistentMemory": false
+  }
+}

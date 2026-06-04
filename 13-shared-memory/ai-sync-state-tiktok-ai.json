@@ -1,0 +1,31 @@
+{
+  "projectId": "tiktok-ai",
+  "updatedAt": "2026-06-04T12:24:51.730Z",
+  "projectStatus": "review_rejected",
+  "taskState": [
+    {
+      "taskKey": "sync:1780575890411",
+      "status": "in_progress",
+      "task": "Scheduled AI sync health pass."
+    }
+  ],
+  "errorMemory": [],
+  "deploymentHistory": [],
+  "aiDecisions": [
+    {
+      "engine": "deepseek",
+      "summary": "Scheduled AI sync health check passed. No issues detected.",
+      "files": [],
+      "at": "2026-06-04T12:24:51.729Z"
+    }
+  ],
+  "reviewHistory": [
+    {
+      "via": "anthropic",
+      "at": "2026-06-04T12:24:51.729Z"
+    }
+  ],
+  "blockers": [
+    "review_approved"
+  ]
+}

@@ -13,7 +13,7 @@ $projects = @(
 $requiredVars = @("DATABASE_URL", "DEEPSEEK_API_KEY", "RAILWAY_TOKEN")  # add others as needed
 
 if (-not (Test-Path $masterEnv)) {
-    Write-Host "❌ Master .env not found: $masterEnv" -ForegroundColor Red
+    Write-Host "âŒ Master .env not found: $masterEnv" -ForegroundColor Red
     exit 1
 }
 
@@ -22,18 +22,19 @@ $missing = @()
 foreach ($var in $requiredVars) {
     if ($masterContent -notmatch "$var=") {
         $missing += $var
-        Write-Host "⚠️ Missing required variable: $var" -ForegroundColor Yellow
+        Write-Host "âš ï¸ Missing required variable: $var" -ForegroundColor Yellow
     }
 }
 if ($missing.Count -gt 0) {
-    Write-Host "❌ Cannot sync – missing required vars in master .env" -ForegroundColor Red
+    Write-Host "âŒ Cannot sync "“ missing required vars in master .env" -ForegroundColor Red
     exit 1
 }
 
 foreach ($proj in $projects) {
     $target = "D:\BossMind\$proj\.env"
     $masterContent | Out-File $target -Encoding utf8 -Force
-    Write-Host "✅ Synced $proj" -ForegroundColor Green
+    Write-Host "âœ… Synced $proj" -ForegroundColor Green
 }
 
-Write-Host "🎯 All projects synced from master .env" -ForegroundColor Cyan
+Write-Host "[OK] All projects synced from master .env" -ForegroundColor Cyan
+

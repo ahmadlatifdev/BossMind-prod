@@ -1,0 +1,9 @@
+{
+    "mcpServers": {
+      "miki-bridge": {
+        "command": "python",
+        "args": ["D:\\BossMind\\mcp_servers\\miki_bridge.py"]
+      }
+    }
+  }
+  

@@ -1,0 +1,136 @@
+{
+  "projectId": "resumora",
+  "updatedAt": "2026-06-04T12:24:43.459Z",
+  "projectStatus": "review_rejected",
+  "taskState": [
+    {
+      "taskKey": "sync:1780575763982",
+      "status": "in_progress",
+      "task": "Scheduled AI sync health pass."
+    }
+  ],
+  "errorMemory": [
+    {
+      "error_type": "stripe_configuration",
+      "error_message": "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is not a valid pk_test_* or pk_live_* key. | STRIPE_WEBHOOK_SECRET is missing — webhooks cannot verify signatures until set.",
+      "fix_pattern": "Copy .env.example to .env.local; add sk_* and pk_* keys and price_* IDs from Stripe Dashboard; restart server.",
+      "times_seen": 3,
+      "last_seen_at": "2026-05-19T03:31:25.838Z"
+    }
+  ],
+  "deploymentHistory": [
+    {
+      "commit_hash": null,
+      "status": "blocked",
+      "summary": "review_approved",
+      "created_at": "2026-06-04T12:19:55.730Z"
+    },
+    {
+      "commit_hash": null,
+      "status": "blocked",
+      "summary": "review_approved",
+      "created_at": "2026-06-04T11:58:17.155Z"
+    },
+    {
+      "commit_hash": null,
+      "status": "blocked",
+      "summary": "review_approved",
+      "created_at": "2026-06-04T11:40:31.919Z"
+    },
+    {
+      "commit_hash": null,
+      "status": "blocked",
+      "summary": "review_approved",
+      "created_at": "2026-06-04T11:39:13.053Z"
+    },
+    {
+      "commit_hash": null,
+      "status": "blocked",
+      "summary": "review_approved",
+      "created_at": "2026-06-04T11:37:51.762Z"
+    },
+    {
+      "commit_hash": null,
+      "status": "blocked",
+      "summary": "review_approved",
+      "created_at": "2026-06-04T11:32:08.547Z"
+    }
+  ],
+  "aiDecisions": [
+    {
+      "engine": "deepseek",
+      "summary": "Scheduled AI sync health check completed. No issues detected.",
+      "files": [],
+      "at": "2026-06-04T12:24:43.459Z"
+    },
+    {
+      "engine": "deepseek",
+      "summary": "Dry-run health check initiated for orchestration pipeline. No patches applied.",
+      "files": [],
+      "at": "2026-06-04T12:19:55.406Z"
+    },
+    {
+      "engine": "deepseek",
+      "summary": "Performing dry-run health check on orchestration pipeline. No patches applied.",
+      "files": [],
+      "at": "2026-06-04T11:58:16.612Z"
+    },
+    {
+      "engine": "deepseek",
+      "summary": "Dry-run health check initiated for orchestration pipeline. No patches applied.",
+      "files": [],
+      "at": "2026-06-04T11:40:31.621Z"
+    },
+    {
+      "engine": "deepseek",
+      "summary": "Dry-run health check initiated for orchestration pipeline. No patches applied.",
+      "files": [],
+      "at": "2026-06-04T11:39:12.761Z"
+    },
+    {
+      "engine": "deepseek",
+      "summary": "Performing dry-run health check on orchestration pipeline. No patches applied.",
+      "files": [],
+      "at": "2026-06-04T11:37:51.450Z"
+    },
+    {
+      "engine": "deepseek",
+      "summary": "Dry-run health check initiated for orchestration pipeline. No patches applied.",
+      "files": [],
+      "at": "2026-06-04T11:32:08.237Z"
+    }
+  ],
+  "reviewHistory": [
+    {
+      "via": "anthropic",
+      "at": "2026-06-04T12:24:43.459Z"
+    },
+    {
+      "via": "anthropic",
+      "at": "2026-06-04T12:19:55.406Z"
+    },
+    {
+      "via": "openrouter",
+      "at": "2026-06-04T11:58:16.612Z"
+    },
+    {
+      "via": "openrouter",
+      "at": "2026-06-04T11:40:31.621Z"
+    },
+    {
+      "via": "openrouter",
+      "at": "2026-06-04T11:39:12.761Z"
+    },
+    {
+      "via": "anthropic",
+      "at": "2026-06-04T11:37:51.450Z"
+    },
+    {
+      "via": "anthropic",
+      "at": "2026-06-04T11:32:08.237Z"
+    }
+  ],
+  "blockers": [
+    "review_approved, build_verification, lint_verification"
+  ]
+}
