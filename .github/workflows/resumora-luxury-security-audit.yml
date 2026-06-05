@@ -1,0 +1,36 @@
+name: Resumora Luxury Daily Security Audit
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  audit-and-uptime:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: resumora-luxury
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: resumora-luxury/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: npm audit (report)
+        run: npm audit --json > audit-report.json || true
+
+      - name: npm audit fix (safe)
+        run: npm audit fix || true
+
+      - name: Uptime probe (5 min cadence simulation)
+        run: node scripts/monitoring/check-uptime.mjs
+        env:
+          UPTIME_URL: https://resumora-luxury.vercel.app/api/health?lite=1
+          ALERT_WEBHOOK_URL: ${{ secrets.UPTIME_ALERT_WEBHOOK_URL }}

@@ -1,0 +1,25 @@
+name: Resumora Luxury Uptime Monitor
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Health check every 5 minutes
+        working-directory: resumora-luxury
+        run: node scripts/monitoring/check-uptime.mjs
+        env:
+          UPTIME_URL: https://resumora-luxury.vercel.app/api/health?lite=1
+          UPTIME_MAX_MS: "3000"
+          ALERT_WEBHOOK_URL: ${{ secrets.UPTIME_ALERT_WEBHOOK_URL }}
+          ALERT_EMAIL_TO: ${{ secrets.UPTIME_ALERT_EMAIL }}
