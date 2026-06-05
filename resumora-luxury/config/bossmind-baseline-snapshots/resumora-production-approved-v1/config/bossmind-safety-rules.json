@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "rules": [
+    { "id": "never_overwrite_locked_ui", "severity": "block", "text": "Never overwrite locked UI design without explicit approval and re-seal." },
+    { "id": "never_remove_real_logo", "severity": "block", "text": "Never remove or replace the canonical project logo with placeholders." },
+    { "id": "never_duplicate_sections", "severity": "block", "text": "Never duplicate page sections or headings on a single route." },
+    { "id": "never_change_protected_pricing", "severity": "block", "text": "Never change protected pricing layout or tier order without approval." },
+    { "id": "never_push_without_build", "severity": "block", "text": "Never push without build validation passing." },
+    { "id": "never_deploy_without_live_verify", "severity": "block", "text": "Never declare production complete without live verification." },
+    { "id": "never_mockup_production", "severity": "block", "text": "Never use mockup-only mode for production fixes." },
+    { "id": "never_mix_code_fragments", "severity": "block", "text": "Never mix old and new code fragments in the same protected surface." },
+    { "id": "never_cross_brand", "severity": "block", "text": "Never apply one project's branding or business rules to another project." },
+    { "id": "never_damage_confirmed_setup", "severity": "block", "text": "Never damage a previous confirmed setup without checkpoint rollback." },
+    { "id": "never_overwrite_approved_design", "severity": "block", "text": "Never overwrite resumora-production-approved-v1 design without explicit re-seal." },
+    { "id": "never_replace_official_logo", "severity": "block", "text": "Never replace /brand/resumora-logo-official.jpg with placeholders or generated marks." },
+    { "id": "never_regenerate_branding", "severity": "block", "text": "Never regenerate branding assets in production without brand authority approval." },
+    { "id": "never_deploy_conflicting_layouts", "severity": "block", "text": "Never deploy layouts that conflict with locked pricing, sidebar, or CTA structure." },
+    { "id": "auto_rollback_visual_drift", "severity": "block", "text": "Auto-block deploy and trigger rollback when visual drift or duplicate sections are detected." }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "version": "1.0.1",
+  "project": "resumora",
+  "enforcement": {
+    "primaryExecutionEngine": "cursor",
+    "codingRepairAgent": "openai_codex",
+    "strategyArchitect": "claude",
+    "reviewOnlyEngine": "claude"
+  },
+  "roles": {
+    "cursor": {
+      "allowed": [
+        "code_editing",
+        "runtime_repair",
+        "deployment_execution",
+        "dependency_fixing",
+        "build_validation",
+        "localhost_recovery",
+        "performance_optimization"
+      ],
+      "restricted": []
+    },
+    "claude": {
+      "allowed": [
+        "architecture_analysis",
+        "long_context_reasoning",
+        "system_planning",
+        "validation_design"
+      ],
+      "restricted": [
+        "direct_production_ui_overwrite_without_explicit_approval"
+      ]
+    },
+    "openai_codex": {
+      "role": "coding_execution_repository_repair_only",
+      "allowed": [
+        "repo_analysis",
+        "patch_generation",
+        "powershell_script_refinement",
+        "ci_cd_suggestion",
+        "dependency_mismatch_repair",
+        "build_error_repair_assist"
+      ],
+      "restricted": [
+        "primary_reasoning_orchestration_brain",
+        "customer_email_automation_engine",
+        "bypass_bossmind_validation_layer",
+        "merge_without_antileak_and_snapshot_policy",
+        "overwrite_immutable_production_lock_without_approval"
+      ]
+    }
+  },
+  "requiredProtectionLayers": [
+    "bossmind:protect:verify",
+    "bossmind:antileak",
+    "bossmind:snapshot",
+    "rollback_snapshots",
+    "protected_components_registry",
+    "bossmind:validate"
+  ],
+  "recommendedEnterpriseAutomation": [
+    "bossmind:enterprise:risk",
+    "bossmind:enterprise:envelope",
+    "BOSSMIND_AUTONOMOUS_ENTERPRISE_EVERY_CYCLES on Railway worker for proof ledger + boundary checks",
+    "bossmind:autonomous:runtime on Railway with default BOSSMIND_CONTROL_PLANE_GATES (hosting guard gates downstream marketing/envelope)",
+    "npm run bossmind:optimization:cycle:persist on a schedule or BOSSMIND_AUTONOMOUS_OPTIMIZATION_EVERY_CYCLES for Neon-backed readiness snapshots"
+  ],
+  "requiredSharedMemoryTables": [
+    "task_state",
+    "event_log",
+    "error_memory",
+    "missing_updates_log",
+    "rollback_snapshots",
+    "deployment_history",
+    "deployment_repair_log",
+    "bossmind_memory",
+    "bossmind_error_memory",
+    "bossmind_safety_rules",
+    "bossmind_marketing_rules",
+    "bossmind_project_locks",
+    "bossmind_design_snapshots",
+    "bossmind_task_state",
+    "bossmind_event_log",
+    "bossmind_deploy_verification",
+    "bossmind_shortcut_processes",
+    "bossmind_visual_validation",
+    "bossmind_runtime_authority",
+    "bossmind_marketing_campaigns",
+    "bossmind_marketing_results",
+    "bossmind_social_posts",
+    "bossmind_publish_verification",
+    "bossmind_engagement_analytics",
+    "bossmind_marketing_templates",
+    "bossmind_campaign_performance",
+    "bossmind_marketing_errors"
+  ],
+  "runtimeAuthorityEngine": "lib/orchestration/bossmind-runtime-authority-engine.js",
+  "autonomousMarketingEngine": "lib/orchestration/bossmind-autonomous-marketing-engine.js",
+  "sharedMemoryStrategy": "config/bossmind-shared-memory-strategy.json",
+  "sharedMemoryHub": "lib/orchestration/bossmind-shared-memory-hub.js",
+  "orchestrationFlow": [
+    "sentry_issue",
+    "bossmind_ingest",
+    "langgraph_task",
+    "deepseek_root_cause",
+    "codex_patch_candidate",
+    "bossmind_validation_layer",
+    "cursor_execution",
+    "windsurf_review",
+    "build_validation",
+    "deployment_verification",
+    "snapshot_lock",
+    "shared_memory_persist"
+  ]
+}

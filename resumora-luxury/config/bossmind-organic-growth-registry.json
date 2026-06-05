@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "name": "BossMind Google Organic Growth — ecosystem registry",
+  "seoAiVisibilityStack": "config/bossmind-seo-ai-visibility-stack.json",
+  "googleCloud": {
+    "suggestedProjectId": "bossmind-core",
+    "enableApisHint": [
+      "searchconsole.googleapis.com",
+      "indexing.googleapis.com",
+      "analyticsadmin.googleapis.com",
+      "youtube.googleapis.com",
+      "merchantapi.googleapis.com",
+      "generativelanguage.googleapis.com"
+    ],
+    "secretsNote": "OAuth clients, service accounts, and refresh tokens live only in Railway / Render env — never in git."
+  },
+  "protection": {
+    "neverAutoOverwriteMarketingPages": true,
+    "useDeployGateAndProtectedSurface": true,
+    "canonicalAndSitemapNote": "Next.js routes + public/robots.txt; programmatic new routes require explicit PR review per PROTECTED_COMPONENTS_REGISTRY.",
+    "sharedMemoryHub": "config/bossmind-shared-memory-strategy.json",
+    "sharedMemoryReadAllProjects": true,
+    "sharedMemoryWriteOrchestratorOnly": true
+  },
+  "projects": [
+    {
+      "id": "resumora",
+      "displayName": "Resumora",
+      "siteUrl": "https://resumora.net",
+      "repoRootEnv": "BOSSMIND_REPO_ROOT_RESUMORA",
+      "pipelines": {
+        "weeklyOrganic": true,
+        "googleOrganicBundle": true,
+        "socialGrowthBundle": true,
+        "marketingActivationBundle": false
+      }
+    },
+    {
+      "id": "elegancyart",
+      "displayName": "ElegancyArt",
+      "siteUrl": null,
+      "repoRootEnv": "BOSSMIND_REPO_ROOT_ELEGANCYART",
+      "stackConfig": "config/bossmind-elegancyart-stack.json",
+      "pipelines": {
+        "weeklyOrganic": false,
+        "googleOrganicBundle": false,
+        "socialGrowthBundle": false,
+        "marketingActivationBundle": false,
+        "productIntelligence": true,
+        "seoLandingAutomation": true,
+        "supplierSync": true
+      },
+      "note": "Pipelines are orchestration targets; activate workers in ElegancyArt repo + Railway/n8n. See bossmind-elegancyart-stack.json."
+    },
+    {
+      "id": "ai-video-generator",
+      "displayName": "VibeVoyage",
+      "channelName": "VibeVoyage",
+      "tagline": "Cinematic Adventures Around the World",
+      "siteUrl": null,
+      "repoRootEnv": "BOSSMIND_REPO_ROOT_AI_VIDEO",
+      "bossmindDashboardPath": "/bossmind-ai-video",
+      "stackConfig": "config/bossmind-ai-video-stack.json",
+      "pipelines": {
+        "weeklyOrganic": false,
+        "googleOrganicBundle": false,
+        "socialGrowthBundle": false,
+        "marketingActivationBundle": false,
+        "aiVideoQueue": true
+      }
+    },
+    {
+      "id": "global-stock",
+      "displayName": "Global Stock",
+      "siteUrl": null,
+      "repoRootEnv": "BOSSMIND_REPO_ROOT_GLOBAL_STOCK",
+      "pipelines": {
+        "weeklyOrganic": false,
+        "googleOrganicBundle": false,
+        "socialGrowthBundle": false,
+        "marketingActivationBundle": false
+      }
+    },
+    {
+      "id": "tiktok-ai",
+      "displayName": "TikTok AI",
+      "siteUrl": null,
+      "repoRootEnv": "BOSSMIND_REPO_ROOT_TIKTOK_AI",
+      "pipelines": {
+        "weeklyOrganic": false,
+        "googleOrganicBundle": false,
+        "socialGrowthBundle": false,
+        "marketingActivationBundle": false
+      }
+    },
+    {
+      "id": "bossmind-capital",
+      "displayName": "BossMind Capital",
+      "tagline": "Protect First. Grow Gradually.",
+      "positioning": "Institutional-grade AI wealth intelligence — capital preservation first, gradual long-term growth, defensive allocation.",
+      "siteUrl": null,
+      "repoRootEnv": "BOSSMIND_REPO_ROOT_BOSSMIND_CAPITAL",
+      "legacyRepoRootEnv": "BOSSMIND_REPO_ROOT_GLOBAL_STOCK",
+      "pipelines": {
+        "weeklyOrganic": false,
+        "googleOrganicBundle": false,
+        "socialGrowthBundle": false,
+        "marketingActivationBundle": false
+      }
+    }
+  ]
+}

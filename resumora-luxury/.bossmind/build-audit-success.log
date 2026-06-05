@@ -1,0 +1,147 @@
+
+> resumora-luxury@0.1.0 build
+> next build --webpack
+
+Γû▓ Next.js 16.2.7 (webpack)
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 2.3min
+  Running TypeScript ...
+  Finished TypeScript in 51s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/43) ...
+  Generating static pages using 7 workers (10/43) 
+  Generating static pages using 7 workers (21/43) 
+  Generating static pages using 7 workers (32/43) 
+Γ£ô Generating static pages using 7 workers (43/43) in 4.0s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+ΓöÇ Γùï /_not-found
+
+Route (pages)
+Γöî Γùï / (600 ms)
+Γö£   /_app
+Γö£ Γùï /about (579 ms)
+Γö£ ╞Æ /api/ai/deepseek-status
+Γö£ ╞Æ /api/analytics/track
+Γö£ ╞Æ /api/branding-manifest
+Γö£ ╞Æ /api/checkout
+Γö£ ╞Æ /api/client/activate-plan
+Γö£ ╞Æ /api/client/checkout-bootstrap
+Γö£ ╞Æ /api/client/checkout-complete
+Γö£ ╞Æ /api/client/checkout-recovery
+Γö£ ╞Æ /api/client/documents
+Γö£ ╞Æ /api/client/download
+Γö£ ╞Æ /api/client/edit-requests
+Γö£ ╞Æ /api/client/file
+Γö£ ╞Æ /api/client/generation-status
+Γö£ ╞Æ /api/client/hub
+Γö£ ╞Æ /api/client/onboarding
+Γö£ ╞Æ /api/client/runtime-log
+Γö£ ╞Æ /api/client/upload
+Γö£ ╞Æ /api/client/workspace
+Γö£ ╞Æ /api/engagement/action
+Γö£ ╞Æ /api/engagement/analytics
+Γö£ ╞Æ /api/engagement/login
+Γö£ ╞Æ /api/engagement/logout
+Γö£ ╞Æ /api/engagement/password-reset/complete
+Γö£ ╞Æ /api/engagement/password-reset/health
+Γö£ ╞Æ /api/engagement/password-reset/request
+Γö£ ╞Æ /api/engagement/password-reset/verify
+Γö£ ╞Æ /api/engagement/register
+Γö£ ╞Æ /api/engagement/stats
+Γö£ ╞Æ /api/essential-advanced/catalog
+Γö£ ╞Æ /api/essential-advanced/download
+Γö£ ╞Æ /api/essential-advanced/entitlement
+Γö£ ╞Æ /api/essential-advanced/progress
+Γö£ ╞Æ /api/essential-advanced/video
+Γö£ ╞Æ /api/essential-advanced/video-event
+Γö£ ╞Æ /api/free-test
+Γö£ ╞Æ /api/health
+Γö£ ╞Æ /api/integrations/social-growth-orchestrate
+Γö£ ╞Æ /api/integrations/social-ingest
+Γö£ ╞Æ /api/marketing/public-engagement
+Γö£ ╞Æ /api/marketing/traffic-discovery
+Γö£ ╞Æ /api/marketing/trust-snapshot
+Γö£ ╞Æ /api/observability/test-metrics
+Γö£ ╞Æ /api/orchestration/ai-video/dashboard
+Γö£ ╞Æ /api/orchestration/ai-video/job/[id]
+Γö£ ╞Æ /api/orchestration/ai-video/n8n-webhook
+Γö£ ╞Æ /api/orchestration/ai-video/queue
+Γö£ ╞Æ /api/orchestration/ai-video/queue/[id]
+Γö£ ╞Æ /api/orchestration/ai-video/self-heal-report
+Γö£ ╞Æ /api/orchestration/bossmind-activation-recovery
+Γö£ ╞Æ /api/orchestration/bossmind-autonomous-marketing
+Γö£ ╞Æ /api/orchestration/bossmind-control
+Γö£ ╞Æ /api/orchestration/bossmind-core-optimization
+Γö£ ╞Æ /api/orchestration/bossmind-health
+Γö£ ╞Æ /api/orchestration/bossmind-runtime-authority
+Γö£ ╞Æ /api/orchestration/bossmind-shared-memory
+Γö£ ╞Æ /api/orchestration/client-delivery-admin
+Γö£ ╞Æ /api/orchestration/deployment-report
+Γö£ ╞Æ /api/orchestration/enterprise-health
+Γö£ ╞Æ /api/orchestration/file-guard
+Γö£ ╞Æ /api/orchestration/governance-dashboard
+Γö£ ╞Æ /api/orchestration/railway-incident-webhook
+Γö£ ╞Æ /api/orchestration/run-repair
+Γö£ ╞Æ /api/orchestration/runtime-sync-status
+Γö£ ╞Æ /api/orchestration/screenshots
+Γö£ ╞Æ /api/orchestration/sentry-ingest
+Γö£ ╞Æ /api/orchestration/support-mail-classify
+Γö£ ╞Æ /api/orchestration/support-mail-dedupe
+Γö£ ╞Æ /api/runtime/database-health
+Γö£ ╞Æ /api/runtime/stripe-health
+Γö£ ╞Æ /api/stripe/payment-links
+Γö£ ╞Æ /api/stripe/status
+Γö£ ╞Æ /api/stripe/webhook-health
+Γö£ ╞Æ /api/support-intake
+Γö£ ╞Æ /api/upload
+Γö£ ╞Æ /api/upload-resume
+Γö£ ╞Æ /api/verify-session
+Γö£ ╞Æ /api/webhooks/stripe
+Γö£ Γùï /bossmind-admin (590 ms)
+Γö£ Γùï /bossmind-ai-video (580 ms)
+Γö£ Γùï /cancel (580 ms)
+Γö£ Γùï /capabilities (578 ms)
+Γö£ Γùï /chat (604 ms)
+Γö£ Γùï /client-engagement (606 ms)
+Γö£ Γùï /contact (602 ms)
+Γö£ Γùï /dashboard (600 ms)
+Γö£ Γùï /delivery-protocols (603 ms)
+Γö£ Γùï /forgot-password (600 ms)
+Γö£ Γùï /login (598 ms)
+Γö£ Γùï /pricing
+Γö£ Γùï /privacy
+Γö£ Γùï /refund
+Γö£ Γùï /register
+Γö£ Γùï /reset-password
+Γö£ Γùï /resources
+Γö£ Γùï /runtime-sync
+Γö£ Γùï /services
+Γö£ ΓùÅ /solutions/[slug] (4959 ms)
+Γöé Γö£ /solutions/resume-review (987 ms)
+Γöé Γö£ /solutions/ats-resume (575 ms)
+Γöé Γö£ /solutions/executive-resume (575 ms)
+Γöé Γö£ /solutions/cover-letter (573 ms)
+Γöé Γö£ /solutions/linkedin-optimization
+Γöé Γö£ /solutions/interview-preparation
+Γöé Γö£ /solutions/ai-resume-builder
+Γöé Γöö [+5 more paths]
+Γö£ Γùï /studio
+Γö£ Γùï /studio/essential-advanced
+Γö£ Γùï /success
+Γö£ Γùï /support
+Γö£ Γùï /system-policy
+Γö£ Γùï /terms
+Γöö ╞Æ /testimonials
+
+Γùï  (Static)   prerendered as static content
+ΓùÅ  (SSG)      prerendered as static HTML (uses generateStaticParams)
+╞Æ  (Dynamic)  server-rendered on demand
+
+
+> resumora-luxury@0.1.0 postbuild
+> node -e "const fs=require('fs');fs.mkdirSync('.next',{recursive:true});fs.writeFileSync('.next/lock','');"
+

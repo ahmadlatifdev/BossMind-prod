@@ -1,0 +1,49 @@
+{
+  "version": 3,
+  "planId": "essential_advanced",
+  "displayName": "Essential Advanced Plan",
+  "priceUsd": 110,
+  "currency": "USD",
+  "stripeEnv": "NEXT_PUBLIC_STRIPE_PRICE_ESSENTIAL_ADVANCED",
+  "checkoutMode": "payment",
+  "oneTime": true,
+  "pricingCardOrder": ["basic", "professional", "elite", "essential_advanced"],
+  "deliverables": {
+    "atsOptimization": true,
+    "resumeEnhancement": true,
+    "structuredFormatting": true,
+    "keywordOptimization": true,
+    "coverLetterSupport": true,
+    "fasterTurnaround": true,
+    "limitedRevisions": { "count": 2, "note": "structured edit sprints" },
+    "interviewPrepBundle": {
+      "trainingVideos": 3,
+      "simulations": 3,
+      "qaCount": 60,
+      "successTips": 22,
+      "executiveSection": true,
+      "bilingualEnFr": true,
+      "secureDownloads": 4,
+      "clientStudioPath": "/studio/essential-advanced",
+      "progressTracking": true,
+      "automatedDeliveryAfterStripe": true
+    }
+  },
+  "uiSurfaces": [
+    "/pricing",
+    "/#pricing",
+    "PricingPanel",
+    "PriceTierCard",
+    "ServiceOfferingsGrid",
+    "/studio/essential-advanced"
+  ],
+  "uiRemovals": {
+    "trustAtAGlanceSection": true,
+    "removedFrom": ["HomePage", "services"]
+  },
+  "notes": [
+    "Card is the 4th column (far right): Basic, Professional, Elite, Essential Advanced.",
+    "Interview studio: /studio/essential-advanced (entitlement-gated).",
+    "Lock after deploy: npm run resumora:essential-advanced:interface-lock -- --i-understand-production --notes=\"...\""
+  ]
+}

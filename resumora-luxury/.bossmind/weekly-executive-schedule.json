@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-06-05T17:47:49.361Z",
+  "timezone": "America/Toronto",
+  "active": false,
+  "upcoming": [
+    {
+      "weekday": "Monday",
+      "weekdayIndex": 1,
+      "theme": "client_testimonial_success_story",
+      "platforms": [
+        "linkedin",
+        "facebook"
+      ],
+      "contentType": "testimonial",
+      "nextPublishIso": "2026-06-08T14:00:00.000Z",
+      "nextPublishLocal": "2026-06-08, 10:00:00 a.m."
+    },
+    {
+      "weekday": "Wednesday",
+      "weekdayIndex": 3,
+      "theme": "resume_tip_industry_insight",
+      "platforms": [
+        "x",
+        "instagram"
+      ],
+      "contentType": "insight",
+      "nextPublishIso": "2026-06-10T14:00:00.000Z",
+      "nextPublishLocal": "2026-06-10, 10:00:00 a.m."
+    },
+    {
+      "weekday": "Friday",
+      "weekdayIndex": 5,
+      "theme": "call_to_action_promotion",
+      "platforms": [
+        "linkedin",
+        "threads"
+      ],
+      "contentType": "cta",
+      "nextPublishIso": "2026-06-12T14:00:00.000Z",
+      "nextPublishLocal": "2026-06-12, 10:00:00 a.m."
+    }
+  ]
+}

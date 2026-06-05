@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "generatedAt": "2026-05-18T11:01:13.899Z",
+  "ok": false,
+  "localOk": true,
+  "liveOk": false,
+  "localBlockers": [],
+  "liveBlockers": [
+    "live_database_offline",
+    "live_registration_database_unavailable"
+  ],
+  "liveOrigin": "https://www.resumora.net"
+}

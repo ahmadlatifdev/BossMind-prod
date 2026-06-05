@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-18T11:02:15.000Z",
+  "fullyOperational": false,
+  "liveProductionReady": false,
+  "rootCause": "RENDER_ENV_MISSING_NEON_DATABASE_URL",
+  "localStackHealthy": true,
+  "blockers": [
+    "resumora_live_database_offline",
+    "resumora_live_register_database_unavailable",
+    "render_api_not_configured",
+    "stripe_webhook_secret_missing_in_bundle",
+    "sibling_projects_no_live_urls"
+  ],
+  "projects": [
+    { "id": "resumora", "liveDatabase": "DISCONNECTED", "registration": "503 Database unavailable" },
+    { "id": "bossmind-master-admin", "liveDatabase": "DISCONNECTED", "note": "hosted on resumora.net" },
+    { "id": "elegancyart", "liveDatabase": "NO_LIVE_URL" },
+    { "id": "ai-video-generator", "liveDatabase": "NO_LIVE_URL" },
+    { "id": "tiktok-ai", "liveDatabase": "NO_LIVE_URL" },
+    { "id": "global-stock", "liveDatabase": "NO_LIVE_URL" }
+  ],
+  "envAudit": {
+    "NEON_DATABASE_URL": "SET_LOCAL_ONLY",
+    "DATABASE_URL": "SET_LOCAL_ONLY",
+    "STRIPE_SECRET_KEY": "SET_LOCAL",
+    "STRIPE_WEBHOOK_SECRET": "MISSING",
+    "RENDER_API_KEY": "MISSING",
+    "RENDER_SERVICE_ID": "MISSING"
+  },
+  "renderBundlePath": ".bossmind/render-production-env.env",
+  "renderApiReady": false,
+  "checkpointKey": "production_live_validation",
+  "checkpointLocked": false,
+  "remediation": [
+    "Paste .bossmind/render-production-env.env into Render → Environment",
+    "Add STRIPE_WEBHOOK_SECRET from Stripe Dashboard if missing in bundle",
+    "Clear build cache and redeploy latest main",
+    "Verify https://www.resumora.net/api/health returns database.ok true",
+    "Optional: set RENDER_API_KEY + RENDER_SERVICE_ID then npm run bossmind:render:env-sync -- --apply"
+  ]
+}

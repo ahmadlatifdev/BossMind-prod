@@ -1,0 +1,187 @@
+.shell {
+  padding: clamp(1rem, 3vw, 2rem);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 800;
+  color: var(--rs-gold-soft, #e8c96a);
+  letter-spacing: 0.02em;
+}
+
+.sub {
+  margin: 0;
+  color: var(--rs-text-secondary, #9aa8c7);
+  font-size: 0.9rem;
+}
+
+.authRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.authInput {
+  flex: 1;
+  min-width: 12rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--rs-radius-sm, 8px);
+  border: 1px solid var(--rs-border-strong, rgba(201, 162, 39, 0.35));
+  background: rgba(8, 14, 32, 0.85);
+  color: var(--rs-text, #e8ecf4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.85rem;
+}
+
+.card {
+  padding: 1rem 1.1rem;
+  border-radius: var(--rs-radius-lg, 14px);
+  border: 1px solid var(--rs-border, rgba(255, 255, 255, 0.08));
+  background: rgba(10, 18, 40, 0.72);
+  box-shadow: var(--rs-shadow-card, 0 12px 40px rgba(0, 0, 0, 0.35));
+}
+
+.card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rs-text-secondary, #9aa8c7);
+}
+
+.score {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--rs-text, #e8ecf4);
+}
+
+.scoreTarget {
+  font-size: 0.8rem;
+  color: var(--rs-text-secondary, #9aa8c7);
+}
+
+.scoreOk {
+  color: #6ee7a8;
+}
+
+.scoreWarn {
+  color: #f0b429;
+}
+
+.scoreBad {
+  color: #f87171;
+}
+
+.overall {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1.25rem;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.projectList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8125rem;
+}
+
+.projectList li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--rs-radius-sm, 8px);
+  border: 1px solid rgba(223, 169, 46, 0.45);
+  background: linear-gradient(135deg, #b8891f 0%, var(--rs-gold-mid, #c9a227) 55%, var(--rs-gold-soft, #e8c96a) 100%);
+  color: #0a0f1f;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.btnGhost {
+  background: transparent;
+  color: var(--rs-text, #e8ecf4);
+  border-color: var(--rs-border-strong, rgba(201, 162, 39, 0.35));
+}
+
+.error {
+  color: #f87171;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.shortcutSection {
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--rs-radius-lg, 14px);
+  border: 1px solid rgba(201, 162, 39, 0.22);
+  background: rgba(8, 14, 32, 0.55);
+}
+
+.shortcutTitle {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--rs-gold-soft, #e8c96a);
+}
+
+.projectPick {
+  display: block;
+  margin: 0.75rem 0;
+  font-size: 0.8125rem;
+  color: var(--rs-text-secondary, #9aa8c7);
+}
+
+.shortcutGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.45rem;
+}
+
+.shortcutLog {
+  margin-top: 0.75rem;
+  padding: 0.65rem;
+  max-height: 14rem;
+  overflow: auto;
+  font-size: 0.7rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--rs-text-secondary, #9aa8c7);
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

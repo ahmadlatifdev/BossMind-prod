@@ -1,0 +1,380 @@
+/**
+ * Unified BossMind health readout (Stripe pricing resolution, Neon, runtime, policy).
+ * Authorization: development | BOSSMIND_DIAGNOSTICS=1 | Bearer BOSSMIND_ORCHESTRATION_SECRET
+ */
+const { initializeSharedMemory } = require("../../../lib/shared/neon-memory");
+const {
+  getBossMindRuntimeOverview,
+} = require("../../../lib/orchestration/bossmind-runtime-status");
+const {
+  auditStripeEnv,
+  describeStripeBlockers,
+} = require("../../../lib/marketing/stripe-env-audit");
+const {
+  getBossMindCodexLayerStatus,
+} = require("../../../lib/orchestration/bossmind-codex-status");
+const { getRailwayRepairOverview } = require("../../../lib/orchestration/railway-repair-status");
+const { getAutonomousSelfHealStatus } = require("../../../lib/orchestration/bossmind-autonomous-self-heal-status");
+const {
+  getSupportMailBossMindSummary,
+  computeSupportMailReadinessPercent,
+} = require("../../../lib/orchestration/resumora-support-mail-status");
+const { readLatestGoogleEcosystemReport } = require("../../../lib/marketing/resumora-google-ecosystem-audit-lib");
+const { readLatestGoogleTrafficReport } = require("../../../lib/marketing/resumora-google-traffic-engine-lib");
+const { readLatestUltraReport } = require("../../../lib/orchestration/bossmind-ultra-antileak-lib");
+const { readLatestCoreOptimizationReport } = require("../../../lib/orchestration/bossmind-core-optimization-lib");
+const fs = require("fs");
+const path = require("path");
+
+function readBackupPreservationWidget() {
+  const cwd = process.cwd();
+  const base = path.join(cwd, ".bossmind", "backups", "rolling-30d");
+  const manifestPath = path.join(base, "protected", "latest-verified-manifest.json");
+  if (!fs.existsSync(manifestPath)) {
+    return {
+      manifestPresent: false,
+      note: "No rolling backup manifest at cwd/.bossmind/backups/rolling-30d/protected/",
+    };
+  }
+  let manifest = {};
+  try {
+    manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  } catch {
+    manifest = {};
+  }
+  const runsDir = path.join(base, "runs");
+  let rollingRunCount = 0;
+  let verifiedRunCount = 0;
+  try {
+    for (const e of fs.readdirSync(runsDir, { withFileTypes: true })) {
+      if (!e.isDirectory()) continue;
+      rollingRunCount += 1;
+      if (fs.existsSync(path.join(runsDir, e.name, ".verified"))) verifiedRunCount += 1;
+    }
+  } catch {
+    /* noop */
+  }
+  const logPath = path.join(base, "daily-backup.log.jsonl");
+  let lastLog = null;
+  let recentVerifyFailures = 0;
+  let recentVerifyOks = 0;
+  try {
+    const lines = fs.readFileSync(logPath, "utf8").trim().split("\n").filter(Boolean);
+    lastLog = JSON.parse(lines[lines.length - 1] || "{}");
+    for (const line of lines.slice(-60)) {
+      try {
+        const j = JSON.parse(line);
+        if (j.verifyOk === false) recentVerifyFailures += 1;
+        if (j.verifyOk === true) recentVerifyOks += 1;
+      } catch {
+        /* skip */
+      }
+    }
+  } catch {
+    /* noop */
+  }
+  return {
+    manifestPresent: true,
+    projectId: manifest.projectId || null,
+    fileCount: manifest.files?.length ?? 0,
+    lastManifestRunId: manifest.runId || null,
+    rollingRunCount,
+    verifiedRunCount,
+    lastLogVerifyOk: lastLog?.verifyOk ?? null,
+    lastLogRunId: lastLog?.runId || null,
+    recentVerifyFailuresInTail: recentVerifyFailures,
+    recentVerifyOksInTail: recentVerifyOks,
+    retentionDaysNominal: 30,
+    recoverySimulationHint: "npm run bossmind:backup:simulate",
+    fullActivationHint: "npm run bossmind:backup:activate-full",
+  };
+}
+
+function authorize(req) {
+  const dev = process.env.NODE_ENV === "development";
+  const diag = process.env.BOSSMIND_DIAGNOSTICS === "1";
+  const secret = process.env.BOSSMIND_ORCHESTRATION_SECRET;
+  const auth = req.headers.authorization || "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7).trim() : "";
+  return dev || diag || (Boolean(secret) && token === secret);
+}
+
+export default async function handler(req, res) {
+  if (req.method !== "GET") {
+    res.setHeader("Allow", "GET");
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  if (!authorize(req)) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    const init = await initializeSharedMemory();
+    const neonOk = Boolean(init.enabled);
+
+    const overview = await getBossMindRuntimeOverview({
+      projectKey: process.env.BOSSMIND_PROJECT_KEY || "resumora",
+      neonEnabled: neonOk,
+    });
+
+    const audit = auditStripeEnv();
+    const blockers = describeStripeBlockers(audit);
+
+    const pricePlansReady = audit.priceIds || {};
+    const tiersConfigured = Object.keys(pricePlansReady).filter(
+      (k) => pricePlansReady[k]?.valid
+    ).length;
+    const tierTotal = Object.keys(pricePlansReady).length || 3;
+    const automationCoveragePercent =
+      tierTotal > 0 ? Math.round((tiersConfigured / tierTotal) * 100) : 0;
+
+    const bundleOk = overview.performance?.bundleScanned === true;
+    const performanceScore = bundleOk ? 85 : 55;
+
+    const projectKey = process.env.BOSSMIND_PROJECT_KEY || "resumora";
+    const codexAgentLayer = await getBossMindCodexLayerStatus({
+      projectKey,
+      neonEnabled: neonOk,
+    });
+    const railwayClosedLoop = await getRailwayRepairOverview({
+      projectKey,
+      neonEnabled: neonOk,
+    });
+
+    const backupPreservation = readBackupPreservationWidget();
+    const autonomousSelfHeal = getAutonomousSelfHealStatus();
+    const supportMail = getSupportMailBossMindSummary(process.cwd());
+    supportMail.proofBasedProductionReadinessPercent = computeSupportMailReadinessPercent(supportMail, null);
+    const googleEcosystem = {
+      lastReport: readLatestGoogleEcosystemReport(process.cwd()),
+      auditCommand: "npm run resumora:google:ecosystem:audit",
+    };
+    const googleTrafficEngine = {
+      lastReport: readLatestGoogleTrafficReport(process.cwd()),
+      optimizeCommand: "npm run resumora:google-traffic:optimize",
+      lockCommand: "npm run resumora:google-traffic:lock -- --i-understand-traffic-config",
+    };
+    const ultraAntileak = {
+      lastLock: readLatestUltraReport(process.cwd()),
+      runCommand: "npm run bossmind:ultra:antileak",
+      snapshotLockCommand: "npm run bossmind:ultra:antileak:snapshot-lock",
+    };
+    const coreOptimization = {
+      lastReport: readLatestCoreOptimizationReport(process.cwd()),
+      runCommand: "npm run bossmind:core:optimization",
+      closedLoopCommand: "npm run bossmind:core:optimization:closed-loop",
+      dashboardPath: "/bossmind-admin",
+      targetPercent: 98,
+    };
+
+    let productionAutonomous = { lastReport: null };
+    try {
+      const prodPath = path.join(process.cwd(), ".bossmind", "production-autonomous", "latest.json");
+      if (fs.existsSync(prodPath)) {
+        productionAutonomous = {
+          lastReport: JSON.parse(fs.readFileSync(prodPath, "utf8")),
+          runCommand: "npm run bossmind:production:autonomous",
+          closedLoopCommand: "npm run bossmind:production:autonomous:closed-loop",
+          monitorLoopCommand: "npm run bossmind:production:autonomous:loop",
+          postDeployValidation: "npm run bossmind:production:post-deploy-validation",
+        };
+      }
+    } catch {
+      productionAutonomous = { lastReport: null, error: "read_failed" };
+    }
+
+    let continuousMonitor = null;
+    try {
+      const monPath = path.join(process.cwd(), ".bossmind", "continuous-monitor", "last-cycle.json");
+      if (fs.existsSync(monPath)) {
+        continuousMonitor = JSON.parse(fs.readFileSync(monPath, "utf8"));
+      }
+    } catch {
+      continuousMonitor = null;
+    }
+
+    let postDeployValidation = null;
+    try {
+      const valPath = path.join(process.cwd(), ".bossmind", "validation", "latest-post-deploy.json");
+      if (fs.existsSync(valPath)) {
+        postDeployValidation = JSON.parse(fs.readFileSync(valPath, "utf8"));
+      }
+    } catch {
+      postDeployValidation = null;
+    }
+
+    let elegancyArt = {
+      stackConfig: "config/bossmind-elegancyart-stack.json",
+      repoRootEnv: "BOSSMIND_REPO_ROOT_ELEGANCYART",
+    };
+    try {
+      const stack = JSON.parse(
+        fs.readFileSync(path.join(process.cwd(), "config/bossmind-elegancyart-stack.json"), "utf8")
+      );
+      elegancyArt = {
+        ...elegancyArt,
+        displayName: stack.displayName,
+        positioning: stack.positioning?.summary,
+        performanceTargets: stack.performanceTargets,
+        categoryCount: stack.categories?.length ?? 0,
+        isolationNote: stack.isolationNote,
+      };
+    } catch {
+      elegancyArt.loadError = "stack_config_unreadable";
+    }
+
+    let aiVideo = {
+      dashboardPath: "/bossmind-ai-video",
+      projectKeyDefault: process.env.BOSSMIND_AI_VIDEO_PROJECT_KEY || "ai-video-generator",
+      channelName: (() => {
+        try {
+          return require("../../../lib/orchestration/bossmind-ai-video-store").channelName();
+        } catch {
+          return process.env.BOSSMIND_AI_VIDEO_CHANNEL_NAME || "VibeVoyage";
+        }
+      })(),
+      brand: (() => {
+        try {
+          return require("../../../lib/orchestration/vibevoyage-brand.js").getBrandSummary();
+        } catch {
+          return null;
+        }
+      })(),
+    };
+    if (neonOk) {
+      try {
+        const av = require("../../../lib/orchestration/bossmind-ai-video-store");
+        aiVideo.neon = await av.getDashboardSummary();
+      } catch (e) {
+        aiVideo.neonError = e.message || String(e);
+      }
+    }
+
+    let sharedMemoryHub = { enabled: false };
+    try {
+      const { getHubStatus } = require("../../../lib/orchestration/bossmind-shared-memory-hub");
+      sharedMemoryHub = await getHubStatus();
+      sharedMemoryHub.apiPath = "/api/orchestration/bossmind-shared-memory";
+    } catch (e) {
+      sharedMemoryHub = { enabled: false, error: e.message || String(e) };
+    }
+
+    let runtimeAuthority = { enabled: false };
+    try {
+      const { getRuntimeAuthorityStatus } = require("../../../lib/orchestration/bossmind-runtime-authority-engine");
+      runtimeAuthority = await getRuntimeAuthorityStatus(process.cwd());
+      runtimeAuthority.apiPath = "/api/orchestration/bossmind-runtime-authority";
+    } catch (e) {
+      runtimeAuthority = { enabled: false, error: e.message || String(e) };
+    }
+
+    let autonomousMarketing = { enabled: false };
+    try {
+      const { getAutonomousMarketingStatus } = require("../../../lib/orchestration/bossmind-autonomous-marketing-engine");
+      autonomousMarketing = await getAutonomousMarketingStatus(process.cwd());
+      autonomousMarketing.apiPath = "/api/orchestration/bossmind-autonomous-marketing";
+    } catch (e) {
+      autonomousMarketing = { enabled: false, error: e.message || String(e) };
+    }
+
+    let activationRecovery = { lastScan: null, runCommand: "npm run bossmind:activation:recover" };
+    try {
+      const lockPath = path.join(process.cwd(), "config/bossmind-activation-recovery-lock.json");
+      if (fs.existsSync(lockPath)) {
+        activationRecovery.lastScan = JSON.parse(fs.readFileSync(lockPath, "utf8"));
+      }
+    } catch {
+      activationRecovery.loadError = "lock_unreadable";
+    }
+    activationRecovery.apiPath = "/api/orchestration/bossmind-activation-recovery";
+
+    let productionLiveAudit = { lastAudit: null, runCommand: "npm run bossmind:production:live-audit" };
+    try {
+      const liveAuditPath = path.join(process.cwd(), "config/bossmind-production-live-audit-lock.json");
+      if (fs.existsSync(liveAuditPath)) {
+        productionLiveAudit.lastAudit = JSON.parse(fs.readFileSync(liveAuditPath, "utf8"));
+      }
+    } catch {
+      productionLiveAudit.loadError = "lock_unreadable";
+    }
+
+    let enterpriseProductionHealth = {
+      runCommand: "npm run bossmind:enterprise:production-health",
+    };
+    try {
+      const entPath = path.join(process.cwd(), "config/bossmind-enterprise-production-health-lock.json");
+      if (fs.existsSync(entPath)) {
+        enterpriseProductionHealth = {
+          ...enterpriseProductionHealth,
+          ...JSON.parse(fs.readFileSync(entPath, "utf8")),
+        };
+      }
+    } catch {
+      enterpriseProductionHealth.loadError = "lock_unreadable";
+    }
+
+    return res.status(200).json({
+      ok: blockers.length === 0 && audit.checkoutReady,
+      project: "resumora",
+      ts: Date.now(),
+      activationRecovery,
+      productionLiveAudit,
+      enterpriseProductionHealth,
+      neonConfigured: neonOk,
+      sharedMemoryHub,
+      runtimeAuthority,
+      autonomousMarketing,
+      sentryConfigured: Boolean(
+        process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
+      ),
+      langgraphAvailable: true,
+      codexAgentLayer,
+      railwayClosedLoop,
+      stripe: {
+        checkoutReady: audit.checkoutReady,
+        financialPipelineReady: audit.financialPipelineReady,
+        webhookSigningReady: audit.webhookSigningReady,
+        pricePlans: audit.priceIds,
+        pricingResolution: audit.pricingResolution,
+        blockers,
+      },
+      deployment: {
+        railway: Boolean(
+          process.env.RAILWAY_ENVIRONMENT || process.env.RAILWAY_ENVIRONMENT_NAME
+        ),
+        gitHead: overview.git?.head || null,
+        buildId: overview.build?.buildId || null,
+      },
+      overview,
+      backupPreservation,
+      autonomousSelfHeal,
+      supportMail,
+      googleEcosystem,
+      googleTrafficEngine,
+      ultraAntileak,
+      coreOptimization,
+      productionAutonomous,
+      continuousMonitor,
+      postDeployValidation,
+      elegancyArt,
+      aiVideo,
+      scores: {
+        performanceScore,
+        automationCoveragePercent,
+        safetyLayersActive: Boolean(process.env.BOSSMIND_ORCHESTRATION_SECRET || neonOk),
+      },
+      weakPoints: blockers,
+      canonicalStripePriceKeys: {
+        basic: "NEXT_PUBLIC_STRIPE_PRICE_BASIC",
+        professional: "NEXT_PUBLIC_STRIPE_PRICE_PRO",
+        elite: "NEXT_PUBLIC_STRIPE_PRICE_ELITE",
+      },
+    });
+  } catch (error) {
+    console.error("[bossmind-health]", error);
+    return res.status(500).json({
+      error: error.message || "Health aggregation failed",
+    });
+  }
+}

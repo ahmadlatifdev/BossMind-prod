@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "project": "resumora",
+  "lockedLogo": {
+    "publicUrl": "/brand/resumora-logo-official.jpg",
+    "repoPath": "public/brand/resumora-logo-official.jpg",
+    "component": "components/brand/ResumoraLogo.tsx",
+    "authorityModule": "lib/marketing/brand-asset-authority.js",
+    "sha256": "9a2232b70a530685714d94068cb99d03cc11e0fe6503ce0d94106fbfaca666c8",
+    "approvedSource": "D:\\Shakhsy11\\Bossmind-orchestrator\\BossMind Logos\\Resumora\\_ff509979-6347-4249-b3f1-86defbc25128.jpg (official social upload; ee2c9326 alias not on disk)"
+  },
+  "legacyAliases": ["/resumora-logo.png", "/brand/resumora-logo-official.png", "/brand/resumora-logo-original.png"],
+  "forbiddenPatterns": [
+    "resumora-logo.svg",
+    "resumora-logo-official.png",
+    "resumora-logo-original.png",
+    "logo-draft",
+    "logo-mockup",
+    "logo-generated",
+    "placeholder-logo"
+  ],
+  "requiredHtmlMarkers": [
+    "data-rs-brand-logo=\"1\"",
+    "/brand/resumora-logo-official.jpg"
+  ],
+  "protection": {
+    "blockReplacementWithoutApproval": true,
+    "blockGeneratedLogosInProduction": true,
+    "blockDuplicatedBrandAssets": true,
+    "verifyCommand": "npm run bossmind:brand:verify"
+  },
+  "sharedMemory": {
+    "memoryKey": "brand_asset_authority_resumora",
+    "projectLockType": "brand_logo"
+  }
+}
