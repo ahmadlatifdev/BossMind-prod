@@ -168,7 +168,7 @@ export default function ClientStudioHub({ lang: langProp }) {
 
   const isCheckoutFocus = Boolean(checkoutFocusPlanId);
   const hasMultiplePlans = hubPlans.length > 1;
-  const showPlanSwitcher = hasMultiplePlans && !isCheckoutFocus;
+  const showPlanSwitcher = false;
   const activeWorkspacePlanId = checkoutFocusPlanId || workspacePlanId || defaultWorkspacePlanId;
 
   const activePlan = useMemo(() => {
