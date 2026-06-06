@@ -15,7 +15,7 @@
 
 .luxury-card {
   background: linear-gradient(165deg, rgba(13, 24, 40, 0.92), rgba(5, 8, 17, 0.88));
-  border: 1px solid var(--luxury-border);
+  border: none;
   border-radius: var(--luxury-radius);
   box-shadow: var(--luxury-shadow);
   color: var(--luxury-cream);
@@ -99,4 +99,15 @@ footer .footerBrand .brandMark,
 
 .rs-client-hub-header.rs-logo-top-left-header {
   text-align: left;
+}
+
+/* Site-wide: remove decorative card/outline borders (inputs keep their borders) */
+.rs-service-card,
+.rs-price-card,
+.rs-card-interactive,
+.rs-checkout-summary,
+.rs-pricing-saved-quote,
+.rs-pricing-saved-quote-inner {
+  border: none !important;
+  outline: none;
 }

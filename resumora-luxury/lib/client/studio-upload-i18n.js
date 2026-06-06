@@ -75,9 +75,18 @@ function uploadStateLabel(state, lang = "en") {
   return row[lang === "fr" ? "fr" : "en"] || row.en;
 }
 
+function isUnsafeClientMessage(message) {
+  const value = String(message || "").trim();
+  if (!value) return true;
+  if (value.startsWith("{")) return true;
+  return /<!DOCTYPE|<html|<head|<meta\s+charSet/i.test(value);
+}
+
 function mapApiErrorToMessage(data, lang = "en") {
   if (!data) return uploadErrorMessage("upload_failed", lang);
-  if (data.message && typeof data.message === "string" && !data.message.startsWith("{")) return data.message;
+  if (data.message && typeof data.message === "string" && !isUnsafeClientMessage(data.message)) {
+    return data.message;
+  }
   return uploadErrorMessage(data.error || data.code, lang);
 }
 

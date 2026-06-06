@@ -15,7 +15,6 @@ type Lang = "en" | "fr";
 
 const COPY = {
   en: {
-    badge: "AI-Powered Enterprise",
     title: "Executive resumes, elevated by intelligence",
     subtitle:
       "Resumora delivers luxury-grade CV optimization for leaders who expect precision, discretion, and measurable career outcomes.",
@@ -28,7 +27,6 @@ const COPY = {
     ],
   },
   fr: {
-    badge: "Entreprise propulsée par l'IA",
     title: "CV exécutifs, sublimés par l'intelligence",
     subtitle:
       "Resumora offre une optimisation de CV haut de gamme pour les leaders exigeant précision, discrétion et résultats mesurables.",
@@ -57,7 +55,7 @@ export function LanguageToggle({
         display: "inline-flex",
         padding: "0.2rem",
         borderRadius: "999px",
-        border: "1px solid var(--lux-glass-border)",
+        border: "none",
         background: "rgba(255,255,255,0.04)",
       }}
     >
@@ -97,7 +95,6 @@ export function HeroSection({ lang }: { lang: Lang }) {
     <section id="hero" className={styles.hero}>
       <div className={styles.heroGlow} aria-hidden="true" />
       <div className="lux-container lux-animate-in">
-        <span className={`lux-glass ${styles.heroBadge}`}>{copy.badge}</span>
         <h1 className={styles.heroTitle}>
           <span className="lux-gold-text">{copy.title.split(",")[0]},</span>
           {copy.title.includes(",") ? (

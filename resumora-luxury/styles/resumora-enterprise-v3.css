@@ -4,10 +4,123 @@
    Zero breaking changes. Additive modifier classes only.
    ============================================================ */
 
+/* - Multi-plan workspace layout - */
+.rs-client-hub-grid--stacked {
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+}
+
+.rs-client-hub-grid--single {
+  grid-template-columns: 1fr;
+}
+
+.rs-studio-plan-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.75rem;
+  margin-top: 0.85rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--rs-radius-sm);
+  border: 1px solid var(--rs-border);
+  background: rgba(5, 10, 24, 0.45);
+}
+
+.rs-studio-plan-switcher__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rs-text-muted);
+}
+
+.rs-studio-plan-switcher__select {
+  min-width: min(100%, 18rem);
+  flex: 1;
+}
+
+.rs-studio-workspace__focus-note {
+  margin: 0.75rem 0 0;
+  padding: 0.65rem 0.8rem;
+  border-radius: var(--rs-radius-sm);
+  border: 1px solid rgba(201, 162, 39, 0.22);
+  background: rgba(201, 162, 39, 0.06);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--rs-text-secondary);
+}
+
+.rs-payment-confirmed-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
 /* - Workspace card v2 - */
 .rs-studio-workspace-card--v2 {
   padding: clamp(1rem, 2vw, 1.35rem);
-  transition: box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.rs-studio-workspace-card--active {
+  border-color: rgba(201, 162, 39, 0.28);
+  box-shadow: var(--rs-shadow-card), 0 0 0 1px rgba(201, 162, 39, 0.08);
+}
+
+.rs-studio-workspace-card--compact {
+  padding: 0.7rem 0.85rem;
+  background: rgba(5, 10, 24, 0.45);
+}
+
+.rs-studio-workspace-card__compact-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.rs-studio-workspace-card__compact-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.rs-studio-workspace-card__compact-copy .rs-studio-workspace-card__title {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.rs-studio-workspace-card__compact-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.45rem;
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--rs-text-muted);
+}
+
+.rs-studio-workspace-card__activate {
+  flex-shrink: 0;
+  padding: 0.38rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(201, 162, 39, 0.08);
+  color: var(--rs-gold-soft);
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.rs-studio-workspace-card__activate:hover {
+  background: rgba(201, 162, 39, 0.14);
+  border-color: rgba(201, 162, 39, 0.5);
+  color: var(--rs-gold);
+}
+
+.rs-studio-panel__heading--compact {
+  margin-bottom: 0.55rem;
 }
 
 .rs-studio-workspace-card--v2:hover {

@@ -11,18 +11,6 @@
   background: radial-gradient(circle at 50% 20%, rgba(201, 169, 98, 0.14), transparent 55%);
 }
 
-.heroBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--lux-gold-light);
-}
-
 .heroTitle {
   margin: 0 0 1.25rem;
   font-size: clamp(2.25rem, 6vw, 4.25rem);
@@ -75,7 +63,7 @@
 .ctaSecondary {
   color: var(--lux-white);
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--lux-glass-border);
+  border: none;
 }
 
 .ctaSecondary:hover {

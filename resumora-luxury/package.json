@@ -13,7 +13,8 @@
     "marketing:weekly-executive:run": "node scripts/marketing/weekly-executive-schedule.mjs --orchestrate",
     "test": "node --test tests/smoke.test.js",
     "monitor:uptime": "node scripts/monitoring/check-uptime.mjs",
-    "audit:fix": "npm audit fix"
+    "audit:fix": "npm audit fix",
+    "verify:checkout": "node scripts/verify-checkout-readiness.mjs http://localhost:3000"
   },
   "dependencies": {
     "@ai-sdk/deepseek": "^2.0.35",

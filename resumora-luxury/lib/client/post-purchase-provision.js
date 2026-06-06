@@ -2,6 +2,7 @@ const { saveEvent, upsertTaskState, getSqlClient } = require("../shared/neon-mem
 const { resolvePlanIdFromStripeSession } = require("./entitlements-store");
 const { getDeliverableForPlan } = require("./deliverables-catalog");
 const { upsertDeliveryStatus } = require("./workspace-store");
+const { queueEssentialAdvancedVideoJobs } = require("../essential-advanced/auto-video-provision");
 
 function projectKey() {
   return process.env.BOSSMIND_PROJECT_KEY || "resumora";
@@ -100,6 +101,13 @@ async function provisionAfterPayment(session, grantResult) {
     }).catch(() => {});
   }
 
+  const videoJobs = await queueEssentialAdvancedVideoJobs({
+    planId,
+    sessionId: session.id,
+    email,
+    lang: session.metadata?.lang || session.metadata?.locale || "en",
+  }).catch(() => ({ queued: 0, skipped: true }));
+
   const webhook = await notifyPostPurchaseWebhook({
     event: "resumora.post_purchase",
     planId,
@@ -141,7 +149,14 @@ async function provisionAfterPayment(session, grantResult) {
     }).catch(() => {});
   }
 
-  return { ok: true, planId, webhook, studioPath: payload.studioPath, studioUrl: studioFullUrl };
+  return {
+    ok: true,
+    planId,
+    webhook,
+    videoJobs,
+    studioPath: payload.studioPath,
+    studioUrl: studioFullUrl,
+  };
 }
 
 module.exports = { provisionAfterPayment, notifyPostPurchaseWebhook };

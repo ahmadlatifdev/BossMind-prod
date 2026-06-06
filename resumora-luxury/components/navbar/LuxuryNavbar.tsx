@@ -1,14 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
+import ResumoraLogo from "@/components/brand/ResumoraLogo";
+import { useLanguage } from "@/context/LanguageContext";
 import styles from "@/styles/luxury/navbar.module.css";
 
-const LINKS = [
-  { href: "#hero", label: "Home" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#faq", label: "FAQ" },
-];
+type Lang = "en" | "fr";
+
+const NAV_COPY = {
+  en: {
+    home: "Home",
+    pricing: "Pricing",
+    faq: "FAQ",
+    getStarted: "Get Started",
+    homeAria: "Resumora home",
+  },
+  fr: {
+    home: "Accueil",
+    pricing: "Tarifs",
+    faq: "FAQ",
+    getStarted: "Commencer",
+    homeAria: "Accueil Resumora",
+  },
+} as const;
 
 type LuxuryNavbarProps = {
   langToggle?: React.ReactNode;
@@ -17,19 +32,52 @@ type LuxuryNavbarProps = {
 
 export default function LuxuryNavbar({ langToggle, appearanceToggle }: LuxuryNavbarProps) {
   const [open, setOpen] = useState(false);
+  const { lang } = useLanguage();
+  const locale: Lang = lang === "fr" ? "fr" : "en";
+  const copy = NAV_COPY[locale];
+
+  const links = useMemo(
+    () => [
+      { href: "#hero", label: copy.home },
+      { href: "#pricing", label: copy.pricing },
+      { href: "#faq", label: copy.faq },
+    ],
+    [copy]
+  );
+
+  const scrollToPricing = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setOpen(false);
+    const target = document.getElementById("pricing");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", "#pricing");
+      return;
+    }
+    window.location.hash = "#pricing";
+  }, []);
 
   return (
     <header className={styles.navbar}>
       <div className="lux-container">
         <div className={`lux-glass ${styles.navbarInner}`}>
-          <a href="#hero" className={styles.brand}>
-            <span className={styles.brandMark} aria-hidden="true" />
-            <span>Resumora</span>
-          </a>
+          <div className={styles.brand}>
+            <ResumoraLogo
+              variant="topbar"
+              linkHome
+              priority
+              linkClassName={`${styles.brandLink} rs-logo-top-left-only`}
+              className={styles.brandLogo}
+              homeAriaLabel={copy.homeAria}
+            />
+            <a href="#hero" className={styles.brandName}>
+              Resumora
+            </a>
+          </div>
 
           <nav aria-label="Primary">
             <ul className={styles.navLinks}>
-              {LINKS.map((link) => (
+              {links.map((link) => (
                 <li key={link.href}>
                   <a href={link.href} className={styles.navLink}>
                     {link.label}
@@ -42,8 +90,14 @@ export default function LuxuryNavbar({ langToggle, appearanceToggle }: LuxuryNav
           <div className={styles.navActions}>
             {appearanceToggle}
             {langToggle}
-            <a href="#hero" className={styles.navCta}>
-              Get Started
+            <a
+              href="#pricing"
+              className={styles.navCta}
+              onClick={scrollToPricing}
+              data-rs-cta="get-started"
+              data-rs-lang={locale}
+            >
+              {copy.getStarted}
             </a>
             <button
               type="button"
@@ -60,7 +114,7 @@ export default function LuxuryNavbar({ langToggle, appearanceToggle }: LuxuryNav
         <div
           className={`lux-glass ${styles.mobilePanel} ${open ? styles.mobilePanelOpen : ""}`}
         >
-          {LINKS.map((link) => (
+          {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -70,6 +124,15 @@ export default function LuxuryNavbar({ langToggle, appearanceToggle }: LuxuryNav
               {link.label}
             </a>
           ))}
+          <a
+            href="#pricing"
+            className={styles.mobileCta}
+            onClick={scrollToPricing}
+            data-rs-cta="get-started"
+            data-rs-lang={locale}
+          >
+            {copy.getStarted}
+          </a>
         </div>
       </div>
     </header>

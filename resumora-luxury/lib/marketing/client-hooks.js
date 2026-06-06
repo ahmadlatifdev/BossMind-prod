@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import { setPendingCheckoutPlan } from "@/lib/marketing/checkout-plan-persistence";
 import { QUOTE_STORAGE_KEY } from "@/lib/marketing/service-quote-pricing";
 import { resolveStripePriceId } from "@/lib/marketing/stripe-plan-map";
+import { resolvePaymentLinkUrl } from "@/lib/marketing/stripe-plan-payment-link";
 import { pricingPlans } from "@/lib/marketing/site-copy";
 import { freeEditsLabel } from "@/lib/client/plan-policy";
 import { officialPlanStripeName } from "@/lib/marketing/bossmind-brand-authority.constants";
@@ -64,35 +65,63 @@ function userFacingCheckoutError(status, data) {
   return "Checkout could not start. See the console for details.";
 }
 
-export function useStripeCheckout() {
+function redirectToPaymentLink(planId, pageLang) {
+  const url = resolvePaymentLinkUrl(planId);
+  if (!url || typeof window === "undefined") return false;
+  trackGa4("begin_checkout", {
+    plan_id: planId,
+    currency: "USD",
+    flow: "payment_link",
+    locale: pageLang,
+  });
+  window.location.assign(url);
+  return true;
+}
+
+export function useStripeCheckout(activeLang = "en") {
   const [busyPlan, setBusyPlan] = useState("");
   const [checkoutError, setCheckoutError] = useState("");
   const [checkoutSummary, setCheckoutSummary] = useState(null);
   const dynamicPlans = useStripePlans();
+  const pageLang = activeLang === "fr" ? "fr" : "en";
 
   const handleCheckout = useCallback(async (planId, planName, planPrice) => {
     setCheckoutError("");
     const planMeta = dynamicPlans.find((p) => p.id === planId);
     const priceId = planMeta?.priceId || "";
-    if (!priceId) {
+    const paymentLink = resolvePaymentLinkUrl(planId);
+
+    if (!priceId && !paymentLink) {
       setCheckoutError(
         `Stripe Price ID missing for "${planId}". Set NEXT_PUBLIC_STRIPE_PRICE_* in .env.local and redeploy.`
       );
       return;
     }
 
-    trackGa4("begin_checkout", { plan_id: planId, plan_name: planName, currency: "USD", value: planPrice });
+    trackGa4("begin_checkout", {
+      plan_id: planId,
+      plan_name: planName,
+      currency: "USD",
+      value: planPrice,
+      locale: pageLang,
+    });
     setPendingCheckoutPlan(planId);
     setBusyPlan(planId);
-    const pageLang =
-      typeof document !== "undefined" && document.documentElement.lang === "fr" ? "fr" : "en";
     setCheckoutSummary({
       planId,
       planName,
       planPrice,
       freeEditsLabel: freeEditsLabel(planId, pageLang),
     });
+
+    const stripePublicKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+
     try {
+      if (!stripePublicKey && paymentLink) {
+        redirectToPaymentLink(planId, pageLang);
+        return;
+      }
+
       const utm = readUtmFromLocation();
       const serviceDraftSummary = readAlignedServiceDraft(planId);
       const officialPlanName = officialPlanStripeName(planId);
@@ -105,41 +134,54 @@ export function useStripeCheckout() {
           planName: officialPlanName || planName,
           planPrice,
           serviceDraftSummary,
-          locale: pageLang === "fr" ? "fr" : "en",
+          locale: pageLang,
           lang: pageLang,
           ...utm,
         }),
       });
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
+
       if (!response.ok || !data.id) {
-        const hint = typeof data?.hint === "string" ? data.hint : "";
+        if (paymentLink && (response.status === 503 || response.status === 500)) {
+          redirectToPaymentLink(planId, pageLang);
+          return;
+        }
         logStripeInternal(response.status === 400 ? "CHECKOUT_REJECTED" : "CHECKOUT_HTTP_ERROR", {
           planId,
           httpStatus: response.status,
           error: data?.error,
-          hint,
+          hint: data?.hint,
         });
         setCheckoutError(userFacingCheckoutError(response.status, data));
         return;
       }
-      const stripePublicKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+
       if (!stripePublicKey) {
-        logStripeInternal("STRIPE_PUBLISHABLE_MISSING", {
-          planId,
-          note: "Set NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY in environment.",
-        });
+        if (paymentLink) {
+          redirectToPaymentLink(planId, pageLang);
+          return;
+        }
         setCheckoutError("Missing publishable key (NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY).");
         return;
       }
+
       const stripeLib = await import("@stripe/stripe-js");
       const stripe = await stripeLib.loadStripe(stripePublicKey);
       if (!stripe) {
-        logStripeInternal("STRIPE_JS_INIT_FAILED", { planId });
+        if (paymentLink) {
+          redirectToPaymentLink(planId, pageLang);
+          return;
+        }
         setCheckoutError("Could not load Stripe.js.");
         return;
       }
+
       const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
       if (error) {
+        if (paymentLink) {
+          redirectToPaymentLink(planId, pageLang);
+          return;
+        }
         logStripeInternal("STRIPE_REDIRECT_ERROR", {
           planId,
           message: error.message,
@@ -149,19 +191,16 @@ export function useStripeCheckout() {
         setCheckoutError(error.message || "Stripe redirect failed.");
       }
     } catch (error) {
+      if (paymentLink && redirectToPaymentLink(planId, pageLang)) {
+        return;
+      }
       const message = error?.message ?? String(error);
-      const stripeCode =
-        typeof error?.code === "string" ? error.code : typeof error?.type === "string" ? error.type : undefined;
-      logStripeInternal("CHECKOUT_CLIENT_FLOW_ERROR", {
-        planId,
-        message,
-        stripeCode,
-      });
+      logStripeInternal("CHECKOUT_CLIENT_FLOW_ERROR", { planId, message });
       setCheckoutError("Checkout error — see console for details.");
     } finally {
       setBusyPlan("");
     }
-  }, [dynamicPlans]);
+  }, [dynamicPlans, pageLang]);
 
   return { busyPlan, handleCheckout, dynamicPlans, checkoutError, checkoutSummary };
 }

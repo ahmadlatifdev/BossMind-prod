@@ -9,7 +9,7 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 0.75rem;
-  border: 1px solid var(--lux-glass-border);
+  border: none;
   background: var(--lux-glass);
   color: var(--lux-white);
   cursor: pointer;
@@ -19,7 +19,7 @@
 }
 
 .settingsButton:hover {
-  border-color: var(--lux-gold);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .settingsPanel {
@@ -59,7 +59,7 @@
   width: 100%;
   padding: 0.65rem 0.75rem;
   border-radius: 0.75rem;
-  border: 1px solid transparent;
+  border: none;
   background: rgba(255, 255, 255, 0.03);
   color: var(--lux-white);
   font: inherit;
@@ -70,12 +70,10 @@
 }
 
 .themeOption:hover {
-  border-color: var(--lux-glass-border);
   background: rgba(255, 255, 255, 0.06);
 }
 
 .themeOptionActive {
-  border-color: var(--lux-gold);
   background: rgba(201, 169, 98, 0.12);
 }
 

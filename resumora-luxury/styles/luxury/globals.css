@@ -77,9 +77,22 @@ body {
   background: var(--lux-glass);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--lux-glass-border);
+  border: none;
   border-radius: var(--lux-radius);
   box-shadow: var(--lux-shadow);
+}
+
+/* Borderless marketing shell — no outline boxes on homepage sections */
+.lux-page :is(
+  .rs-service-card,
+  .rs-price-card,
+  .luxury-card,
+  .rs-checkout-summary,
+  .rs-pricing-saved-quote,
+  .rs-pricing-saved-quote-inner
+) {
+  border: none !important;
+  outline: none;
 }
 
 .lux-gold-text {

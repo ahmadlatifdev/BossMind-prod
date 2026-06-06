@@ -119,7 +119,7 @@ export default function StudioWorkspaceCard({
           freeEditsRemaining, freeEditsUsed, deliveryUrl, premiumLink } = plan;
 
   const [uploadOpen,   setUploadOpen]   = useState(true);
-  const [editOpen,     setEditOpen]     = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
   const docs       = documents.filter((d) => d.status !== "removed");
   const hasResume  = docs.some((d) => d.doc_type === "resume");
@@ -138,7 +138,7 @@ export default function StudioWorkspaceCard({
   ];
 
   return (
-    <article className="rs-studio-workspace-card rs-studio-workspace-card--v2" data-plan-id={planId}>
+    <article className="rs-studio-workspace-card rs-studio-workspace-card--v2 rs-studio-workspace-card--active" data-plan-id={planId}>
 
       {/* ── Card header: title + status + upgrade ───────────── */}
       <div className="rs-studio-workspace-card__head">
@@ -187,21 +187,18 @@ export default function StudioWorkspaceCard({
         </div>
       ) : null}
 
-      {/* ── Upload section ───────────────────────────────────── */}
+      {/* ── Upload section (active workspace only) ── */}
       <div className="rs-studio-panel rs-studio-panel--upload-primary rs-studio-panel--v2">
-        <div className="rs-studio-panel__heading">
-          <span>{L(lang, "Document intake", "Depot de documents")}</span>
-          {docs.length > 0 && (
+        {docs.length > 0 ? (
+          <div className="rs-studio-panel__heading rs-studio-panel__heading--compact">
             <span className="rs-studio-doc-queue__count">{docs.length}</span>
-          )}
-          {docs.length > 0 && (
             <SectionToggle
               open={uploadOpen}
-              onToggle={() => setUploadOpen(v => !v)}
-              label={uploadOpen ? L(lang,"Collapse","Reduire") : L(lang,"Expand","Developper")}
+              onToggle={() => setUploadOpen((v) => !v)}
+              label={uploadOpen ? L(lang, "Collapse", "Reduire") : L(lang, "Expand", "Developper")}
             />
-          )}
-        </div>
+          </div>
+        ) : null}
 
         {(uploadOpen || docs.length === 0) && (
           <StudioUploadWorkspace
@@ -225,7 +222,8 @@ export default function StudioWorkspaceCard({
         {!uploadOpen && docs.length > 0 && (
           <div className="rs-studio-doc-queue__collapsed-summary">
             <span className="rs-studio-doc-queue__title">
-              {docs.length} {L(lang, docs.length === 1 ? "file" : "files", docs.length === 1 ? "fichier" : "fichiers")}
+              {docs.length}{" "}
+              {L(lang, docs.length === 1 ? "file" : "files", docs.length === 1 ? "fichier" : "fichiers")}
             </span>
           </div>
         )}

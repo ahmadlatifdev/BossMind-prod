@@ -149,7 +149,7 @@ export default async function handler(req, res) {
       line_items: [{ price: priceId, quantity: 1 }],
       mode: "payment",
       locale: checkoutLocale,
-      success_url: getStudioCheckoutSuccessUrl(),
+      success_url: getStudioCheckoutSuccessUrl(planId),
       cancel_url: getStudioCheckoutCancelUrl(req.headers.origin),
       metadata: {
         ...Object.fromEntries(Object.entries(brandMeta).map(([k, v]) => [k, metaSlice(v)])),

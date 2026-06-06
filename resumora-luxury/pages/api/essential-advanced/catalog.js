@@ -7,6 +7,7 @@ const {
   PLAN_ESSENTIAL_ADVANCED,
 } = require("../../../lib/client/entitlements-store");
 const { getInterviewPrepCatalog } = require("../../../lib/essential-advanced/interview-prep-content");
+const { localizeInterviewPrepCatalog } = require("../../../lib/essential-advanced/localize-catalog");
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -40,10 +41,11 @@ export default async function handler(req, res) {
     const progress = await listProgress(actor.profileId);
     const completed = new Set(progress.filter((p) => p.completed).map((p) => p.asset_key));
 
+    const rawCatalog = getInterviewPrepCatalog(lang);
     return res.status(200).json({
       ok: true,
       lang,
-      catalog: getInterviewPrepCatalog(lang),
+      catalog: localizeInterviewPrepCatalog(rawCatalog, lang),
       progress: progress.map((p) => ({
         assetKey: p.asset_key,
         completed: p.completed,

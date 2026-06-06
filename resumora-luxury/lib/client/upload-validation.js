@@ -83,15 +83,13 @@ function validateUploadFile({ originalFilename = "", mimetype = "", size = 0, fi
   }
   if (filePath) {
     const magic = sniffMagic(filePath);
-    if (magic === "unknown") {
+    const isImage = [".jpg", ".jpeg", ".png", ".webp", ".gif"].includes(ext);
+    if (!isImage && magic === "unknown") {
       return { ok: false, code: "corrupt_file", error: "corrupt_file" };
     }
     if (ext === ".pdf" && magic !== "pdf") return { ok: false, code: "corrupt_file", error: "corrupt_file" };
     if (ext === ".doc" && magic !== "doc") return { ok: false, code: "corrupt_file", error: "corrupt_file" };
     if (ext === ".docx" && magic !== "docx") return { ok: false, code: "corrupt_file", error: "corrupt_file" };
-    if ([".jpg", ".jpeg", ".png", ".webp", ".gif"].includes(ext) && magic !== "unknown") {
-      /* images: skip strict magic match */
-    }
   }
   return { ok: true };
 }
@@ -107,7 +105,7 @@ function sha256File(filePath) {
 }
 
 module.exports = {
-  MAX_BYTES,
+  getMaxUploadBytes,
   validateUploadFile,
   sha256File,
   extOf,

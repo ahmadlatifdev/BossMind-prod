@@ -100,12 +100,13 @@ function resolveProtectedVideoDelivery(videoId, lang = "en") {
 }
 
 function sanitizeVideosForClient(lang = "en") {
+  const { pickLang } = require("../i18n/pick-lang");
   const L = normalizeLang(lang);
   return listVideoModules().map((v) => ({
     id: v.id,
     durationMin: v.durationMin,
-    title: v.title,
-    summary: v.summary,
+    title: pickLang(v.title, L),
+    summary: pickLang(v.summary, L),
     lang: L,
     protectedDelivery: true,
   }));

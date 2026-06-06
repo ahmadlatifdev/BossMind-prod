@@ -1,14 +1,27 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { translations } from "@/lib/marketing/site-copy";
+import { LanguageToggle } from "@/components/landing/HeroSection";
 import ProtectedVideoPlayer from "@/components/essential-advanced/ProtectedVideoPlayer";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/marketing/site-copy";
 
 function pct(completed, total) {
   if (!total) return 0;
   return Math.round((completed / total) * 100);
 }
 
-export default function EssentialAdvancedStudio({ lang }) {
-  const t = translations[lang];
+function StudioLangBar({ lang, setLang, label }) {
+  const locale = lang === "fr" ? "fr" : "en";
+  return (
+    <div className="rs-ea-lang-bar" role="group" aria-label={label}>
+      <LanguageToggle lang={locale} onChange={setLang} />
+    </div>
+  );
+}
+
+export default function EssentialAdvancedStudio() {
+  const { lang, setLang } = useLanguage();
+  const locale = lang === "fr" ? "fr" : "en";
+  const t = translations[locale];
   const [state, setState] = useState("loading");
   const [catalog, setCatalog] = useState(null);
   const [progressMap, setProgressMap] = useState({});
@@ -29,7 +42,9 @@ export default function EssentialAdvancedStudio({ lang }) {
         setState("auth");
         return;
       }
-      const catRes = await fetch(`/api/essential-advanced/catalog?lang=${lang}`, { credentials: "same-origin" });
+      const catRes = await fetch(`/api/essential-advanced/catalog?lang=${locale}`, {
+        credentials: "same-origin",
+      });
       const data = await catRes.json();
       if (!catRes.ok) {
         setError(data.error || "load_failed");
@@ -47,7 +62,7 @@ export default function EssentialAdvancedStudio({ lang }) {
       setError("network");
       setState("error");
     }
-  }, [lang]);
+  }, [locale]);
 
   useEffect(() => {
     load();
@@ -72,9 +87,12 @@ export default function EssentialAdvancedStudio({ lang }) {
     });
   }
 
+  const langBar = <StudioLangBar lang={locale} setLang={setLang} label={t.eaStudioLangLabel} />;
+
   if (state === "loading") {
     return (
       <div className="rs-ea-studio rs-ea-studio--loading">
+        {langBar}
         <p>{t.eaStudioLoading}</p>
       </div>
     );
@@ -83,6 +101,7 @@ export default function EssentialAdvancedStudio({ lang }) {
   if (state === "locked") {
     return (
       <div className="rs-ea-studio rs-ea-studio--locked">
+        {langBar}
         <h1>{t.eaStudioLockedTitle}</h1>
         <p>{t.eaStudioLockedLead}</p>
         <a href="/pricing#pricing" className="rs-btn-accent">
@@ -95,9 +114,10 @@ export default function EssentialAdvancedStudio({ lang }) {
   if (state === "auth") {
     return (
       <div className="rs-ea-studio rs-ea-studio--auth">
+        {langBar}
         <h1>{t.eaStudioAuthTitle}</h1>
         <p>{t.eaStudioAuthLead}</p>
-        <a href="/register?plan=essential_advanced" className="rs-btn-accent">
+        <a href={`/register?plan=essential_advanced&lang=${locale}`} className="rs-btn-accent">
           {t.eaStudioAuthCta}
         </a>
       </div>
@@ -107,6 +127,7 @@ export default function EssentialAdvancedStudio({ lang }) {
   if (state === "error") {
     return (
       <div className="rs-ea-studio rs-ea-studio--error">
+        {langBar}
         <p>{t.eaStudioError}</p>
         <button type="button" className="rs-btn-ghost" onClick={load}>
           {t.eaStudioRetry}
@@ -115,12 +136,13 @@ export default function EssentialAdvancedStudio({ lang }) {
     );
   }
 
-  const L = lang;
-
   return (
-    <div className="rs-ea-studio" data-rs-ea-studio="1">
+    <div className="rs-ea-studio" data-rs-ea-studio="1" data-rs-ea-lang={locale}>
       <header className="rs-ea-studio-header">
-        <h1>{t.eaStudioTitle}</h1>
+        <div className="rs-ea-studio-header-row">
+          <h1>{t.eaStudioTitle}</h1>
+          {langBar}
+        </div>
         <p className="rs-ea-studio-lead">{t.eaStudioLead}</p>
         <div className="rs-ea-progress" aria-label={t.eaStudioProgressLabel}>
           <div className="rs-ea-progress-bar" style={{ width: `${progressPercent}%` }} />
@@ -154,10 +176,10 @@ export default function EssentialAdvancedStudio({ lang }) {
         <section className="rs-ea-panel">
           <div className="rs-ea-video-grid">
             {catalog.videos.map((v) => (
-              <article key={v.id} className="rs-ea-card">
-                <ProtectedVideoPlayer videoId={v.id} lang={lang} title={v.title[L]} />
-                <h3>{v.title[L]}</h3>
-                <p>{v.summary[L]}</p>
+              <article key={`${v.id}-${locale}`} className="rs-ea-card">
+                <ProtectedVideoPlayer videoId={v.id} lang={locale} title={v.title} />
+                <h3>{v.title}</h3>
+                <p>{v.summary}</p>
                 <label className="rs-ea-check">
                   <input
                     type="checkbox"
@@ -176,13 +198,13 @@ export default function EssentialAdvancedStudio({ lang }) {
         <section className="rs-ea-panel">
           {catalog.simulations.map((sim) => (
             <article key={sim.id} className="rs-ea-card rs-ea-card--sim">
-              <h3>{sim.title[L]}</h3>
-              <p className="rs-ea-meta">{sim.level[L]}</p>
+              <h3>{sim.title}</h3>
+              <p className="rs-ea-meta">{sim.level}</p>
               <ol className="rs-ea-qa-list">
-                {sim.questions.map((item, idx) => (
-                  <li key={idx}>
-                    <strong>{item.q[L]}</strong>
-                    <p>{item.a[L]}</p>
+                {sim.questions.map((item) => (
+                  <li key={item.id}>
+                    <strong>{item.q}</strong>
+                    <p>{item.a}</p>
                   </li>
                 ))}
               </ol>
@@ -207,8 +229,8 @@ export default function EssentialAdvancedStudio({ lang }) {
           <div className="rs-ea-qa-scroll">
             {catalog.qaBank.map((item) => (
               <details key={item.id} className="rs-ea-qa-item">
-                <summary>{item.q[L]}</summary>
-                <p>{item.a[L]}</p>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
                 <label className="rs-ea-check">
                   <input
                     type="checkbox"
@@ -234,7 +256,7 @@ export default function EssentialAdvancedStudio({ lang }) {
                     checked={Boolean(progressMap[tip.id])}
                     onChange={() => markComplete(tip.id)}
                   />
-                  {tip.text[L]}
+                  {tip.text}
                 </label>
               </li>
             ))}
@@ -244,11 +266,11 @@ export default function EssentialAdvancedStudio({ lang }) {
 
       {activeTab === "executive" && (
         <section className="rs-ea-panel">
-          <h2>{catalog.executive.title[L]}</h2>
+          <h2>{catalog.executive.title}</h2>
           {catalog.executive.modules.map((mod) => (
             <article key={mod.id} className="rs-ea-card">
-              <h3>{mod.title[L]}</h3>
-              <p>{mod.body[L]}</p>
+              <h3>{mod.title}</h3>
+              <p>{mod.body}</p>
               <label className="rs-ea-check">
                 <input
                   type="checkbox"
@@ -268,7 +290,7 @@ export default function EssentialAdvancedStudio({ lang }) {
             {catalog.downloads.map((d) => (
               <li key={d.id}>
                 <a
-                  href={`/api/essential-advanced/download?assetId=${encodeURIComponent(d.id)}&lang=${lang}`}
+                  href={`/api/essential-advanced/download?assetId=${encodeURIComponent(d.id)}&lang=${locale}`}
                   className="rs-btn-ghost rs-ea-download-btn"
                   download
                 >

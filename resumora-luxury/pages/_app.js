@@ -12,6 +12,7 @@ import {
 } from "@/lib/client/checkout-runtime";
 
 import "@/styles/resumora-global.css";
+import "@/styles/resumora-enterprise-v3.css";
 import "@/styles/luxuryglobals.css";
 
 export default function App({ Component, pageProps }) {

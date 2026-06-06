@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import ResumoraLogo from "@/components/brand/ResumoraLogo";
 import { translations } from "@/lib/marketing/site-copy";
-import OnboardingProgress from "@/components/client/OnboardingProgress";
 import StudioCalmPrepare from "@/components/client/StudioCalmPrepare";
 import StudioWorkspaceCard from "@/components/client/StudioWorkspaceCard";
 import StudioUpgradeDrawer from "@/components/client/StudioUpgradeDrawer";
@@ -30,6 +29,32 @@ const DOC_TYPE_OPTIONS = [
 ];
 
 const L = (lang, en, fr) => (lang === "fr" ? fr : en);
+
+const PLAN_TIER_ORDER = ["basic", "professional", "elite", "essential_advanced"];
+const EXECUTIVE_PLAN_IDS = new Set(["essential_advanced", "elite"]);
+
+function planNeedsIntake(plan) {
+  const docs = (plan.documents || []).filter((d) => d.status !== "removed");
+  return !docs.some((d) => d.doc_type === "resume");
+}
+
+function planTierRank(planId) {
+  const rank = PLAN_TIER_ORDER.indexOf(planId);
+  return rank === -1 ? -1 : rank;
+}
+
+function resolveDefaultWorkspacePlanId(plans, upgradePlanId) {
+  if (!plans.length) return null;
+  if (plans.length === 1) return plans[0].planId;
+
+  if (upgradePlanId && plans.some((p) => p.planId === upgradePlanId)) {
+    return upgradePlanId;
+  }
+
+  const pending = plans.filter(planNeedsIntake);
+  const pool = pending.length ? pending : plans;
+  return [...pool].sort((a, b) => planTierRank(b.planId) - planTierRank(a.planId))[0]?.planId ?? plans[0].planId;
+}
 
 function firstQuery(value) {
   if (typeof value === "string") return value;
@@ -96,7 +121,6 @@ export default function ClientStudioHub({ lang: langProp }) {
   const t = translations[lang] || translations.en;
   const [state, setState] = useState("loading");
   const [hub, setHub] = useState(null);
-  const [journey, setJourney] = useState(null);
   const [toast, setToast] = useState("");
   const [checkoutVerify, setCheckoutVerify] = useState(null);
   const [showUploadWizard, setShowUploadWizard] = useState(false);
@@ -124,10 +148,63 @@ export default function ClientStudioHub({ lang: langProp }) {
   const [upgradeDrawerOpen, setUpgradeDrawerOpen] = useState(false);
   const [upgradeDrawerMode, setUpgradeDrawerMode] = useState("all");
   const [upgradeSuccess, setUpgradeSuccess] = useState(null);
+  const [workspacePlanId, setWorkspacePlanId] = useState(null);
   const prevPlanIdsRef = useRef("");
   const { busyPlan, handleCheckout, checkoutError } = useStripeCheckout();
 
-  const ownedPlanIds = useMemo(() => (hub?.plans || []).map((p) => p.planId), [hub?.plans]);
+  const hubPlans = useMemo(() => hub?.plans || [], [hub?.plans]);
+  const ownedPlanIds = useMemo(() => hubPlans.map((p) => p.planId), [hubPlans]);
+
+  const defaultWorkspacePlanId = useMemo(
+    () => resolveDefaultWorkspacePlanId(hubPlans, upgradeSuccess?.planId),
+    [hubPlans, upgradeSuccess?.planId]
+  );
+
+  const checkoutFocusPlanId = useMemo(() => {
+    if (upgradeSuccess?.planId) return upgradeSuccess.planId;
+    if (checkoutVerify?.status === "success" && checkoutVerify.planId) return checkoutVerify.planId;
+    return null;
+  }, [upgradeSuccess?.planId, checkoutVerify?.status, checkoutVerify?.planId]);
+
+  const isCheckoutFocus = Boolean(checkoutFocusPlanId);
+  const hasMultiplePlans = hubPlans.length > 1;
+  const showPlanSwitcher = hasMultiplePlans && !isCheckoutFocus;
+  const activeWorkspacePlanId = checkoutFocusPlanId || workspacePlanId || defaultWorkspacePlanId;
+
+  const activePlan = useMemo(() => {
+    if (!hubPlans.length) return null;
+    return hubPlans.find((p) => p.planId === activeWorkspacePlanId) || hubPlans[0];
+  }, [hubPlans, activeWorkspacePlanId]);
+
+  const planSwitcherOptions = useMemo(
+    () =>
+      [...hubPlans].sort((a, b) => planTierRank(b.planId) - planTierRank(a.planId)),
+    [hubPlans]
+  );
+
+  const focusedPlanIsExecutive = activePlan ? EXECUTIVE_PLAN_IDS.has(activePlan.planId) : false;
+
+  useEffect(() => {
+    if (!defaultWorkspacePlanId) return;
+    setWorkspacePlanId((prev) => {
+      if (prev && hubPlans.some((p) => p.planId === prev)) return prev;
+      return defaultWorkspacePlanId;
+    });
+  }, [defaultWorkspacePlanId, hubPlans]);
+
+  useEffect(() => {
+    if (!upgradeSuccess?.planId) return;
+    if (hubPlans.some((p) => p.planId === upgradeSuccess.planId)) {
+      setWorkspacePlanId(upgradeSuccess.planId);
+    }
+  }, [upgradeSuccess?.planId, hubPlans]);
+
+  useEffect(() => {
+    if (checkoutVerify?.status !== "success" || !checkoutVerify.planId) return;
+    if (hubPlans.some((p) => p.planId === checkoutVerify.planId)) {
+      setWorkspacePlanId(checkoutVerify.planId);
+    }
+  }, [checkoutVerify?.status, checkoutVerify?.planId, hubPlans]);
 
   const openUpgradeDrawer = useCallback((mode = "all") => {
     setUpgradeDrawerMode(mode);
@@ -146,16 +223,6 @@ export default function ClientStudioHub({ lang: langProp }) {
     const fromQuery = firstQuery(router.query.session_id);
     return fromQuery || getStoredSessionId();
   }, [router.query.session_id]);
-
-  const refreshJourney = useCallback(async () => {
-    try {
-      const r = await fetch(`/api/client/onboarding?lang=${lang}`, { credentials: "same-origin" });
-      const j = await r.json();
-      setJourney(j);
-    } catch {
-      /* ignore */
-    }
-  }, [lang]);
 
   const applyActivationPayload = useCallback((data) => {
     if (data?.activation) setActivation(data.activation);
@@ -424,7 +491,6 @@ export default function ClientStudioHub({ lang: langProp }) {
       if (outcome.status === "complete") {
         logCheckoutRuntime("studio_entitlement_activated", { planId: data.planId });
         enterStudioFromPayload(data, sid);
-        await refreshJourney();
         return;
       }
 
@@ -512,7 +578,7 @@ export default function ClientStudioHub({ lang: langProp }) {
       clearTimeout(timeoutId);
       ac.abort();
     };
-  }, [router.isReady, router.query.session_id, router.query.recovery, lang, enterStudioFromPayload, refreshJourney, router, signInHref, enterRecovery, mounted]);
+  }, [router.isReady, router.query.session_id, router.query.recovery, lang, enterStudioFromPayload, router, signInHref, enterRecovery, mounted]);
 
   useEffect(() => {
     if (!mounted || !router.isReady) return;
@@ -538,11 +604,6 @@ export default function ClientStudioHub({ lang: langProp }) {
   }, [router.isReady, router.query.session_id, lang, enterRecovery, resolveSessionId, mounted]);
 
   useEffect(() => {
-    if (!mounted || state !== "ready") return;
-    refreshJourney();
-  }, [state, refreshJourney]);
-
-  useEffect(() => {
     if (state !== "ready" || !hub?.plans?.length) return;
     const key = hub.plans
       .map((p) => p.planId)
@@ -562,14 +623,6 @@ export default function ClientStudioHub({ lang: langProp }) {
     }
     prevPlanIdsRef.current = key;
   }, [state, hub?.plans]);
-
-  useEffect(() => {
-    if (checkoutVerify?.status !== "success") return;
-    setUpgradeSuccess({
-      planId: checkoutVerify.planId || "",
-      displayName: checkoutVerify.displayName || checkoutVerify.planId || "",
-    });
-  }, [checkoutVerify?.status, checkoutVerify?.displayName, checkoutVerify?.planId]);
 
   useEffect(() => {
     if (state !== "loading" && state !== "ready") return;
@@ -619,7 +672,6 @@ export default function ClientStudioHub({ lang: langProp }) {
     const data = outcome.data || {};
     if (outcome.status === "complete") {
       enterStudioFromPayload(data, sid);
-      await refreshJourney();
       return;
     }
     if (outcome.status === "needs_sign_in" && !data?.signedIn) {
@@ -646,7 +698,6 @@ export default function ClientStudioHub({ lang: langProp }) {
     const j = await r.json();
     if (j.recovered) {
       await load(resolveSessionId());
-      await refreshJourney();
     } else {
       setToast(L(lang, "Still verifying your purchase with Stripe.", "Verification de votre achat avec Stripe en cours."));
     }
@@ -938,23 +989,44 @@ export default function ClientStudioHub({ lang: langProp }) {
 
       {checkoutVerify?.status === "success" && !upgradeSuccess ? (
         <div className="rs-payment-confirmed-banner" role="status">
-          <strong>{L(lang, "Payment confirmed", "Paiement confirme")}</strong>
-          {checkoutVerify.displayName ? (
+          <div>
+            <strong>{L(lang, "Payment confirmed", "Paiement confirme")}</strong>
+            {checkoutVerify.displayName ? (
+              <p>
+                {L(lang, "Plan activated", "Forfait active")}: <strong>{checkoutVerify.displayName}</strong>
+              </p>
+            ) : null}
             <p>
-              {L(lang, "Plan activated", "Forfait active")}: <strong>{checkoutVerify.displayName}</strong>
+              {L(
+                lang,
+                "Your new service workspace is open below — upload documents to begin.",
+                "Votre nouvel espace de service est ouvert ci-dessous — televersez vos documents pour commencer."
+              )}
             </p>
-          ) : null}
-          <p>
-            {L(
-              lang,
-              "Upload your documents below to begin generation — add more services anytime from this studio.",
-              "Televersez vos documents ci-dessous — ajoutez des services depuis ce studio."
-            )}
-          </p>
+          </div>
+          <button type="button" className="rs-studio-action-btn" onClick={() => setCheckoutVerify(null)}>
+            {L(lang, "Dismiss", "Fermer")}
+          </button>
         </div>
       ) : null}
 
-      {state === "ready" && hasUpgradeOffers(ownedPlanIds, "all") ? (
+      {isCheckoutFocus && activePlan ? (
+        <p className="rs-studio-workspace__focus-note">
+          {focusedPlanIsExecutive
+            ? L(
+                lang,
+                `Focused on your new executive service: ${activePlan.displayName}. Other services stay in your account and appear after you finish intake here.`,
+                `Concentre sur votre nouveau service executif : ${activePlan.displayName}. Les autres services restent sur votre compte et reapparaissent apres l'intake ici.`
+              )
+            : L(
+                lang,
+                `Focused on your new service: ${activePlan.displayName}. Other services stay in your account and appear after you finish intake here.`,
+                `Concentre sur votre nouveau service : ${activePlan.displayName}. Les autres services restent sur votre compte et reapparaissent apres l'intake ici.`
+              )}
+        </p>
+      ) : null}
+
+      {state === "ready" && hasUpgradeOffers(ownedPlanIds, "all") && !isCheckoutFocus ? (
         <div className="rs-studio-dashboard-bar">
           <div className="rs-studio-dashboard-bar__copy">
             <p className="rs-eyebrow">{L(lang, "Billing & upgrades", "Facturation et mises a niveau")}</p>
@@ -970,20 +1042,37 @@ export default function ClientStudioHub({ lang: langProp }) {
         </div>
       ) : null}
 
-      {journey?.progress?.steps?.length && checkoutVerify?.status !== "success" ? (
-        <OnboardingProgress steps={journey.progress.steps} percent={journey.progress.percent} lang={lang} />
-      ) : null}
       {toast ? (
         <p className="rs-upload-toast" role="status">
           {toast}
         </p>
       ) : null}
 
-      <div className="rs-client-hub-grid rs-studio-workspace__grid">
-        {(hub?.plans || []).map((plan) => (
+      {showPlanSwitcher ? (
+        <div className="rs-studio-plan-switcher">
+          <label className="rs-studio-plan-switcher__label" htmlFor="studio-plan-select">
+            {L(lang, "Active service", "Service actif")}
+          </label>
+          <select
+            id="studio-plan-select"
+            className="rs-studio-select rs-studio-plan-switcher__select"
+            value={activeWorkspacePlanId || ""}
+            onChange={(e) => setWorkspacePlanId(e.target.value)}
+          >
+            {planSwitcherOptions.map((plan) => (
+              <option key={plan.planId} value={plan.planId}>
+                {plan.displayName || plan.planId}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : null}
+
+      <div className="rs-client-hub-grid rs-studio-workspace__grid rs-client-hub-grid--single">
+        {activePlan ? (
           <StudioWorkspaceCard
-            key={plan.planId}
-            plan={plan}
+            key={activePlan.planId}
+            plan={activePlan}
             lang={lang}
             t={t}
             docTypeLabels={docTypeLabels}
@@ -1008,7 +1097,7 @@ export default function ClientStudioHub({ lang: langProp }) {
             onReload={() => load(resolveSessionId(), {})}
             formatDate={formatDate}
           />
-        ))}
+        ) : null}
       </div>
 
       <StudioUpgradeDrawer

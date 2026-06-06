@@ -18,19 +18,40 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.brandLink {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  height: 4.375rem; /* 70px — full navbar logo slot */
+}
+
+.brandLogo {
+  width: auto !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  max-width: min(6.875rem, 28vw) !important; /* topbar authority: 110px */
+  object-fit: contain;
+}
+
+/* Override global 64px cap — luxury navbar uses 100% of topbar lock */
+.brandLink :global(.rs-logo.rs-logo-topbar) {
+  width: auto !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  max-width: min(6.875rem, 28vw) !important;
+}
+
+.brandName {
   text-decoration: none;
   color: var(--lux-white);
   font-weight: 700;
   letter-spacing: 0.04em;
-}
-
-.brandMark {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.65rem;
-  background: linear-gradient(135deg, var(--lux-gold-light), var(--lux-gold));
-  box-shadow: 0 8px 24px rgba(201, 169, 98, 0.35);
+  white-space: nowrap;
 }
 
 .navLinks {
@@ -79,7 +100,7 @@
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid var(--lux-glass-border);
+  border: none;
   border-radius: 0.75rem;
   background: rgba(255, 255, 255, 0.04);
   color: var(--lux-white);
@@ -102,7 +123,23 @@
   padding: 0.75rem 0.5rem;
   color: var(--lux-muted);
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: none;
+}
+
+.mobileCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.35rem;
+  min-height: 2.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  color: var(--lux-black);
+  background: linear-gradient(135deg, var(--lux-gold-light), var(--lux-gold));
 }
 
 @media (max-width: 768px) {
@@ -113,5 +150,14 @@
 
   .menuButton {
     display: inline-flex;
+  }
+
+  .brandLink {
+    height: 3.5rem;
+  }
+
+  .brandLogo,
+  .brandLink :global(.rs-logo.rs-logo-topbar) {
+    max-width: min(5rem, 34vw) !important;
   }
 }

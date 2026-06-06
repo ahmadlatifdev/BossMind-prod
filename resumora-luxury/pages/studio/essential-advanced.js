@@ -15,7 +15,7 @@ export default function EssentialAdvancedStudioPage() {
         <meta name="robots" content="noindex" />
       </Head>
       <main className="rs-app-shell rs-app-shell--minimal-main rs-ea-studio-wrap">
-        <EssentialAdvancedStudio lang={lang} />
+        <EssentialAdvancedStudio />
       </main>
     </MinimalAppChrome>
   );

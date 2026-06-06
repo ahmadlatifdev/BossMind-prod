@@ -104,6 +104,7 @@ export default function ProtectedVideoPlayer({ videoId, lang, title }) {
           )}
           <div className="rs-ea-video-embed">
             <iframe
+              key={`${videoId}-${lang}-${embedUrl}`}
               title={title}
               src={embedUrl}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

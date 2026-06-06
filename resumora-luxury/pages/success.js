@@ -34,9 +34,7 @@ export default function SuccessPage() {
     redirectedRef.current = true;
 
     const from = router.asPath || "/success";
-    const target = sid
-      ? `/studio?session_id=${encodeURIComponent(sid)}`
-      : "/studio";
+    let target = sid ? `/studio?session_id=${encodeURIComponent(sid)}` : "/studio";
 
     if (shouldBlockRedirect(from, target)) {
       logCheckoutRuntime("success_redirect_blocked", { from, target });
@@ -55,10 +53,17 @@ export default function SuccessPage() {
           persistCheckoutSessionId(sid);
           clearRedirectTrace();
           logCheckoutRuntime("success_session_id_received", { sessionIdPrefix: sid.slice(0, 20) });
-          await Promise.race([
+          const activation = await Promise.race([
             prefetchCheckoutActivation(sid, lang === "fr" ? "fr" : "en"),
             new Promise((r) => setTimeout(r, STUDIO_UI_HARD_TIMEOUT_MS - 500)),
           ]);
+          if (activation?.redirectTo) {
+            target = activation.redirectTo.includes("session_id=")
+              ? activation.redirectTo
+              : `${activation.redirectTo}${activation.redirectTo.includes("?") ? "&" : "?"}session_id=${encodeURIComponent(sid)}`;
+          } else if (activation?.planId === "essential_advanced") {
+            target = `/studio/essential-advanced?session_id=${encodeURIComponent(sid)}`;
+          }
         }
         recordRedirect(from, target);
         logCheckoutRuntime("success_redirect", { target, hasSessionId: Boolean(sid) });

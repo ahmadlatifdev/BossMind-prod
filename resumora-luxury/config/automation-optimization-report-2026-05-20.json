@@ -21,7 +21,7 @@
         ".github/workflows/resumora-luxury-ci-deploy.yml",
         ".github/workflows/resumora-luxury-security-audit.yml",
         ".github/workflows/resumora-luxury-uptime.yml",
-        "vercel.json crons */5 * * * * on /api/health?lite=1"
+        "vercel.json daily cron 0 6 * * * on /api/health?lite=1 (5-min via GitHub Actions on Hobby plan)"
       ],
       "notes": [
         "Auto-deploy requires VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID GitHub secrets",

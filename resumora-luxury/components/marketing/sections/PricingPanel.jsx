@@ -19,7 +19,8 @@ export default function PricingPanel({ showHeader = true }) {
   const resumeCheckoutOnce = useRef(false);
   const { lang } = useLanguage();
   const t = translations[lang];
-  const { busyPlan, handleCheckout, dynamicPlans, checkoutError, checkoutSummary } = useStripeCheckout();
+  const { busyPlan, handleCheckout, dynamicPlans, checkoutError, checkoutSummary } =
+    useStripeCheckout(lang);
   const labels = SERVICE_LABELS[lang];
   const [savedQuote, setSavedQuote] = useState(null);
 
@@ -100,7 +101,6 @@ export default function PricingPanel({ showHeader = true }) {
             <p className="rs-eyebrow">{t.navPricing}</p>
             <h2 className="rs-h2 rs-pricing-title">{t.pricingTitle}</h2>
             <p className="rs-pricing-hero-lead">{t.pricingSubtitle}</p>
-            <p className="rs-pricing-trust-line">{t.pricingTrustSecureLine}</p>
           </header>
         ) : null}
 

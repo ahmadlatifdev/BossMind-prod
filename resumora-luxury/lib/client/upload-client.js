@@ -9,11 +9,14 @@ export async function parseApiJson(res) {
   try {
     return JSON.parse(text);
   } catch {
+    if (/^\s*</.test(text) || /<!DOCTYPE|<html/i.test(text)) {
+      return { ok: false, error: "internal_error" };
+    }
     const snippet = text.slice(0, 80).replace(/\s+/g, " ");
     if (/internal server error/i.test(text)) {
-      return { ok: false, error: "internal_error", message: snippet };
+      return { ok: false, error: "internal_error" };
     }
-    return { ok: false, error: "invalid_response", message: snippet };
+    return { ok: false, error: "invalid_response" };
   }
 }
 

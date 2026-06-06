@@ -215,9 +215,9 @@ function buildCompletePayload(actor, { planId, plans, stripeEmail, lang }) {
     plansCount: plans.length,
     stripeCheckoutEmail: stripeEmail || null,
     email: actor?.profileEmail || stripeEmail || null,
-    redirectTo: "/studio",
+    redirectTo: deliverable?.studioPath || "/studio",
     activationComplete: true,
-    preload: { studio: "/studio" },
+    preload: { studio: deliverable?.studioPath || "/studio" },
     activation: {
       paymentConfirmed: true,
       planActivated: true,
