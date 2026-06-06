@@ -63,6 +63,16 @@ export default async function handler(req, res) {
       ];
     }
 
+    const focusPlanId = String(req.query.planId || req.query.plan || "")
+      .trim()
+      .toLowerCase();
+    const checkoutPlanId = sessionId && activationMeta?.planId ? activationMeta.planId : "";
+    const singlePlanId = focusPlanId || checkoutPlanId;
+    if (singlePlanId && plans.length > 1) {
+      const narrowed = plans.filter((p) => p.planId === singlePlanId);
+      if (narrowed.length) plans = narrowed;
+    }
+
     const fulfillmentOk = activationMeta?.planActivated === true;
     return res.status(200).json({
       ok: true,
