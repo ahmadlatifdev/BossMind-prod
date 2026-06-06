@@ -1,0 +1,62 @@
+name: Self‑Heal JSON Configs
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour
+  push:
+    branches: [ main ]
+  workflow_dispatch:       # manual trigger
+
+jobs:
+  heal:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install jq for JSON validation
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Define banned phrases
+        id: banned
+        run: |
+          echo 'banned=ATS remediation pass|Typography \+ hierarchy upgrade|Full résumé rebuild \(chrono or mining\)|Executive storyline \+ white-glove|ATS optimization \+ parser-safe exports|Keyword optimization scaff' >> $GITHUB_OUTPUT
+
+      - name: Heal bossmind-stripe-payment-links-catalog.json
+        run: |
+          FILE="config/bossmind-stripe-payment-links-catalog.json"
+          if [ ! -f "$FILE" ]; then echo "{}" > "$FILE"; fi
+          # Remove any line containing banned phrases (crude but safe)
+          BANNED="${{ steps.banned.outputs.banned }}"
+          sed -i "/$BANNED/d" "$FILE"
+          # Validate JSON, if invalid reset to {}
+          if ! jq empty "$FILE" 2>/dev/null; then
+            echo "{}" > "$FILE"
+            echo "Reset $FILE because it was invalid JSON"
+          fi
+
+      - name: Heal resumora-stripe-payment-links-lock.json
+        run: |
+          FILE="config/resumora-stripe-payment-links-lock.json"
+          if [ ! -f "$FILE" ]; then echo "{}" > "$FILE"; fi
+          BANNED="${{ steps.banned.outputs.banned }}"
+          sed -i "/$BANNED/d" "$FILE"
+          if ! jq empty "$FILE" 2>/dev/null; then
+            echo "{}" > "$FILE"
+            echo "Reset $FILE because it was invalid JSON"
+          fi
+
+      - name: Commit and push fixes
+        run: |
+          git config user.name "self-healing-bot"
+          git config user.email "bot@example.com"
+          git add config/*.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "auto: heal JSON configs (remove banned text / fix invalid JSON)" && git push)
+
+      - name: Trigger Vercel redeploy
+        if: always()
+        run: |
+          npx vercel --force --prod --token ${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
