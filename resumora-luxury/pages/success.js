@@ -5,15 +5,21 @@ export default function Success() {
   const router = useRouter();
   const { session_id } = router.query;
   const [plan, setPlan] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!session_id) return;
     fetch(`/api/get-session?session_id=${session_id}`)
       .then(res => res.json())
-      .then(data => setPlan(data.plan));
+      .then(data => {
+        if (data.plan) setPlan(data.plan);
+        else setError(true);
+      })
+      .catch(() => setError(true));
   }, [session_id]);
 
-  if (!plan) return <div className="text-center py-20">Loading your order...</div>;
+  if (!plan && !error) return <div className="text-center py-20">Verifying your order...</div>;
+  if (error) return <div className="text-center py-20 text-red-500">Could not load order details, but your payment was successful. We will email you shortly.</div>;
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
