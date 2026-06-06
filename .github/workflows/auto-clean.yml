@@ -1,0 +1,30 @@
+name: Auto-remove ugly text from plan buttons
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour
+  workflow_dispatch:     # Allows manual trigger from GitHub UI
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove ugly subtext under "Select plan"
+        run: |
+          # Find the file containing the ugly text
+          FILE=$(grep -rl "ATS remediation" --include="*.tsx" --include="*.jsx" . | head -1)
+          if [ -n "$FILE" ]; then
+            # Delete the offending lines
+            sed -i '/ATS remediation pass/d; /Typography + hierarchy upgrade/d; /Full résumé rebuild/d; /Executive storyline/d; /ATS optimization/d; /Keyword optimization scaffolding/d' "$FILE"
+            # Commit and push if changes were made
+            git config user.name "auto-clean-bot"
+            git config user.email "bot@example.com"
+            git add "$FILE"
+            git diff --quiet && git diff --staged --quiet || (git commit -m "auto: remove ugly plan text" && git push)
+          else
+            echo "No ugly text found – all clean."
+          fi
