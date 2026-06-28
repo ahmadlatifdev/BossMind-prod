@@ -68,6 +68,28 @@
   box-shadow: var(--rs-shadow-card), 0 0 0 1px rgba(201, 162, 39, 0.08);
 }
 
+.rs-studio-workspace-card--inactive {
+  opacity: 0.72;
+  border-color: rgba(201, 162, 39, 0.1);
+}
+
+.rs-studio-panel--upload-locked {
+  padding: 0.85rem 1rem;
+  border: 1px dashed rgba(201, 162, 39, 0.22);
+  border-radius: var(--rs-radius-md);
+  background: rgba(5, 10, 24, 0.35);
+}
+
+.rs-studio-panel__locked-note {
+  margin: 0 0 0.65rem;
+  color: var(--rs-text-muted);
+  font-size: 0.92rem;
+}
+
+.rs-studio-select-plan-btn {
+  width: 100%;
+}
+
 .rs-studio-workspace-card--compact {
   padding: 0.7rem 0.85rem;
   background: rgba(5, 10, 24, 0.45);

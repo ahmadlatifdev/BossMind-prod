@@ -51,7 +51,29 @@ function parseEnvContent(content) {
  */
 function loadProjectEnv(cwd = process.cwd()) {
   const loadedFiles = [];
-  for (const name of [".env.local", ".env"]) {
+  const candidates = [".env.local", ".env"];
+  if (process.env.NODE_ENV === "production") {
+    candidates.push(".env.production");
+  }
+  const projectId =
+    process.env.GCLOUD_PROJECT ||
+    process.env.GCP_PROJECT ||
+    (() => {
+      try {
+        return process.env.FIREBASE_CONFIG ? JSON.parse(process.env.FIREBASE_CONFIG).projectId : null;
+      } catch {
+        return null;
+      }
+    })();
+  if (projectId) {
+    candidates.push(`.env.${projectId}`);
+  }
+  candidates.push(".env.resumora-live");
+
+  const seen = new Set();
+  for (const name of candidates) {
+    if (seen.has(name)) continue;
+    seen.add(name);
     const p = path.join(cwd, name);
     if (!fs.existsSync(p)) continue;
     try {

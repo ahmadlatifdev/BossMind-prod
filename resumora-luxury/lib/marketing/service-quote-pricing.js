@@ -1,9 +1,9 @@
 /** Indicative USD scope — Stripe still charges the tier Price ID; extras go to session metadata. */
 
 /** One-time tier list prices (USD) — must stay aligned with Pricing UI (`site-copy.js` pricingPlans). */
-export const BASIC_PRICE_USD = 19;
+export const BASIC_PRICE_USD = 29;
 export const PRO_PRICE_USD = 49;
-export const ELITE_PRICE_USD = 99;
+export const ELITE_PRICE_USD = 79;
 export const ESSENTIAL_ADVANCED_PRICE_USD = 110;
 
 const TIER_BASE_USD = {

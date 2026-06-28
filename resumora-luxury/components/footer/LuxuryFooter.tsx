@@ -3,7 +3,6 @@ import styles from "@/styles/luxury/footer.module.css";
 const PRODUCT_LINKS = [
   { href: "#hero", label: "Platform" },
   { href: "#pricing", label: "Plans" },
-  { href: "#faq", label: "FAQ" },
 ];
 
 const COMPANY_LINKS = [

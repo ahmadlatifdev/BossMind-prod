@@ -10,6 +10,10 @@ import {
   recordRedirect,
   shouldBlockRedirect,
 } from "@/lib/client/checkout-runtime";
+import {
+  buildCanonicalUrl,
+  shouldRedirectToCanonicalHost,
+} from "@/lib/marketing/canonical-host";
 
 import "@/styles/resumora-global.css";
 import "@/styles/resumora-enterprise-v3.css";
@@ -19,12 +23,26 @@ export default function App({ Component, pageProps }) {
   return (
     <LanguageProvider>
       <div className="rs-root-font">
+        <CanonicalHostRedirect />
         <PwaAndAnalytics />
         <CheckoutJourneyGuard />
         <Component {...pageProps} />
       </div>
     </LanguageProvider>
   );
+}
+
+/** Firebase Hosting serves static pages without Edge middleware — enforce resumora.net in the browser. */
+function CanonicalHostRedirect() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const host = window.location.hostname;
+    if (!shouldRedirectToCanonicalHost(host)) return;
+    const target = buildCanonicalUrl(window.location.pathname, window.location.search);
+    window.location.replace(target);
+  }, []);
+
+  return null;
 }
 
 /** Global anti-loop: block ping-pong redirects on checkout/auth routes. */

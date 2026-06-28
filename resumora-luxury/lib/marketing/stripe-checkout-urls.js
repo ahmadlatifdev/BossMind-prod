@@ -16,7 +16,7 @@ function getStripeSuccessBaseUrl() {
     process.env.RESUMORA_STRIPE_SUCCESS_BASE_URL ||
       process.env.NEXT_PUBLIC_SITE_URL ||
       vercel ||
-      "https://resumora-luxury.vercel.app"
+      "https://resumora.net"
   );
 }
 

@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import {
+  buildCanonicalUrl,
+  shouldRedirectToCanonicalHost,
+} from "@/lib/marketing/canonical-host";
 
 const WINDOW_MS = 60_000;
 const MAX_REQUESTS = Number(process.env.API_RATE_LIMIT_PER_MIN || 120);
@@ -33,7 +37,17 @@ function isRateLimited(ip: string) {
   };
 }
 
+function canonicalRedirect(request: NextRequest) {
+  const host = request.headers.get("host") || "";
+  if (!shouldRedirectToCanonicalHost(host)) return null;
+  const destination = buildCanonicalUrl(request.nextUrl.pathname, request.nextUrl.search);
+  return NextResponse.redirect(destination, 301);
+}
+
 export function middleware(request: NextRequest) {
+  const redirect = canonicalRedirect(request);
+  if (redirect) return redirect;
+
   const { pathname } = request.nextUrl;
 
   if (pathname.startsWith("/api/")) {
@@ -65,5 +79,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/api/:path*"],
+  matcher: ["/api/:path*", "/((?!_next/static|_next/image|favicon.ico).*)"],
 };

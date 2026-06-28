@@ -1,2 +1,6 @@
 /** Studio credential upload — formidable multipart via documents pipeline. */
-export { default, config } from "./documents";
+export { default } from "./documents";
+
+export const config = {
+  api: { bodyParser: false },
+};

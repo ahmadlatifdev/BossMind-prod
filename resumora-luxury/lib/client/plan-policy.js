@@ -3,9 +3,9 @@
  */
 const FREE_EDITS_BY_PLAN = {
   basic: 1,
-  professional: 2,
-  elite: 3,
-  essential_advanced: 2,
+  professional: 3,
+  elite: 0,
+  essential_advanced: 0,
 };
 
 const PLAN_IDS = Object.keys(FREE_EDITS_BY_PLAN);
@@ -42,7 +42,7 @@ function planPolicySummary(planId, lang = "en") {
 }
 
 function auditFreeEditsPolicy() {
-  const expected = { basic: 1, professional: 2, elite: 3, essential_advanced: 2 };
+  const expected = { basic: 1, professional: 3, elite: 0, essential_advanced: 0 };
   const ok = PLAN_IDS.every((id) => getFreeEditsCount(id) === expected[id]);
   return { ok, expected, actual: { ...FREE_EDITS_BY_PLAN } };
 }

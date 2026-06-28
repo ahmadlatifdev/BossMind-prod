@@ -14,12 +14,12 @@ export default function PricingPage() {
   const ogImage = brandAbsoluteUrl(siteUrl, "/og-resumora-brand.png");
   const metaTitle =
     lang === "fr"
-      ? "Tarifs · Essential Advanced (110 $) | Resumora"
-      : "Pricing · Essential Advanced Résumé Studio | Resumora";
+      ? "Tarifs · Basic, Standard, Professionnel, Entreprise | Resumora"
+      : "Pricing · Basic, Standard, Professional, Enterprise | Resumora";
   const metaDescription =
     lang === "fr"
-      ? "Quatre paliers : Basic, Essential Advanced (110 $ ATS + CV), Professionnel et Élite. Paiement Stripe sécurisé."
-      : "Four tiers: Basic, Essential Advanced ($110 ATS résumé upgrade), Professional, and Elite. Stripe-secure checkout.";
+      ? "Quatre paliers : Basic (29 $), Standard (49 $), Professionnel (79 $), Entreprise (110 $). Paiement Stripe sécurisé."
+      : "Four tiers: Basic ($29), Standard ($49), Professional ($79), Enterprise ($110). Stripe-secure checkout.";
 
   return (
     <SiteChrome>

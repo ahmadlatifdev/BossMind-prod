@@ -14,7 +14,9 @@
     "test": "node --test tests/smoke.test.js",
     "monitor:uptime": "node scripts/monitoring/check-uptime.mjs",
     "audit:fix": "npm audit fix",
-    "verify:checkout": "node scripts/verify-checkout-readiness.mjs http://localhost:3000"
+    "verify:checkout": "node scripts/verify-checkout-readiness.mjs http://localhost:3000",
+    "deploy:hosting": "firebase deploy --only hosting:client-resumora-live --project resumora-live",
+    "deploy:client": "firebase deploy --only hosting:client-resumora-live --project resumora-live"
   },
   "dependencies": {
     "@ai-sdk/deepseek": "^2.0.35",

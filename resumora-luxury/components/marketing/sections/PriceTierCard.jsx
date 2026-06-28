@@ -46,20 +46,15 @@ export default function PriceTierCard({ plan, lang, busyPlan, onCheckout, quoteM
         </p>
       ) : null}
 
-      <div className="rs-price-tagline-slot">
-        {isEa ? (
-          <>
-            <p className="rs-price-tier-tagline">{t.essentialAdvancedTagline}</p>
-            <p className="rs-price-tier-tagline rs-price-tier-tagline--video">{t.essentialAdvancedAutoVideos}</p>
-          </>
-        ) : null}
-      </div>
+      <div className="rs-price-tagline-slot" />
 
-      <ul className="rs-price-features rs-price-features--compact">
-        {visible.map((f) => (
-          <li key={f}>{f}</li>
-        ))}
-      </ul>
+      {features.length > 0 ? (
+        <ul className="rs-price-features rs-price-features--compact">
+          {visible.map((f) => (
+            <li key={f}>{f}</li>
+          ))}
+        </ul>
+      ) : null}
 
       {hasMore ? (
         <button

@@ -12,14 +12,12 @@ const NAV_COPY = {
   en: {
     home: "Home",
     pricing: "Pricing",
-    faq: "FAQ",
     getStarted: "Get Started",
     homeAria: "Resumora home",
   },
   fr: {
     home: "Accueil",
     pricing: "Tarifs",
-    faq: "FAQ",
     getStarted: "Commencer",
     homeAria: "Accueil Resumora",
   },
@@ -40,7 +38,6 @@ export default function LuxuryNavbar({ langToggle, appearanceToggle }: LuxuryNav
     () => [
       { href: "#hero", label: copy.home },
       { href: "#pricing", label: copy.pricing },
-      { href: "#faq", label: copy.faq },
     ],
     [copy]
   );

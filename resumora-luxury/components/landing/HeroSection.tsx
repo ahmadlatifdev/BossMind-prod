@@ -3,7 +3,6 @@
 import LuxuryFooter from "@/components/footer/LuxuryFooter";
 import { useLanguage } from "@/context/LanguageContext";
 import { AppearanceToggle } from "@/components/landing/AppearanceToggle";
-import FaqSection from "@/components/landing/FaqSection";
 import LuxuryNavbar from "@/components/navbar/LuxuryNavbar";
 import styles from "@/styles/luxury/landing.module.css";
 import dynamic from "next/dynamic";
@@ -106,7 +105,7 @@ export function HeroSection({ lang }: { lang: Lang }) {
         </h1>
         <p className={`${styles.heroSubtitle} lux-animate-in-delay`}>{copy.subtitle}</p>
         <div className={styles.ctaRow}>
-          <a href="#faq" className={styles.ctaPrimary}>
+          <a href="#pricing" className={styles.ctaPrimary}>
             {copy.primaryCta}
           </a>
           <a href="#pricing" className={styles.ctaSecondary}>
@@ -148,7 +147,6 @@ export function LuxuryHomePage() {
         <HeroSection lang={locale} />
         <ServiceOfferingsGrid variant="capabilities" />
         <PricingPanel />
-        <FaqSection />
       </main>
       <LuxuryFooter />
     </div>

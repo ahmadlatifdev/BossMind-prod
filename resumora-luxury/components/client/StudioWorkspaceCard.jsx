@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp, Download, Eye, RefreshCw, Trash2 } from "lucide-react";
 import StudioUpgradeControls from "@/components/client/StudioUpgradeControls";
 import StudioUploadWorkspace from "@/components/client/StudioUploadWorkspace";
@@ -93,6 +93,8 @@ export default function StudioWorkspaceCard({
   plan,
   lang,
   t,
+  isSelected = true,
+  onSelect,
   docTypeLabels,
   docTypes,
   setDocTypes,
@@ -118,13 +120,19 @@ export default function StudioWorkspaceCard({
   const { planId, displayName, documents = [], generationStatus = "queued",
           freeEditsRemaining, freeEditsUsed, deliveryUrl, premiumLink } = plan;
 
-  const [uploadOpen,   setUploadOpen]   = useState(true);
+  const [uploadOpen, setUploadOpen] = useState(isSelected);
   const [editOpen, setEditOpen] = useState(false);
 
   const docs       = documents.filter((d) => d.status !== "removed");
   const hasResume  = docs.some((d) => d.doc_type === "resume");
   const isUploading= uploadingPlan === planId;
   const isRequesting = requestingPlan === planId;
+  const canUpload = isSelected;
+
+  useEffect(() => {
+    setUploadOpen(isSelected);
+    if (!isSelected) setEditOpen(false);
+  }, [isSelected]);
   const notes      = editNotes[planId] || "";
   const resumeLen  = editResumeLength[planId] || "standard";
   const canSubmitEdit = notes.trim().length >= 8;
@@ -138,7 +146,13 @@ export default function StudioWorkspaceCard({
   ];
 
   return (
-    <article className="rs-studio-workspace-card rs-studio-workspace-card--v2 rs-studio-workspace-card--active" data-plan-id={planId}>
+    <article
+      className={`rs-studio-workspace-card rs-studio-workspace-card--v2${
+        isSelected ? " rs-studio-workspace-card--active" : " rs-studio-workspace-card--inactive"
+      }`}
+      data-plan-id={planId}
+      data-rs-selected={isSelected ? "true" : "false"}
+    >
 
       {/* ── Card header: title + status + upgrade ───────────── */}
       <div className="rs-studio-workspace-card__head">
@@ -187,7 +201,8 @@ export default function StudioWorkspaceCard({
         </div>
       ) : null}
 
-      {/* ── Upload section (active workspace only) ── */}
+      {/* ── Upload section (selected plan only) ── */}
+      {canUpload ? (
       <div className="rs-studio-panel rs-studio-panel--upload-primary rs-studio-panel--v2">
         {docs.length > 0 ? (
           <div className="rs-studio-panel__heading rs-studio-panel__heading--compact">
@@ -228,9 +243,25 @@ export default function StudioWorkspaceCard({
           </div>
         )}
       </div>
+      ) : (
+        <div className="rs-studio-panel rs-studio-panel--upload-locked rs-studio-panel--v2">
+          <p className="rs-studio-panel__locked-note">
+            {L(
+              lang,
+              "Select this service to upload documents for this plan.",
+              "Selectionnez ce service pour televerser des documents pour ce forfait."
+            )}
+          </p>
+          {typeof onSelect === "function" ? (
+            <button type="button" className="rs-btn-ghost rs-studio-select-plan-btn" onClick={onSelect}>
+              {L(lang, "Select this plan", "Selectionner ce forfait")}
+            </button>
+          ) : null}
+        </div>
+      )}
 
-      {/* ── Free edit section ─────────────────────────────────── */}
-      {hasFreeEdits ? (
+      {/* ── Free edit section (selected plan only) ─────────────────────────────────── */}
+      {hasFreeEdits && canUpload ? (
         <div className="rs-studio-panel rs-studio-panel--edit rs-studio-panel--v2">
           <div className="rs-studio-panel__heading">
             <span>

@@ -25,7 +25,12 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: process.env.VERCEL === "1",
   },
-  serverExternalPackages: ["formidable", "pdf-parse"],
+  serverExternalPackages: [
+    "@neondatabase/serverless",
+    "formidable",
+    "pdf-parse",
+    "stripe",
+  ],
   async headers() {
     return [
       {
