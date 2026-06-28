@@ -1,11 +1,18 @@
-const { parseCookies, serializeCookie, COOKIE_VISITOR, COOKIE_SESSION } = require("./cookies");
+const {
+  parseCookies,
+  serializeCookie,
+  readCookieHeader,
+  readSessionToken,
+  COOKIE_VISITOR,
+  COOKIE_SESSION,
+} = require("./cookies");
 const { ensureVisitor, resolveSession } = require("./store");
 
 /** @param {import('http').IncomingMessage} req */
 async function readEngagementActor(req, res) {
-  const cookies = parseCookies(req.headers?.cookie || "");
+  const cookies = parseCookies(readCookieHeader(req));
   let visitorId = cookies[COOKIE_VISITOR] || null;
-  const sessionToken = cookies[COOKIE_SESSION] || null;
+  const sessionToken = readSessionToken(cookies);
 
   let sessionRow = null;
   if (sessionToken) {

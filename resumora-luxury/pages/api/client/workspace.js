@@ -1,5 +1,6 @@
 require("../../../lib/shared/ensure-project-env");
 const { readEngagementActor } = require("../../../lib/engagement/http-context");
+const { ensureEngagementSchema } = require("../../../lib/shared/neon-memory");
 const { getWorkspaceOverview } = require("../../../lib/client/workspace-store");
 const { getDeliverableForPlan } = require("../../../lib/client/deliverables-catalog");
 const {
@@ -16,6 +17,8 @@ export default async function handler(req, res) {
   const sessionId = String(req.query.session_id || "").trim();
 
   try {
+    res.setHeader("Cache-Control", "private, no-store, max-age=0");
+    await ensureEngagementSchema();
     const actor = await readEngagementActor(req, res);
     if (!actor.profileId) {
       return res.status(200).json({ ok: true, signedIn: false, hasAccess: false, plans: [] });
