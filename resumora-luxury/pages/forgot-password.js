@@ -6,6 +6,34 @@ import MinimalAppChrome from "@/components/marketing/MinimalAppChrome";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/marketing/site-copy";
 
+const RESET_CTX_KEY = "rs_password_reset_ctx";
+
+function resolveError(data, t) {
+  if (data?.error === "phone_required") return t.forgotPasswordPhoneRequired;
+  if (data?.error === "delivery_partial") return t.forgotPasswordDeliveryPartial;
+  if (data?.error === "delivery_failed") return t.forgotPasswordDeliveryFailed;
+  if (data?.error === "rate_limited") return t.forgotPasswordRateLimited;
+  return t.errLoginGeneric;
+}
+
+function saveResetContext({ email, channel, phone, devCode }) {
+  if (typeof sessionStorage === "undefined") return;
+  try {
+    sessionStorage.setItem(
+      RESET_CTX_KEY,
+      JSON.stringify({
+        email: String(email || "").trim(),
+        channel: channel || "email",
+        phone: phone || "",
+        devCode: devCode || "",
+        savedAt: Date.now(),
+      })
+    );
+  } catch {
+    /* ignore */
+  }
+}
+
 export default function ForgotPasswordPage() {
   const router = useRouter();
   const { lang } = useLanguage();
@@ -21,12 +49,20 @@ export default function ForgotPasswordPage() {
     setBusy(true);
     const fd = new FormData(e.currentTarget);
     const channel = String(fd.get("channel") || "email");
+    const phone = String(fd.get("phone") || "").trim();
     const body = {
       email: String(fd.get("email") || ""),
-      phone: String(fd.get("phone") || "") || undefined,
+      phone: phone || undefined,
       channel,
       lang,
     };
+
+    if ((channel === "sms" || channel === "both") && !phone) {
+      setError(t.forgotPasswordPhoneRequired);
+      setBusy(false);
+      return;
+    }
+
     try {
       const res = await fetch("/api/engagement/password-reset/request", {
         method: "POST",
@@ -39,12 +75,20 @@ export default function ForgotPasswordPage() {
         return;
       }
       if (!res.ok) {
-        setError(data.error === "delivery_failed" ? t.forgotPasswordDeliveryFailed : t.errLoginGeneric);
+        setError(resolveError(data, t));
         return;
       }
-      setMessage(t.forgotPasswordSent);
+      setMessage(data.message || t.forgotPasswordSent);
+      saveResetContext({
+        email: body.email,
+        channel,
+        phone,
+        devCode: data.devCode ? String(data.devCode) : "",
+      });
       const email = encodeURIComponent(body.email);
       await router.push(`/reset-password?email=${email}`);
+    } catch {
+      setError(t.forgotPasswordDeliveryFailed);
     } finally {
       setBusy(false);
     }
@@ -75,8 +119,8 @@ export default function ForgotPasswordPage() {
               <span>{t.forgotPasswordChannelBoth}</span>
               <input type="radio" name="channel" value="both" />
             </label>
-            <button className="rs-btn-primary" type="submit" disabled={busy}>
-              {t.forgotPasswordSubmit}
+            <button className="rs-btn-primary" type="submit" disabled={busy} aria-busy={busy}>
+              {busy ? t.forgotPasswordSending : t.forgotPasswordSubmit}
             </button>
           </form>
           {error ? (
