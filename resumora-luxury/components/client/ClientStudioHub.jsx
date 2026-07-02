@@ -29,8 +29,9 @@ import {
 } from "@/lib/client/checkout-runtime";
 import { clearStoredCheckoutSessionId } from "@/lib/marketing/post-auth-redirect";
 
-const WORKSPACE_FETCH_TIMEOUT_MS = 4500;
+const WORKSPACE_FETCH_TIMEOUT_MS = 8000;
 const STUDIO_HARD_TIMEOUT_PAD_MS = 250;
+const STABLE_GUEST_STATES = new Set(["auth", "no_plan"]);
 
 function isValidCheckoutSessionId(sid) {
   const id = String(sid || "").trim();
@@ -244,6 +245,11 @@ export default function ClientStudioHub({ lang: langProp }) {
   const urlNormalizedRef = useRef(false);
   const loadRef = useRef(null);
   const loadInFlightRef = useRef(null);
+  const loadGenerationRef = useRef(0);
+  const noSessionBootstrappedRef = useRef(false);
+  const enterStudioFromPayloadRef = useRef(null);
+  const enterRecoveryRef = useRef(null);
+  const signInHrefRef = useRef("/login?next=%2Fstudio");
   const loginRedirectCountRef = useRef(0);
   const activationAttemptsRef = useRef(0);
   const MAX_LOGIN_REDIRECTS = 2;
@@ -405,8 +411,13 @@ export default function ClientStudioHub({ lang: langProp }) {
     return fromFocus || "";
   }, [checkoutFocusPlanId]);
 
+  const applyLoadState = useCallback((next, generation) => {
+    if (generation !== loadGenerationRef.current) return;
+    setState(next);
+  }, []);
+
   const load = useCallback(
-    async (sessionId = "", { signal } = {}) => {
+    async (sessionId = "", { signal, forceLoading = false } = {}) => {
       if (loadInFlightRef.current) {
         try {
           return await loadInFlightRef.current;
@@ -416,11 +427,17 @@ export default function ClientStudioHub({ lang: langProp }) {
       }
 
       const promise = (async () => {
+      const generation = ++loadGenerationRef.current;
       const startedAt = Date.now();
       const sid = sessionId || resolveSessionId();
       const pending = Boolean(sid) || hasPendingCheckout(router);
 
-      setState((prev) => (prev === "ready" ? "ready" : "loading"));
+      setState((prev) => {
+        if (generation !== loadGenerationRef.current) return prev;
+        if (prev === "ready") return "ready";
+        if (!forceLoading && !sid && !pending && STABLE_GUEST_STATES.has(prev)) return prev;
+        return "loading";
+      });
 
       try {
         const qs = new URLSearchParams({ lang });
@@ -450,7 +467,11 @@ export default function ClientStudioHub({ lang: langProp }) {
         const shape = validateWorkspacePayload(data);
         if (!shape.ok) {
           logCheckoutRuntime("studio_load_invalid_shape", { reason: shape.reason, endpoint });
-          setState("error");
+          if (!sid && !pending) {
+            applyLoadState("auth", generation);
+            return false;
+          }
+          applyLoadState("error", generation);
           return false;
         }
         if (!res.ok || data?.parseError) {
@@ -459,7 +480,12 @@ export default function ClientStudioHub({ lang: langProp }) {
             status: res.status,
             parseError: Boolean(data?.parseError),
           });
-          setState("error");
+          if (!sid && !pending && data?.signedIn === false) {
+            setHub(scopeHubPayload({ ...data, plans: data.plans || [], signedIn: false }));
+            applyLoadState("auth", generation);
+            return false;
+          }
+          applyLoadState("error", generation);
           return false;
         }
         const studioReady =
@@ -473,6 +499,7 @@ export default function ClientStudioHub({ lang: langProp }) {
           setRecoveryEmail((prev) => prev || data.stripeCheckoutEmail);
         }
         if (!data.signedIn) {
+          if (generation !== loadGenerationRef.current) return false;
           setHub(scopeHubPayload({ ...data, plans: data.plans || [] }));
           const mustSignIn = pending && (data.needsSignIn || data.fulfillmentOk || data.planId);
           if (mustSignIn) {
@@ -495,7 +522,7 @@ export default function ClientStudioHub({ lang: langProp }) {
                   "Connectez-vous avec le meme email que pour le paiement Stripe, puis actualisez."
                 )
               );
-              setState("error");
+              applyLoadState("error", generation);
               return false;
             }
             loginRedirectCountRef.current += 1;
@@ -504,7 +531,7 @@ export default function ClientStudioHub({ lang: langProp }) {
             if (!shouldBlockRedirect(router.asPath, loginTarget)) {
               recordRedirect(router.asPath, loginTarget);
               logCheckoutRuntime("studio_redirect_login", { next });
-              setState("auth");
+              applyLoadState("auth", generation);
               router.replace(loginTarget).catch(() => {});
             } else {
               enterRecovery({ failedStep: "redirect_loop", activationStatus: "needs_sign_in" });
@@ -514,7 +541,7 @@ export default function ClientStudioHub({ lang: langProp }) {
           if (sid && !mustSignIn) {
             dismissStaleCheckoutSession(router);
           }
-          setState("auth");
+          applyLoadState("auth", generation);
           return false;
         }
         if (studioReady) {
@@ -536,11 +563,11 @@ export default function ClientStudioHub({ lang: langProp }) {
           });
           if (!scoped.plans?.length) {
             setHub(scopeHubPayload({ ...data, signedIn: true, plans: [], ownedPlanIds: data.ownedPlanIds || [] }));
-            setState("no_plan");
+            applyLoadState("no_plan", generation);
             return false;
           }
           setHub(scoped);
-          setState("ready");
+          applyLoadState("ready", generation);
           setShowUploadWizard(true);
           setNeedsSignIn(false);
           if (pending) clearCheckoutFromUrl(router);
@@ -556,18 +583,19 @@ export default function ClientStudioHub({ lang: langProp }) {
           return false;
         }
         setHub(scopeHubPayload({ ...data, plans: data.plans || [] }));
-        setState("no_plan");
+        applyLoadState("no_plan", generation);
         return false;
       } catch (err) {
         if (err?.name === "AbortError") {
-          if (hubStateRef.current === "loading") {
-            logCheckoutRuntime("studio_load_timeout", { sessionIdPrefix: sid?.slice(0, 20) || "" });
-            setState("error");
-          }
+          logCheckoutRuntime("studio_load_aborted", { sessionIdPrefix: sid?.slice(0, 20) || "" });
           return false;
         }
         logCheckoutRuntime("studio_load_error", { message: err?.message || String(err) });
-        setState("error");
+        if (!sid && !pending) {
+          applyLoadState("auth", generation);
+          return false;
+        }
+        applyLoadState("error", generation);
         return false;
       }
       })();
@@ -579,7 +607,7 @@ export default function ClientStudioHub({ lang: langProp }) {
         if (loadInFlightRef.current === promise) loadInFlightRef.current = null;
       }
     },
-    [lang, router, resolveSessionId, applyActivationPayload, enterRecovery, resolveWorkspacePlanQuery]
+    [lang, router, resolveSessionId, applyActivationPayload, enterRecovery, resolveWorkspacePlanQuery, applyLoadState]
   );
 
   const signInHref = useMemo(() => {
@@ -608,6 +636,12 @@ export default function ClientStudioHub({ lang: langProp }) {
   loadRef.current = load;
 
   useEffect(() => {
+    enterStudioFromPayloadRef.current = enterStudioFromPayload;
+    enterRecoveryRef.current = enterRecovery;
+    signInHrefRef.current = signInHref;
+  }, [enterStudioFromPayload, enterRecovery, signInHref]);
+
+  useEffect(() => {
     if (!mounted || !router.isReady) return;
 
     const runId = ++orchestrationRunRef.current;
@@ -621,14 +655,17 @@ export default function ClientStudioHub({ lang: langProp }) {
         setRecoveryDetail((d) => d || { failedStep: recoveryQuery, activationStatus: "recovery_required" });
         return;
       }
+      if (noSessionBootstrappedRef.current) return;
+      noSessionBootstrappedRef.current = true;
       const ac = new AbortController();
       (async () => {
-        setState("loading");
-        await load("", { signal: ac.signal });
+        setState((prev) => (STABLE_GUEST_STATES.has(prev) ? prev : "loading"));
+        await loadRef.current?.("", { signal: ac.signal });
       })();
       return () => ac.abort();
     }
 
+    noSessionBootstrappedRef.current = false;
     orchestratedSidRef.current = sid;
     activationAttemptsRef.current += 1;
     persistSessionId(sid);
@@ -649,14 +686,14 @@ export default function ClientStudioHub({ lang: langProp }) {
 
       if (outcome.status === "complete") {
         logCheckoutRuntime("studio_entitlement_activated", { planId: data.planId });
-        enterStudioFromPayload(data, sid);
+        enterStudioFromPayloadRef.current?.(data, sid);
         return;
       }
 
       if (data?.sessionInvalid === true) {
         dismissStaleCheckoutSession(router);
         setState("auth");
-        await load("");
+        await loadRef.current?.("");
         return;
       }
 
@@ -670,23 +707,23 @@ export default function ClientStudioHub({ lang: langProp }) {
         );
         if (loginRedirectCountRef.current < MAX_LOGIN_REDIRECTS) {
           loginRedirectCountRef.current += 1;
-          const target = data.redirectTo || signInHref;
+          const target = data.redirectTo || signInHrefRef.current;
           if (!shouldBlockRedirect(router.asPath, target)) {
             recordRedirect(router.asPath, target);
             setState("auth");
             router.replace(target).catch(() => {});
           } else {
-            enterRecovery({ ...data, failedStep: "auth_email_mismatch", attempts: outcome.attempts });
+            enterRecoveryRef.current?.({ ...data, failedStep: "auth_email_mismatch", attempts: outcome.attempts });
           }
         } else {
-          enterRecovery({ ...data, failedStep: "auth_email_mismatch", attempts: outcome.attempts });
+          enterRecoveryRef.current?.({ ...data, failedStep: "auth_email_mismatch", attempts: outcome.attempts });
         }
         return;
       }
 
       if (outcome.status === "needs_sign_in" && !data?.signedIn) {
         if (loginRedirectCountRef.current >= MAX_LOGIN_REDIRECTS) {
-          enterRecovery({ ...data, failedStep: "needs_sign_in", attempts: outcome.attempts });
+          enterRecoveryRef.current?.({ ...data, failedStep: "needs_sign_in", attempts: outcome.attempts });
           return;
         }
         loginRedirectCountRef.current += 1;
@@ -697,15 +734,15 @@ export default function ClientStudioHub({ lang: langProp }) {
           recordRedirect(router.asPath, target);
           router.replace(target).catch(() => {});
         } else {
-          enterRecovery({ ...data, failedStep: "redirect_loop", attempts: outcome.attempts });
+          enterRecoveryRef.current?.({ ...data, failedStep: "redirect_loop", attempts: outcome.attempts });
         }
         return;
       }
 
       if (outcome.status === "recovery" || outcome.status === "timeout") {
-        const loaded = await load(sid);
+        const loaded = await loadRef.current?.(sid);
         if (loaded) return;
-        enterRecovery({
+        enterRecoveryRef.current?.({
           ...data,
           failedStep: data.failedStep || (outcome.status === "timeout" ? "client_timeout" : "activation_failed"),
           attempts: outcome.attempts,
@@ -714,16 +751,16 @@ export default function ClientStudioHub({ lang: langProp }) {
       }
 
       if (outcome.status === "activation_pending") {
-        const loaded = await load(sid);
+        const loaded = await loadRef.current?.(sid);
         if (loaded) return;
         if (activationAttemptsRef.current >= MAX_ACTIVATION_ATTEMPTS) {
-          enterRecovery({
+          enterRecoveryRef.current?.({
             ...data,
             failedStep: data.failedStep || "activation_pending",
             attempts: outcome.attempts,
           });
         } else {
-          enterRecovery({
+          enterRecoveryRef.current?.({
             ...data,
             failedStep: data.failedStep || "stripe_unconfigured",
             attempts: outcome.attempts,
@@ -737,16 +774,16 @@ export default function ClientStudioHub({ lang: langProp }) {
         return;
       }
 
-      const loaded = await load(sid);
+      const loaded = await loadRef.current?.(sid);
       if (loaded) return;
-      enterRecovery({ ...data, failedStep: data.failedStep || "activation_incomplete", attempts: outcome.attempts });
+      enterRecoveryRef.current?.({ ...data, failedStep: data.failedStep || "activation_incomplete", attempts: outcome.attempts });
     })();
 
     return () => {
       clearTimeout(timeoutId);
       ac.abort();
     };
-  }, [router.isReady, router.query.session_id, router.query.recovery, lang, enterStudioFromPayload, router, signInHref, enterRecovery, mounted]);
+  }, [router.isReady, router.query.session_id, router.query.recovery, lang, mounted]);
 
   useEffect(() => {
     if (!mounted || !router.isReady) return;
@@ -757,7 +794,7 @@ export default function ClientStudioHub({ lang: langProp }) {
       const sid = resolveSessionId();
       logCheckoutRuntime("studio_load_hard_timeout", { hasSessionId: Boolean(sid) });
       if (sid) {
-        enterRecovery({
+        enterRecoveryRef.current?.({
           failedStep: "client_timeout",
           activationStatus: "recovery_required",
           attempts: activationAttemptsRef.current,
@@ -768,12 +805,12 @@ export default function ClientStudioHub({ lang: langProp }) {
           ),
         });
       } else {
-        setState("error");
+        setState("auth");
       }
     }, STUDIO_UI_HARD_TIMEOUT_MS + STUDIO_HARD_TIMEOUT_PAD_MS);
 
     return () => clearTimeout(timer);
-  }, [router.isReady, router.query.session_id, lang, enterRecovery, resolveSessionId, mounted]);
+  }, [router.isReady, router.query.session_id, lang, resolveSessionId, mounted]);
 
   useEffect(() => {
     if (state !== "ready" || !hub?.plans?.length) return;
@@ -1024,7 +1061,7 @@ export default function ClientStudioHub({ lang: langProp }) {
     return (
       <div className="rs-client-hub">
         <p>{t.clientHubError}</p>
-        <button type="button" className="rs-btn-ghost" onClick={() => load(resolveSessionId())}>
+        <button type="button" className="rs-btn-ghost" onClick={() => load(resolveSessionId(), { forceLoading: true })}>
           {t.clientHubRetry}
         </button>
       </div>
