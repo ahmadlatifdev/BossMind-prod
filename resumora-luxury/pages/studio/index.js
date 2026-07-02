@@ -1,5 +1,6 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import MinimalAppChrome from "@/components/marketing/MinimalAppChrome";
 import StudioCalmPrepare from "@/components/client/StudioCalmPrepare";
 import { useLanguage } from "@/context/LanguageContext";
@@ -26,10 +27,17 @@ export default function ClientStudioHubPage() {
   const safeLang = lang === "fr" ? "fr" : "en";
   const t = translations[safeLang] || translations.en;
 
+  useEffect(() => {
+    fetch(`/api/client/workspace?lang=${encodeURIComponent(safeLang)}`, {
+      credentials: "same-origin",
+      cache: "no-store",
+    }).catch(() => {});
+  }, [safeLang]);
+
   return (
     <MinimalAppChrome>
       <Head>
-        <title>{t.clientHubTitle} · Resumora</title>
+        <title>{t.clientWorkspaceTitle || t.clientHubTitle} · Resumora</title>
         <meta name="robots" content="noindex" />
       </Head>
       <main className="rs-app-shell rs-app-shell--minimal-main rs-client-hub-wrap">
