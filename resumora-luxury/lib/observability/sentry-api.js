@@ -60,17 +60,6 @@ function withObservableApi(handler, options = {}) {
       }
 
       try {
-        const { recordApiError } = require("../shared/bossmind-shared-error-memory");
-        await recordApiError(error, req, {
-          route,
-          source: "observability.sentry-api",
-          errorType: "api_error",
-        });
-      } catch {
-        /* non-blocking */
-      }
-
-      try {
         const cloudwatch = loadCloudWatch();
         if (cloudwatch?.recordApiCall) {
           await cloudwatch.recordApiCall({

@@ -17,16 +17,6 @@ function withJsonApi(handler, { source = "api" } = {}) {
       await handler(req, res);
     } catch (err) {
       console.error(`[${source}]`, err?.message || err, err?.stack);
-      try {
-        const { captureRouteError } = require("../observability/capture-route-error");
-        await captureRouteError(err, req, {
-          route: String(req?.url || "").split("?")[0],
-          source,
-          errorType: "api_error",
-        });
-      } catch {
-        /* non-blocking */
-      }
       if (!res.headersSent) {
         sendJson(res, 500, {
           error: "internal_error",
