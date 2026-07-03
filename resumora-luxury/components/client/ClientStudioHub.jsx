@@ -28,6 +28,7 @@ import {
   cleanupStaleCheckoutSession,
 } from "@/lib/client/checkout-runtime";
 import { clearStoredCheckoutSessionId } from "@/lib/marketing/post-auth-redirect";
+import { captureClientApiError } from "@/lib/observability/capture-client-api-error";
 
 const WORKSPACE_FETCH_TIMEOUT_MS = 8000;
 const STUDIO_HARD_TIMEOUT_PAD_MS = 250;
@@ -69,15 +70,35 @@ async function fetchStudioApi(url, { signal: outerSignal } = {}) {
     const res = await fetch(url, { credentials: "same-origin", signal: ac.signal, cache: "no-store" });
     const text = await res.text();
     let data = {};
+    let parseError = false;
     if (text) {
       try {
         data = JSON.parse(text);
       } catch {
+        parseError = true;
         logCheckoutRuntime("studio_api_invalid_json", { url, status: res.status });
         data = { ok: false, parseError: true };
       }
     }
+    if (parseError || res.status >= 500) {
+      captureClientApiError(new Error(parseError ? "invalid_json" : `HTTP ${res.status}`), {
+        route: url,
+        status: res.status,
+        source: "client.studio.fetchStudioApi",
+        parseError,
+        message: data?.error || data?.message || undefined,
+      });
+    }
     return { res, data };
+  } catch (error) {
+    if (error?.name !== "AbortError") {
+      captureClientApiError(error, {
+        route: url,
+        source: "client.studio.fetchStudioApi",
+        message: error?.message,
+      });
+    }
+    throw error;
   } finally {
     clearTimeout(timer);
     if (outerSignal) outerSignal.removeEventListener("abort", onOuterAbort);

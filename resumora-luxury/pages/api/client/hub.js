@@ -7,8 +7,10 @@ const { activateBySessionId } = require("../../../lib/client/entitlement-activat
 const { getOnboardingState } = require("../../../lib/client/onboarding-journey");
 const { canonicalPlanId } = require("../../../lib/client/plan-resolver");
 const { getDeliverableForPlan } = require("../../../lib/client/deliverables-catalog");
+const { withJsonApi } = require("../../../lib/api/json-api-handler");
+const { captureRouteError } = require("../../../lib/observability/capture-route-error");
 
-export default async function handler(req, res) {
+async function handleClientHub(req, res) {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
     return res.status(405).json({ error: "Method not allowed" });
@@ -84,6 +86,13 @@ export default async function handler(req, res) {
       scopedPlansCount: scoped.scopedPlansCount ?? plans.length,
     });
   } catch (e) {
+    await captureRouteError(e, req, {
+      route: "/api/client/hub",
+      source: "api.client.hub",
+      errorType: "api_error",
+    });
     return res.status(500).json({ error: e.message || "Server error" });
   }
 }
+
+export default withJsonApi(handleClientHub, { source: "api.client.hub" });

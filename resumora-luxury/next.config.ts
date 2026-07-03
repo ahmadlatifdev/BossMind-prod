@@ -1,5 +1,12 @@
 import type { NextConfig } from "next";
 import path from "path";
+import { withSentryConfig } from "@sentry/nextjs";
+
+const SENTRY_CONNECT_SRC = [
+  "https://*.ingest.sentry.io",
+  "https://*.ingest.us.sentry.io",
+  "https://*.sentry.io",
+].join(" ");
 
 const CSP = [
   "default-src 'self'",
@@ -7,7 +14,7 @@ const CSP = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: blob: https:",
   "font-src 'self' https://fonts.gstatic.com data:",
-  "connect-src 'self' https://api.stripe.com https://*.neon.tech https://vitals.vercel-insights.com",
+  `connect-src 'self' https://api.stripe.com https://*.neon.tech ${SENTRY_CONNECT_SRC}`,
   "frame-src https://js.stripe.com https://hooks.stripe.com",
   "object-src 'none'",
   "base-uri 'self'",
@@ -84,4 +91,16 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  disableLogger: true,
+  automaticVercelMonitors: false,
+  telemetry: false,
+  sourcemaps: {
+    disable: !process.env.SENTRY_AUTH_TOKEN,
+  },
+});
