@@ -8,7 +8,7 @@ export default function StudioCalmPrepare({ lang = "en" }) {
         {L(lang, "Resumora Executive Studio", "Studio executif Resumora")}
       </p>
       <h2 className="rs-studio-calm-prepare-title">
-        {L(lang, "Preparing your secure Resumora workspace…", "Preparation de votre espace securise Resumora…")}
+        {L(lang, "Opening your private studio…", "Ouverture de votre studio prive…")}
       </h2>
       <div className="rs-studio-calm-prepare-bar" aria-hidden="true">
         <span className="rs-studio-calm-prepare-bar-fill" />
