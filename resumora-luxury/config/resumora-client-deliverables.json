@@ -1,44 +1,46 @@
 {
-  "version": 1,
+  "version": 2,
+  "ahmedLock": "2026-07-26-one-time-edits-1-2-3-0",
   "plans": {
     "basic": {
-      "displayName": { "en": "Essential Foundation", "fr": "Fondation essentielle" },
+      "displayName": { "en": "Basic", "fr": "Basic" },
       "freeEdits": 1,
       "studioPath": "/studio",
       "welcomeAssetId": "welcome_basic",
       "features": {
-        "en": ["Résumé intake confirmed", "ATS export guidance", "Concierge follow-up within 24h"],
-        "fr": ["Intake CV confirmé", "Guide export ATS", "Suivi concierge sous 24 h"]
+        "en": ["1 included resume edit", "ATS export guidance", "One-time payment"],
+        "fr": ["1 révision CV incluse", "Guide export ATS", "Paiement unique"]
       }
     },
     "professional": {
-      "displayName": { "en": "Professional Career Package", "fr": "Forfait carrière professionnel" },
+      "displayName": { "en": "Balanced", "fr": "Équilibré" },
       "freeEdits": 2,
       "studioPath": "/studio",
       "welcomeAssetId": "welcome_professional",
       "features": {
-        "en": ["Priority strategist queue", "Storyline + keyword scaffold", "Cover letter alignment"],
-        "fr": ["File stratège prioritaire", "Storyline + mots-clés", "Alignement lettre"]
+        "en": ["2 included resume edits", "Storyline + keyword scaffold", "One-time payment"],
+        "fr": ["2 révisions CV incluses", "Storyline + mots-clés", "Paiement unique"]
       }
     },
     "elite": {
-      "displayName": { "en": "Executive Career Package", "fr": "Forfait carrière exécutif" },
+      "displayName": { "en": "Professional", "fr": "Professionnel" },
       "freeEdits": 3,
       "studioPath": "/studio",
       "welcomeAssetId": "welcome_elite",
       "features": {
-        "en": ["Executive narrative review", "LinkedIn relaunch brief", "Recorded rehearsal slot"],
-        "fr": ["Revue narrative exécutive", "Brief LinkedIn", "Créneau répétition enregistrée"]
+        "en": ["3 included resume edits", "LinkedIn relaunch brief", "One-time payment"],
+        "fr": ["3 révisions CV incluses", "Brief LinkedIn", "Paiement unique"]
       }
     },
     "essential_advanced": {
-      "displayName": { "en": "Essential Advanced", "fr": "Essential Avancé" },
-      "freeEdits": 2,
+      "displayName": { "en": "Advanced", "fr": "Avancé" },
+      "freeEdits": 0,
+      "isTutorialOnly": true,
       "studioPath": "/studio/essential-advanced",
       "welcomeAssetId": "welcome_essential_advanced",
       "features": {
-        "en": ["Full interview studio (videos, simulations, Q&A)", "Secure downloads EN/FR", "Progress tracking"],
-        "fr": ["Studio entretien complet", "Téléchargements sécurisés EN/FR", "Suivi progression"]
+        "en": ["0 edits — Tutorial videos & tips only", "Interview training videos EN/FR", "One-time payment"],
+        "fr": ["0 révision — tutoriels et conseils uniquement", "Vidéos entretien EN/FR", "Paiement unique"]
       }
     }
   },

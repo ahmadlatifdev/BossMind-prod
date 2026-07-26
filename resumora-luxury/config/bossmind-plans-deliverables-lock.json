@@ -1,11 +1,15 @@
 {
-  "lockedAt": "2026-05-18T10:10:13.153Z",
+  "lockedAt": "2026-07-26T13:15:00.000Z",
+  "supersedes": "2026-05-18T10:10:13.153Z",
   "memoryType": "RESUMORA_PLANS_DELIVERABLES_OPERATIONAL",
+  "ahmedApproval": "2026-07-26 one-time B+D: edits basic=1 professional=2 elite=3 essential_advanced=0 tutorial-only",
+  "paymentMode": "payment",
+  "billing": "one-time",
   "freeEdits": {
     "basic": 1,
     "professional": 2,
     "elite": 3,
-    "essential_advanced": 2
+    "essential_advanced": 0
   },
   "catalogCounts": {
     "videos": 3,
@@ -20,6 +24,7 @@
       "studioPath": "/studio",
       "bilingual": true,
       "freeEdits": 1,
+      "displayName": "Basic",
       "stripePriceConfigured": true,
       "paymentLinkConfigured": true,
       "paymentLinkTestMode": true
@@ -29,6 +34,7 @@
       "studioPath": "/studio",
       "bilingual": true,
       "freeEdits": 2,
+      "displayName": "Balanced",
       "stripePriceConfigured": true,
       "paymentLinkConfigured": true,
       "paymentLinkTestMode": true
@@ -38,6 +44,7 @@
       "studioPath": "/studio",
       "bilingual": true,
       "freeEdits": 3,
+      "displayName": "Professional",
       "stripePriceConfigured": true,
       "paymentLinkConfigured": true,
       "paymentLinkTestMode": true
@@ -46,11 +53,13 @@
       "deliverable": true,
       "studioPath": "/studio/essential-advanced",
       "bilingual": true,
-      "freeEdits": 2,
+      "freeEdits": 0,
+      "isTutorialOnly": true,
+      "displayName": "Advanced",
       "stripePriceConfigured": true,
       "paymentLinkConfigured": true,
       "paymentLinkTestMode": true
     }
   },
-  "notes": "plans-free-edits-qa"
+  "notes": "one-time-payments; Advanced = tutorial videos and tips only (0 edits)"
 }

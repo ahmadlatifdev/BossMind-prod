@@ -2,22 +2,23 @@ import { useState } from "react";
 import { translations } from "@/lib/marketing/site-copy";
 import { freeEditsLabel } from "@/lib/client/plan-policy";
 
+/** Same visible count on every card so feature lists share one baseline. */
 const VISIBLE_FEATURES = 3;
-const VISIBLE_FEATURES_EA = 5;
 
 export default function PriceTierCard({ plan, lang, busyPlan, onCheckout, quoteMatch }) {
   const t = translations[lang];
   const features = plan.features[lang] || [];
   const isEa = plan.id === "essential_advanced";
   const [expanded, setExpanded] = useState(false);
-  const visibleCount = isEa ? VISIBLE_FEATURES_EA : VISIBLE_FEATURES;
-  const visible = expanded ? features : features.slice(0, visibleCount);
-  const hasMore = features.length > visibleCount;
+  const visible = expanded ? features : features.slice(0, VISIBLE_FEATURES);
+  const hasMore = features.length > VISIBLE_FEATURES;
 
   const showFlagship = plan.badge === "flagship";
   const showBalanced = plan.badge === "balanced";
   const showAdvanced = plan.badge === "advanced";
   const showPopular = plan.id === "professional";
+  const hasBadge = showFlagship || showBalanced || showAdvanced || showPopular;
+  const subtitle = freeEditsLabel(plan.id, lang);
 
   return (
     <article
@@ -26,27 +27,35 @@ export default function PriceTierCard({ plan, lang, busyPlan, onCheckout, quoteM
       data-tier={plan.id}
       data-quote-match={quoteMatch ? "true" : "false"}
     >
-      <div className="rs-price-flag-row">
+      {/* Fixed-height badge slot — reserved even when empty so titles share a baseline */}
+      <div className="rs-price-badge-slot rs-price-flag-row" aria-hidden={!hasBadge}>
         {showFlagship ? <span className="rs-price-flag">{t.badgeBestValue}</span> : null}
         {showBalanced ? <span className="rs-price-flag rs-price-flag--balanced">{t.badgeBalanced}</span> : null}
-        {showAdvanced ? <span className="rs-price-flag rs-price-flag--upgrade">{t.badgeEssentialAdvanced}</span> : null}
+        {showAdvanced ? (
+          <span className="rs-price-flag rs-price-flag--upgrade">{t.badgeEssentialAdvanced}</span>
+        ) : null}
         {showPopular ? <span className="rs-price-flag rs-price-flag--popular">{t.badgeMostPopular}</span> : null}
       </div>
 
-      <h3 className="rs-price-tier-name">{plan.name[lang]}</h3>
+      <header className="rs-price-plan-header">
+        <h3 className="rs-price-tier-name">{plan.name[lang]}</h3>
+      </header>
 
       <div className="rs-price-amount-block">
         <span className="rs-price-amount-value">{plan.price}</span>
         <span className="rs-price-one-time">· {t.pricingOneTimeNote}</span>
       </div>
 
-      {plan.freeEdits ? (
-        <p className="rs-price-free-edits" data-rs-free-edits={plan.freeEdits}>
-          {freeEditsLabel(plan.id, lang)}
-        </p>
-      ) : null}
+      {/* Fixed-height subtitle slot (edit-count) — empty for Enterprise */}
+      <p
+        className="rs-price-subtitle-slot rs-price-free-edits"
+        data-rs-free-edits={plan.freeEdits || 0}
+        data-empty={subtitle ? "false" : "true"}
+      >
+        {subtitle || "\u00a0"}
+      </p>
 
-      <div className="rs-price-tagline-slot" />
+      <div className="rs-price-tagline-slot" aria-hidden="true" />
 
       {features.length > 0 ? (
         <ul className="rs-price-features rs-price-features--compact">
@@ -54,7 +63,12 @@ export default function PriceTierCard({ plan, lang, busyPlan, onCheckout, quoteM
             <li key={f}>{f}</li>
           ))}
         </ul>
-      ) : null}
+      ) : (
+        <ul className="rs-price-features rs-price-features--compact" aria-hidden="true" />
+      )}
+
+      {/* Push deliverables link + CTA to the bottom */}
+      <div className="rs-price-card-spacer" aria-hidden="true" />
 
       {hasMore ? (
         <button
@@ -66,7 +80,9 @@ export default function PriceTierCard({ plan, lang, busyPlan, onCheckout, quoteM
           {expanded ? t.pricingHideFeatures : t.pricingViewAllFeatures}
         </button>
       ) : (
-        <span className="rs-price-expand-spacer" aria-hidden />
+        <span className="rs-price-expand rs-price-expand-spacer" aria-hidden>
+          {"\u00a0"}
+        </span>
       )}
 
       <footer className="rs-price-card-footer">

@@ -1,12 +1,13 @@
 {
   "version": 3,
   "planId": "essential_advanced",
-  "displayName": "Essential Advanced Plan",
+  "displayName": "Advanced — Tutorial Videos & Tips",
   "priceUsd": 110,
   "currency": "USD",
   "stripeEnv": "NEXT_PUBLIC_STRIPE_PRICE_ESSENTIAL_ADVANCED",
   "checkoutMode": "payment",
   "oneTime": true,
+  "isTutorialOnly": true,
   "pricingCardOrder": ["basic", "professional", "elite", "essential_advanced"],
   "deliverables": {
     "atsOptimization": true,
@@ -15,7 +16,7 @@
     "keywordOptimization": true,
     "coverLetterSupport": true,
     "fasterTurnaround": true,
-    "limitedRevisions": { "count": 2, "note": "structured edit sprints" },
+    "limitedRevisions": { "count": 0, "note": "Tutorial videos and tips only — no included resume edits" },
     "interviewPrepBundle": {
       "trainingVideos": 3,
       "simulations": 3,

@@ -9,6 +9,7 @@ const { auditStripeEnv } = require("../../lib/marketing/stripe-env-audit");
 const { createStripeServerClient } = require("../../lib/marketing/stripe-server");
 const { checkoutMetadata } = require("../../lib/marketing/bossmind-brand-authority");
 const { getFreeEditsCount } = require("../../lib/client/plan-policy");
+const { getCanonicalPlan } = require("../../lib/client/canonical-plan-registry");
 const {
   getStudioCheckoutSuccessUrl,
   getStudioCheckoutCancelUrl,
@@ -63,10 +64,7 @@ export default async function handler(req, res) {
     }
 
     let priceId = resolveStripePriceId(planId);
-    if (!priceId && isValidPriceId(clientPriceId)) {
-      priceId = clientPriceId.trim();
-    }
-
+    // Client must not supply amount, currency, mode, or Price ID. Server registry / env only.
     if (!priceId) {
       console.error("[Resumora Stripe][checkout] STRIPE_PRICE_ID_MISSING:", {
         planId,
@@ -75,6 +73,15 @@ export default async function handler(req, res) {
       return res.status(400).json({
         error: `No Stripe Price ID configured for plan "${planId}".`,
         hint: pricingSetupHintForPlan(planId),
+        planId,
+      });
+    }
+
+    if (clientPriceId && String(clientPriceId).trim() && String(clientPriceId).trim() !== priceId) {
+      console.error("[Resumora Stripe][checkout] CLIENT_PRICE_ID_REJECTED:", { planId });
+      return res.status(400).json({
+        error: "Client-supplied Stripe Price ID is not allowed.",
+        hint: "Submit planId only. Server resolves the one-time Price ID.",
         planId,
       });
     }
@@ -112,6 +119,37 @@ export default async function handler(req, res) {
           "This Stripe Price is recurring/subscription; Resumora checkout requires one-time prices only.",
         hint: pricingSetupHintForPlan(planId),
         planId,
+      });
+    }
+
+    const canon = getCanonicalPlan(planId);
+    if (!canon || canon.paymentMode !== "payment") {
+      return res.status(500).json({ error: "Canonical plan registry misconfigured.", planId });
+    }
+    const unit = Number(stripePrice.unit_amount);
+    const currency = String(stripePrice.currency || "").toLowerCase();
+    if (currency !== canon.currency) {
+      return res.status(400).json({
+        error: "Stripe Price currency does not match canonical plan currency (USD).",
+        planId,
+      });
+    }
+    if (unit !== canon.amountCents) {
+      console.error("[Resumora Stripe][checkout] STRIPE_AMOUNT_MISMATCH:", {
+        planId,
+        priceId,
+        unit,
+        expected: canon.amountCents,
+      });
+      return res.status(400).json({
+        error: `Stripe Price amount mismatch for ${planId}. Expected ${canon.amountCents} cents one-time.`,
+        hint:
+          planId === "elite"
+            ? "Professional must be US$79.00 (7900¢), not US$99.00. Update the Stripe Price in Dashboard."
+            : pricingSetupHintForPlan(planId),
+        planId,
+        expectedCents: canon.amountCents,
+        stripeCents: unit,
       });
     }
 
