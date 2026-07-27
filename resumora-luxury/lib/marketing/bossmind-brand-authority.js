@@ -6,9 +6,42 @@ const path = require("path");
 
 const DEFAULT_CONFIG_PATH = "config/bossmind-brand-authority.json";
 
+function fallbackBrandAuthority() {
+  const constants = require("./bossmind-brand-authority.constants");
+  return {
+    version: 1,
+    officialBrand: "Resumora",
+    domain: "resumora.net",
+    luxuryTone: "executive",
+    forbiddenVariants: [],
+    textReplacements: [],
+    planStripeNames: {
+      basic: constants.officialPlanStripeName("basic"),
+      professional: constants.officialPlanStripeName("professional"),
+      elite: constants.officialPlanStripeName("elite"),
+      essential_advanced: constants.officialPlanStripeName("essential_advanced"),
+    },
+    catalogProducts: [],
+  };
+}
+
 function loadBrandAuthority(cwd = process.cwd()) {
-  const p = path.join(cwd, DEFAULT_CONFIG_PATH);
-  return JSON.parse(fs.readFileSync(p, "utf8"));
+  const candidates = [
+    path.join(cwd, DEFAULT_CONFIG_PATH),
+    path.join(__dirname, "..", "..", DEFAULT_CONFIG_PATH),
+    path.join(__dirname, "..", "..", "config", "bossmind-baseline-snapshots", "bossmind-brand-authority-v1", "bossmind-brand-authority.json"),
+  ];
+  for (const p of candidates) {
+    try {
+      if (fs.existsSync(p)) {
+        return JSON.parse(fs.readFileSync(p, "utf8"));
+      }
+    } catch {
+      /* try next */
+    }
+  }
+  console.warn("[bossmind-brand-authority] config JSON missing; using constants fallback");
+  return fallbackBrandAuthority();
 }
 
 function buildForbiddenRegexes(config) {

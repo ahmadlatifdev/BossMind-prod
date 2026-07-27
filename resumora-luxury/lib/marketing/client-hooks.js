@@ -87,17 +87,9 @@ export function useStripeCheckout(activeLang = "en") {
 
   const handleCheckout = useCallback(async (planId, planName, planPrice) => {
     setCheckoutError("");
-    const planMeta = dynamicPlans.find((p) => p.id === planId);
-    const priceId = planMeta?.priceId || "";
     const paymentLink = resolvePaymentLinkUrl(planId);
 
-    if (!priceId && !paymentLink) {
-      setCheckoutError(
-        `Stripe Price ID missing for "${planId}". Set NEXT_PUBLIC_STRIPE_PRICE_* in .env.local and redeploy.`
-      );
-      return;
-    }
-
+    // Server resolves Stripe Price ID from env/lock — do not block solely on NEXT_PUBLIC_* client env.
     trackGa4("begin_checkout", {
       plan_id: planId,
       plan_name: planName,
@@ -130,7 +122,7 @@ export function useStripeCheckout(activeLang = "en") {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           planId,
-          priceId,
+          // planId only — server rejects client Price IDs and resolves amount/mode
           planName: officialPlanName || planName,
           planPrice,
           serviceDraftSummary,
@@ -141,7 +133,7 @@ export function useStripeCheckout(activeLang = "en") {
       });
       const data = await response.json().catch(() => ({}));
 
-      if (!response.ok || !data.id) {
+      if (!response.ok || !(data.id || data.url || data.sessionUrl)) {
         if (paymentLink && (response.status === 503 || response.status === 500)) {
           redirectToPaymentLink(planId, pageLang);
           return;
@@ -153,6 +145,12 @@ export function useStripeCheckout(activeLang = "en") {
           hint: data?.hint,
         });
         setCheckoutError(userFacingCheckoutError(response.status, data));
+        return;
+      }
+
+      const sessionUrl = data.url || data.sessionUrl || "";
+      if (sessionUrl && typeof window !== "undefined") {
+        window.location.assign(sessionUrl);
         return;
       }
 

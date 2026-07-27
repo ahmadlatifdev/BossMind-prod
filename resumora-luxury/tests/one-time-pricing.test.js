@@ -55,6 +55,16 @@ describe("canonical one-time prices", () => {
     assert.equal(getCanonicalPlan("essential_advanced").amountCents, 11000);
   });
 
+  it("display list prices match registry cents", () => {
+    const { BASIC_PRICE_USD, PRO_PRICE_USD, ELITE_PRICE_USD, ESSENTIAL_ADVANCED_PRICE_USD } = require("../lib/marketing/plan-list-prices");
+    const { BASIC_PRICE_USD: quoteBasic } = require("../lib/marketing/service-quote-pricing");
+    assert.equal(BASIC_PRICE_USD, 19);
+    assert.equal(quoteBasic, 19);
+    assert.equal(PRO_PRICE_USD * 100, getCanonicalPlan("professional").amountCents);
+    assert.equal(ELITE_PRICE_USD * 100, getCanonicalPlan("elite").amountCents);
+    assert.equal(ESSENTIAL_ADVANCED_PRICE_USD * 100, getCanonicalPlan("essential_advanced").amountCents);
+  });
+
   it("rejects $99 for Professional", () => {
     assert.notEqual(CANONICAL_PLANS.elite.amountCents, 9900);
   });

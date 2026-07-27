@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-21T09:52:19.272Z",
+  "generatedAt": "2026-07-27T02:21:21.961Z",
   "officialBrand": "Resumora",
   "currency": "usd",
   "checkoutMode": "payment",
@@ -61,16 +61,16 @@
       "serviceKey": "executive_career",
       "name": "Resumora Executive Career Package",
       "description": "Executive career package — storyline, LinkedIn relaunch, interview rehearsals, and concierge strategist. Resumora luxury delivery.",
-      "amountUsd": 99,
+      "amountUsd": 79,
       "planIds": [
         "elite"
       ],
       "category": "tier",
-      "amountCents": 9900,
+      "amountCents": 7900,
       "productId": "prod_UXFhUykFe8nw1S",
-      "priceId": "price_1TYBCTGjsXTaeZBgE4R4BSan",
-      "paymentLinkId": "plink_1TYBCUGjsXTaeZBg9NIBnCQO",
-      "paymentLinkUrl": "https://buy.stripe.com/test_14AeVd99X9BFcTbeA00Fi02",
+      "priceId": "price_1TxeAPGjsXTaeZBgsSoy8CBJ",
+      "paymentLinkId": "plink_1TxeAPGjsXTaeZBg85LvvD7F",
+      "paymentLinkUrl": "https://buy.stripe.com/test_cNiaEXeuh5lp8CVcrS0Fi08",
       "linkCreated": false,
       "active": true
     },
@@ -191,5 +191,6 @@
     "googleDocsExport": "D:/BossMind/bossmind-resumora/windows-heal/stripe-payment-links/resumora-payment-links-google-docs-export.txt",
     "json": "D:/BossMind/bossmind-resumora/windows-heal/stripe-payment-links/payment-links-2026-05-21T09-52-19-272Z.json",
     "bossmind": "D:/BossMind/bossmind-resumora/.bossmind/stripe-payment-links/latest.json"
-  }
+  },
+  "r08Note": "Elite/Professional price corrected 9900->7900; new Price + Payment Link"
 }

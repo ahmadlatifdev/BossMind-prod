@@ -197,7 +197,11 @@ export default async function handler(req, res) {
       },
     });
 
-    return res.status(200).json({ id: session.id });
+    return res.status(200).json({
+      id: session.id,
+      url: session.url || null,
+      sessionUrl: session.url || null,
+    });
   } catch (error) {
     console.error("Stripe Checkout Error:", error);
 
