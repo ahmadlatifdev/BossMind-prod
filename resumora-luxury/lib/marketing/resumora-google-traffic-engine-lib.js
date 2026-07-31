@@ -13,7 +13,7 @@ const {
 const { runResumoraGoogleEcosystemAudit } = require("./resumora-google-ecosystem-audit-lib.js");
 const { generateGoogleOrganicBundle } = require("./google-organic-engine.js");
 const { runDeepSeekSeoBrain } = require("./resumora-deepseek-seo-brain.js");
-const { runOpenAiContentLayer } = require("./resumora-openai-content-layer.js");
+const { runKimiContentLayer, runOpenAiContentLayer } = require("./resumora-kimi-content-layer.js");
 const { runGeminiSeoEnhance } = require("./resumora-gemini-seo-enhance.js");
 const { runSeRankingBridge } = require("./resumora-seranking-bridge.js");
 const { isoWeekId } = require("./google-organic-engine.js");
@@ -41,7 +41,7 @@ function scoreFromChecks(checks) {
   return Math.round((sum / max) * 100);
 }
 
-function buildIntegrationScores({ gsc, ecosystem, ga4Env, deepseek, openai, gemini, seRanking }) {
+function buildIntegrationScores({ gsc, ecosystem, ga4Env, deepseek, kimi, gemini, seRanking }) {
   const gscChecks = [
     { pass: gsc?.activation?.ownershipVerified, weight: 35, partial: gsc?.overallStatus === "PASS" },
     { pass: gsc?.dns?.propagationPass && !gsc?.dns?.conflict?.hasConflict, weight: 25 },
@@ -61,9 +61,10 @@ function buildIntegrationScores({ gsc, ecosystem, ga4Env, deepseek, openai, gemi
     { pass: deepseek?.aiUsed, weight: 60, partial: Boolean(process.env.DEEPSEEK_API_KEY) && !deepseek?.aiUsed },
   ];
 
-  const openaiChecks = [
-    { pass: Boolean(process.env.OPENAI_API_KEY), weight: 35 },
-    { pass: openai?.aiUsed, weight: 65, partial: Boolean(process.env.OPENAI_API_KEY) && !openai?.aiUsed },
+  const kimiKey = Boolean(process.env.KIMI_API_KEY || process.env.MOONSHOT_API_KEY);
+  const kimiChecks = [
+    { pass: kimiKey, weight: 35 },
+    { pass: kimi?.aiUsed, weight: 65, partial: kimiKey && !kimi?.aiUsed },
   ];
 
   const geminiChecks = [
@@ -79,7 +80,9 @@ function buildIntegrationScores({ gsc, ecosystem, ga4Env, deepseek, openai, gemi
     googleSearchConsole: scoreFromChecks(gscChecks),
     ga4Tracking: scoreFromChecks(ga4Checks),
     deepSeekSeoBrain: scoreFromChecks(deepseekChecks),
-    openAiContentLayer: scoreFromChecks(openaiChecks),
+    kimiContentLayer: scoreFromChecks(kimiChecks),
+    /** @deprecated alias — OpenAI removed */
+    openAiContentLayer: scoreFromChecks(kimiChecks),
     geminiEnhancement: scoreFromChecks(geminiChecks),
     seRanking: scoreFromChecks(seChecks),
   };
@@ -94,7 +97,7 @@ function buildTrafficOptimizationEngine(bundle, deepseek) {
       "Province/city pages link up to /solutions/canada-jobs-resume when published",
     ],
     schema: ["Organization (global)", "Service on solution pages", "FAQPage on approved FAQs", "BreadcrumbList"],
-    faqSchema: "Generate FAQ blocks from OpenAI layer; validate JSON-LD on deploy gate only",
+    faqSchema: "Generate FAQ blocks from Kimi K3 layer; validate JSON-LD on deploy gate only",
     metadataAutomation: "seo-data.js + page Head — no auto-write to protected routes without review",
     aiTitlesDescriptions: "DeepSeek weeklyActions + Gemini refinements → human/PR merge",
     imageAltAutomation: "Use media briefs from google-organic-engine; alt text on next approved asset pass",
@@ -108,11 +111,11 @@ function buildValidationFlags(scores, gsc, sitemap) {
     ga4TrackingActive: scores.ga4Tracking >= 60,
     organicAutomationActive: true,
     weeklyAiContentGenerationActive:
-      Boolean(process.env.OPENAI_API_KEY) || Boolean(process.env.DEEPSEEK_API_KEY),
+      Boolean(process.env.KIMI_API_KEY || process.env.MOONSHOT_API_KEY) || Boolean(process.env.DEEPSEEK_API_KEY),
     seoMonitoringActive: true,
     googleIndexingActive: sitemap?.robotsOk && sitemap?.sitemapOk,
     sitemapActive: sitemap?.sitemapOk === true,
-    organicTrafficEngineActive: scores.deepSeekSeoBrain >= 40 && scores.openAiContentLayer >= 35,
+    organicTrafficEngineActive: scores.deepSeekSeoBrain >= 40 && scores.kimiContentLayer >= 35,
   };
 }
 
@@ -149,7 +152,7 @@ async function runGoogleTrafficEngine(opts = {}) {
   const organicBundle = await generateGoogleOrganicBundle({ weekId });
 
   let deepseek = { aiUsed: false, note: "skipped" };
-  let openai = { aiUsed: false, note: "skipped" };
+  let kimi = { aiUsed: false, note: "skipped" };
   let gemini = { aiUsed: false, note: "skipped" };
 
   if (!opts.skipAi) {
@@ -168,11 +171,11 @@ async function runGoogleTrafficEngine(opts = {}) {
       deepseek = await runDeepSeekSeoBrain({ weekId, root });
     }
     if (["monday", "tuesday", "wednesday", "thursday", "friday"].includes(scheduleKey) || !opts.skipAi) {
-      openai = await runOpenAiContentLayer({ weekId, dayTheme: theme });
+      kimi = await runKimiContentLayer({ weekId, dayTheme: theme });
     }
     if (process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
       gemini = await runGeminiSeoEnhance({
-        contentJson: { organicBundle, deepseek, openai },
+        contentJson: { organicBundle, deepseek, kimi },
       });
     }
   }
@@ -183,7 +186,7 @@ async function runGoogleTrafficEngine(opts = {}) {
     ecosystem,
     ga4Env: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
     deepseek,
-    openai,
+    kimi,
     gemini,
     seRanking,
   });
@@ -195,7 +198,7 @@ async function runGoogleTrafficEngine(opts = {}) {
     (scores.googleSearchConsole +
       scores.ga4Tracking +
       scores.deepSeekSeoBrain +
-      scores.openAiContentLayer +
+      scores.kimiContentLayer +
       scores.geminiEnhancement +
       scores.seRanking) /
       6
@@ -233,7 +236,9 @@ async function runGoogleTrafficEngine(opts = {}) {
       expansionTargets: cfg.seoExpansionTargets?.length || 0,
     },
     deepSeekSeoBrain: deepseek,
-    openAiContentLayer: openai,
+    kimiContentLayer: kimi,
+    /** @deprecated alias — OpenAI removed; same payload as kimiContentLayer */
+    openAiContentLayer: kimi,
     geminiEnhancement: gemini,
     seRanking,
     trafficOptimization,

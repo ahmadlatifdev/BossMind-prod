@@ -1,11 +1,11 @@
 {
-  "version": 1,
-  "role": "OpenAI Codex — dedicated coding + repair execution (not primary reasoning or customer comms)",
+  "version": 2,
+  "role": "Kimi K3 — dedicated coding + repair execution (not primary reasoning or customer comms). Replaces former OpenAI Codex / ChatGPT coding agent.",
   "ecosystemRoles": {
     "deepseek": "Master reasoning + orchestration intelligence (internal analysis, triage, root-cause hypotheses)",
-    "chatgpt": "Strategic planning + polished external communication (not sole authority on money/legal)",
-    "codex": "Repository-aware patch generation, CI/build repair, PowerShell/script refinement, dependency fixes under whitelist",
-    "gemini": "Workspace productivity assistant (docs, email drafts where policy allows — separate from Codex)",
+    "kimi_k3": "Strategic coordination, long-context analysis, debugging guidance, repository-aware patch generation under whitelist",
+    "cursor": "Primary file editor / implementation workspace",
+    "gemini": "Workspace productivity assistant (docs, email drafts where policy allows)",
     "n8n": "Workflow orchestration and human-in-the-loop gates",
     "neon": "Shared memory: task_state, event_log, error_memory, fix patterns",
     "bossmind": "Central control: deploy gates, antileak, snapshots, validation layer before merge/deploy"
@@ -14,7 +14,8 @@
     "customer_email_automation_primary",
     "unsupervised_stripe_or_payout_actions",
     "replacing_deepseek_orchestration_without_human_review",
-    "bypassing_bossmind_deploy_gate_or_immutable_lock"
+    "bypassing_bossmind_deploy_gate_or_immutable_lock",
+    "openai_chatgpt_api_calls"
   ],
   "executionBoundaries": {
     "allowedPathPrefixes": [
@@ -45,9 +46,9 @@
       "Sentry error ingested (pages/api/orchestration/sentry-ingest.js)",
       "DeepSeek analysis (external worker — policy; not in-repo API by default)",
       "LangGraph task (lib/orchestration/langgraph-repair-flow.js)",
-      "Codex patch candidate (external — GitHub-connected Codex/Cursor Cloud Agent per org policy)",
+      "Kimi K3 patch candidate (Moonshot API / Cursor agent under org policy)",
       "BossMind validation layer (lint, build, deploy gate, protected surface verify)",
-      "Deploy (Render/Railway external)",
+      "Deploy (Firebase / Cloud Run — explicit approval)",
       "Verification (bossmind:enterprise:post-deploy, reality gate)",
       "Save fix pattern to Neon error_memory / event_log"
     ]
@@ -55,13 +56,14 @@
   "githubIntegration": {
     "recommended": "GitHub App with least-privilege: contents read, pull requests write, workflows read — installation on BossMind org repos only",
     "neverCommit": ["GitHub App private keys", "installation tokens", "PATs with admin scope"],
-    "envHints": ["BOSSMIND_GITHUB_APP_ID", "BOSSMIND_GITHUB_APP_INSTALLATION_ID", "BOSSMIND_CODEX_LAYER_ENABLED"]
+    "envHints": ["BOSSMIND_GITHUB_APP_ID", "BOSSMIND_GITHUB_APP_INSTALLATION_ID", "BOSSMIND_CODEX_LAYER_ENABLED", "KIMI_API_KEY", "MOONSHOT_API_KEY"]
   },
   "masterAdminWidget": {
     "dataSource": "GET /api/orchestration/bossmind-health (Bearer BOSSMIND_ORCHESTRATION_SECRET or dev/diagnostics) — field `codexAgentLayer`",
-    "note": "Master Admin dashboard UI lives outside this repository; consume this JSON only."
+    "note": "Master Admin dashboard UI lives outside this repository; consume this JSON only. Field name retained for API compatibility."
   },
   "multiProjectIsolation": {
     "rule": "Each repo uses its own BOSSMIND_PROJECT_KEY and Neon project_key; share only anonymized fix_pattern text in error_memory when policy allows."
-  }
+  },
+  "openaiStatus": "REMOVED — no ChatGPT / api.openai.com fallback"
 }

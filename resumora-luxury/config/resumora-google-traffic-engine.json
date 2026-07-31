@@ -25,9 +25,11 @@
       "env": ["DEEPSEEK_API_KEY"],
       "models": ["deepseek-chat", "deepseek-reasoner"]
     },
-    "openAiContentLayer": {
-      "env": ["OPENAI_API_KEY"],
-      "model": "gpt-4o-mini"
+    "kimiContentLayer": {
+      "env": ["KIMI_API_KEY", "MOONSHOT_API_KEY"],
+      "model": "kimi-k3",
+      "baseUrl": "https://api.moonshot.ai/v1",
+      "note": "Replaces former OpenAI/ChatGPT content layer — no OpenAI fallback"
     },
     "geminiEnhancement": {
       "env": ["GEMINI_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"],

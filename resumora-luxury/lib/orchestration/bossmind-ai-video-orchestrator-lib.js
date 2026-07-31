@@ -168,7 +168,7 @@ async function runOrchestratorStep(sql) {
         .trim();
       const audioOut = path.join(workspaceDir(q.id), "voiceover.mp3");
       if (!fs.existsSync(audioOut)) {
-        await providers.openAiSpeechTts({ text: (narr || q.title || "Video").slice(0, 4000), outPath: audioOut });
+        await providers.speechTts({ text: (narr || q.title || "Video").slice(0, 4000), outPath: audioOut });
         await videoStore.insertAsset(sql, {
           scene_id: null,
           asset_type: "voiceover",
@@ -177,13 +177,13 @@ async function runOrchestratorStep(sql) {
           byte_size: fs.statSync(audioOut).size,
           meta: {},
         });
-        await videoStore.logApiUsage(sql, { provider: "openai", operation: "tts", units: 1 });
+        await videoStore.logApiUsage(sql, { provider: "elevenlabs", operation: "tts", units: 1 });
         return { ran: true, step: "tts" };
       }
 
       const srtOut = path.join(workspaceDir(q.id), "captions.srt");
       if (!fs.existsSync(srtOut)) {
-        const tr = await providers.openAiWhisperTranscribe({ audioPath: audioOut });
+        const tr = await providers.transcribeAudio({ audioPath: audioOut });
         fs.writeFileSync(srtOut, `1\n00:00:00,000 --> 00:00:10,000\n${tr.text}\n`);
         await videoStore.insertAsset(sql, {
           scene_id: null,

@@ -3,7 +3,7 @@
   "project": "resumora",
   "enforcement": {
     "primaryExecutionEngine": "cursor",
-    "codingRepairAgent": "openai_codex",
+    "codingRepairAgent": "kimi_k3",
     "strategyArchitect": "claude",
     "reviewOnlyEngine": "claude"
   },
@@ -31,8 +31,9 @@
         "direct_production_ui_overwrite_without_explicit_approval"
       ]
     },
-    "openai_codex": {
+    "kimi_k3": {
       "role": "coding_execution_repository_repair_only",
+      "model": "kimi-k3",
       "allowed": [
         "repo_analysis",
         "patch_generation",
@@ -47,7 +48,8 @@
         "bypass_bossmind_validation_layer",
         "merge_without_antileak_and_snapshot_policy",
         "overwrite_immutable_production_lock_without_approval"
-      ]
+      ],
+      "note": "Replaces former openai_codex / ChatGPT coding agent — no OpenAI fallback"
     }
   },
   "requiredProtectionLayers": [

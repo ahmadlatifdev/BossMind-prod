@@ -1,6 +1,6 @@
 /**
- * BossMind — OpenAI Codex agent layer status (for health API / Master Admin consumers).
- * Does not call Codex or GitHub; reports configuration + recent Neon repair signals when available.
+ * BossMind — Kimi K3 coding/repair agent layer status (for health API / Master Admin).
+ * Legacy export name retained for API compatibility. Does not call OpenAI/ChatGPT.
  */
 
 const fs = require("fs");

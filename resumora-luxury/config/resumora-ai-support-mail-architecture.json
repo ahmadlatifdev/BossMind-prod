@@ -16,7 +16,7 @@
     "inbox": "Google Workspace Gmail (support@resumora.net)",
     "automationEngine": "n8n (self-hosted or n8n Cloud — secrets only on Railway / n8n credentials store)",
     "aiClassification": "DeepSeek API — routing, intent, urgency, language detect, PII redaction hints",
-    "aiDraftPolish": "OpenAI ChatGPT API — professional client-facing draft only after classification + policy gates",
+    "aiDraftPolish": "Kimi K3 API — professional client-facing draft only after classification + policy gates (OpenAI/ChatGPT removed)",
     "sharedMemory": "Neon Postgres — event_log + optional dedicated support_ticket_state (n8n or worker writes)",
     "orchestrationControl": "BossMind — env kill-switches, deploy gates, this repo policy JSON + Neon audit rows"
   },
@@ -153,7 +153,8 @@
     "neverCommit": [
       "Gmail OAuth refresh tokens",
       "Google service account JSON",
-      "OPENAI_API_KEY",
+      "KIMI_API_KEY",
+      "MOONSHOT_API_KEY",
       "DEEPSEEK_API_KEY",
       "N8N_ENCRYPTION_KEY",
       "Neon connection string with write access from untrusted CI"

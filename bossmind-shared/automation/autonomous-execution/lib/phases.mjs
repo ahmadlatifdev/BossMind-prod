@@ -110,7 +110,7 @@ function inferTools(categories, config) {
   }
   tools.add("Claude");
   if (categories.includes("Refactor") || categories.includes("Performance")) tools.add("DeepSeek");
-  if (categories.includes("Emergency Recovery")) tools.add("ChatGPT");
+  if (categories.includes("Emergency Recovery")) tools.add("Kimi K3");
   return [...tools];
 }
 

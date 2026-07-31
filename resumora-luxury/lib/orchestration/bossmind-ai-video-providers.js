@@ -69,48 +69,87 @@ ${scriptText.slice(0, 120_000)}`;
   return { model, structured, rawUsage: data.usage || null };
 }
 
-async function openAiSpeechTts({ text, outPath }) {
-  const key = process.env.OPENAI_API_KEY;
-  if (!key) throw new Error("OPENAI_API_KEY is required for TTS");
+/**
+ * Non-OpenAI TTS: ElevenLabs when configured; otherwise fail (no ChatGPT fallback).
+ */
+async function speechTts({ text, outPath }) {
+  const elevenKey = String(process.env.ELEVENLABS_API_KEY || "").trim();
+  const voiceId = process.env.ELEVENLABS_VOICE_ID || "21m00Tcm4TlvDq8ikWAM";
+  if (!elevenKey) {
+    throw new Error(
+      "openai_removed: OpenAI TTS disabled. Set ELEVENLABS_API_KEY (or wire a speech webhook). Text AI is Kimi K3 / DeepSeek only.",
+    );
+  }
   const fs = require("fs");
-  const res = await fetch("https://api.openai.com/v1/audio/speech", {
+  const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${key}`,
+      "xi-api-key": elevenKey,
       "Content-Type": "application/json",
+      Accept: "audio/mpeg",
     },
     body: JSON.stringify({
-      model: process.env.OPENAI_TTS_MODEL || "tts-1",
-      voice: process.env.OPENAI_TTS_VOICE || "alloy",
-      input: text.slice(0, 4096),
+      text: String(text || "").slice(0, 5000),
+      model_id: process.env.ELEVENLABS_MODEL || "eleven_multilingual_v2",
     }),
   });
   if (!res.ok) {
-    throw new Error(`OpenAI TTS ${res.status}: ${(await res.text()).slice(0, 300)}`);
+    throw new Error(`ElevenLabs TTS ${res.status}: ${(await res.text()).slice(0, 300)}`);
   }
   const buf = Buffer.from(await res.arrayBuffer());
   fs.writeFileSync(outPath, buf);
-  return { bytes: buf.length, path: outPath };
+  return { bytes: buf.length, path: outPath, provider: "elevenlabs" };
 }
 
-async function openAiWhisperTranscribe({ audioPath }) {
-  const key = process.env.OPENAI_API_KEY;
-  if (!key) throw new Error("OPENAI_API_KEY is required for Whisper");
-  const fs = require("fs");
-  const buf = fs.readFileSync(audioPath);
-  const form = new FormData();
-  form.append("file", new Blob([buf]), "audio.mp3");
-  form.append("model", process.env.OPENAI_WHISPER_MODEL || "whisper-1");
+/** @deprecated name kept for callers — routes to non-OpenAI speechTts */
+async function openAiSpeechTts(opts) {
+  return speechTts(opts);
+}
 
-  const res = await fetch("https://api.openai.com/v1/audio/transcriptions", {
+/**
+ * Non-OpenAI transcription: AssemblyAI when configured; otherwise fail (no Whisper/OpenAI).
+ */
+async function transcribeAudio({ audioPath }) {
+  const key = String(process.env.ASSEMBLYAI_API_KEY || "").trim();
+  if (!key) {
+    throw new Error(
+      "openai_removed: OpenAI Whisper disabled. Set ASSEMBLYAI_API_KEY for captions. Text AI is Kimi K3 / DeepSeek only.",
+    );
+  }
+  const fs = require("fs");
+  const upload = await fetch("https://api.assemblyai.com/v2/upload", {
     method: "POST",
-    headers: { Authorization: `Bearer ${key}` },
-    body: form,
+    headers: { authorization: key, "content-type": "application/octet-stream" },
+    body: fs.readFileSync(audioPath),
   });
-  const text = await res.text();
-  if (!res.ok) throw new Error(`Whisper ${res.status}: ${text.slice(0, 400)}`);
-  const j = JSON.parse(text);
-  return { text: j.text || "" };
+  if (!upload.ok) {
+    throw new Error(`AssemblyAI upload ${upload.status}: ${(await upload.text()).slice(0, 300)}`);
+  }
+  const { upload_url: uploadUrl } = await upload.json();
+  const create = await fetch("https://api.assemblyai.com/v2/transcript", {
+    method: "POST",
+    headers: { authorization: key, "content-type": "application/json" },
+    body: JSON.stringify({ audio_url: uploadUrl }),
+  });
+  if (!create.ok) {
+    throw new Error(`AssemblyAI create ${create.status}: ${(await create.text()).slice(0, 300)}`);
+  }
+  const { id } = await create.json();
+  for (let i = 0; i < 60; i++) {
+    await new Promise((r) => setTimeout(r, 2000));
+    const poll = await fetch(`https://api.assemblyai.com/v2/transcript/${id}`, {
+      headers: { authorization: key },
+    });
+    const j = await poll.json();
+    if (j.status === "completed") return { text: j.text || "", provider: "assemblyai" };
+    if (j.status === "error") throw new Error(`AssemblyAI error: ${j.error || "failed"}`);
+  }
+  throw new Error("AssemblyAI transcription timed out");
+}
+
+/** @deprecated name kept for callers — routes to non-OpenAI transcribeAudio */
+async function openAiWhisperTranscribe(opts) {
+  return transcribeAudio(opts);
 }
 
 /**
@@ -164,6 +203,8 @@ async function requestPublishFromWebhook({ platform, renderId, manifest }) {
 
 module.exports = {
   deepseekScenarioFromScript,
+  speechTts,
+  transcribeAudio,
   openAiSpeechTts,
   openAiWhisperTranscribe,
   requestSceneMediaFromWebhook,
