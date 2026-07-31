@@ -195,14 +195,6 @@
       "maskedValue": "********",
       "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
     },
-    "OPENAI_API_KEY": {
-      "maskedValue": "sk-p********QN8A",
-      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
-    },
-    "OPENAI_EMBEDDING_MODEL": {
-      "maskedValue": "text********mall",
-      "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
-    },
     "bossmind.active": {
       "maskedValue": "********",
       "sourceFile": "D:\\Shakhsy11\\Archive\\legacy-projects\\Bossmind-orchestrator\\.env"
@@ -362,6 +354,14 @@
     "PROJECT_KEY": {
       "maskedValue": "********",
       "sourceFile": "D:\\Shakhsy11\\BossMind-Apps\\bossmind-resumora\\.env"
+    },
+    "KIMI_API_KEY": {
+      "required": false,
+      "description": "Moonshot/Kimi K3 — no OpenAI fallback"
+    },
+    "MOONSHOT_API_KEY": {
+      "required": false,
+      "description": "Moonshot/Kimi K3 — no OpenAI fallback"
     }
   }
 }

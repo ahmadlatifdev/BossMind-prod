@@ -1,13 +1,19 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import ResumoraLogo from "@/components/brand/ResumoraLogo";
 import { useRouter } from "next/router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/marketing/site-copy";
-import FooterUniversalDock from "@/components/marketing/FooterUniversalDock";
-import InstallPrompt from "@/components/marketing/InstallPrompt";
-import LanguageSwitcher from "@/components/marketing/LanguageSwitcher";
+const LanguageSwitcher = dynamic(() => import("@/components/marketing/LanguageSwitcher"), { ssr: true });
+
+const FooterUniversalDock = dynamic(() => import("@/components/marketing/FooterUniversalDock"), {
+  ssr: true,
+});
+const InstallPrompt = dynamic(() => import("@/components/marketing/InstallPrompt"), {
+  ssr: false,
+});
 
 function NavGroup({ title, open, onToggle, children }) {
   return (
