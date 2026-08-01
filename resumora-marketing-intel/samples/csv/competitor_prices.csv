@@ -1,0 +1,6 @@
+competitor,plan,price,prev_price,currency,url,observed_at
+PeerA,Basic,29,35,USD,https://www.example-competitor.com/pricing,2026-07-30T12:00:00Z
+PeerA,Pro,59,59,USD,https://www.example-competitor.com/pricing,2026-07-30T12:00:00Z
+PeerB,Starter,19,19,USD,https://www.example-b.com/pricing,2026-07-30T12:00:00Z
+PeerB,Executive,99,109,USD,https://www.example-b.com/pricing,2026-07-30T12:00:00Z
+PeerC,ATS Pack,49,49,CAD,https://www.example-c.com/pricing,2026-07-30T12:00:00Z

@@ -1,0 +1,2 @@
+# Dashboard deps — mirrors project root for local Streamlit
+-r ../requirements.txt

@@ -1,0 +1,9 @@
+observed_at,plan_id,plan_name,price_usd,currency,source
+2026-01-01T00:00:00Z,basic,Basic,19,USD,manual
+2026-01-01T00:00:00Z,pro,Pro,49,USD,manual
+2026-01-01T00:00:00Z,elite,Elite,79,USD,manual
+2026-01-01T00:00:00Z,essential_advanced,Essential Advanced,110,USD,manual
+2026-06-01T00:00:00Z,basic,Basic,19,USD,manual
+2026-06-01T00:00:00Z,pro,Pro,49,USD,manual
+2026-06-01T00:00:00Z,elite,Elite,79,USD,manual
+2026-06-01T00:00:00Z,essential_advanced,Essential Advanced,110,USD,manual
